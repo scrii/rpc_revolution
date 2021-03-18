@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     ListView myListView;
     BubbleTextView textMessage;
     boolean xy = true;
-    int delete;
     String s, shadow_nickname_user,coordinats_x = "1.000",coordinats_y = "1.000";
 
 
