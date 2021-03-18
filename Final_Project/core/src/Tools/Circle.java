@@ -1,7 +1,6 @@
 package Tools;
 
 public class Circle {
-    // подлежит изменению вследствии замены кругов на текстуры
 
     public Circle(Point2D pos, float R){
         this.pos=new Point2D(pos);
@@ -27,9 +26,4 @@ public class Circle {
         return dist<sumR*sumR;
         //true если пересекаются
     }
-
-    public void add(float x, float y){
-        pos.add(x,y);
-    }
-
 }

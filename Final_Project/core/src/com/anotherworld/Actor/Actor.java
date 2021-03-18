@@ -1,7 +1,7 @@
 package com.anotherworld.Actor;
 
-import com.anotherworld.GraphicsObj.GraphicsObj;
 import com.badlogic.gdx.graphics.Texture;
+import com.anotherworld.GraphicsObj.GraphicsObj;
 
 import Tools.Circle;
 import Tools.Point2D;

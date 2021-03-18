@@ -1,7 +1,6 @@
 package com.anotherworld.Screens;
 
 import com.anotherworld.Actor.Player;
-import com.anotherworld.Main;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
@@ -9,35 +8,43 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.anotherworld.Main;
+
 
 import Tools.Joystick;
 import Tools.Point2D;
 
 public class GameSc implements Screen {
-
+    OrthographicCamera camera;
     Joystick joy;
     public static Player player;
     Sprite sprite=new Sprite(Main.background);
-    OrthographicCamera camera;
-    static Point2D realTimeCoords=new Point2D(0,0);
 
+    // РАЗРЕШЕНИЕ КАМЕРЫ
+    private static final float CAM_WIDTH=Main.WIDTH;
+    private static final float CAM_HEIGHT=Main.HEIGHT;
+
+
+   //OrthographicCamera camera;
+    static Point2D realTimeCoords=new Point2D(0,0);
 
 
     private static final int joyX=Main.WIDTH-((Main.HEIGHT/3)/2+(Main.HEIGHT/3)/4);
     private static final int joyY=(Main.HEIGHT/3)/2+(Main.HEIGHT/3)/4;
     private static final int joySize = Main.HEIGHT/3;
 
-
-    private static final int entityRad = Main.HEIGHT/20;
     private static final int entityX=Main.WIDTH/2;
-    private static final int entityY=Main.WIDTH/2-entityRad;
+    private static final int entityY=Main.WIDTH/3;
+    private static final int entityRad = Main.HEIGHT/20;
     // ресурсы подгружаются с класса Main
 
     Main main;
 
     public GameSc(Main main){
         this.main=main;
-        camera=new OrthographicCamera(Main.WIDTH,Main.HEIGHT);
+        camera=new OrthographicCamera(CAM_WIDTH,CAM_HEIGHT);
+       // camera=new OrthographicCamera(Main.WIDTH,Main.HEIGHT);
+
     }
 
     @Override
@@ -78,7 +85,7 @@ public class GameSc implements Screen {
 
             @Override
             public boolean touchDragged(int screenX, int screenY, int pointer) {
-                screenY= Main.HEIGHT-screenY;
+                screenY=Main.HEIGHT-screenY;
                 setPos(screenX,screenY);
                 multitouch((int)screenX,(int)screenY,true,pointer);
                 return false;
@@ -107,8 +114,7 @@ public class GameSc implements Screen {
         Main.batch.begin();
         Main.batch.draw(Main.background,0,0);
         GameRender(Main.batch);
-        // сплюсовать радиусы для отображения игрока ровно в центре
-        //camera.position.set(player.send.getX()+player.R,player.send.getY()+player.R,0);
+        camera.position.set(player.getPlayer_position().getX(),player.getPlayer_position().getY(),0);
         Main.batch.end();
     }
 
@@ -149,8 +155,9 @@ public class GameSc implements Screen {
     }
 
     public void loadActors(){
-        player =new Player(Main.actor,new Point2D(entityX,entityY),10,entityRad,20);
         joy=new Joystick(Main.circle,Main.actor,new Point2D(joyX,joyY),joySize);
+        player =new Player(Main.actor,new Point2D(entityX,entityY),10,entityRad,20);
+
     }
 
     public void multitouch(float x,float y,boolean isDownTouch, int pointer){
@@ -172,4 +179,3 @@ public class GameSc implements Screen {
     }
 
 }
-

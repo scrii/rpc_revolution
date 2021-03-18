@@ -1,20 +1,17 @@
 package com.anotherworld;
 
-import com.anotherworld.Screens.GameSc;
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
+import com.anotherworld.Screens.MenuSc;
 
 public class Main extends Game {
 	public static SpriteBatch batch;
 	public Texture img;
 	public static int WIDTH,HEIGHT;
 	public static Texture circle,actor,background;
-	//public MenuSc menu;
-
+	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -23,7 +20,7 @@ public class Main extends Game {
 		circle=new Texture("circle.png");
 		actor=new Texture("actor.png");
 		background=new Texture("testlocation.png");
-		setScreen(new GameSc(this));
+		setScreen(new MenuSc(this));
 	}
 
 	@Override
