@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "583222401138",
+    "project_id": "libgdx-server-1",
+    "storage_bucket": "libgdx-server-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583222401138:android:86f7fda1242f9b672ecaeb",
+        "android_client_info": {
+          "package_name": "com.ttork.for_libgdx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "583222401138-48g22pq7hr589lgki8is4mo1op1kj201.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ttork.for_libgdx",
+            "certificate_hash": "6501253e0a077b83d59b535d089e128e9a212681"
+          }
+        },
+        {
+          "client_id": "583222401138-l485dpoo3f88tf97olodecerupnrr5c9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiKCytL1isuVxGHrSi_U1IU-JC99Vp2rA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "583222401138-l485dpoo3f88tf97olodecerupnrr5c9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
