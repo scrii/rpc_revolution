@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     String nickname;
     ListView myListView;
     BubbleTextView textMessage;
-    boolean xy = true;
+    boolean xy = true; //2
     String s, shadow_nickname_user,coordinats_x = "1.000",coordinats_y = "1.000";
 
 
