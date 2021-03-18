@@ -61,7 +61,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
         imageView = findViewById(R.id.imageView);
-        final Spinner spinner = findViewById(R.id.spinner);
+        //final Spinner spinner = findViewById(R.id.spinner);
 
 //        ArrayAdapter<?> adapter =
 //                ArrayAdapter.createFromResource(this, R.array.background_s, android.R.layout.simple_spinner_item);
