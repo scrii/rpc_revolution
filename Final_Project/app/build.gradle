@@ -19,9 +19,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
-            useProguard false
-            shrinkResources false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -43,8 +41,8 @@ dependencies {
 //    })
     testImplementation 'junit:junit:4.13.2'
     //Add Library
-    implementation 'com.anotherworld:0.1+'
-    implementation 'com.ttork.for_libgdx:0.1+'
+    //implementation 'com.anotherworld:0.1+'
+    //implementation 'com.ttork.for_libgdx:0.1+'
     implementation 'com.firebaseui:firebase-ui:2.1.0'
     implementation 'com.github.lguipeng:BubbleView:1.0.1'    //Error? ---> implementation to compile
     implementation 'androidx.multidex:multidex:2.0.1'
@@ -66,8 +64,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.7.0'
     implementation 'cn.zhaiyifan:rememberedittext:0.9.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
-    compile project(':core')
-    compile project(':app')
-    compile project(':desktop')
-    compile project(':android')
+    //implementation project(':core')
+    //implementation project(':app')
+    //implementation project(':desktop')
+    //implementation project(':android')
 }

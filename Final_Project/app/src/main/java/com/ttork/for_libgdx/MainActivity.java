@@ -28,7 +28,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import com.anotherworld.AndroidLauncher;
+//import com.anotherworld.AndroidLauncher;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         libGDX.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,AndroidLauncher.class));
+                //startActivity(new Intent(MainActivity.this,AndroidLauncher.class));
             }
         });
     }

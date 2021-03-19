@@ -296,17 +296,17 @@ public class ScrollingActivity extends AppCompatActivity{
         getMenuInflater().inflate(R.menu.menu_scrolling, menu);
         int positionOfMenuItem = 0;                                                           //Красный цвет Person в menu_scrolling
         MenuItem item = menu.getItem(positionOfMenuItem);
-        SpannableString s = new SpannableString("Person");
+        SpannableString s = new SpannableString("Пользователь");
         s.setSpan(new ForegroundColorSpan(Color.RED), 0, s.length(), 0);
         item.setTitle(s);
 
         MenuItem item2 = menu.getItem(1);                                              //Красный цвет Shop в menu_scrolling
-        SpannableString s1 = new SpannableString("Shop");
+        SpannableString s1 = new SpannableString("Магазин");
         s1.setSpan(new ForegroundColorSpan(Color.RED), 0, s1.length(), 0);
         item2.setTitle(s1);
 
         MenuItem item3 = menu.getItem(2);                                              //Красный цвет Settings в menu_scrolling
-        SpannableString s2 = new SpannableString("Settings");
+        SpannableString s2 = new SpannableString("Настройки");
         s2.setSpan(new ForegroundColorSpan(Color.RED), 0, s2.length(), 0);
         item3.setTitle(s2);
 
