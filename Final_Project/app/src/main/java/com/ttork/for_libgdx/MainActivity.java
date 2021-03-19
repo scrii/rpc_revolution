@@ -1,6 +1,7 @@
 package com.ttork.for_libgdx;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -27,6 +28,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import com.anotherworld.AndroidLauncher;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         //=====================================================================
-
-
         activity_main = findViewById(R.id.activity_main);
         button = findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +97,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Теневая отправка сообщений с координатами x и y на сервер
+        Button libGDX;
+        libGDX = findViewById(R.id.libGDX);
+        libGDX.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,AndroidLauncher.class));
+            }
+        });
     }
 
 

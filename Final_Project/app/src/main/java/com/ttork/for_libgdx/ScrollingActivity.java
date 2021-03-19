@@ -114,7 +114,7 @@ public class ScrollingActivity extends AppCompatActivity{
 
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         toolBarLayout.setTitle(getTitle());
@@ -289,21 +289,6 @@ public class ScrollingActivity extends AppCompatActivity{
                 startActivity(new Intent(ScrollingActivity.this,MainActivity.class));
             }
         });
-
-        Button creation;
-        creation = findViewById(R.id.create1);
-        creation.setBackgroundColor(getResources().getColor(background_primary));
-        creation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                PackageManager pm = getPackageManager();
-//                Intent intent = pm.getLaunchIntentForPackage("com.ttork.test");
-//                startActivity(intent);
-//                if(real_money >= 100)startActivity(new Intent(ScrollingActivity.this,Creation_of_a_work.class));
-//                else Toast.makeText(getApplicationContext(),"Для создание собственного произведения требуется от 100 монет",Toast.LENGTH_LONG).show();
-            }
-        });
-        //if(h==1)openApp(this, "com.avito.android");
     }
 
     @Override
