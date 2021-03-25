@@ -23,7 +23,6 @@ import java.io.PrintWriter;
 public class PersonActivity extends AppCompatActivity {
     EditText name_person;
     Button confirm;
-    Button delete_me;
     @Override
     protected void onCreate(Bundle savedInstanceState) { //what
         super.onCreate(savedInstanceState);
