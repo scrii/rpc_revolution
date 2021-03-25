@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/person"
     android:orientation="vertical"
-    tools:context=".PersonActivity">
+    tools:context="com.anotherworld.PersonActivity">
 
         <cn.zhaiyifan.rememberedittext.RememberEditText
             android:id="@+id/name_person"

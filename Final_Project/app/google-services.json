@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "583222401138",
-    "project_id": "libgdx-server-1",
-    "storage_bucket": "libgdx-server-1.appspot.com"
+    "project_number": "644735908791",
+    "project_id": "server-two-edf8e",
+    "storage_bucket": "server-two-edf8e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:583222401138:android:86f7fda1242f9b672ecaeb",
+        "mobilesdk_app_id": "1:644735908791:android:6678f4fb5ccafd813d0632",
         "android_client_info": {
-          "package_name": "com.ttork.for_libgdx"
+          "package_name": "com.anotherworld"
         }
       },
       "oauth_client": [
         {
-          "client_id": "583222401138-48g22pq7hr589lgki8is4mo1op1kj201.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.ttork.for_libgdx",
-            "certificate_hash": "6501253e0a077b83d59b535d089e128e9a212681"
-          }
-        },
-        {
-          "client_id": "583222401138-l485dpoo3f88tf97olodecerupnrr5c9.apps.googleusercontent.com",
+          "client_id": "644735908791-4isjr940iueg4sul3q5kv8l90mv8c882.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBiKCytL1isuVxGHrSi_U1IU-JC99Vp2rA"
+          "current_key": "AIzaSyBV_IokwPgdKPNn3V5sj1GuQBeZLKEyZcI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "583222401138-l485dpoo3f88tf97olodecerupnrr5c9.apps.googleusercontent.com",
+              "client_id": "644735908791-4isjr940iueg4sul3q5kv8l90mv8c882.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
