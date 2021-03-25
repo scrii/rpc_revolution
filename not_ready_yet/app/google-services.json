@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "644735908791",
+    "project_id": "server-two-edf8e",
+    "storage_bucket": "server-two-edf8e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644735908791:android:6678f4fb5ccafd813d0632",
+        "android_client_info": {
+          "package_name": "com.anotherworld"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644735908791-4isjr940iueg4sul3q5kv8l90mv8c882.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBV_IokwPgdKPNn3V5sj1GuQBeZLKEyZcI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644735908791-4isjr940iueg4sul3q5kv8l90mv8c882.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

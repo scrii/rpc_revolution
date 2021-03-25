@@ -1,0 +1,3 @@
+include ':app'
+include 'desktop', 'android2', 'core'
+rootProject.name = "Final_Project"
