@@ -57,6 +57,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     //Add Library
     //implementation 'com.ttork.for_libgdx:0.1+'
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
     implementation 'com.firebaseui:firebase-ui:2.1.0'
     implementation 'com.github.lguipeng:BubbleView:1.0.1'    //Error? ---> implementation to compile
     implementation 'androidx.multidex:multidex:2.0.1'
@@ -153,3 +154,12 @@ task run(type: Exec) {
 }
 
 eclipse.project.name = appName + "-android"
+
+//===
+//sourceCompatibility = 1.7
+//[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+//
+//sourceSets.main.java.srcDirs = [ "src/" ]
+//
+//eclipse.project.name = appName + "-core"
+//===
