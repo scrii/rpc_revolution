@@ -1,0 +1,168 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.3'
+        classpath 'com.google.gms:google-services:4.3.5'
+        classpath 'com.google.firebase:firebase-appdistribution-gradle:2.1.0'
+    }
+}
+
+allprojects {
+    apply plugin: "eclipse"
+
+    version = '1.0'
+    ext {
+        appName = "my-gdx-game"
+        gdxVersion = '1.9.13'
+        roboVMVersion = '2.3.12'
+        box2DLightsVersion = '1.5'
+        ashleyVersion = '1.7.3'
+        aiVersion = '1.8.2'
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+        google()
+        gradlePluginPortal()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+        maven{
+            url 'https://maven.google.com'
+        }
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+project(":desktop") {
+    apply plugin: "java-library"
+
+
+    dependencies {
+        implementation project(":core")
+        api "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        api "com.badlogicgames.gdx:gdx-bullet-platform:$gdxVersion:natives-desktop"
+        api "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
+        api "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
+        api "com.badlogicgames.gdx:gdx-controllers-desktop:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-controllers-platform:$gdxVersion:natives-desktop"
+
+
+    }
+}
+
+project(":android") {
+    apply plugin: "com.android.application"
+
+    apply plugin: 'com.google.gms.google-services'
+
+    configurations { natives }
+
+    dependencies {
+        implementation project(":core")
+        api "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
+        natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi"
+        natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
+        natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-arm64-v8a"
+        natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86"
+        natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86_64"
+        api "com.badlogicgames.gdx:gdx-bullet:$gdxVersion"
+        natives "com.badlogicgames.gdx:gdx-bullet-platform:$gdxVersion:natives-armeabi"
+        natives "com.badlogicgames.gdx:gdx-bullet-platform:$gdxVersion:natives-armeabi-v7a"
+        natives "com.badlogicgames.gdx:gdx-bullet-platform:$gdxVersion:natives-arm64-v8a"
+        natives "com.badlogicgames.gdx:gdx-bullet-platform:$gdxVersion:natives-x86"
+        natives "com.badlogicgames.gdx:gdx-bullet-platform:$gdxVersion:natives-x86_64"
+        api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+        natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi"
+        natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi-v7a"
+        natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-arm64-v8a"
+        natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86"
+        natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86_64"
+        api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+        natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-armeabi"
+        natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-armeabi-v7a"
+        natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-arm64-v8a"
+        natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86"
+        natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86_64"
+        api "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-controllers-android:$gdxVersion"
+        api "com.badlogicgames.ashley:ashley:$ashleyVersion"
+        api "com.badlogicgames.gdx:gdx-ai:$aiVersion"
+        api "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"
+        //==========================================
+        implementation platform('com.google.firebase:firebase-bom:26.7.0')
+        implementation 'androidx.preference:preference:1.1.1'
+        implementation fileTree(dir: 'libs', include: ['*.jar'])
+        testImplementation 'junit:junit:4.13.2'
+        implementation 'com.google.code.findbugs:jsr305:3.0.2'
+        implementation 'com.firebaseui:firebase-ui:2.1.0'
+        implementation 'com.github.lguipeng:BubbleView:1.0.1'    //Error? ---> implementation to compile
+        implementation 'androidx.multidex:multidex:2.0.1'
+        implementation 'com.google.firebase:firebase-analytics'
+        implementation 'androidx.appcompat:appcompat:1.2.0'
+        implementation 'com.google.android.material:material:1.3.0'
+        implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+        implementation 'com.google.firebase:firebase-firestore:22.1.2'
+        implementation 'com.google.firebase:firebase-storage:19.2.2'
+        implementation 'com.google.firebase:firebase-messaging:21.0.1'
+        implementation 'com.google.firebase:firebase-inappmessaging-display:19.1.5'
+        testImplementation 'junit:junit:4.13.2'
+        implementation 'com.google.android.gms:play-services-auth:19.0.0'
+        androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+        androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+        implementation 'com.firebaseui:firebase-ui:2.1.0'
+        implementation 'com.google.firebase:firebase-core:18.0.2'
+        implementation 'com.google.firebase:firebase-auth:20.0.3'
+        implementation 'com.google.firebase:firebase-database:19.7.0'
+        implementation 'cn.zhaiyifan:rememberedittext:0.9.0'
+        implementation 'com.squareup.picasso:picasso:2.71828'
+        //==========================================
+//        implementation platform('com.google.firebase:firebase-bom:26.8.0')
+//        implementation 'com.google.firebase:firebase-analytics'
+//        implementation 'com.google.firebase:firebase-database'
+//        implementation 'cn.zhaiyifan:rememberedittext:0.9.0'
+//        implementation 'com.github.lguipeng:BubbleView:1.0.1'
+//        implementation 'com.squareup.picasso:picasso:2.71828'
+//        implementation 'com.android.support:multidex:1.0.3'
+//        //========================================================= добавлено из :android
+//        implementation 'com.google.firebase:firebase-analytics:18.0.2'
+//        implementation 'com.firebaseui:firebase-ui:2.1.0'
+//        implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
+//        implementation 'com.firebaseui:firebase-ui-database:4.3.2'
+//        implementation 'com.firebaseui:firebase-ui-firestore:4.3.2'
+//        implementation 'com.google.firebase:firebase-auth:20.0.3'
+//        implementation 'com.google.firebase:firebase-database:19.7.0'
+//        implementation 'com.google.firebase:firebase-firestore:22.1.2'
+//        implementation 'com.google.firebase:firebase-inappmessaging-display:19.1.5'
+//        implementation 'com.google.firebase:firebase-messaging:21.0.1'
+        //=========================================================
+    }
+}
+
+project(":core") {
+    apply plugin: "java-library"
+
+
+    dependencies {
+        api "com.badlogicgames.gdx:gdx:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-bullet:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
+        api "com.badlogicgames.ashley:ashley:$ashleyVersion"
+        api "com.badlogicgames.gdx:gdx-ai:$aiVersion"
+        api "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"
+        
+    }
+}
