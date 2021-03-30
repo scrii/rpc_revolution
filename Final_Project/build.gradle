@@ -67,6 +67,7 @@ project(":android2") {
     configurations { natives }
 
     dependencies {
+        //
         implementation project(":core")
         api "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi"
