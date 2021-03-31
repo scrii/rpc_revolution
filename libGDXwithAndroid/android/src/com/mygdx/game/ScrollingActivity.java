@@ -310,7 +310,6 @@ public class ScrollingActivity extends AppCompatActivity{
         s2.setSpan(new ForegroundColorSpan(Color.RED), 0, s2.length(), 0);
         item3.setTitle(s2);
 
-
         return true;
     }
 
