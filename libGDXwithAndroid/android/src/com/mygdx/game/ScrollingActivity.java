@@ -69,21 +69,6 @@ public class ScrollingActivity extends AppCompatActivity{
     int mathematical_sequence_xp_to_level;
     int h=0;
     CountDownTimer countDownTimer;
-    public static boolean openApp(Context context, String packageName) {
-        PackageManager manager = context.getPackageManager();
-        try {
-            Intent i = manager.getLaunchIntentForPackage(packageName);
-            if (i == null) {
-                return false;
-                //throw new ActivityNotFoundException();
-            }
-            i.addCategory(Intent.CATEGORY_LAUNCHER);
-            context.startActivity(i);
-            return true;
-        } catch (ActivityNotFoundException e) {
-            return false;
-        }
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
