@@ -17,6 +17,7 @@ public class Message {
     public Message() {
     }
 
+
     public String getTextMessage() {
         return textMessage;
     }

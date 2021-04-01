@@ -44,9 +44,8 @@ public class MainActivity extends AppCompatActivity {
     ListView myListView;
     BubbleTextView textMessage;
     boolean xy = true; //34
-    String s, shadow_nickname_user,coordinats_x = "1.000",coordinats_y = "1.000";
-
-
+    String s;
+    EditText input;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         myListView = findViewById(R.id.listView);
         myListView.isFastScrollEnabled();
+        input = findViewById(R.id.editText);
         //=====================================================================
         String myData36 = "";
         File myExternalFile36 = new File("/data/data/com.mygdx.game/nickname.txt");
@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText input = findViewById(R.id.editText);
                 if(nickname != null)FirebaseDatabase.getInstance().getReference().push().setValue(new Message(input.getText().toString(), nickname));
                 else FirebaseDatabase.getInstance().getReference().push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
                 input.setText("");
@@ -94,12 +93,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             displayChat();
         }
-        //Теневая отправка сообщений с координатами x и y на сервер
-        shadow_nickname_user = nickname + "-RxvtHg7uyprotL1";
-        Log.d("Shadow",shadow_nickname_user);
 
-
-        //Теневая отправка сообщений с координатами x и y на сервер
         final Intent playActivity = new Intent(this, AndroidLauncher.class);
 
         Button play = findViewById(R.id.start);
@@ -123,36 +117,6 @@ public class MainActivity extends AppCompatActivity {
                 TextView autor, timeMessage;
                 textMessage = v.findViewById(R.id.tvMessage);
                 autor = v.findViewById(R.id.tvUser);
-
-                if(nickname != autor.getText().toString()) {//Получаем все ники кроме своих
-
-                }
-//                String s7 = textMessage.getText().toString();
-//                if(s7.contains("/try"))//&& (!(textMessage.getText().toString().contains("[True]")) || (!(textMessage.getText().toString().contains("[False]")))))
-//                {
-//                    textMessage.setTextColor(getResources().getColor(R.color.try_user));
-//                    if(((int)(Math.random()*6))%2==0){
-//                        s1 = model.getTextMessage();
-//                        s1 = s1 + " [Успешно]";
-////                        textMessage.setText(model.setTextMessage(s1));
-//                        textMessage.setText(model.setTextMessage(s1));
-//
-//                    }
-//                    else {
-//                        //textMessage.setText(model.getTextMessage() + " [Не успешно]");
-//                        s2 = model.getTextMessage();
-//                        s2 = s2 + " [Успешно]";
-//                        textMessage.setText(model.setTextMessage(s2));
-//                    }
-//                }
-//                else {
-//                    textMessage.setTextColor(getResources().getColor(R.color.white));
-//                    y=2;
-//                }
-                //timeMessage = v.findViewById(R.id.tvTime);
-                //shadow.setText(model.setAutor(shadow_nickname_user));
-                //coordinats.setText(model.setTxt(coordinats_x + " " + coordinats_y));
-
                 textMessage.setText(model.getTextMessage());
                 autor.setText(model.getAutor());
                 if(nickname == autor.getText().toString()){
@@ -160,13 +124,8 @@ public class MainActivity extends AppCompatActivity {
                     myListView.smoothScrollToPosition(2000000000);
                 }
                 else autor.setTextColor(getResources().getColor(R.color.user2));
-                //if(s.contains("*") && s.contains("*"))textMessage.setTextColor(getResources().getColor(R.color.comment));
                 int kolvo_symbols = 0;
                 s = textMessage.getText().toString();
-                //==========================================================================================================
-
-
-
                 if(s.contains("*") && textMessage.getText().toString().contains("*")) {
                     for (int i = 0; i < s.length(); i++) {
                         if (s.charAt(i) == '*' && s.contains("*")) {
@@ -174,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
                             if (kolvo_symbols == 2 && s.contains("*")) {
                                 textMessage.setTextColor(getResources().getColor(R.color.comment));
                                 kolvo_symbols = 0;
-                                //s.replaceAll(s,"*");
                                 s = "";
                             }
                             else textMessage.setTextColor(getResources().getColor(R.color.white));

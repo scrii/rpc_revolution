@@ -36,5 +36,4 @@ public class BaseActivity extends AppCompatActivity {
         super.onStop();
   //      AppLifecycleManager.updateActivityLifecycle(getClass(), false);
     }
-
 }

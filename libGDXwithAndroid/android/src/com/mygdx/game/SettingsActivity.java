@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -31,78 +32,34 @@ import java.io.IOException;
 
 
 public class SettingsActivity extends AppCompatActivity {
-    Switch theme1;
-    static final int GALLERY_REQUEST = 1;
-    ImageView imageView;
-    Intent imageReturnedIntent;
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
-//        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-//
-//        Bitmap bitmap = null;
-//        imageView = findViewById(R.id.imageView);
-//
-//        switch(requestCode) {
-//            case GALLERY_REQUEST:
-//                if(resultCode == RESULT_OK){
-//                    Uri selectedImage = imageReturnedIntent.getData();
-//                    Log.d("Uri",selectedImage.toString());
-//                    try {
-//                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
-//
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                    imageView.setImageBitmap(bitmap);
-//                }
-//        }
-//    }
+    Button exit,yes,no;
+    RelativeLayout relativeLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
-        imageView = findViewById(R.id.imageView);
-        //final Spinner spinner = findViewById(R.id.spinner);
-
-//        ArrayAdapter<?> adapter =
-//                ArrayAdapter.createFromResource(this, R.array.background_s, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//        spinner.setAdapter(adapter);
-//        //--------------------------------------------------------------------------------
-//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            public void onItemSelected(AdapterView<?> parent,
-//                                       View itemSelected, int selectedItemPosition, long selectedId) {
-//
-//                String[] choose = getResources().getStringArray(R.array.background_s);
-//                Toast toast = Toast.makeText(getApplicationContext(),
-//                        "Ваш выбор: " + choose[selectedItemPosition], Toast.LENGTH_SHORT);
-//                toast.show();
-//            }
-//            public void onNothingSelected(AdapterView<?> parent) {
-//                int ht=1;
-//            }
-//        });
-//
-//        try {
-//            Uri selectedImage = imageReturnedIntent.getData();
-//            imageView.setImageURI(selectedImage);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//
-//        Button button = findViewById(R.id.button);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-//                photoPickerIntent.setType("image/*");
-//                startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
-//            }
-//        });
-
-
-
+        exit = findViewById(R.id.exit);
+        relativeLayout = findViewById(R.id.rl);
+        yes = findViewById(R.id.yes);
+        no = findViewById(R.id.no);
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relativeLayout.setVisibility(View.VISIBLE);
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("Delete files","true");
+                    }
+                });
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        relativeLayout.setVisibility(View.INVISIBLE);
+                    }
+                });
+            }
+        });
         //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
         if (savedInstanceState == null) {
             getSupportFragmentManager()

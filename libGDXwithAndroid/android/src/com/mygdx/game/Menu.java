@@ -1,39 +1,24 @@
 package com.mygdx.game;
 
 import android.content.Intent;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListPopupWindow;
-import android.widget.Spinner;
-
-import java.lang.reflect.Field;
 
 public class Menu extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         final Intent playActivity = new Intent(this, AndroidLauncher.class);
-
         Button play = findViewById(R.id.start);
-
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(playActivity);
             }
         });
-
     }
-
-
     @Override
     protected void onResume() {
         getWindow().getDecorView().setSystemUiVisibility(
@@ -45,5 +30,4 @@ public class Menu extends BaseActivity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         super.onResume();
     }
-
 }

@@ -6,8 +6,7 @@
         android:id="@+id/action_settings"
         android:orderInCategory="1000"
         android:title="@string/action_settings"
-        app:showAsAction="never"
-        />
+        app:showAsAction="never"/>
     <item
         android:id="@+id/action_person"
         android:orderInCategory="200"
