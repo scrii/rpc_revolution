@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.google.firebase.database.FirebaseDatabase;
-import com.mygdx.game.MyGdxGame;
+import com.teamname.game.Main;
 
 public class AndroidLauncher extends AndroidApplication {
 	private FirebaseDatabase firebaseDatabase;
@@ -26,7 +26,7 @@ public class AndroidLauncher extends AndroidApplication {
 
 		firebaseDatabase = FirebaseDatabase.getInstance("https://final-server-bf945-default-rtdb.firebaseio.com/");
 
-		initialize(new MyGdxGame(), config);
+		initialize(new Main(), config);
 
 	}
 }
