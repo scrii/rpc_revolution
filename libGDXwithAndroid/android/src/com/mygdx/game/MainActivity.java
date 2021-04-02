@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                s1 = input.getText().toString();
+                s1 = input.getText().toString(); //
                 Log.d("String",s1);
                 if(nickname != null && !s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference().push().setValue(new Message(input.getText().toString(), nickname,x,y)); //изменено
                 else if(!s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference().push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(),x,y));
