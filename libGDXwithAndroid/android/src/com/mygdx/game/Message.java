@@ -7,12 +7,17 @@ public class Message {
 
     private String textMessage;
     private String author;
+    private String play_status;
+    public String nickname;
+    private boolean isMove;
     private long timeMessage;
     private float coordinats_x;
     private float coordinats_y;
+    private String texturePath;
+    public String messages;
     public Message() {
-        float coordinats_x_libgdx = GameSc.player.getPosition().getX();
-        float coordinats_y_libgdx = GameSc.player.getPosition().getY();
+        /*float coordinats_x_libgdx = GameSc.player.getPosition().getX();
+        float coordinats_y_libgdx = GameSc.player.getPosition().getY();*/
     }
 
     public Message(String textMessage, String author, float coordinats_x, float coordinats_y) {
@@ -21,6 +26,16 @@ public class Message {
         this.coordinats_x = coordinats_x;
         this.coordinats_y = coordinats_y;
         timeMessage = new Date().getTime();
+    }
+
+    public Message(String texturePath){
+        play_status="None";
+        coordinats_x=0;
+        coordinats_y=0;
+        this.texturePath=texturePath;
+        isMove=false;
+        messages="none";
+        nickname="None";
     }
 
 

@@ -5,7 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.teamname.game.Main;
 
-import Online.Getter;
+import Online.DatabaseHelper;
+//import Online.DatabaseHelper;
 import Online.Message;
 import Tools.Joystick;
 import Tools.Point2D;
@@ -22,13 +23,13 @@ public class Player extends Actor {
 
 
 
-    private Getter getter;
+    private DatabaseHelper databaseHelper;
 
     public Player(String nickname,Texture img, Point2D position, float Speed, float R, float health) {
         super(img, position, Speed, R);
         this.health=health;
         this.nickname=nickname;
-        getter=new Getter();
+        databaseHelper=new DatabaseHelper();
     }
 
     // метод оповещения о движении
@@ -58,10 +59,12 @@ public class Player extends Actor {
         Y=direction.getY()*Speed;
         position.add(X,Y);
         send_in_ONLINE=position;
+        databaseHelper.changeMapValues(send_in_ONLINE.getX(),send_in_ONLINE.getY());
+        databaseHelper.sendCoords("email");
         //Gdx.app.log("PLAYER_MOVE",isMove+"");
 
         // отправка координат, условия остановки
-        if(isMove)getter.sendCOORDStoFirebase(send_in_ONLINE.getX()+" " + send_in_ONLINE.getY()+"");
+        //if(isMove)databaseHelper.sendCoords("email",send_in_ONLINE.getX(),send_in_ONLINE.getY());
 
 
     }

@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -73,6 +74,7 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    firebaseDataCreate();
                     //Toast.makeText(getApplicationContext(), "Регистрация успешна", Toast.LENGTH_SHORT).show();
                     o++;
                 } else
@@ -144,5 +146,9 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
         ETpassword = findViewById(R.id.et_password);
         findViewById(R.id.btn_sign_in).setOnClickListener(this);
         findViewById(R.id.btn_registration).setOnClickListener(this);
+    }
+    private void firebaseDataCreate(){
+
+        FirebaseDatabase.getInstance().getReference("email").setValue(new Message("circle.png"));
     }
 }

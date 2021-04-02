@@ -15,7 +15,8 @@ import com.teamname.game.Main;
 //import com.
 
 
-import Online.Getter;
+import Online.DatabaseHelper;
+//import Online.Getter;
 import Tools.Joystick;
 import Tools.Point2D;
 import pl.mk5.gdx.fireapp.GdxFIRDatabase;
@@ -46,7 +47,7 @@ public class GameSc implements Screen {
 
 
     Main main;
-    public Getter getter;
+    public DatabaseHelper databaseHelper;
 
     /*public GameSc(PlatformStuff stuff) {
         this.stuff = stuff;
@@ -54,6 +55,10 @@ public class GameSc implements Screen {
 
     public GameSc(Main main){
         this.main=main;
+        loadActors();
+        databaseHelper=new DatabaseHelper();
+        databaseHelper.setNickname(player.nickname);
+        databaseHelper.entryNotify(0);
         //camera=new OrthographicCamera(Main.WIDTH*1.5f,Main.HEIGHT*1.5f);
     }
 
@@ -112,7 +117,7 @@ public class GameSc implements Screen {
             }
         });
 
-        loadActors();
+        /*loadActors();*/
     }
 
     @Override

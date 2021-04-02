@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -100,8 +101,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 s1 = input.getText().toString(); //
                 Log.d("String",s1);
-                if(nickname != null && !s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference(nickname).push().setValue(new Message(input.getText().toString(), nickname,x,y)); //изменено
-                else if(!s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getEmail()).push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(),x,y));
+                //                if(nickname != null && !s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference("email").child("messages").push().setValue(input.getText().toString()); //изменено
+
+                if(nickname != null && !TextUtils.isEmpty(input.getText()) ||!s1.equals(""))FirebaseDatabase.getInstance().getReference(nickname).push().setValue(new Message(input.getText().toString(), nickname,x,y)); //изменено
+                else if(!s1.equals(" ")||!s1.equals("") && !TextUtils.isEmpty(input.getText()))FirebaseDatabase.getInstance().getReference("mail").push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(),x,y));
                 input.setText("");
                 //if(nickname != null && !s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference(nickname).push().setValue(new Message(input.getText().toString(), nickname,x,y)); //изменено
                 //                else if(!s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getEmail()).push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(),x,y));
