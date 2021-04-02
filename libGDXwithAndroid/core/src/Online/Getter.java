@@ -31,7 +31,7 @@ public class Getter {
 
         GdxFIRDatabase.instance().inReference("coords_"+GameSc.player.nickname).setValue(coords);
         //GdxFIRDatabase.instance().inReference("coords_"+GameSc.player.nickname).removeValue();
-        //GdxFIRDatabase.instance().inReference().push()////
+        //GdxFIRDatabase.instance().inReference().push()//////
         //FirebaseDatabase.getInstance().getReference().push().setValue(new Message(input.getText().toString(), nickname));
     }
 
