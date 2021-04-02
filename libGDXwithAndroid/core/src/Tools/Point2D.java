@@ -2,7 +2,7 @@ package Tools;
 
 public class Point2D {
     private float x,y;
-
+    private String author;
     public Point2D(Point2D p){
         x=p.getX();
         y=p.getY();
