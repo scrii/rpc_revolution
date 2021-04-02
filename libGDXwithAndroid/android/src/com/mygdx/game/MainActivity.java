@@ -33,6 +33,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.Constants;
+import com.teamname.game.Screens.GameSc;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //FirebaseDatabase.getInstance().getReference("coords_").push();
+        //GdxFIRDatabase.instance().inReference("coords_"+ GameSc.player.nickname).push().setValue("none ahaha");
         getSupportActionBar().hide();
         myListView = findViewById(R.id.listView);
         myListView.isFastScrollEnabled();
