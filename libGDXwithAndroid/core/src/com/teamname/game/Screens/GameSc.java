@@ -3,6 +3,7 @@ package com.teamname.game.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,13 +12,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.teamname.game.Actor.Player;
 import com.teamname.game.Main;
+//import com.
 
 
-
+import Online.Getter;
 import Tools.Joystick;
 import Tools.Point2D;
 
 public class GameSc implements Screen {
+
 
     Joystick joy;
     public static Player player;
@@ -42,6 +45,7 @@ public class GameSc implements Screen {
 
 
     Main main;
+    public Getter getter;
 
     /*public GameSc(PlatformStuff stuff) {
         this.stuff = stuff;
@@ -161,7 +165,11 @@ public class GameSc implements Screen {
     }
 
     public void loadActors(){
-        player =new Player(Main.actor,new Point2D(entityX,entityY),40,entityRad,20);
+        //FileHandle file = Gdx.files.absolute("nickname.txt");
+        //String name = file.readString();
+
+        player =new Player("here will be a nickname" ,Main.actor,new Point2D(entityX,entityY),40,entityRad,20);
+        //getter.setPlayer(player);
         joy=new Joystick(Main.circle,Main.stickImg,new Point2D(joyX,joyY),joySize);
     }
 

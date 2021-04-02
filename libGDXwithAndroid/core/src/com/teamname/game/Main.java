@@ -7,6 +7,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.teamname.game.Screens.GameSc;
 import com.teamname.game.Screens.MenuSc;
 
+import Online.Getter;
+import Online.Message;
+import pl.mk5.gdx.fireapp.GdxFIRApp;
+import pl.mk5.gdx.fireapp.GdxFIRDatabase;
 
 
 public class Main extends Game {
@@ -16,6 +20,7 @@ public class Main extends Game {
 	public static Texture circle,stickImg,background,actor;
 	public MenuSc menu;
 	boolean flag=false;
+	Getter getter;
 
 
 
@@ -27,8 +32,9 @@ public class Main extends Game {
 
 	@Override
 	public void create () {
-
-
+		GdxFIRApp.inst().configure();
+		getter=new Getter();
+		getter.sendToFirebase(new Message("234","43"));
 		batch = new SpriteBatch();
 		WIDTH= Gdx.graphics.getWidth();
 		HEIGHT=Gdx.graphics.getHeight();

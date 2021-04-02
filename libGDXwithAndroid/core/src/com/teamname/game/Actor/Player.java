@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.teamname.game.Main;
 
+import Online.Getter;
+import Online.Message;
 import Tools.Joystick;
 import Tools.Point2D;
 
@@ -14,11 +16,25 @@ public class Player extends Actor {
     private float health;
     public float X;
     public float Y;
-    public Point2D send;
+    public Point2D send_in_ONLINE;
+    public boolean isMove;
+    public String nickname;
 
-    public Player(Texture img, Point2D position, float Speed, float R, float health) {
+
+
+    private Getter getter;
+
+    public Player(String nickname,Texture img, Point2D position, float Speed, float R, float health) {
         super(img, position, Speed, R);
         this.health=health;
+        this.nickname=nickname;
+        getter=new Getter();
+    }
+
+    // метод оповещения о движении
+
+    public boolean isMove() {
+        return isMove;
     }
 
     @Override
@@ -36,13 +52,21 @@ public class Player extends Actor {
         if(position.getY()-R<=0)position.setY(R);
 
 
+
+
         X=direction.getX()*Speed;
         Y=direction.getY()*Speed;
         position.add(X,Y);
-        send=position;
+        send_in_ONLINE=position;
+        //Gdx.app.log("PLAYER_MOVE",isMove+"");
+
+        // отправка координат, условия остановки
+        getter.sendCOORDStoFirebase(send_in_ONLINE.getX()+" " + send_in_ONLINE.getY()+"");
+
+
     }
 
     public Point2D getPosition(){
-        return position;
+        return send_in_ONLINE;
     }
 }

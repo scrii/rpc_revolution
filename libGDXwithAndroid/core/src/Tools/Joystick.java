@@ -1,6 +1,7 @@
 package Tools;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.teamname.game.Actor.Player;
@@ -59,7 +60,9 @@ public class Joystick {
         if (CircleBounds.isContains(touch) && isDownTouch && this.pointer == -1) this.pointer = pointer;
         if (CircleBounds.Overlaps(StickBounds) && isDownTouch && pointer == this.pointer)
             atControl(new Point2D(x,y));
-        if ((!isDownTouch && pointer == this.pointer))returnStick();
+        if ((!isDownTouch && pointer == this.pointer)){returnStick();GameSc.player.isMove=false;
+            //Gdx.app.log("PLAYER_MOVE", "FALSE");
+        }
         //стик выходит за окружность
         // изменяется положение как стика, так и персонажа
         // полоучение позиции игрока, за исключением его поворота???
@@ -73,6 +76,8 @@ public class Joystick {
     //двигает стик по окружности, создает направление
     public void atControl(Point2D point) {
         StickBounds.pos.setPoint(point);
+        GameSc.player.isMove=true;
+        //Gdx.app.log("PLAYER_MOVE", "TRUE");
         //узнаем разность x окружности и стика (дифферинциалы)
         float dx = CircleBounds.pos.getX() - point.getX();
         float dy = CircleBounds.pos.getY() - point.getY();

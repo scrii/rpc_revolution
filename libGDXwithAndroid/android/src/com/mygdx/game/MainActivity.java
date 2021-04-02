@@ -26,6 +26,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.teamname.game.Screens.GameSc;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -33,8 +34,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Map;
+
+import Online.Getter;
 
 public class MainActivity extends AppCompatActivity {
+
+    // //////////////////////
+    // if(isMove)send(getPosition);
+    //getter
+    // /////////////////////
 
     private static int SIGN_IN_REQUEST_CODE = 1;
     public FirebaseListAdapter<Message> adapter;
@@ -80,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if(nickname != null)FirebaseDatabase.getInstance().getReference().push().setValue(new Message(input.getText().toString(), nickname));
                 else FirebaseDatabase.getInstance().getReference().push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
                 input.setText("");
