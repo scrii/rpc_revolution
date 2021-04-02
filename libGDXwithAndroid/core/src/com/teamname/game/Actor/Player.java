@@ -59,8 +59,8 @@ public class Player extends Actor {
         Y=direction.getY()*Speed;
         position.add(X,Y);
         send_in_ONLINE=position;
-        databaseHelper.changeMapValues(send_in_ONLINE.getX(),send_in_ONLINE.getY());
-        databaseHelper.sendCoords("email");
+
+        databaseHelper.sendCoords("email",send_in_ONLINE.getX(),send_in_ONLINE.getY());
         //Gdx.app.log("PLAYER_MOVE",isMove+"");
 
         // отправка координат, условия остановки

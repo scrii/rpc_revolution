@@ -4,77 +4,15 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
+
+import de.tomgrill.gdxfirebase.core.GDXFirebase;
 import pl.mk5.gdx.fireapp.GdxFIRDatabase;
 
 public class DatabaseHelper {
 
     String nickname;
-    Map<String,Object> map;
 
     public DatabaseHelper(){
-        map=new Map<String, Object>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean containsKey(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsValue(Object o) {
-                return false;
-            }
-
-            @Override
-            public Object get(Object o) {
-                return null;
-            }
-
-            @Override
-            public Object put(String s, Object o) {
-                return null;
-            }
-
-            @Override
-            public Object remove(Object o) {
-                return null;
-            }
-
-            @Override
-            public void putAll(Map<? extends String, ?> map) {
-
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public Set<String> keySet() {
-                return null;
-            }
-
-            @Override
-            public Collection<Object> values() {
-                return null;
-            }
-
-            @Override
-            public Set<Entry<String, Object>> entrySet() {
-                return null;
-            }
-        };
-        map.put("x",12);
-        //map.put("y",323);
     }
 
     public void sendToFirebase(String heading, String msg){
@@ -102,16 +40,13 @@ public class DatabaseHelper {
         //addField();
     }
 
-    public void changeMapValues(float x, float y){
-        map.clear();
-        map.put("coordinats_x",x);
-        //map.put("coordinats_y",y);
-    }
 
 
 
-    public void sendCoords(String email){
-        GdxFIRDatabase.instance().inReference(email).push().updateChildren(map);
+
+    public void sendCoords(String email, float x, float y){
+        GDXFirebase.FirebaseDatabase().getReference("email").child("coordinats_x").setValue(x+"");
+        GDXFirebase.FirebaseDatabase().getReference("email").child("coordinats_y").setValue(y+"");
         /*GdxFIRDatabase.instance().inReference("email").inReference("y").setValue(x);
         GdxFIRDatabase.instance().inReference("email").inReference("y").setValue(y);*/
     }

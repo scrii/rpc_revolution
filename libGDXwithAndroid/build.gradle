@@ -135,6 +135,9 @@ project(":core") {
 
 
     dependencies {
+        compile "de.tomgrill.gdxfirebase:gdx-firebase-core:0.0.4-SNAPSHOT"
+        //compile "de.tomgrill.gdxfirebase:gdx-firebase-android:0.0.4-SNAPSHOT"
+        //compile "de.tomgrill.gdxfirebase:gdx-firebase-desktop:0.0.4-SNAPSHOT"
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-bullet:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
