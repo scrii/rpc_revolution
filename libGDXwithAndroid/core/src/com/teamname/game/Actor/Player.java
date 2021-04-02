@@ -60,7 +60,7 @@ public class Player extends Actor {
         position.add(X,Y);
         send_in_ONLINE=position;
 
-        databaseHelper.sendCoords("email",send_in_ONLINE.getX(),send_in_ONLINE.getY());
+        if(isMove)databaseHelper.sendCoords("email",send_in_ONLINE.getX()+" "+send_in_ONLINE.getY());
         //Gdx.app.log("PLAYER_MOVE",isMove+"");
 
         // отправка координат, условия остановки

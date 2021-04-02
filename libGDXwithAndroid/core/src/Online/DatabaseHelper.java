@@ -1,16 +1,22 @@
 package Online;
 
+import com.badlogic.gdx.Gdx;
+
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
 
 import de.tomgrill.gdxfirebase.core.GDXFirebase;
+import de.tomgrill.gdxfirebase.core.database.DatabaseReference;
 import pl.mk5.gdx.fireapp.GdxFIRDatabase;
 
 public class DatabaseHelper {
 
     String nickname;
+    DatabaseReference reference = GDXFirebase.FirebaseDatabase().getReference("storetest");
+    String key = reference.push().getKey();
+    reference.child(key).setValue("some value");
 
     public DatabaseHelper(){
     }
@@ -44,9 +50,9 @@ public class DatabaseHelper {
 
 
 
-    public void sendCoords(String email, float x, float y){
-        GDXFirebase.FirebaseDatabase().getReference("email").child("coordinats_x").setValue(x+"");
-        GDXFirebase.FirebaseDatabase().getReference("email").child("coordinats_y").setValue(y+"");
+    public void sendCoords(String email, String coords){
+        GDXFirebase.FirebaseDatabase("final-server-bf945").getReference().push().setValue("DD");
+        //GDXFirebase.FirebaseDatabase().getReference("email").child("coordinats_y").setValue(y+"");
         /*GdxFIRDatabase.instance().inReference("email").inReference("y").setValue(x);
         GdxFIRDatabase.instance().inReference("email").inReference("y").setValue(y);*/
     }
