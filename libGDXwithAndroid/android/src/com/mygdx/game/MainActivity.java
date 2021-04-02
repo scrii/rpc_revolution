@@ -4,6 +4,8 @@ package com.mygdx.game;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Database;
+
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -24,8 +26,13 @@ import com.firebase.ui.database.FirebaseListAdapter;
 import com.github.library.bubbleview.BubbleTextView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.Constants;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -33,6 +40,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+
+import Tools.Point2D;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,7 +56,11 @@ public class MainActivity extends AppCompatActivity {
     BubbleTextView textMessage;
     boolean xy = true; //34
     String s;
+    boolean delete_me = true;
+    float x = 1,y = 1;
     EditText input;
+    String s1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,9 +95,13 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(nickname != null)FirebaseDatabase.getInstance().getReference().push().setValue(new Message(input.getText().toString(), nickname));
-                else FirebaseDatabase.getInstance().getReference().push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+                s1 = input.getText().toString(); //
+                Log.d("String",s1);
+                if(nickname != null && !s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference().push().setValue(new Message(input.getText().toString(), nickname,x,y)); //изменено
+                else if(!s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference().push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(),x,y));
                 input.setText("");
+                s1 = input.getText().toString();
+                Log.d("String",s1);
                 xy = true;
             }
         });
@@ -93,6 +112,17 @@ public class MainActivity extends AppCompatActivity {
         } else {
             displayChat();
         }
+//        try {
+//            String key = FirebaseDatabase.getInstance().getReference().child("posts").push().getKey();
+//            Log.d("TAG",key);
+//            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+//            //String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//            rootRef.child(key).child("author").setValue("352");
+//
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+
 
         final Intent playActivity = new Intent(this, AndroidLauncher.class);
 
@@ -114,16 +144,16 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             protected void populateView(View v, Message model, int position) {
-                TextView autor, timeMessage;
+                TextView author;
                 textMessage = v.findViewById(R.id.tvMessage);
-                autor = v.findViewById(R.id.tvUser);
+                author = v.findViewById(R.id.tvUser);
                 textMessage.setText(model.getTextMessage());
-                autor.setText(model.getAutor());
-                if(nickname == autor.getText().toString()){
-                    autor.setTextColor(getResources().getColor(R.color.user));
+                author.setText(model.getAutor());
+                if(nickname == author.getText().toString()){
+                    author.setTextColor(getResources().getColor(R.color.user));
                     myListView.smoothScrollToPosition(2000000000);
                 }
-                else autor.setTextColor(getResources().getColor(R.color.user2));
+                else author.setTextColor(getResources().getColor(R.color.user2));
                 int kolvo_symbols = 0;
                 s = textMessage.getText().toString();
                 if(s.contains("*") && textMessage.getText().toString().contains("*")) {
