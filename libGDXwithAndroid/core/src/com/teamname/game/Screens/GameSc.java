@@ -18,6 +18,7 @@ import com.teamname.game.Main;
 import Online.Getter;
 import Tools.Joystick;
 import Tools.Point2D;
+import pl.mk5.gdx.fireapp.GdxFIRDatabase;
 
 public class GameSc implements Screen {
 
@@ -150,6 +151,7 @@ public class GameSc implements Screen {
 
     @Override
     public void dispose() {
+        //getter.deleteCOORDS();
         sprite.getTexture().dispose();
     }
 
@@ -165,10 +167,12 @@ public class GameSc implements Screen {
     }
 
     public void loadActors(){
+
         //FileHandle file = Gdx.files.absolute("nickname.txt");
         //String name = file.readString();
 
-        player =new Player("here will be a nickname" ,Main.actor,new Point2D(entityX,entityY),40,entityRad,20);
+
+        player =new Player("SCRI" ,Main.actor,new Point2D(entityX,entityY),40,entityRad,20);
         //getter.setPlayer(player);
         joy=new Joystick(Main.circle,Main.stickImg,new Point2D(joyX,joyY),joySize);
     }

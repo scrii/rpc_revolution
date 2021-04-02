@@ -1,5 +1,6 @@
 package Online;
 
+import com.badlogic.gdx.Gdx;
 import com.google.firebase.encoders.*;
 import com.teamname.game.Actor.Player;
 import com.teamname.game.Screens.GameSc;
@@ -17,15 +18,19 @@ public class Getter {
 
     public void firebaseInitialization(){
         //GdxFIRApp.inst().configure();
+
+    }
+
+    public void deleteCOORDS(){
+        GdxFIRDatabase.instance().inReference("coords_"+GameSc.player.nickname).removeValue();
     }
 
 
-
-
     public void sendCOORDStoFirebase(String coords){
+        //GdxFIRDatabase.instance().inReference("coords_"+GameSc.player.nickname).push().
 
-        GdxFIRDatabase.instance().inReference("coords_"+GameSc.player.nickname).push().setValue(coords);
-        GdxFIRDatabase.instance().inReference("coords_"+GameSc.player.nickname).removeValue();
+        GdxFIRDatabase.instance().inReference("coords_"+GameSc.player.nickname).setValue(coords);
+        //GdxFIRDatabase.instance().inReference("coords_"+GameSc.player.nickname).removeValue();
         //GdxFIRDatabase.instance().inReference().push()
         //FirebaseDatabase.getInstance().getReference().push().setValue(new Message(input.getText().toString(), nickname));
     }

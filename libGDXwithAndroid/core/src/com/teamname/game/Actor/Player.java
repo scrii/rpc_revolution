@@ -61,7 +61,7 @@ public class Player extends Actor {
         //Gdx.app.log("PLAYER_MOVE",isMove+"");
 
         // отправка координат, условия остановки
-        getter.sendCOORDStoFirebase(send_in_ONLINE.getX()+" " + send_in_ONLINE.getY()+"");
+        if(isMove)getter.sendCOORDStoFirebase(send_in_ONLINE.getX()+" " + send_in_ONLINE.getY()+"");
 
 
     }

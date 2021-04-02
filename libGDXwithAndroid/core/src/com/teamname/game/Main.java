@@ -33,6 +33,7 @@ public class Main extends Game {
 	@Override
 	public void create () {
 		GdxFIRApp.inst().configure();
+//		GdxFIRDatabase.instance().inReference("coords_"+GameSc.player.nickname).push().setValue("none ahaha");
 		getter=new Getter();
 		getter.sendToFirebase(new Message("234","43"));
 		batch = new SpriteBatch();
