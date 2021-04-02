@@ -97,9 +97,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 s1 = input.getText().toString(); //
                 Log.d("String",s1);
-                if(nickname != null && !s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference().push().setValue(new Message(input.getText().toString(), nickname,x,y)); //изменено
-                else if(!s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference().push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(),x,y));
+                if(nickname != null && !s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference(nickname).push().setValue(new Message(input.getText().toString(), nickname,x,y)); //изменено
+                else if(!s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getEmail()).push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(),x,y));
                 input.setText("");
+                //if(nickname != null && !s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference(nickname).push().setValue(new Message(input.getText().toString(), nickname,x,y)); //изменено
+                //                else if(!s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getEmail()).push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(),x,y));
                 s1 = input.getText().toString();
                 Log.d("String",s1);
                 xy = true;
@@ -112,16 +114,19 @@ public class MainActivity extends AppCompatActivity {
         } else {
             displayChat();
         }
-//        try {
-//            String key = FirebaseDatabase.getInstance().getReference().child("posts").push().getKey();
+        try {
+
+//            String key = FirebaseDatabase.getInstance().getReference(nickname).getKey();
 //            Log.d("TAG",key);
-//            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-//            //String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//            rootRef.child(key).child("author").setValue("352");
-//
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
+//            FirebaseDatabase.getInstance().getReference(nickname).child("coordinats_x").setValue(10);
+
+//            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference(nickname);
+//            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//            rootRef.child("coordinats_x").setValue(353);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
 
         final Intent playActivity = new Intent(this, AndroidLauncher.class);
@@ -140,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayChat() {
 
         ListView listMessages = findViewById(R.id.listView);
-        adapter = new FirebaseListAdapter<Message>(MainActivity.this, Message.class, R.layout.list_item, FirebaseDatabase.getInstance().getReference()) {
+        adapter = new FirebaseListAdapter<Message>(MainActivity.this, Message.class, R.layout.list_item, FirebaseDatabase.getInstance().getReference(nickname)) {
 
             @Override
             protected void populateView(View v, Message model, int position) {

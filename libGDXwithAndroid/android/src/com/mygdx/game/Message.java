@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import java.util.Date;
+import com.teamname.game.Screens.GameSc;
 
 public class Message {
 
@@ -9,6 +10,11 @@ public class Message {
     private long timeMessage;
     private float coordinats_x;
     private float coordinats_y;
+    public Message() {
+        float coordinats_x_libgdx = GameSc.player.getPosition().getX();
+        float coordinats_y_libgdx = GameSc.player.getPosition().getY();
+    }
+
     public Message(String textMessage, String author, float coordinats_x, float coordinats_y) {
         this.textMessage = textMessage;
         this.author = author;
@@ -17,8 +23,6 @@ public class Message {
         timeMessage = new Date().getTime();
     }
 
-    public Message() {
-    }
 
     public void setCoordinats_x(float coordinats_x) {
         this.coordinats_x = coordinats_x;
