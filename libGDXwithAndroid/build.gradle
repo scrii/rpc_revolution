@@ -127,26 +127,6 @@ project(":android") {
         implementation 'com.google.firebase:firebase-database:19.7.0'
         implementation 'cn.zhaiyifan:rememberedittext:0.9.0'
         implementation 'com.squareup.picasso:picasso:2.71828'
-        //==========================================
-//        implementation platform('com.google.firebase:firebase-bom:26.8.0')
-//        implementation 'com.google.firebase:firebase-analytics'
-//        implementation 'com.google.firebase:firebase-database'
-//        implementation 'cn.zhaiyifan:rememberedittext:0.9.0'
-//        implementation 'com.github.lguipeng:BubbleView:1.0.1'
-//        implementation 'com.squareup.picasso:picasso:2.71828'
-//        implementation 'com.android.support:multidex:1.0.3'
-//        //========================================================= добавлено из :android
-//        implementation 'com.google.firebase:firebase-analytics:18.0.2'
-//        implementation 'com.firebaseui:firebase-ui:2.1.0'
-//        implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
-//        implementation 'com.firebaseui:firebase-ui-database:4.3.2'
-//        implementation 'com.firebaseui:firebase-ui-firestore:4.3.2'
-//        implementation 'com.google.firebase:firebase-auth:20.0.3'
-//        implementation 'com.google.firebase:firebase-database:19.7.0'
-//        implementation 'com.google.firebase:firebase-firestore:22.1.2'
-//        implementation 'com.google.firebase:firebase-inappmessaging-display:19.1.5'
-//        implementation 'com.google.firebase:firebase-messaging:21.0.1'
-        //=========================================================
     }
 }
 
