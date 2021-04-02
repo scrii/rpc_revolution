@@ -4,7 +4,7 @@ package com.mygdx.game;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Database;
+
 
 import android.content.ComponentName;
 import android.content.Intent;
