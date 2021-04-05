@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">my-gdx-game</string>
+    <string name="app_name">Elbrium</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_settings">Settings</string>
@@ -10,7 +10,6 @@
     <string name="title_activity_person">Person</string>
     <string name="title_activity_shop">Shop</string>
     <string name="title_activity_room1">ScrollingActivity</string>
-    <string name="title_activity_creation_of_a_work">Creation_of_a_work</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>

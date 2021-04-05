@@ -17,10 +17,9 @@
         <activity android:name=".ScrollingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MyApplication.NoActionBar"
-            android:label="AmuseRP">
+            android:label="Elbrium">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
