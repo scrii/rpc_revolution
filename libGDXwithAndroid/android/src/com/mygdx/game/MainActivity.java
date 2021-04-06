@@ -37,9 +37,11 @@ import com.google.firebase.messaging.Constants;
 import com.teamname.game.Screens.GameSc;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
@@ -58,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
     BubbleTextView textMessage;
     boolean xy = true; //34
     String s;
-    boolean delete_me = true;
     float x = 1,y = 1;
     EditText input;
     String s1;
@@ -67,8 +68,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //FirebaseDatabase.getInstance().getReference("coords_").push();
-        //GdxFIRDatabase.instance().inReference("coords_"+ GameSc.player.nickname).push().setValue("none ahaha");
         getSupportActionBar().hide();
         myListView = findViewById(R.id.listView);
         myListView.isFastScrollEnabled();
@@ -84,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
             String strLine36;
             while ((strLine36 = br36.readLine()) != null) {
                 myData36 = myData36 + strLine36;
-                Log.d("File? ",myData36);
                 nickname = myData36;
             }
             br36.close();
@@ -100,16 +98,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 s1 = input.getText().toString(); //
-                Log.d("String",s1);
-                //                if(nickname != null && !s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference("email").child("messages").push().setValue(input.getText().toString()); //изменено
-
-                if(nickname != null && !TextUtils.isEmpty(input.getText()) ||!s1.equals(""))FirebaseDatabase.getInstance().getReference(nickname).push().setValue(new Message(input.getText().toString(), nickname,x,y)); //изменено
-                else if(!s1.equals(" ")||!s1.equals("") && !TextUtils.isEmpty(input.getText()))FirebaseDatabase.getInstance().getReference("mail").push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(),x,y));
+                if(nickname != null && !TextUtils.isEmpty(input.getText()) ||!s1.equals(""))FirebaseDatabase.getInstance().getReference(nickname).push().setValue(new Message(input.getText().toString(), nickname)); //изменено
+                else if(!s1.equals(" ")||!s1.equals("") && !TextUtils.isEmpty(input.getText()))FirebaseDatabase.getInstance().getReference("mail").push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
                 input.setText("");
-                //if(nickname != null && !s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference(nickname).push().setValue(new Message(input.getText().toString(), nickname,x,y)); //изменено
-                //                else if(!s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getEmail()).push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(),x,y));
                 s1 = input.getText().toString();
-                Log.d("String",s1);
                 xy = true;
             }
         });
@@ -120,21 +112,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             displayChat();
         }
-        try {
-
-//            String key = FirebaseDatabase.getInstance().getReference(nickname).getKey();
-//            Log.d("TAG",key);
-//            FirebaseDatabase.getInstance().getReference(nickname).child("coordinats_x").setValue(10);
-
-//            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference(nickname);
-//            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//            rootRef.child("coordinats_x").setValue(353);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-
         final Intent playActivity = new Intent(this, AndroidLauncher.class);
 
         Button play = findViewById(R.id.start);
@@ -207,6 +184,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-
 }
