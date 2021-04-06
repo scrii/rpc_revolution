@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
     BubbleTextView textMessage;
     boolean xy = true; //34
     String s;
-    float x = 1,y = 1;
     EditText input;
     String s1;
 
