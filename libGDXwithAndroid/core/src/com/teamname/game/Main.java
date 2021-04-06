@@ -8,6 +8,7 @@ import com.teamname.game.Screens.GameSc;
 import com.teamname.game.Screens.MenuSc;
 
 //import Online.Getter;
+import Online.DatabaseHelper;
 import Online.Message;
 import pl.mk5.gdx.fireapp.GdxFIRApp;
 import pl.mk5.gdx.fireapp.GdxFIRDatabase;
@@ -21,7 +22,7 @@ public class Main extends Game {
 	public MenuSc menu;
 	boolean flag=false;
 	//Getter getter;
-
+	DatabaseHelper databaseHelper;
 
 
 	public Main() {
@@ -33,9 +34,12 @@ public class Main extends Game {
 	@Override
 	public void create () {
 		GdxFIRApp.inst().configure();
+
 //		GdxFIRDatabase.instance().inReference("coords_"+GameSc.player.nickname).push().setValue("none ahaha");
 		//getter=new Getter();
 		//getter.sendToFirebase(new Message("234","43"));
+		databaseHelper=new DatabaseHelper();
+		databaseHelper.testFunction();
 		batch = new SpriteBatch();
 		WIDTH= Gdx.graphics.getWidth();
 		HEIGHT=Gdx.graphics.getHeight();

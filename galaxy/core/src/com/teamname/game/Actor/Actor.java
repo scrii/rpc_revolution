@@ -8,6 +8,7 @@ import Tools.Point2D;
 
 public abstract class Actor extends GraphicsObj {
 
+    public Texture texture;
     public Point2D position;
     public float Speed,R;
     public Circle bounds; // границы

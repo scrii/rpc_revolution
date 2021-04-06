@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.teamname.game.Actor.Player;
 import com.teamname.game.Main;
 import com.teamname.game.Screens.GameSc;
+import com.teamname.game.Screens.SpaceSc;
 
 
 public class Joystick {
@@ -34,7 +35,7 @@ public class Joystick {
         direction = new Point2D(0, 0);
         CirclePos=new Point2D(point.getX(),point.getY());
         StickPos=new Point2D(GameSc.getJoyX(),GameSc.getJoyY());
-        Speed=GameSc.player.Speed;
+        Speed= SpaceSc.player.Speed;
     }
 
 

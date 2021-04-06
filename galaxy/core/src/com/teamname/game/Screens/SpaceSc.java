@@ -3,68 +3,44 @@ package com.teamname.game.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector3;
 import com.teamname.game.Actor.Player;
 import com.teamname.game.Main;
-//import com.
-
 
 import Online.DatabaseHelper;
-//import Online.Getter;
 import Online.Description;
 import Tools.Joystick;
 import Tools.Point2D;
-import pl.mk5.gdx.fireapp.GdxFIRDatabase;
 
-public class GameSc implements Screen {
-
-
-    Joystick joy;
+public class SpaceSc implements Screen {
+    public Joystick joy;
     public static Player player;
-    Sprite sprite=new Sprite(Main.background);
+    public Sprite sprite=new Sprite(Main.background);
+    OrthographicCamera camera;
+    public static Point2D realTimeCoords=new Point2D(0,0);
     Description player_description;
-    //OrthographicCamera camera;
-    static Point2D realTimeCoords=new Point2D(0,0);
-
-
-
     private static final int joyX=Main.WIDTH-((Main.HEIGHT/3)/2+(Main.HEIGHT/3)/4);
     private static final int joyY=(Main.HEIGHT/3)/2+(Main.HEIGHT/3)/4;
     private static final int joySize = Main.HEIGHT/3;
-    //private int X_realTimeCoords=Main.WIDTH;
-    //private int Y_realTimeCoords=Main.HEIGHT;
-
 
     private static final int entityRad = Main.HEIGHT/20;
     private static final int entityX=Main.WIDTH/2;
     private static final int entityY=Main.WIDTH/2-entityRad;
     // ресурсы подгружаются с класса Main
-
-
-
     Main main;
     public DatabaseHelper databaseHelper;
 
-    /*public GameSc(PlatformStuff stuff) {
-        this.stuff = stuff;
-    }*/
-
-    public GameSc(Main main){
+    public SpaceSc(Main main){
         this.main=main;
         loadActors();
-        databaseHelper=new DatabaseHelper();
+        databaseHelper=main.databaseHelper;
         //databaseHelper.setNickname(player.nickname);
         //databaseHelper.entryNotify(0);
-        player_description=new Description(player);
-       // player_description.playerInitialization();
 
-        //camera=new OrthographicCamera(Main.WIDTH*1.5f,Main.HEIGHT*1.5f);
+        camera=new OrthographicCamera(Main.WIDTH,Main.HEIGHT);
     }
 
     @Override
@@ -129,13 +105,13 @@ public class GameSc implements Screen {
     public void render(float delta) {
         GameUpdate();
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        //Main.batch.setProjectionMatrix(camera.combined);
-        //camera.update();
+        Main.batch.setProjectionMatrix(camera.combined);
+        camera.update();
         Main.batch.begin();
         Main.batch.draw(Main.background,0,0);
         GameRender(Main.batch);
         // сплюсовать радиусы для отображения игрока ровно в центре
-        //camera.position.set(player.send.getX()+player.R,player.send.getY()+player.R,0);
+        camera.position.set(player.send_in_ONLINE.getX(),player.send_in_ONLINE.getY(),0);
         Main.batch.end();
     }
 
@@ -177,14 +153,10 @@ public class GameSc implements Screen {
     }
 
     public void loadActors(){
-
-        //FileHandle file = Gdx.files.absolute("nickname.txt");
-        //String name = file.readString();
-
-
-        player =new Player("SCRI" ,Main.actor,new Point2D(entityX,entityY),40,entityRad,20);
-        //getter.setPlayer(player);
+        player =new Player("PLAYER" ,Main.actor,new Point2D(entityX,entityY),40,entityRad,20);
         joy=new Joystick(Main.circle,Main.stickImg,new Point2D(joyX,joyY),joySize);
+        player_description=new Description(player);
+        player_description.test();
     }
 
     public void multitouch(float x,float y,boolean isDownTouch, int pointer){
@@ -204,5 +176,4 @@ public class GameSc implements Screen {
     public static Point2D getPos(){
         return realTimeCoords;
     }
-
 }

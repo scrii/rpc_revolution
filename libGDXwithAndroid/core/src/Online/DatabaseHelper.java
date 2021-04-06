@@ -14,11 +14,14 @@ import pl.mk5.gdx.fireapp.GdxFIRDatabase;
 public class DatabaseHelper {
 
     String nickname;
+    String s;
+    Reader reader;
     //DatabaseReference reference = GDXFirebase.FirebaseDatabase().getReference("storetest");
     //String key = reference.push().getKey();
     //reference.child(key).setValue("some value");
 
     public DatabaseHelper(){
+        reader=new Reader();
     }
 
     public void sendToFirebase(String heading, String msg){
@@ -44,6 +47,8 @@ public class DatabaseHelper {
     public void playerInitialization(){
         //entryNotify();
         //addField();
+        GdxFIRDatabase.instance().inReference("players").push().setValue(nickname);
+        GdxFIRDatabase.instance().inReference("players").inReference(nickname).push().setValue("prikol");
     }
 
 
@@ -53,6 +58,7 @@ public class DatabaseHelper {
     public void sendCoords(String email, float x, float y){
         GDXFirebase.FirebaseDatabase().getReference(email).child("coordinats_x").setValue(x);
         GDXFirebase.FirebaseDatabase().getReference(email).child("coordinats_y").setValue(y);
+        //GDXFirebase.FirebaseDatabase().
 
 
 
@@ -64,6 +70,21 @@ public class DatabaseHelper {
 
     public void setNickname(String nickname){
         this.nickname=nickname;
+    }
+
+    public void testFunction(){
+        GdxFIRDatabase.instance().inReference("scri_coordinats").setValue("none");
+    }
+    public void testFunctionUpdate(float x, float y){
+        GdxFIRDatabase.instance().inReference("scri_coordinats").setValue(x+" "+y);
+    }
+
+    public void testFunctionRead(){
+        String field;
+
+        //<!--- >
+        // GdxFIRDatabase.instance().inReference("scti_coordinats").readValue(Class<Reader> s);
+
     }
 
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 
+import Tools.Point2D;
 import de.tomgrill.gdxfirebase.core.GDXFirebase;
 //import de.tomgrill.gdxfirebase.core.database.DatabaseReference;
 import pl.mk5.gdx.fireapp.GdxFIRDatabase;
@@ -34,19 +35,16 @@ public class DatabaseHelper {
     }
 
     public void addField(String reference, String field){
-        GdxFIRDatabase.instance().inReference(reference).push().setValue(field);
+        GdxFIRDatabase.instance().inReference(reference).inReference(field).setValue(field);
     }
 
     public void changeFieldValue(String reference,String field, String value){
-        GdxFIRDatabase.instance().inReference(reference).inReference(field).setValue(value);
+        GdxFIRDatabase.instance().inReference(reference).setValue(field);
     }
 
-    public void playerInitialization(){
-        //entryNotify();
-        //addField();
-        GdxFIRDatabase.instance().inReference("players").push().setValue(nickname);
-        GdxFIRDatabase.instance().inReference("players").inReference(nickname).push().setValue("prikol");
-    }
+
+
+
 
 
 

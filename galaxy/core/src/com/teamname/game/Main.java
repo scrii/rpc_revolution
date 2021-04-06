@@ -4,56 +4,46 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.teamname.game.Screens.GameSc;
 import com.teamname.game.Screens.MenuSc;
-
-//import Online.Getter;
+import com.teamname.game.Screens.SpaceSc;
 import Online.DatabaseHelper;
-import Online.Message;
 import pl.mk5.gdx.fireapp.GdxFIRApp;
-import pl.mk5.gdx.fireapp.GdxFIRDatabase;
-
 
 public class Main extends Game {
 	public static SpriteBatch batch;
-	public Texture img;
 	public static int WIDTH,HEIGHT;
+	public static int BACKGROUND_WIDTH,BACKGROUND_HEIGHT;
 	public static Texture circle,stickImg,background,actor;
-	public MenuSc menu;
-	boolean flag=false;
-	//Getter getter;
-	DatabaseHelper databaseHelper;
+	public DatabaseHelper databaseHelper;
 
 
 	public Main() {
 	}
 
-
-
-
 	@Override
 	public void create () {
 		GdxFIRApp.inst().configure();
-//		GdxFIRDatabase.instance().inReference("coords_"+GameSc.player.nickname).push().setValue("none ahaha");
-		//getter=new Getter();
-		//getter.sendToFirebase(new Message("234","43"));
 		databaseHelper=new DatabaseHelper();
-		databaseHelper.playerInitialization();
+
+		//databaseHelper.playerInitialization();
 		batch = new SpriteBatch();
-		WIDTH= Gdx.graphics.getWidth();
-		HEIGHT=Gdx.graphics.getHeight();
+		WIDTH = Gdx.graphics.getWidth();
+		HEIGHT = Gdx.graphics.getHeight();
+
 		circle=new Texture("circle.png");
 		stickImg=new Texture("stick.png");
 		actor=new Texture("actor.png");
-		background=new Texture("testlocation.png");
+		background=new Texture("largebackground.jpg");
+		BACKGROUND_WIDTH=background.getWidth();
+		BACKGROUND_HEIGHT=background.getHeight();
 
-		setScreen(new GameSc(this));
+
+		setScreen(new SpaceSc(this));
 	}
 
 
 	@Override
 	public void dispose () {
-		//batch.dispose();
-		//img.dispose();
+		batch.dispose();
 	}
 }
