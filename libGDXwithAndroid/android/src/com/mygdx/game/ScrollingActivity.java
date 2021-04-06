@@ -1,61 +1,34 @@
 package com.mygdx.game;
 
-import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 
-
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.CountDownTimer;
-import android.os.Handler;
-import android.telephony.ims.ImsMmTelManager;
 import android.text.SpannableString;
-import android.text.format.DateFormat;
+
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.view.Menu;
-import androidx.appcompat.view.menu.*;
-import android.view.MenuItem;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-
-import cn.zhaiyifan.rememberedittext.RememberEditText;
-
-
 
 public class ScrollingActivity extends AppCompatActivity{
 
@@ -69,14 +42,12 @@ public class ScrollingActivity extends AppCompatActivity{
     int level;
     int real_level;
     int mathematical_sequence_xp_to_level;
-    int h=0;
     CountDownTimer countDownTimer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
-
-
         //==================================
         String myData9 = "";
         File myExternalFile9 = new File("/data/data/com.mygdx.game/Sign.txt");
@@ -88,7 +59,6 @@ public class ScrollingActivity extends AppCompatActivity{
             String strLine9;
             while ((strLine9 = br9.readLine()) != null) {
                 myData9 = myData9 + strLine9;
-                //Log.d("File? ",myData9);
                 real_sign = Integer.parseInt(myData9);
             }
             br9.close();
@@ -98,13 +68,14 @@ public class ScrollingActivity extends AppCompatActivity{
             e.printStackTrace();
         }
         if(real_sign != 1)startActivity(new Intent(ScrollingActivity.this,EmailPasswordActivity.class));
+
+        CreatorFiles sd = new CreatorFiles();
+        sd.create();
+
         //==================================
-
-
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        CollapsingToolbarLayout toolBarLayout = findViewById(R.id.toolbar_layout);
         toolBarLayout.setTitle(getTitle());
         TextView info_level = findViewById(R.id.level);
         TextView info_money = findViewById(R.id.money);
@@ -124,7 +95,6 @@ public class ScrollingActivity extends AppCompatActivity{
             String strLine1;
             while ((strLine1 = br1.readLine()) != null) {
                 myData1 = myData1 + strLine1;
-                //Log.d("File? ",myData1);
                 real_money = Integer.parseInt(myData1);
             }
             br1.close();
@@ -146,7 +116,6 @@ public class ScrollingActivity extends AppCompatActivity{
             String strLine;
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
-                //Log.d("File? ",myData);
                 real_xp = Integer.parseInt(myData);
             }
             br.close();
@@ -167,7 +136,6 @@ public class ScrollingActivity extends AppCompatActivity{
             String strLine6;
             while ((strLine6 = br6.readLine()) != null) {
                 myData6 = myData6 + strLine6;
-                //Log.d("File? ",myData6);
                 real_level = Integer.parseInt(myData6);
             }
             br6.close();
@@ -187,7 +155,6 @@ public class ScrollingActivity extends AppCompatActivity{
             countDownTimer = new CountDownTimer(seconds * 1000, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    //Log.d("seconds: ", seconds + "");
                     seconds--;
                     info_money.setText(money + "");
                     info_level.setText(level+"");
@@ -195,11 +162,9 @@ public class ScrollingActivity extends AppCompatActivity{
 
                 @Override
                 public void onFinish() {
-                    //Log.d("Status: ", "Finished!!!");
                     experience = experience + 1;
                     money = money + 1;
                     info_money.setText(money + "");
-                    //Toast.makeText(getApplicationContext(), experience + "", Toast.LENGTH_SHORT).show();
                     if (experience % 50 == 0) {
                         level = level + 1;
                         info_level.setText(level+"");
@@ -216,7 +181,6 @@ public class ScrollingActivity extends AppCompatActivity{
                     try {
                         PrintWriter printWriter5 = new PrintWriter(file5);
                         printWriter5.write(String.valueOf(money));
-                        //printWriter5.write(String.valueOf(0));
                         printWriter5.close();
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
@@ -233,7 +197,6 @@ public class ScrollingActivity extends AppCompatActivity{
                     try {
                         PrintWriter printWriter1 = new PrintWriter(file1);
                         printWriter1.write(String.valueOf(experience));
-                        //printWriter1.write(String.valueOf(0));
                         printWriter1.close();
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
@@ -251,7 +214,6 @@ public class ScrollingActivity extends AppCompatActivity{
                     try {
                         PrintWriter printWriter = new PrintWriter(file);
                         printWriter.write(String.valueOf(level));
-                        //printWriter.write(String.valueOf(0));
                         printWriter.close();
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
@@ -263,7 +225,7 @@ public class ScrollingActivity extends AppCompatActivity{
                     }
 
                 }
-            };//.start();
+            };
             if (countDownTimer!=null){
                 seconds = 60;
                 countDownTimer.start();
