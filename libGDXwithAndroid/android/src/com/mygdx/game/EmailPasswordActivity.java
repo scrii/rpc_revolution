@@ -149,6 +149,6 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
     }
     private void firebaseDataCreate(){
 
-        //FirebaseDatabase.getInstance().getReference("email").setValue();
+        FirebaseDatabase.getInstance().getReference("email").setValue(new Message("circle.png"));
     }
 }

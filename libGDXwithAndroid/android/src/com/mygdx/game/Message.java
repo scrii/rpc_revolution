@@ -1,7 +1,7 @@
 package com.mygdx.game;
 
 import java.util.Date;
-
+import com.teamname.game.Screens.GameSc;
 
 public class Message {
 
@@ -9,13 +9,16 @@ public class Message {
     private String author;
     //private String play_status;
     //public String nickname;
-    //private
-    //boolean isMove;
+    //private boolean isMove;
     private long timeMessage;
     private float coordinats_x;
     private float coordinats_y;
     //private String texturePath;
-    //public String messa
+    //public String messages;
+    public Message() {
+        /*float coordinats_x_libgdx = GameSc.player.getPosition().getX();
+        float coordinats_y_libgdx = GameSc.player.getPosition().getY();*/
+    }
 
     public Message(String textMessage, String author, float coordinats_x, float coordinats_y) {
         this.textMessage = textMessage;

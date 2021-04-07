@@ -46,7 +46,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import Tools.Point2D;
-import de.tomgrill.gdxfirebase.core.GDXFirebase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //test();
         //FirebaseDatabase.getInstance().getReference("coords_").push();
         //GdxFIRDatabase.instance().inReference("coords_"+ GameSc.player.nickname).push().setValue("none ahaha");
         getSupportActionBar().hide();
@@ -103,8 +101,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 s1 = input.getText().toString(); //
                 Log.d("String",s1);
-                //test();
-               // FirebaseDatabase.getInstance().getReference("").
                 //                if(nickname != null && !s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference("email").child("messages").push().setValue(input.getText().toString()); //изменено
 
                 if(nickname != null && !TextUtils.isEmpty(input.getText()) ||!s1.equals(""))FirebaseDatabase.getInstance().getReference(nickname).push().setValue(new Message(input.getText().toString(), nickname,x,y)); //изменено
@@ -194,11 +190,6 @@ public class MainActivity extends AppCompatActivity {
         };
         listMessages.setAdapter(adapter);
 
-    }
-
-    public void test(){
-        FirebaseDatabase.getInstance("instance").getReference("reference").setValue("value reference");
-        FirebaseDatabase.getInstance("instance").getReference("reference").push().setValue("push value");
     }
 
     @Override

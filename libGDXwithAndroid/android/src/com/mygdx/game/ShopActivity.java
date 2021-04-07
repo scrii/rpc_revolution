@@ -10,11 +10,23 @@ import androidx.preference.PreferenceFragmentCompat;
 
 
 public class ShopActivity extends AppCompatActivity {
-
+    int ore_elbrium;
+    int price_ore_elbrium = 3;
+    int protection; //защита
+    int price_protection = 30;
+    int health; //жизнь
+    int price_health = 3;
+    int speed; //скорость
+    int price_speed = 30;
+    int attack; //урон
+    int price_attack = 10;
+    int maneuverability; //манёвренность
+    int price_maneuverability = 10;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shop_activity);
+
         //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
         if (savedInstanceState == null) {
             getSupportFragmentManager()
