@@ -23,7 +23,7 @@ public class Description {
 
     public void playerInitialization(){
         //entryNotify();
-        //addField();
+        //addField();/
         GdxFIRDatabase.instance().inReference("players").push().setValue(nickname);
         databaseHelper.addField("players","field");
         GdxFIRDatabase.instance().setValue("Reference tipo");
