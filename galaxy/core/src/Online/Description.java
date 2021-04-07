@@ -18,7 +18,7 @@ public class Description {
     }
 
     public void getPosition(){
-
+///
     }
 
     public void playerInitialization(){
