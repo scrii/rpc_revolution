@@ -36,18 +36,10 @@ public class PlayerDataCreator {
     }
 
     public void update(Point2D pos){
-        //read();
-        // обновление полей координат
-        //sendToFirebase
-        read();
-
+        ///read();
         sendToFirebase.x=pos.getX();
         sendToFirebase.y=pos.getY();
-
         databaseHelper.updateValues(nickname,sendToFirebase);
-
-
-
     }
 
     public Message getMessage(){

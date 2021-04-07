@@ -7,9 +7,16 @@ import java.util.Map;
 import java.util.Set;
 
 
+import Tools.Point2D;
+import de.tomgrill.gdxfirebase.core.FirebaseLoader;
 import de.tomgrill.gdxfirebase.core.GDXFirebase;
 //import de.tomgrill.gdxfirebase.core.database.DatabaseReference;
+import de.tomgrill.gdxfirebase.core.database.DataSnapshot;
+import de.tomgrill.gdxfirebase.core.database.DatabaseError;
+import de.tomgrill.gdxfirebase.core.database.FirebaseDatabase;
+import de.tomgrill.gdxfirebase.core.database.ValueEventListener;
 import pl.mk5.gdx.fireapp.GdxFIRDatabase;
+import pl.mk5.gdx.fireapp.distributions.DatabaseDistribution;
 
 public class DatabaseHelper {
 
@@ -68,5 +75,37 @@ public class DatabaseHelper {
     public void updateValues(String reference, Message msg){
         GdxFIRDatabase.instance().inReference(reference).setValue(msg);
     }
+    // <!-- -->
+    /*public Message readValue(){
+        GdxFIRDatabase.instance().inReference()
+    }*/
 
-}
+    //public Point2D getPosition()
+
+    public void readValue(String reference){
+        Message temp;
+        DatabaseDistribution mDB = GdxFIRDatabase.instance().inReference(reference);
+        ValueEventListener vListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                    Message fromFirebase = ds.getValue(Message.class);
+                    assert fromFirebase != null;
+                    Gdx.app.log("COORDS!",fromFirebase.x+" "+fromFirebase.y);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+            
+        };
+        //FirebaseDatabase fDB = GdxFIRDatabase.instance().inReference(reference).;
+        }
+        //GDXFirebase.FirebaseDatabase().getReference(reference).addValueEventListener(vListener);
+        //Gdx.app.log("READED_PL_DATA",GdxFIRDatabase.instance().inReference(reference).readValue(Message.class).toString());
+    }
+
+

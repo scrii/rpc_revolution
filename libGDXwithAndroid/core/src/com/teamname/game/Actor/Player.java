@@ -8,6 +8,7 @@ import com.teamname.game.Main;
 import Online.DatabaseHelper;
 //import Online.DatabaseHelper;
 import Online.Message;
+import Online.PlayerDataCollect;
 import Online.PlayerDataCreator;
 import Tools.Joystick;
 import Tools.Point2D;
@@ -23,6 +24,7 @@ public class Player extends Actor {
     public boolean isMove;
     public String nickname;
     public PlayerDataCreator playerData;
+    public PlayerDataCollect playerCollectData;
 
 
 
@@ -34,6 +36,7 @@ public class Player extends Actor {
         this.nickname=nickname;
         databaseHelper=new DatabaseHelper();
         playerData=new PlayerDataCreator();
+        playerCollectData=new PlayerDataCollect();
 
     }
 
@@ -75,7 +78,9 @@ public class Player extends Actor {
 
        // test push = GdxFIRDatabase.instance().inReference("test").push().setValue(new Message("metadata"));
 
-        if(isMove)playerData.update(send_in_ONLINE);
+        if(isMove){playerData.update(send_in_ONLINE);
+            playerCollectData.getPosition("scriii");
+        }
 
         //Gdx.app.log("PLAYER_MOVE",isMove+"");
 

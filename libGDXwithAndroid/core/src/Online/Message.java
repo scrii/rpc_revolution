@@ -7,8 +7,8 @@ public class Message {
     public String textMessage;
     public String author;
     public long timeMessage;
-    public double x;
-    public double y;
+    public float x;
+    public float y;
     public float gold;
     public float elbrium;
     public int speed;
@@ -19,7 +19,7 @@ public class Message {
     public String color_front;
 
 
-    public Message(String textMessage, String author, double x, double y, float gold, float elbrium, int speed, int attack, int health, int protect, String color_background, String color_front) {
+    public Message(String textMessage, String author, float x, float y, float gold, float elbrium, int speed, int attack, int health, int protect, String color_background, String color_front) {
         this.textMessage = textMessage;
         this.author = author;
         this.x = x;
@@ -48,11 +48,11 @@ public class Message {
         this.timeMessage = timeMessage;
     }
 
-    public void setX(double x) {
+    public void setX(float x) {
         this.x = x;
     }
 
-    public void setY(double y) {
+    public void setY(float y) {
         this.y = y;
     }
 
