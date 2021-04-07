@@ -145,5 +145,13 @@ public class CreatorFiles {
                 e.printStackTrace();
             }
         }
+        File file10 = new File("/data/data/com.mygdx.game/Message.txt");
+        if(!file10.exists()){
+            try {
+                if (!file10.exists()) file10.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

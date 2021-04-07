@@ -12,12 +12,12 @@ import java.io.InputStreamReader;
 
 import Tools.Point2D;
 
+
 public class PlayerDataCreator {
     float x;
     float y;
-
-    String s1, color_front = "red", color_background = "blue";
-    String nickname;
+    String color_front = "red", color_background = "blue";
+    String nickname,text_message;
     int protect,health,attack,speed;
     float elbrium,gold;
     Message sendToFirebase;
@@ -25,12 +25,13 @@ public class PlayerDataCreator {
     DatabaseHelper databaseHelper;
 
 
+
     public PlayerDataCreator(){
         x=0;
         y=0;
         read();
         databaseHelper=new DatabaseHelper();
-        sendToFirebase = new Message("list_of_messages",nickname,x,y,gold,elbrium,speed,attack,health,protect,color_background,color_front);
+        sendToFirebase = new Message(text_message,nickname,x,y,gold,elbrium,speed,attack,health,protect,color_background,color_front);
 
 
     }
@@ -171,6 +172,25 @@ public class PlayerDataCreator {
             br36.close();
             in36.close();
             fis36.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //========================================================================
+        String myData = "";
+        File myExternalFile = new File("/data/data/com.mygdx.game/Message.txt");
+        try {
+            FileInputStream fis = new FileInputStream(myExternalFile);
+            DataInputStream in = new DataInputStream(fis);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+
+            String strLine;
+            while ((strLine = br.readLine()) != null) {
+                myData = myData + strLine;
+                text_message = myData;
+            }
+            br.close();
+            in.close();
+            fis.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

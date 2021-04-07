@@ -6,7 +6,7 @@ import com.teamname.game.Screens.MenuSc;
 public class Message {
     public String textMessage;
     public String author;
-    public long timeMessage;
+
     public double x;
     public double y;
     public float gold;
@@ -18,6 +18,13 @@ public class Message {
     public String color_background;
     public String color_front;
 
+    public String getTextMessage() {
+        return textMessage;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
 
     public Message(String textMessage, String author, double x, double y, float gold, float elbrium, int speed, int attack, int health, int protect, String color_background, String color_front) {
         this.textMessage = textMessage;
@@ -42,10 +49,6 @@ public class Message {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public void setTimeMessage(long timeMessage) {
-        this.timeMessage = timeMessage;
     }
 
     public void setX(double x) {
