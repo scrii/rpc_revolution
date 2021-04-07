@@ -1,6 +1,6 @@
 package Online;
 
-import com.sun.org.apache.xml.internal.security.algorithms.MessageDigestAlgorithm;
+
 import com.teamname.game.Actor.Player;
 
 import java.io.BufferedReader;
@@ -29,15 +29,23 @@ public class PlayerDataCreator {
         x=0;
         y=0;
         read();
+        databaseHelper=new DatabaseHelper();
         sendToFirebase = new Message("list_of_messages",nickname,x,y,gold,elbrium,speed,attack,health,protect,color_background,color_front);
 
 
     }
 
-    public void updateMessage(){
+    public void update(Point2D pos){
         //read();
         // обновление полей координат
         //sendToFirebase
+        read();
+
+        sendToFirebase.x=pos.getX();
+        sendToFirebase.y=pos.getY();
+
+        databaseHelper.updateValues(nickname,sendToFirebase);
+
 
 
     }

@@ -11,6 +11,7 @@ import Online.Message;
 import Online.PlayerDataCreator;
 import Tools.Joystick;
 import Tools.Point2D;
+import pl.mk5.gdx.fireapp.GdxFIRDatabase;
 
 public class Player extends Actor {
 
@@ -67,9 +68,14 @@ public class Player extends Actor {
 
         //databaseHelper.sendCoords("email",send_in_ONLINE.getX(),send_in_ONLINE.getY());
 
-        playerData.setCoords(send_in_ONLINE);
+        //playerData.setCoords(send_in_ONLINE);
 
-        databaseHelper.playerDataUpdate(nickname, playerData.getMessage());
+        //databaseHelper.playerDataUpdate(nickname, playerData.getMessage());
+
+
+       // test push = GdxFIRDatabase.instance().inReference("test").push().setValue(new Message("metadata"));
+
+        if(isMove)playerData.update(send_in_ONLINE);
 
         //Gdx.app.log("PLAYER_MOVE",isMove+"");
 

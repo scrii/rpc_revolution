@@ -65,4 +65,8 @@ public class DatabaseHelper {
         this.nickname=nickname;
     }
 
+    public void updateValues(String reference, Message msg){
+        GdxFIRDatabase.instance().inReference(reference).setValue(msg);
+    }
+
 }

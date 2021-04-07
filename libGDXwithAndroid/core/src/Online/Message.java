@@ -4,19 +4,19 @@ import com.teamname.game.Screens.MenuSc;
 
 
 public class Message {
-    private String textMessage;
-    private String author;
-    private long timeMessage;
-    private double x;
-    private double y;
-    private float gold;
-    private float elbrium;
-    private int speed;
-    private int attack;
-    private int health;
-    private int protect;
-    private String color_background;
-    private String color_front;
+    public String textMessage;
+    public String author;
+    public long timeMessage;
+    public double x;
+    public double y;
+    public float gold;
+    public float elbrium;
+    public int speed;
+    public int attack;
+    public int health;
+    public int protect;
+    public String color_background;
+    public String color_front;
 
 
     public Message(String textMessage, String author, double x, double y, float gold, float elbrium, int speed, int attack, int health, int protect, String color_background, String color_front) {
@@ -33,6 +33,8 @@ public class Message {
         this.color_background = color_background;
         this.color_front = color_front;
     }
+
+    public Message(String data){textMessage=data;}
 
     public void setTextMessage(String textMessage) {
         this.textMessage = textMessage;
