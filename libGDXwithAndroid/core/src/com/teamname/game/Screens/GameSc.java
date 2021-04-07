@@ -17,6 +17,8 @@ import com.teamname.game.Main;
 
 import Online.DatabaseHelper;
 //import Online.Getter;
+import Online.Message;
+import Online.PlayerDataCreator;
 import Tools.Joystick;
 import Tools.Point2D;
 import pl.mk5.gdx.fireapp.GdxFIRDatabase;
@@ -29,6 +31,8 @@ public class GameSc implements Screen {
     Sprite sprite=new Sprite(Main.background);
     //OrthographicCamera camera;
     static Point2D realTimeCoords=new Point2D(0,0);
+
+    //PlayerDataCreator playerData;
 
 
 
@@ -57,7 +61,7 @@ public class GameSc implements Screen {
         this.main=main;
         loadActors();
         databaseHelper=new DatabaseHelper();
-        databaseHelper.setNickname(player.nickname);
+        //databaseHelper.setNickname(player.nickname);
         databaseHelper.entryNotify(0);
         //camera=new OrthographicCamera(Main.WIDTH*1.5f,Main.HEIGHT*1.5f);
     }

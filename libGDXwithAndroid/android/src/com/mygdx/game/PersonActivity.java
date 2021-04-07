@@ -38,7 +38,6 @@ public class PersonActivity extends AppCompatActivity {
         try {
             PrintWriter printWriter36 = new PrintWriter(file36);
             printWriter36.write(s);
-            //printWriter5.write(String.valueOf(0));
             printWriter36.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();

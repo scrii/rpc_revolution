@@ -8,6 +8,7 @@ import com.teamname.game.Main;
 import Online.DatabaseHelper;
 //import Online.DatabaseHelper;
 import Online.Message;
+import Online.PlayerDataCreator;
 import Tools.Joystick;
 import Tools.Point2D;
 
@@ -20,6 +21,7 @@ public class Player extends Actor {
     public Point2D send_in_ONLINE;
     public boolean isMove;
     public String nickname;
+    public PlayerDataCreator playerData;
 
 
 
@@ -30,6 +32,8 @@ public class Player extends Actor {
         this.health=health;
         this.nickname=nickname;
         databaseHelper=new DatabaseHelper();
+        playerData=new PlayerDataCreator();
+
     }
 
     // метод оповещения о движении
@@ -60,10 +64,13 @@ public class Player extends Actor {
         position.add(X,Y);
         send_in_ONLINE=position;
 
-        databaseHelper.testFunctionUpdate(send_in_ONLINE.getX(),send_in_ONLINE.getY());
 
-        databaseHelper.testFunctionRead();
         //databaseHelper.sendCoords("email",send_in_ONLINE.getX(),send_in_ONLINE.getY());
+
+        playerData.setCoords(send_in_ONLINE);
+
+        databaseHelper.playerDataUpdate(nickname, playerData.getMessage());
+
         //Gdx.app.log("PLAYER_MOVE",isMove+"");
 
         // отправка координат, условия остановки

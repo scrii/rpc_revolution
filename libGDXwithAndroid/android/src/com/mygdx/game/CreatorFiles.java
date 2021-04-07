@@ -130,5 +130,20 @@ public class CreatorFiles {
                 e.printStackTrace();
             }
         }
+        File file9 = new File("/data/data/com.mygdx.game/Ore_Elbrium.txt");
+        if(!file9.exists()){
+            try {
+                if (!file9.exists()) file9.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                PrintWriter printWriter9 = new PrintWriter(file9);
+                printWriter9.write(String.valueOf(0));
+                printWriter9.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

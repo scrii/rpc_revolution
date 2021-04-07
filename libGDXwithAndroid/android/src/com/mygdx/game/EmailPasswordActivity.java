@@ -33,7 +33,7 @@ import cn.zhaiyifan.rememberedittext.RememberEditText;
 
 
 public class EmailPasswordActivity extends AppCompatActivity implements View.OnClickListener{
-
+    EditText registration_nickname;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -48,7 +48,6 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
                 if (task.isSuccessful()) {
                     startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
                     number = 1;
-                    //Toast.makeText(getApplicationContext(), "Aвторизация успешна", Toast.LENGTH_SHORT).show();
                     File file60 = new File("/data/data/com.mygdx.game/Sign.txt");
                     Log.d(file60.exists() + "", "true!");
                     try {
@@ -59,7 +58,6 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
                     try {
                         PrintWriter printWriter60 = new PrintWriter(file60);
                         printWriter60.write(String.valueOf(1));
-                        //printWriter5.write(String.valueOf(0));
                         printWriter60.close();
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
@@ -75,11 +73,9 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     firebaseDataCreate();
-                    //Toast.makeText(getApplicationContext(), "Регистрация успешна", Toast.LENGTH_SHORT).show();
                     o++;
                 } else
                     o++;
-                //Toast.makeText(getApplicationContext(), "Регистрация провалена", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -88,14 +84,28 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
         if(view.getId() == R.id.btn_sign_in)
         {
             try {
-
+                String s = registration_nickname.getText().toString();
+                File file36 = new File("/data/data/com.mygdx.game/nickname.txt");
+                try {
+                    if (!file36.exists()) file36.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    PrintWriter printWriter36 = new PrintWriter(file36);
+                    printWriter36.write(s);
+                    printWriter36.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                //----------------------------------------------------------------------------
                 signin(ETemail.getText().toString(),ETpassword.getText().toString());
                 startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
                 number = 1;
             }catch (Exception e) {
                 e.printStackTrace();
             }
-            //startActivity(new Intent(EmailPasswordActivity.this, PersonActivity.class));
+
         }else if (view.getId() == R.id.btn_registration)
         {
             try {
@@ -110,7 +120,9 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_password);
         if(number == 1)startActivity(new Intent(EmailPasswordActivity.this,ScrollingActivity.class));
+        registration_nickname = findViewById(R.id.registration_nickname);
         //----------------------------------------------------------------------------
+
         String myData9 = "";
         File myExternalFile9 = new File("/data/data/com.mygdx.game/Sign.txt");
         try {
@@ -135,7 +147,6 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    // User is signed in
                     startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
                 } else {
                     o++;
@@ -149,6 +160,6 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
     }
     private void firebaseDataCreate(){
 
-        FirebaseDatabase.getInstance().getReference("email").setValue(new Message("circle.png"));
+        //FirebaseDatabase.getInstance().getReference("email").setValue(new Message("circle.png"));
     }
 }

@@ -39,12 +39,12 @@ public class Description {
         GDXFirebase.FirebaseDatabase().goOnline();
         /*if (!FirebaseApp.getApps(this).isEmpty())
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);*/
-        GdxFIRApp.instance()
+        GdxFIRApp.instance();
 
         GDXFirebase.FirebaseDatabase().setPersistenceEnabled(true);
         GDXFirebase.FirebaseDatabase().getReference("TEST_scri").push().setValue("0o");
 
-        GdxFIRDatabase.instance().inReference("AAAAA").readValue()
+        //GdxFIRDatabase.instance().inReference("AAAAA").readValue();
         /*ListView listMessages = findViewById(R.id.listView);
 adapter = new FirebaseListAdapter<Message>(MainActivity.this, Message.class, R.layout.list_item, FirebaseDatabase.getInstance().getReference(nickname)) {
 

@@ -103,7 +103,11 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("String",s1);
                 //                if(nickname != null && !s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference("email").child("messages").push().setValue(input.getText().toString()); //изменено
 
-                if(nickname != null && !TextUtils.isEmpty(input.getText()) ||!s1.equals(""))FirebaseDatabase.getInstance().getReference(nickname).push().setValue(new Message(input.getText().toString(), nickname,x,y)); //изменено
+                if(nickname != null && !TextUtils.isEmpty(input.getText()) ||!s1.equals("")){
+                    // изменения
+                    FirebaseDatabase.getInstance().getReference(nickname).setValue(new MessageTwo(123f ,321f,"nick","msg", 100, 100, 100, 100, 100, 100, "#fffff","42ffsa"));
+                    // конец изменений
+                    FirebaseDatabase.getInstance().getReference(nickname).push().setValue(new Message(input.getText().toString(), nickname,x,y));} //изменено
                 else if(!s1.equals(" ")||!s1.equals("") && !TextUtils.isEmpty(input.getText()))FirebaseDatabase.getInstance().getReference("mail").push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(),x,y));
                 input.setText("");
                 //if(nickname != null && !s1.equals(" ")||!s1.equals(""))FirebaseDatabase.getInstance().getReference(nickname).push().setValue(new Message(input.getText().toString(), nickname,x,y)); //изменено
