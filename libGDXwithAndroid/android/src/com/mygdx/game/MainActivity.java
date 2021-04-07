@@ -21,8 +21,13 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
+
+
+import Online.PlayerDataCreator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -168,12 +173,20 @@ public class MainActivity extends AppCompatActivity {
         //=====================================================================
         activity_main = findViewById(R.id.activity_main);
         button = findViewById(R.id.button2);
+        File file10 = new File("/data/data/com.mygdx.game/Message.txt");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                s1 = input.getText().toString(); //
-                if(nickname != null && !TextUtils.isEmpty(input.getText()) ||!s1.equals(""))FirebaseDatabase.getInstance().getReference(nickname).push().setValue(new Message(input.getText().toString(), nickname,x,y,gold,elbrium,speed,attack,health,protect,color_background,color_front)); //изменено
-                else if(!s1.equals(" ")||!s1.equals("") && !TextUtils.isEmpty(input.getText()))FirebaseDatabase.getInstance().getReference("mail").push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(),x,y,gold,elbrium,speed,attack,health,protect,color_background,color_front));
+                s1 = input.getText().toString();
+                try {
+                    PrintWriter printWriter10 = new PrintWriter(file10);
+                    printWriter10.write(String.valueOf(s1));
+                    printWriter10.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                if(nickname != null && !TextUtils.isEmpty(input.getText()) ||!s1.equals(""))FirebaseDatabase.getInstance().getReference(nickname+"1000-7").push().setValue(new Message(input.getText().toString(), nickname));
+                else if(!s1.equals(" ")||!s1.equals("") && !TextUtils.isEmpty(input.getText()))FirebaseDatabase.getInstance().getReference("mail").push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
                 input.setText("");
                 s1 = input.getText().toString();
                 xy = true;
@@ -202,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayChat() {
 
         ListView listMessages = findViewById(R.id.listView);
-        adapter = new FirebaseListAdapter<Message>(MainActivity.this, Message.class, R.layout.list_item, FirebaseDatabase.getInstance().getReference(nickname)) {
+        adapter = new FirebaseListAdapter<Message>(MainActivity.this, Message.class, R.layout.list_item, FirebaseDatabase.getInstance().getReference(nickname+"1000-7")) {
 
             @Override
             protected void populateView(View v, Message model, int position) {
@@ -232,7 +245,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else textMessage.setTextColor(getResources().getColor(R.color.white));
-                //timeMessage.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getTimeMessage()));
                 if(xy){
                     myListView.smoothScrollToPosition(2000000000);
                     xy = false;
