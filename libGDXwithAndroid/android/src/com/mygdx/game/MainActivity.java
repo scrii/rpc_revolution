@@ -185,8 +185,8 @@ public class MainActivity extends AppCompatActivity {
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-                if(nickname != null && !TextUtils.isEmpty(input.getText()) ||!s1.equals(""))FirebaseDatabase.getInstance().getReference(nickname+"1000-7").push().setValue(new Message(input.getText().toString(), nickname));
-                else if(!s1.equals(" ")||!s1.equals("") && !TextUtils.isEmpty(input.getText()))FirebaseDatabase.getInstance().getReference("mail").push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+                if(nickname != null && !TextUtils.isEmpty(input.getText()) ||!s1.equals(""))FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), nickname));
+                else if(!s1.equals(" ")||!s1.equals("") && !TextUtils.isEmpty(input.getText()))FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
                 input.setText("");
                 s1 = input.getText().toString();
                 xy = true;
@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayChat() {
 
         ListView listMessages = findViewById(R.id.listView);
-        adapter = new FirebaseListAdapter<Message>(MainActivity.this, Message.class, R.layout.list_item, FirebaseDatabase.getInstance().getReference(nickname+"1000-7")) {
+        adapter = new FirebaseListAdapter<Message>(MainActivity.this, Message.class, R.layout.list_item, FirebaseDatabase.getInstance().getReference("Message")) {
 
             @Override
             protected void populateView(View v, Message model, int position) {

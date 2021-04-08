@@ -147,7 +147,22 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
+                    String s = registration_nickname.getText().toString();
+                    File file36 = new File("/data/data/com.mygdx.game/nickname.txt");
+                    try {
+                        if (!file36.exists()) file36.createNewFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        PrintWriter printWriter36 = new PrintWriter(file36);
+                        printWriter36.write(s);
+                        printWriter36.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    if(s!=""||s!=null)startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
+                    else Toast.makeText(getApplicationContext(),"Поле ввода имени не может быть пустым",Toast.LENGTH_SHORT);
                 } else {
                     o++;
                 }
