@@ -130,13 +130,13 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:text="@string/string_maneuverability"
-                android:id="@+id/info_hp"
+                android:id="@+id/info_maneuverability"
                 android:textSize="20dp"
                 android:textStyle="normal"/>
             <TextView
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/sum_health"
+                android:id="@+id/real_maneuverability"
                 android:text="@string/int_start_health"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
@@ -144,7 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/plus_one"
-                android:id="@+id/health_plus_one"/>
+                android:id="@+id/maneuverability_plus_one"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -161,7 +161,7 @@
             <TextView
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/sum_attack"
+                android:id="@+id/real_attack"
                 android:text="@string/int_start_health"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
@@ -187,7 +187,7 @@
             <TextView
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/sum_protect"
+                android:id="@+id/real_protection"
                 android:text="@string/int_start_protection"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
@@ -207,13 +207,13 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:text="@string/string_speed"
-                android:id="@+id/info_speed1"
+                android:id="@+id/info_speed_plus_one"
                 android:textSize="20dp"
                 android:textStyle="normal"/>
             <TextView
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/sum_speed"
+                android:id="@+id/real_speed_pus_one"
                 android:text="@string/int_start_protection"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
