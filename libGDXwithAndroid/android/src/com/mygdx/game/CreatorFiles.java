@@ -153,5 +153,20 @@ public class CreatorFiles {
                 e.printStackTrace();
             }
         }
+        File file11 = new File("/data/data/com.mygdx.game/Sign.txt");
+        if(!file11.exists()){
+            try {
+                if (!file11.exists()) file11.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                PrintWriter printWriter9 = new PrintWriter(file9);
+                printWriter9.write(String.valueOf(1));
+                printWriter9.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

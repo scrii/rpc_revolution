@@ -39,15 +39,13 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
 
     private EditText ETemail;
     private EditText ETpassword;
-    int number,o;
+    int number=0,o;
     public void signin (String email, String password)
     {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
-                    number = 1;
                     File file60 = new File("/data/data/com.mygdx.game/Sign.txt");
                     Log.d(file60.exists() + "", "true!");
                     try {
@@ -62,6 +60,8 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
+                    number = 1;
+                    if(number==1)startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
                 } else
                     Toast.makeText(getApplicationContext(), "Aвторизация провалена", Toast.LENGTH_SHORT).show();
             }
@@ -76,6 +76,23 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
                     o++;
                 } else
                     o++;
+
+                File file61 = new File("/data/data/com.mygdx.game/Sign.txt");
+                Log.d(file61.exists() + "", "true!");
+                try {
+                    if (!file61.exists()) file61.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    PrintWriter printWriter61 = new PrintWriter(file61);
+                    printWriter61.write(String.valueOf(1));
+                    printWriter61.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                number = 1;
+                startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
             }
         });
     }
@@ -100,8 +117,9 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
                 }
                 //----------------------------------------------------------------------------
                 signin(ETemail.getText().toString(),ETpassword.getText().toString());
-                startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
                 number = 1;
+                //startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
+
             }catch (Exception e) {
                 e.printStackTrace();
             }
@@ -119,7 +137,9 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_password);
-        if(number == 1)startActivity(new Intent(EmailPasswordActivity.this,ScrollingActivity.class));
+        CreatorFiles sd = new CreatorFiles();
+        sd.create();
+        //if(number == 1)startActivity(new Intent(EmailPasswordActivity.this,ScrollingActivity.class));
         registration_nickname = findViewById(R.id.registration_nickname);
         //----------------------------------------------------------------------------
 
@@ -161,8 +181,8 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                    if(s!=""||s!=null)startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
-                    else Toast.makeText(getApplicationContext(),"Поле ввода имени не может быть пустым",Toast.LENGTH_SHORT);
+                    //if(s!=""||s!=null)startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
+                    //else Toast.makeText(getApplicationContext(),"Поле ввода имени не может быть пустым",Toast.LENGTH_SHORT);
                 } else {
                     o++;
                 }

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -68,9 +69,6 @@ public class ScrollingActivity extends AppCompatActivity{
             e.printStackTrace();
         }
         if(real_sign != 1)startActivity(new Intent(ScrollingActivity.this,EmailPasswordActivity.class));
-
-        CreatorFiles sd = new CreatorFiles();
-        sd.create();
 
         //==================================
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -255,8 +253,8 @@ public class ScrollingActivity extends AppCompatActivity{
         s1.setSpan(new ForegroundColorSpan(Color.RED), 0, s1.length(), 0);
         item2.setTitle(s1);
 
-        MenuItem item3 = menu.getItem(2);                                              //Красный цвет Settings в menu_scrolling
-        SpannableString s2 = new SpannableString("Настройки");
+        MenuItem item3 = menu.getItem(2);                                              //Красный цвет Выход в menu_scrolling
+        SpannableString s2 = new SpannableString("Выход");
         s2.setSpan(new ForegroundColorSpan(Color.RED), 0, s2.length(), 0);
         item3.setTitle(s2);
 
@@ -275,10 +273,23 @@ public class ScrollingActivity extends AppCompatActivity{
             return true;
         }
         if (id == R.id.action_settings) { //здесь предствален обработчик нажатия типа setOnClickListener
-            startActivity(new Intent(this,SettingsActivity.class));
+            new File("/data/data/com.mygdx.game/Sign.txt").delete();
+            new File("/data/data/com.mygdx.game/The_core_of_the_second_life.txt").delete();
+            new File("/data/data/com.mygdx.game/Jump_into_hyperspace.txt").delete();
+            new File("/data/data/com.mygdx.game/Health.txt").delete();
+            new File("/data/data/com.mygdx.game/Protection.txt").delete();
+            new File("/data/data/com.mygdx.game/Attack.txt").delete();
+            new File("/data/data/com.mygdx.game/Speed.txt").delete();
+            new File("/data/data/com.mygdx.game/Maneuverability.txt").delete();
+            new File("/data/data/com.mygdx.game/Ore_Elbrium.txt").delete();
+            new File("/data/data/com.mygdx.game/Message.txt").delete();
+            new File("/data/data/com.mygdx.game/guardian_money.txt").delete();
+            new File("/data/data/com.mygdx.game/guardian_level.txt").delete();
+            new File("/data/data/com.mygdx.game/guardian_exp.txt").delete();
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(this,ScrollingActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 }
-

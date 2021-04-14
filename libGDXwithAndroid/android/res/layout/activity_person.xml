@@ -13,7 +13,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="150dp"
-            android:hint="Enter you nickname"
+            android:hint="@string/enter_your_nickname"
             android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,6 +27,6 @@
             android:id="@+id/confirm"
             android:layout_marginTop="185dp"
             android:layout_gravity="right"
-            android:text="Подтвердить"/>
+            android:text="@string/confirm"/>
 
 </LinearLayout>

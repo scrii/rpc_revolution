@@ -25,7 +25,7 @@
                 android:layout_width="352dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="Здоровье                  "
+                android:text="@string/string_health"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -34,7 +34,7 @@
                 android:layout_width="58dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:text="10"
+                android:text="@string/int_start_health"
                 android:textSize="20dp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -50,7 +50,7 @@
                 android:layout_width="352dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="Урон                  "
+                android:text="@string/string_damage"
                 android:textSize="20dp"
                 android:textStyle="bold" />
             <TextView
@@ -58,7 +58,7 @@
                 android:layout_width="58dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:text="3"
+                android:text="@string/int_start_damage"
                 android:textSize="20dp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -74,7 +74,7 @@
                 android:layout_width="352dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="Защита                  "
+                android:text="@string/string_protection"
                 android:textSize="20dp"
                 android:textStyle="bold" />
             <TextView
@@ -82,7 +82,7 @@
                 android:layout_width="58dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:text="3"
+                android:text="@string/int_start_damage"
                 android:textSize="20dp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -98,7 +98,7 @@
                 android:layout_width="352dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="Скорость                  "
+                android:text="@string/string_speed"
                 android:textSize="20dp"
                 android:textStyle="bold" />
             <TextView
@@ -106,7 +106,7 @@
                 android:layout_width="58dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:text="10"
+                android:text="@string/int_start_health"
                 android:textSize="20dp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -118,7 +118,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" "
+                android:text="@string/space"
                 android:id="@+id/space1"/>
         </LinearLayout>
         <LinearLayout
@@ -129,7 +129,7 @@
             <TextView
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:text="Манёвренность"
+                android:text="@string/string_maneuverability"
                 android:id="@+id/info_hp"
                 android:textSize="20dp"
                 android:textStyle="normal"/>
@@ -137,13 +137,13 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/sum_health"
-                android:text="10"
+                android:text="@string/int_start_health"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+1"
+                android:text="@string/plus_one"
                 android:id="@+id/health_plus_one"/>
         </LinearLayout>
         <LinearLayout
@@ -154,7 +154,7 @@
             <TextView
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:text="Атака"
+                android:text="@string/string_attack"
                 android:id="@+id/info_attack"
                 android:textSize="20dp"
                 android:textStyle="normal"/>
@@ -162,13 +162,13 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/sum_attack"
-                android:text="10"
+                android:text="@string/int_start_health"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+1"
+                android:text="@string/plus_one"
                 android:id="@+id/attack_plus_one"/>
         </LinearLayout>
 
@@ -180,7 +180,7 @@
             <TextView
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:text="Защита"
+                android:text="@string/string_protection"
                 android:id="@+id/info_protection"
                 android:textSize="20dp"
                 android:textStyle="normal"/>
@@ -188,13 +188,13 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/sum_protect"
-                android:text="30"
+                android:text="@string/int_start_protection"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+1"
+                android:text="@string/plus_one"
                 android:id="@+id/protect_plus_one"/>
         </LinearLayout>
 
@@ -206,7 +206,7 @@
             <TextView
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:text="Скорость"
+                android:text="@string/string_speed"
                 android:id="@+id/info_speed1"
                 android:textSize="20dp"
                 android:textStyle="normal"/>
@@ -214,13 +214,13 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/sum_speed"
-                android:text="30"
+                android:text="@string/int_start_protection"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+1"
+                android:text="@string/plus_one"
                 android:id="@+id/speed_plus_one"/>
         </LinearLayout>
 
@@ -233,7 +233,7 @@
                 android:id="@+id/space3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" " />
+                android:text="@string/space" />
         </LinearLayout>
 
         <LinearLayout
@@ -247,7 +247,7 @@
                 android:id="@+id/null_number"
                 android:layout_width="277dp"
                 android:layout_height="match_parent"
-                android:text="Сбрасывает все значения, полностью возвращая деньги. Экспрементируйте!"
+                android:text="@string/drop"
                 android:textSize="14.5dp" />
 
             <Button
@@ -255,7 +255,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:text="Сбросить всё" />
+                android:text="@string/drop_mini" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

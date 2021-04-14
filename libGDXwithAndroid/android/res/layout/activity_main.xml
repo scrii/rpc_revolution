@@ -32,13 +32,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/aboutroom1"
-                    android:text="Room1"
+                    android:text="@string/room_one"
                     android:textSize="20dp"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/start"
-                    android:text="Космическое пространство"/>
+                    android:text="@string/go_to_space"
+                    android:gravity="center"/>
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -69,7 +70,7 @@
             android:layout_weight="2" />
 
         <Button
-            android:text="Send"
+            android:text="@string/send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button2"

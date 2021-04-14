@@ -29,5 +29,32 @@
         <item>Светлый фон</item>
         <item>Темный фон</item>
     </string-array>
+    <string name="string_health">Здоровье</string>
+    <string name="int_start_health">10</string>
+    <string name="string_damage">Урон</string>
+    <string name="int_start_damage">3</string>
+    <string name="string_protection">Защита</string>
+    <string name="string_speed">Скорость</string>
+    <string name="string_maneuverability">Манёвренность</string>
+    <string name="string_attack">Атака</string>
+    <string name="int_start_protection">30</string>
+    <string name="drop">Сбрасывает все значения, полностью возвращая деньги. Экспрементируйте!</string>
+    <string name="drop_mini">Сбросить всё</string>
+    <string name="plus_one">+1</string>
+    <string name="space"> </string>
+    <string name="registration">Регистрация</string>
+    <string name="email">Почта</string>
+    <string name="password">Пароль</string>
+    <string name="start_nickname">Введите имя, которое будет отражено в игре</string>
+    <string name="entrance">Вход</string>
+    <string name="room_one">R1</string>
+    <string name="go_to_space">В путь!</string>
+    <string name="send">Send</string>
+    <string name="enter_your_nickname">Введите своё имя</string>
+    <string name="confirm">Подтведить</string>
+    <string name="level">Уровень</string>
+    <string name="int_start_level">0</string>
+    <string name="money">Монеты</string>
+    <string name="exit">Выход</string>
 
 </resources>
