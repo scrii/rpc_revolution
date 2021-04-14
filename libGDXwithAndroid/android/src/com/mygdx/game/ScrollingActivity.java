@@ -271,7 +271,7 @@ public class ScrollingActivity extends AppCompatActivity{
             return true;
         }
         if(id == R.id.shop){
-            startActivity(new Intent(this,ShopActivity.class));
+            startActivity(new Intent(ScrollingActivity.this,ShopActivity.class));
             return true;
         }
         if (id == R.id.action_settings) { //здесь предствален обработчик нажатия типа setOnClickListener
