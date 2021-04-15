@@ -29,15 +29,15 @@ public class DatabaseHelper {
     }
 
     public void sendToFirebase(String heading, String msg){
-        GdxFIRDatabase.instance().inReference(heading).push().setValue(msg);
+        GdxFIRDatabase.instance().inReference(heading).setValue(msg);
     }
 
     public void removeFromFirebase(String reference){
         GdxFIRDatabase.instance().inReference(reference).removeValue();
     }
 
-    public void entryNotify(int roomNumber){
-        sendToFirebase("room"+roomNumber+"_"+nickname,"Connected");
+    public void entryNotify(){
+        sendToFirebase("players",nickname);
     }
 
     public void addField(String reference, String field){

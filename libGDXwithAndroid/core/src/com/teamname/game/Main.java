@@ -42,6 +42,7 @@ public class Main extends Game {
 		circle=new Texture("circle.png");
 		stickImg=new Texture("stick.png");
 		actor=new Texture("actor.png");
+		//GdxFIRDatabase.instance().inReference("heading").setValue("msg");
 		background=new Texture("testlocation.png");
 
 		setScreen(new GameSc(this));

@@ -79,7 +79,7 @@ public class Player extends Actor {
        // test push = GdxFIRDatabase.instance().inReference("test").push().setValue(new Message("metadata"));
 
         if(isMove){playerData.update(send_in_ONLINE);
-            playerCollectData.getPosition("scriii");
+            //playerCollectData.getPosition("scriii");
         }
 
         //Gdx.app.log("PLAYER_MOVE",isMove+"");
