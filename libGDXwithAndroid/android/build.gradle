@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.appdistribution'
+    id 'com.google.firebase.crashlytics'
 }
 android {
     buildToolsVersion "30.0.3"
@@ -112,6 +113,7 @@ dependencies {
     implementation 'androidx.preference:preference:1.1.1'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.room:room-runtime:2.2.6'
+    implementation 'com.google.firebase:firebase-crashlytics:17.4.1'
     testImplementation 'junit:junit:4.13.2'
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
     implementation 'com.firebaseui:firebase-ui:2.1.0'
