@@ -76,7 +76,7 @@ public class GameSc implements Screen {
         //databaseHelper.setNickname(player.nickname);
         databaseHelper.entryNotify();
 
-        camera=new OrthographicCamera(Main.WIDTH,Main.HEIGHT);
+        camera=new OrthographicCamera(Main.WIDTH/2.5f,Main.HEIGHT/2.5f);
     }
 
 
@@ -240,7 +240,7 @@ public class GameSc implements Screen {
 
 
 
-        player =new Player("SCRI" ,Main.actor,new Point2D(entityX,entityY),10,entityRad,20);
+        player =new Player("SCRI" ,Main.actor,new Point2D(entityX,entityY),3,entityRad,20);
         //getter.setPlayer(player);
         joy=new Joystick(Main.circle,Main.stickImg,new Point2D(joyX,joyY),joySize);
 
