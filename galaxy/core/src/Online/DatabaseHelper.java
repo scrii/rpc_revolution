@@ -11,15 +11,18 @@ import Tools.Point2D;
 import de.tomgrill.gdxfirebase.core.GDXFirebase;
 //import de.tomgrill.gdxfirebase.core.database.DatabaseReference;
 import pl.mk5.gdx.fireapp.GdxFIRDatabase;
+import pl.mk5.gdx.fireapp.functional.Consumer;
 
 public class DatabaseHelper {
 
-    String nickname;
+
+    String toLogs;
     //DatabaseReference reference = GDXFirebase.FirebaseDatabase().getReference("storetest");
     //String key = reference.push().getKey();
     //reference.child(key).setValue("some value");
 
     public DatabaseHelper(){
+        toLogs="NONE";
     }
 
     public void sendToFirebase(String heading, String msg){
@@ -30,9 +33,9 @@ public class DatabaseHelper {
         GdxFIRDatabase.instance().inReference(reference).removeValue();
     }
 
-    public void entryNotify(int roomNumber){
+   /* public void entryNotify(int roomNumber){
         sendToFirebase("room"+roomNumber+"_"+nickname,"Connected");
-    }
+    }*/
 
     public void addField(String reference, String field){
         GdxFIRDatabase.instance().inReference(reference).inReference(field).setValue(field);
@@ -63,8 +66,19 @@ public class DatabaseHelper {
         GdxFIRDatabase.instance().inReference("email").inReference("y").setValue(y);*/
     }
 
-    public void setNickname(String nickname){
+/*    public void setNickname(String nickname){
         this.nickname=nickname;
+    }*/
+
+    public void readValue(){
+        GdxFIRDatabase.inst().inReference("scriii").readValue(Message.class).then(new Consumer<Message>() {
+            @Override
+            public void accept(Message message) {
+                toLogs=message.
+            }
+
+
+        });
     }
 
 }

@@ -43,6 +43,7 @@ public class PlayerDataCreator {
         databaseHelper.updateValues(nickname,sendToFirebase);
     }
 
+
     public Message getMessage(){
         return sendToFirebase;
     }

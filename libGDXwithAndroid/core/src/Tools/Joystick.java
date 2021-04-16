@@ -21,6 +21,7 @@ public class Joystick {
     Point2D CirclePos;
     Point2D StickPos;
     Point2D direction;
+    float joyX,joyY;
     Point2D joyDirection=new Point2D(0,0);
 
     // Size общий размер джойстика
@@ -33,8 +34,10 @@ public class Joystick {
         StickBounds = new Circle(point, Rstick);
         direction = new Point2D(0, 0);
         CirclePos=new Point2D(point.getX(),point.getY());
-        StickPos=new Point2D(GameSc.getJoyX(),GameSc.getJoyY());
+        StickPos=new Point2D(point.getX(),point.getY());
         Speed=GameSc.player.Speed;
+        joyX=point.getX();
+        joyY=point.getY();
     }
 
 
@@ -44,8 +47,15 @@ public class Joystick {
         //StickBounds.add(GameSc.player.X,GameSc.player.Y);
         //CircleBounds.add();
         //StickBounds.add();
-        batch.draw(CircleImg, CircleBounds.pos.getX()-Rcircle, CircleBounds.pos.getY()-Rcircle, Rcircle * 2, Rcircle * 2);
-        batch.draw(StickImg, StickBounds.pos.getX()-Rstick, StickBounds.pos.getY()-Rstick, Rstick * 2, Rstick * 2);
+
+
+        /*//
+        CircleBounds.pos.add(GameSc.player.direction.getX(),GameSc.player.direction.getY());
+        StickBounds.pos.add(GameSc.player.direction.getX(),GameSc.player.direction.getY());
+        //*/
+
+        batch.draw(CircleImg, CircleBounds.pos.getX()-Rcircle+joyDirection.getX()*Speed, CircleBounds.pos.getY()-Rcircle+joyDirection.getY()*Speed, Rcircle * 2, Rcircle * 2);
+        batch.draw(StickImg, StickBounds.pos.getX()-Rstick+joyDirection.getX()*Speed, StickBounds.pos.getY()-Rstick+joyDirection.getY()*Speed, Rstick * 2, Rstick * 2);
     }
 
     public void update(float x, float y, boolean isDownTouch, int pointer) {
@@ -67,7 +77,7 @@ public class Joystick {
         // изменяется положение как стика, так и персонажа
         // полоучение позиции игрока, за исключением его поворота???
         if(!CircleBounds.isContains(StickBounds.pos)){
-            StickBounds.pos.setX(-Rcircle/ length * dx +GameSc.getJoyX());StickBounds.pos.setY(-Rcircle/ length * dy +GameSc.getJoyY());
+            StickBounds.pos.setX(-Rcircle/ length * dx +joyX);StickBounds.pos.setY(-Rcircle/ length * dy +joyY);
         }
 
     }
@@ -104,4 +114,6 @@ public class Joystick {
     public Point2D getDir() {
         return direction;
     }
+
+
 }

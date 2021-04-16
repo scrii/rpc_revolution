@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+
         myListView = findViewById(R.id.listView);
         myListView.isFastScrollEnabled();
         input = findViewById(R.id.editText);
@@ -94,6 +95,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(playActivity);
             }
         });
+
+        ///
+
+        //FirebaseDatabase.getInstance().getReference(nickname)
+
+        ///
+
     }
 
 

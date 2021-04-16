@@ -55,10 +55,10 @@ public class Player extends Actor {
     @Override
     public void update() {
         // не зашел ли игрок за границу
-        if(position.getX()+R>= Main.WIDTH)position.setX(Main.WIDTH-R);
+        /*if(position.getX()+R>= Main.WIDTH)position.setX(Main.WIDTH-R);
         if(position.getX()-R<=0)position.setX(R);
         if(position.getY()+R>=Main.HEIGHT)position.setY(Main.HEIGHT-R);
-        if(position.getY()-R<=0)position.setY(R);
+        if(position.getY()-R<=0)position.setY(R);*/
 
 
 
@@ -79,7 +79,7 @@ public class Player extends Actor {
        // test push = GdxFIRDatabase.instance().inReference("test").push().setValue(new Message("metadata"));
 
         if(isMove){playerData.update(send_in_ONLINE);
-            playerCollectData.getPosition("scriii");
+            //playerCollectData.getPosition("scriii");
         }
 
         //Gdx.app.log("PLAYER_MOVE",isMove+"");
