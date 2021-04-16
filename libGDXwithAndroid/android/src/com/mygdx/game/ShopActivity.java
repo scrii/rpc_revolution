@@ -72,11 +72,11 @@ public class ShopActivity extends AppCompatActivity {
                 if(getterANDSetterFile.get_Protection()>=1){
                     new_price_maneuverability = getterANDSetterFile.get_Speed() + price_maneuverability * (getterANDSetterFile.get_Speed() - 10);
                     if(getterANDSetterFile.get_Guardian_Money() - new_price_maneuverability >= 0){
-                        real_maneuverability.setText(new_price_maneuverability);
+                        real_maneuverability.setText(new_price_maneuverability+"");
                         getterANDSetterFile.set_Speed(getterANDSetterFile.get_Speed()+2);
                         getterANDSetterFile.set_Protection(getterANDSetterFile.get_Protection()-1);
                         getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money()-new_price_maneuverability);
-                        real_money.setText(getterANDSetterFile.get_Guardian_Money());
+                        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
                     }
                     else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_LONG).show();
                 }
@@ -90,11 +90,11 @@ public class ShopActivity extends AppCompatActivity {
                 if(getterANDSetterFile.get_Speed()>=1){
                     new_price_attack = getterANDSetterFile.get_Attack() + price_attack * (getterANDSetterFile.get_Attack() - 10);
                     if(getterANDSetterFile.get_Guardian_Money() - new_price_attack >= 0){
-                        real_attack.setText(new_price_attack);
+                        real_attack.setText(new_price_attack+"");
                         getterANDSetterFile.set_Attack(getterANDSetterFile.get_Attack()+1);
                         getterANDSetterFile.set_Speed(getterANDSetterFile.get_Speed()-1);
                         getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money()-new_price_attack);
-                        real_money.setText(getterANDSetterFile.get_Guardian_Money());
+                        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
                     }
                     else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_LONG).show();
                 }
@@ -109,22 +109,22 @@ public class ShopActivity extends AppCompatActivity {
                 if(getterANDSetterFile.get_Guardian_Level() < 15){
                     new_price_protection = getterANDSetterFile.get_Protection() + price_protection * (getterANDSetterFile.get_Protection() - 30);
                     if (getterANDSetterFile.get_Guardian_Money() - new_price_protection >= 0){
-                        real_protection.setText(new_price_protection);
+                        real_protection.setText(new_price_protection+"");
                         getterANDSetterFile.set_Protection(getterANDSetterFile.get_Protection()+1);
                         getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() - new_price_protection);
-                        real_money.setText(getterANDSetterFile.get_Guardian_Money());
+                        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
                     }
                     else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_LONG).show();
                 }
                 else if (getterANDSetterFile.get_Ore_Elbrium() >= new_price_ore_elbrium){
                     new_price_protection = getterANDSetterFile.get_Protection() + price_protection * (getterANDSetterFile.get_Protection() - 10);
                     if (getterANDSetterFile.get_Guardian_Money() - new_price_protection >= 0){
-                        real_protection.setText(new_price_protection);
+                        real_protection.setText(new_price_protection+"");
                         getterANDSetterFile.set_Protection(getterANDSetterFile.get_Protection()+1);
                         getterANDSetterFile.set_Ore_Elbrium(getterANDSetterFile.get_Ore_Elbrium() - new_price_ore_elbrium);
                         getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() - new_price_protection);
-                        real_money.setText(getterANDSetterFile.get_Guardian_Money());
-                        real_ore.setText(getterANDSetterFile.get_Ore_Elbrium());
+                        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
+                        real_ore.setText(getterANDSetterFile.get_Ore_Elbrium()+"");
                     }
                     else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_LONG).show();
                 }
@@ -138,22 +138,22 @@ public class ShopActivity extends AppCompatActivity {
                 if(getterANDSetterFile.get_Guardian_Level() < 15){
                     new_price_speed = getterANDSetterFile.get_Speed() + price_speed * (getterANDSetterFile.get_Speed() - 30);
                     if (getterANDSetterFile.get_Guardian_Money() >= new_price_speed){
-                        real_speed.setText(new_price_speed);
+                        real_speed.setText(new_price_speed+"");
                         getterANDSetterFile.set_Speed(getterANDSetterFile.get_Speed()+1);
                         getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() - new_price_speed);
-                        real_money.setText(getterANDSetterFile.get_Guardian_Money());
+                        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
                     }
                     else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_LONG).show();
                 }
                 else if (getterANDSetterFile.get_Ore_Elbrium() >= new_price_speed){
                     new_price_speed = getterANDSetterFile.get_Speed() + price_speed * (getterANDSetterFile.get_Speed() - 30);
                     if (getterANDSetterFile.get_Guardian_Money() >= new_price_speed){
-                        real_speed.setText(new_price_speed);
+                        real_speed.setText(new_price_speed+"");
                         getterANDSetterFile.set_Speed(getterANDSetterFile.get_Speed()+1);
                         getterANDSetterFile.set_Ore_Elbrium(getterANDSetterFile.get_Ore_Elbrium() - new_price_speed);
                         getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() - new_price_speed);
-                        real_money.setText(getterANDSetterFile.get_Guardian_Money());
-                        real_ore.setText(getterANDSetterFile.get_Ore_Elbrium());
+                        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
+                        real_ore.setText(getterANDSetterFile.get_Ore_Elbrium()+"");
                     }
                     else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_LONG).show();
                 }
@@ -168,46 +168,46 @@ public class ShopActivity extends AppCompatActivity {
                     if(getterANDSetterFile.get_Health()>10){
                         inverse_health = getterANDSetterFile.get_Health() - 10;
                         getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() + price_health*inverse_health);
-                        real_money.setText(getterANDSetterFile.get_Guardian_Money());
+                        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
                         getterANDSetterFile.set_Health(10);
-                        real_health.setText(getterANDSetterFile.get_Health());
+                        real_health.setText(getterANDSetterFile.get_Health()+"");
                     }
                     else{
                         getterANDSetterFile.set_Health(10);
-                        real_health.setText(getterANDSetterFile.get_Health());
+                        real_health.setText(getterANDSetterFile.get_Health()+"");
                     }
                     if(getterANDSetterFile.get_Attack()>3){
                         inverse_attack = getterANDSetterFile.get_Attack() - 3;
                         getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() + price_attack * inverse_attack);
-                        real_money.setText(getterANDSetterFile.get_Guardian_Money());
+                        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
                         getterANDSetterFile.set_Attack(3);
-                        real_attack.setText(getterANDSetterFile.get_Attack());
+                        real_attack.setText(getterANDSetterFile.get_Attack()+"");
                     }
                     else{
                         getterANDSetterFile.set_Attack(3);
-                        real_attack.setText(getterANDSetterFile.get_Attack());
+                        real_attack.setText(getterANDSetterFile.get_Attack()+"");
                     }
                     if(getterANDSetterFile.get_Protection()>3){
                         inverse_protection = getterANDSetterFile.get_Protection() - 3;
                         getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() + price_protection * inverse_protection);
-                        real_money.setText(getterANDSetterFile.get_Guardian_Money());
+                        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
                         getterANDSetterFile.set_Protection(3);
-                        real_protection.setText(getterANDSetterFile.get_Protection());
+                        real_protection.setText(getterANDSetterFile.get_Protection()+"");
                     }
                     else{
                         getterANDSetterFile.set_Protection(3);
-                        real_attack.setText(getterANDSetterFile.get_Protection());
+                        real_attack.setText(getterANDSetterFile.get_Protection()+"");
                     }
                     if(getterANDSetterFile.get_Speed()>10){
                         inverse_speed = getterANDSetterFile.get_Speed() - 10;
                         getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() + price_speed*inverse_speed);
-                        real_money.setText(getterANDSetterFile.get_Guardian_Money());
+                        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
                         getterANDSetterFile.set_Speed(10);
-                        real_speed.setText(getterANDSetterFile.get_Speed());
+                        real_speed.setText(getterANDSetterFile.get_Speed()+"");
                     }
                     else{
                         getterANDSetterFile.set_Speed(10);
-                        real_speed.setText(getterANDSetterFile.get_Speed());
+                        real_speed.setText(getterANDSetterFile.get_Speed()+"");
                     }
                 }
             }
