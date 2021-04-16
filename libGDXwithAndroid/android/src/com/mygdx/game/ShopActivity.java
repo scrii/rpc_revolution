@@ -51,6 +51,7 @@ public class ShopActivity extends AppCompatActivity {
         real_protection = findViewById(R.id.real_protection);
         info_speed_plus_one = findViewById(R.id.info_speed_plus_one);
         real_speed_pus_one = findViewById(R.id.real_speed_pus_one);
+
         //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
         if (savedInstanceState == null) {
             getSupportFragmentManager()
