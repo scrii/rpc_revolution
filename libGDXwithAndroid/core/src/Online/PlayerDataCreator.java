@@ -38,8 +38,8 @@ public class PlayerDataCreator {
 
     public void update(Point2D pos){
         ///read();
-        sendToFirebase.x=pos.getX();
-        sendToFirebase.y=pos.getY();
+        sendToFirebase.x=pos.getX()-100;
+        sendToFirebase.y=pos.getY()-100;
         databaseHelper.updateValues(nickname,sendToFirebase);
     }
 

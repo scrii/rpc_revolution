@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.teamname.game.Main;
+import com.teamname.game.Screens.GameSc;
 
 import Online.DatabaseHelper;
 //import Online.DatabaseHelper;
@@ -49,7 +50,9 @@ public class Player extends Actor {
     @Override
     public void draw(SpriteBatch batch) {
         // !!! поставить значение ширины и высоты в константы
-        batch.draw(img, position.getX()-R,position.getY()-R,50,50);
+        //batch.draw(img, position.getX()-R,position.getY()-R,50,50);
+
+        GameSc.camera.position.set(position.getX()-R,position.getY()-R,0);
     }
 
     @Override
@@ -67,6 +70,7 @@ public class Player extends Actor {
         Y=direction.getY()*Speed;
         position.add(X,Y);
         send_in_ONLINE=position;
+       // send_in_ONLINE.add(-100,-100);
 
 
         //databaseHelper.sendCoords("email",send_in_ONLINE.getX(),send_in_ONLINE.getY());

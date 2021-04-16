@@ -34,7 +34,7 @@ public class GameSc implements Screen {
     Joystick joy,joy2;
     public static Player player;
     Sprite sprite=new Sprite(Main.background);
-    OrthographicCamera camera;
+    public static OrthographicCamera camera;
     static Point2D realTimeCoords=new Point2D(0,0);
 
     public static Array<Bullet> bullets;
@@ -152,9 +152,10 @@ public class GameSc implements Screen {
         Main.batch.setProjectionMatrix(camera.combined);
         camera.update();
         Main.batch.begin();
-        camera.position.set(player.send_in_ONLINE.getX(),player.send_in_ONLINE.getY(),0);
         Main.batch.draw(Main.background,0,0);
         backRender(Main.batch);
+
+
         // сплюсовать радиусы для отображения игрока ровно в центре
         // руда - batch
         Main.batch.end();
@@ -166,7 +167,9 @@ public class GameSc implements Screen {
 
         Main.playerBatch.begin();
         Main.playerBatch.setColor(0,0,1,1);
+        Main.playerBatch.draw(Main.actor,Main.WIDTH/2-100,Main.HEIGHT/2-100,100,100);
         playerRender(Main.playerBatch);
+
         Main.playerBatch.end();
 
 
@@ -202,6 +205,7 @@ public class GameSc implements Screen {
 
     public void GameUpdate(){
         player.setDirection(joy.getDir());
+
         player.update();
         bullgen.update(joy2);
         for(int i=0;i<bullets.size;i++)bullets.get(i).update();
@@ -216,7 +220,9 @@ public class GameSc implements Screen {
     }
 
     public void playerRender(SpriteBatch playerRender){
+
         player.draw(playerRender);
+
     }
 
     public void backRender(SpriteBatch batch){
