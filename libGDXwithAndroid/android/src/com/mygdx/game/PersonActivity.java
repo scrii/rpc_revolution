@@ -27,43 +27,16 @@ public class PersonActivity extends AppCompatActivity {
         name_person = findViewById(R.id.name_person);
         confirm = findViewById(R.id.confirm);
         String s = name_person.getText().toString();                                //Получение вводимого имени в String (true)
-        //===========================================================
-        File file36 = new File("/data/data/com.mygdx.game/nickname.txt");
-        Log.d(file36.exists() + "", "true!");
-        try {
-            if (!file36.exists()) file36.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            PrintWriter printWriter36 = new PrintWriter(file36);
-            printWriter36.write(s);
-            printWriter36.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
+        getterANDSetterFile.set_Nickname(s);
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String s = name_person.getText().toString();
-                try {
-                    PrintWriter printWriter36 = new PrintWriter(file36);
-                    printWriter36.write(s);
-                    //printWriter5.write(String.valueOf(0));
-                    printWriter36.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                getterANDSetterFile.set_Nickname(s);
             }
         });
-        try {
-            PrintWriter printWriter36 = new PrintWriter(file36);
-            printWriter36.write(s);
-            //printWriter5.write(String.valueOf(0));
-            printWriter36.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        getterANDSetterFile.set_Nickname(s);
         //===========================================================
         //Запрещено трогать код ниже!!!!!!
         if (savedInstanceState == null) {

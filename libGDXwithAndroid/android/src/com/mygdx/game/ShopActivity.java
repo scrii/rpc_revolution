@@ -1,7 +1,9 @@
 package com.mygdx.game;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,19 +15,20 @@ import androidx.preference.PreferenceFragmentCompat;
 
 public class ShopActivity extends AppCompatActivity {
     int ore_elbrium;
-    int price_ore_elbrium = 3;
-    int protection; //защита
+    int price_ore_elbrium = 3,new_price_ore_elbrium;
+    int protection,new_price_protection; //защита
     int price_protection = 30;
     int health; //жизнь
     int price_health = 3;
-    int speed; //скорость
+    int speed,new_price_speed; //скорость
     int price_speed = 30;
-    int attack; //урон
+    int attack,new_price_attack; //урон
     int price_attack = 10;
-    int maneuverability; //манёвренность
+    int maneuverability,new_price_maneuverability; //манёвренность
     int price_maneuverability = 10;
+    int inverse_health,inverse_attack,inverse_protection,inverse_speed;
     Button maneuverability_plus_one,attack_plus_one,protect_plus_one,speed_plus_one,null_number_btn;
-    TextView info_health,real_health,info_damage,real_damage,info_protect,real_protect,info_speed,real_speed,info_maneuverability,real_maneuverability,info_attack,real_attack,info_protection,real_protection,info_speed_plus_one,real_speed_pus_one;
+    TextView real_money,real_ore,info_health,real_health,info_damage,real_damage,info_protect,real_protect,info_speed,real_speed,info_maneuverability,real_maneuverability,info_attack,real_attack,info_protection,real_protection,info_speed_plus_one,real_speed_plus_one;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +53,208 @@ public class ShopActivity extends AppCompatActivity {
         info_protection = findViewById(R.id.info_protection);
         real_protection = findViewById(R.id.real_protection);
         info_speed_plus_one = findViewById(R.id.info_speed_plus_one);
-        real_speed_pus_one = findViewById(R.id.real_speed_pus_one);
+        real_speed_plus_one = findViewById(R.id.real_speed_plus_one);
+        real_ore = findViewById(R.id.real_ore);
+        real_money = findViewById(R.id.real_money);
+
+        GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
+
+        real_ore.setText("");
+        real_health.setText("");
+        real_damage.setText("");
+        real_protect.setText("");
+        real_speed.setText("");
+        real_money.setText("");
+
+        real_ore.setText(getterANDSetterFile.get_Ore_Elbrium()+"");
+        real_health.setText(getterANDSetterFile.get_Health()+"");
+        real_damage.setText(getterANDSetterFile.get_Attack()+"");
+        real_protect.setText(getterANDSetterFile.get_Protection()+"");
+        real_speed.setText(getterANDSetterFile.get_Speed()+"");
+        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
+
+        maneuverability_plus_one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(getterANDSetterFile.get_Protection() >= 1 && getterANDSetterFile.get_Protection()-1 >= 1){
+                    new_price_maneuverability = getterANDSetterFile.get_Speed() + price_maneuverability * (getterANDSetterFile.get_Speed() - 10);
+                    if(getterANDSetterFile.get_Guardian_Money() - new_price_maneuverability >= 0){
+                        real_maneuverability.setText("");
+                        real_maneuverability.setText(new_price_maneuverability+"");
+                        getterANDSetterFile.set_Speed(getterANDSetterFile.get_Speed()+2);
+                        getterANDSetterFile.set_Protection(getterANDSetterFile.get_Protection()-1);
+                        getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money()-new_price_maneuverability);
+                        real_money.setText("");
+                        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
+                    }
+                    else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_LONG).show();
+                }
+                else Toast.makeText(getApplicationContext(),"Ваша защита слишком мала!",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        attack_plus_one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(getterANDSetterFile.get_Speed()>=1 && getterANDSetterFile.get_Speed()-1 >= 1){
+                    new_price_attack = getterANDSetterFile.get_Attack() + price_attack * (getterANDSetterFile.get_Attack() - 10);
+                    if(getterANDSetterFile.get_Guardian_Money() - new_price_attack >= 0){
+                        real_attack.setText("");
+                        real_attack.setText(new_price_attack+"");
+                        getterANDSetterFile.set_Attack(getterANDSetterFile.get_Attack()+1);
+                        getterANDSetterFile.set_Speed(getterANDSetterFile.get_Speed()-1);
+                        getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money()-new_price_attack);
+                        real_money.setText("");
+                        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
+                    }
+                    else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_LONG).show();
+                }
+                else Toast.makeText(getApplicationContext(),"Ваша скорость слишком мала",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        protect_plus_one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new_price_ore_elbrium = price_ore_elbrium * getterANDSetterFile.get_Guardian_Level();
+                if(getterANDSetterFile.get_Guardian_Level() < 15){
+                    new_price_protection = getterANDSetterFile.get_Protection() + price_protection * (getterANDSetterFile.get_Protection() - 30);
+                    if (getterANDSetterFile.get_Guardian_Money() - new_price_protection >= 0){
+                        real_protection.setText("");
+                        real_protection.setText(new_price_protection+"");
+                        getterANDSetterFile.set_Protection(getterANDSetterFile.get_Protection()+1);
+                        getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() - new_price_protection);
+                        real_money.setText("");
+                        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
+                    }
+                    else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_LONG).show();
+                }
+                else if (getterANDSetterFile.get_Ore_Elbrium() >= new_price_ore_elbrium){
+                    new_price_protection = getterANDSetterFile.get_Protection() + price_protection * (getterANDSetterFile.get_Protection() - 10);
+                    if (getterANDSetterFile.get_Guardian_Money() - new_price_protection >= 0){
+                        real_protection.setText("");
+                        real_protection.setText(new_price_protection+"");
+                        getterANDSetterFile.set_Protection(getterANDSetterFile.get_Protection()+1);
+                        getterANDSetterFile.set_Ore_Elbrium(getterANDSetterFile.get_Ore_Elbrium() - new_price_ore_elbrium);
+                        getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() - new_price_protection);
+                        real_money.setText("");
+                        real_ore.setText("");
+                        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
+                        real_ore.setText(getterANDSetterFile.get_Ore_Elbrium()+"");
+                    }
+                    else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_LONG).show();
+                }
+                else Toast.makeText(getApplicationContext(),"Недостаточно руды Elbrium. Требуется: "+new_price_ore_elbrium,Toast.LENGTH_LONG).show();
+            }
+        });
+
+        speed_plus_one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(getterANDSetterFile.get_Guardian_Level() < 15){
+                    new_price_speed = getterANDSetterFile.get_Speed() + price_speed * (getterANDSetterFile.get_Speed() - 30);
+                    if (getterANDSetterFile.get_Guardian_Money() - new_price_speed >= 0){
+                        real_speed_plus_one.setText("");
+                        real_speed_plus_one.setText(new_price_speed+"");
+                        getterANDSetterFile.set_Speed(getterANDSetterFile.get_Speed()+1);
+                        getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() - new_price_speed);
+                        real_money.setText("");
+                        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
+                    }
+                    else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_LONG).show();
+                }
+                else if (getterANDSetterFile.get_Ore_Elbrium() - new_price_speed >= 0){
+                    new_price_speed = getterANDSetterFile.get_Speed() + price_speed * (getterANDSetterFile.get_Speed() - 30);
+                    if (getterANDSetterFile.get_Guardian_Money() >= new_price_speed){
+                        real_speed_plus_one.setText("");
+                        real_speed_plus_one.setText(new_price_speed+"");
+                        getterANDSetterFile.set_Speed(getterANDSetterFile.get_Speed()+1);
+                        getterANDSetterFile.set_Ore_Elbrium(getterANDSetterFile.get_Ore_Elbrium() - new_price_speed);
+                        getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() - new_price_speed);
+                        real_money.setText("");
+                        real_ore.setText("");
+                        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
+                        real_ore.setText(getterANDSetterFile.get_Ore_Elbrium()+"");
+                    }
+                    else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_LONG).show();
+                }
+                else Toast.makeText(getApplicationContext(),"Недостаточно руды Elbrium. Требуется: "+new_price_ore_elbrium,Toast.LENGTH_LONG).show();
+            }
+        });
+
+        null_number_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(getterANDSetterFile.get_Speed()!=10 && getterANDSetterFile.get_Attack()!=3 && getterANDSetterFile.get_Protection()!=3){
+                    if(getterANDSetterFile.get_Attack()>3){
+                        inverse_attack = getterANDSetterFile.get_Attack() - 3;
+                        getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() + price_attack * inverse_attack);
+                        real_money.setText("");
+                        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
+                        getterANDSetterFile.set_Attack(3);
+                        real_damage.setText("");
+                        real_damage.setText("3");
+                        real_attack.setText("");
+                        real_attack.setText("10");
+                    }
+                    else{
+                        getterANDSetterFile.set_Attack(3);
+                        real_damage.setText("");
+                        real_damage.setText("3");
+                        real_attack.setText("");
+                        real_attack.setText("10");
+                    }
+                    if(getterANDSetterFile.get_Protection()>3){
+                        inverse_protection = getterANDSetterFile.get_Protection() - 3;
+                        getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() + price_protection * inverse_protection);
+                        real_money.setText("");
+                        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
+                        getterANDSetterFile.set_Protection(3);
+                        real_protect.setText("");
+                        real_protect.setText("3");
+                        real_protection.setText("");
+                        real_protection.setText("30");
+                    }
+                    else{
+                        getterANDSetterFile.set_Protection(3);
+                        real_protect.setText("");
+                        real_protect.setText("3");
+                        real_attack.setText("");
+                        real_attack.setText("30");
+                    }
+                    if(getterANDSetterFile.get_Speed()>10){
+                        inverse_speed = getterANDSetterFile.get_Speed() - 10;
+                        getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() + price_speed*inverse_speed);
+                        real_money.setText("");
+                        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
+                        getterANDSetterFile.set_Speed(10);
+                        real_speed.setText("");
+                        real_speed.setText("10");
+                        real_maneuverability.setText("");
+                        real_maneuverability.setText("10");
+                        real_protect.setText("");
+                        real_protect.setText("3");
+                        real_protection.setText("");
+                        real_protection.setText("30");
+                        real_speed_plus_one.setText("");
+                        real_speed_plus_one.setText("30");
+                    }
+                    else{
+                        getterANDSetterFile.set_Speed(10);
+                        real_speed.setText("");
+                        real_speed.setText("10");
+                        real_maneuverability.setText("");
+                        real_maneuverability.setText("10");
+                        real_protect.setText("");
+                        real_protect.setText("3");
+                        real_protection.setText("");
+                        real_protection.setText("30");
+                        real_speed_plus_one.setText("");
+                        real_speed_plus_one.setText("30");
+                    }
+                }
+            }
+        });
         //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
         if (savedInstanceState == null) {
             getSupportFragmentManager()
@@ -83,8 +287,4 @@ public class ShopActivity extends AppCompatActivity {
         }
     }
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
-
-
-
 }

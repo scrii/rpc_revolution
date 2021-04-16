@@ -9,6 +9,11 @@
     tools:context=".ShopActivity"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/shop_activity">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/l12"
+        android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,11 +23,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:id="@+id/l0">
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/info_money"
+                android:text="@string/money"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_gravity="left"/>
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/real_money"
+                android:text="@string/int_start_level"
+                android:layout_gravity="right"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:id="@+id/l2">
 
             <TextView
                 android:id="@+id/info_health"
-                android:layout_width="352dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:text="@string/string_health"
@@ -31,7 +58,7 @@
 
             <TextView
                 android:id="@+id/real_health"
-                android:layout_width="58dp"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:text="@string/int_start_health"
@@ -47,7 +74,7 @@
 
             <TextView
                 android:id="@+id/info_damage"
-                android:layout_width="352dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:text="@string/string_damage"
@@ -55,7 +82,7 @@
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/real_damage"
-                android:layout_width="58dp"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:text="@string/int_start_damage"
@@ -71,7 +98,7 @@
 
             <TextView
                 android:id="@+id/info_protect"
-                android:layout_width="352dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:text="@string/string_protection"
@@ -79,7 +106,7 @@
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/real_protect"
-                android:layout_width="58dp"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:text="@string/int_start_damage"
@@ -95,7 +122,7 @@
 
             <TextView
                 android:id="@+id/info_speed"
-                android:layout_width="352dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:text="@string/string_speed"
@@ -103,12 +130,35 @@
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/real_speed"
-                android:layout_width="58dp"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:text="@string/int_start_health"
                 android:textSize="20dp"
                 android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/l11">
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/info_ore"
+                android:layout_gravity="left"
+                android:text="@string/ore"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:id="@+id/real_ore"
+                android:text="@string/int_start_level"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <LinearLayout
@@ -143,7 +193,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/plus_one"
+                android:text="@string/plus_two"
                 android:id="@+id/maneuverability_plus_one"/>
         </LinearLayout>
         <LinearLayout
@@ -213,7 +263,7 @@
             <TextView
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/real_speed_pus_one"
+                android:id="@+id/real_speed_plus_one"
                 android:text="@string/int_start_protection"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
@@ -258,4 +308,5 @@
                 android:text="@string/drop_mini" />
         </LinearLayout>
     </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>
