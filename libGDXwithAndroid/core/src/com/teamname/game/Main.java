@@ -4,13 +4,12 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import Tools.Spawner;
 import com.teamname.game.Screens.GameSc;
 import com.teamname.game.Screens.MenuSc;
 
 //import Online.Getter;
-import Online.Message;
 import pl.mk5.gdx.fireapp.GdxFIRApp;
-import pl.mk5.gdx.fireapp.GdxFIRDatabase;
 
 
 public class Main extends Game {
@@ -18,9 +17,12 @@ public class Main extends Game {
 	public Texture img;
 	public static int WIDTH,HEIGHT;
 	public static Texture circle,stickImg,background,actor;
-	public MenuSc menu;
-	boolean flag=false;
-	//Getter getter;
+
+	public static int BACKGROUND_WIDTH;
+	public static int BACKGROUND_HEIGHT;
+
+
+
 
 
 
@@ -44,7 +46,8 @@ public class Main extends Game {
 		actor=new Texture("actor.png");
 		//GdxFIRDatabase.instance().inReference("heading").setValue("msg");
 		background=new Texture("testlocation.png");
-
+		BACKGROUND_WIDTH=background.getWidth();
+		BACKGROUND_HEIGHT=background.getHeight();
 		setScreen(new GameSc(this));
 	}
 

@@ -19,6 +19,7 @@ public class Message {
     public String color_front;
 
 
+
     public Message(String textMessage, String author, double x, double y, float gold, float elbrium, int speed, int attack, int health, int protect, String color_background, String color_front) {
         this.textMessage = textMessage;
         this.author = author;
@@ -33,6 +34,8 @@ public class Message {
         this.color_background = color_background;
         this.color_front = color_front;
     }
+
+
 
     public Message(String data){textMessage=data;}
 

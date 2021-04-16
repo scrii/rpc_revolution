@@ -78,13 +78,13 @@ public class MainActivity extends AppCompatActivity {
                 xy = true;
             }
         });
-        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+        /*if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             startActivityForResult(AuthUI.getInstance()
                     .createSignInIntentBuilder()
                     .build(), SIGN_IN_REQUEST_CODE);
         } else {
             displayChat();
-        }
+        }*/
         final Intent playActivity = new Intent(this, AndroidLauncher.class);
 
         Button play = findViewById(R.id.start);

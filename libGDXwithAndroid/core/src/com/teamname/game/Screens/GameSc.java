@@ -25,6 +25,7 @@ import Online.PlayerDataCreator;
 import Tools.BulletGenerator;
 import Tools.Joystick;
 import Tools.Point2D;
+import Tools.Spawner;
 import pl.mk5.gdx.fireapp.GdxFIRDatabase;
 
 public class GameSc implements Screen {
@@ -38,6 +39,7 @@ public class GameSc implements Screen {
 
     public static Array<Bullet> bullets;
     public static Array<Elbrium> ore;
+    private Spawner spawner;
 
     BulletGenerator bullgen;
 
@@ -68,10 +70,12 @@ public class GameSc implements Screen {
 
     public GameSc(Main main){
         this.main=main;
+        spawner=new Spawner();
         loadActors();
         databaseHelper=new DatabaseHelper();
         //databaseHelper.setNickname(player.nickname);
         databaseHelper.entryNotify();
+
         camera=new OrthographicCamera(Main.WIDTH,Main.HEIGHT);
     }
 
@@ -182,7 +186,7 @@ public class GameSc implements Screen {
         player.update();
         bullgen.update(joy2);
         for(int i=0;i<bullets.size;i++)bullets.get(i).update();
-        for(int i=0;i<ore.size;i++)ore.get(i).update();
+        for(int i=0;i<ore.size;i++){ore.get(i).update();ore.get(i).setCount(i);if(ore.get(i).isOut){ore.get(i).removeElbrium(i);}}
     }
 
     public void GameRender(SpriteBatch batch){
@@ -211,8 +215,8 @@ public class GameSc implements Screen {
         bullgen=new BulletGenerator();
 
         joy2=new Joystick(Main.circle,Main.stickImg,new Point2D(Main.WIDTH-joyX,joyY),joySize);
+        spawner.start();
 
-        ore.add(new Elbrium(Main.circle,new Point2D(Main.WIDTH/2, Main.HEIGHT/3),1));
     }
 
     public void multitouch(float x,float y,boolean isDownTouch, int pointer){
