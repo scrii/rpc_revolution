@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.teamname.game.Actor.Bullet;
+import com.teamname.game.Actor.Elbrium;
 import com.teamname.game.Actor.Player;
 import com.teamname.game.Main;
 //import com.
@@ -36,6 +37,8 @@ public class GameSc implements Screen {
     static Point2D realTimeCoords=new Point2D(0,0);
 
     public static Array<Bullet> bullets;
+    public static Array<Elbrium> ore;
+
     BulletGenerator bullgen;
 
     //PlayerDataCreator playerData;
@@ -179,6 +182,7 @@ public class GameSc implements Screen {
         player.update();
         bullgen.update(joy2);
         for(int i=0;i<bullets.size;i++)bullets.get(i).update();
+        for(int i=0;i<ore.size;i++)ore.get(i).update();
     }
 
     public void GameRender(SpriteBatch batch){
@@ -186,6 +190,7 @@ public class GameSc implements Screen {
         joy.draw(batch);
         joy2.draw(batch);
         for(int i=0;i<bullets.size;i++)bullets.get(i).draw(batch);
+        for(int i=0;i<ore.size;i++)ore.get(i).draw(batch);
 
     }
 
@@ -202,9 +207,12 @@ public class GameSc implements Screen {
         joy=new Joystick(Main.circle,Main.stickImg,new Point2D(joyX,joyY),joySize);
 
         bullets=new Array<Bullet>();
+        ore=new Array<Elbrium>();
         bullgen=new BulletGenerator();
 
         joy2=new Joystick(Main.circle,Main.stickImg,new Point2D(Main.WIDTH-joyX,joyY),joySize);
+
+        ore.add(new Elbrium(Main.circle,new Point2D(Main.WIDTH/2, Main.HEIGHT/3),1));
     }
 
     public void multitouch(float x,float y,boolean isDownTouch, int pointer){

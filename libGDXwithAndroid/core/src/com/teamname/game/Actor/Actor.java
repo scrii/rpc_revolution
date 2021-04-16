@@ -22,6 +22,13 @@ public abstract class Actor extends GraphicsObj {
         direction=new Point2D(0,0);
     }
 
+    public Actor(Texture img, Point2D position) {
+        super(img);
+        this.position=new Point2D(position);
+        bounds = new Circle(position,R);
+        direction=new Point2D(0,0);
+    }
+
 
     public void setDirection(Point2D dir){
         direction=dir;
