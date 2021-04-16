@@ -33,7 +33,7 @@ public class GameSc implements Screen {
     Joystick joy,joy2;
     public static Player player;
     Sprite sprite=new Sprite(Main.background);
-    //OrthographicCamera camera;
+    OrthographicCamera camera;
     static Point2D realTimeCoords=new Point2D(0,0);
 
     public static Array<Bullet> bullets;
@@ -54,7 +54,7 @@ public class GameSc implements Screen {
 
     private static final int entityRad = Main.HEIGHT/20;
     private static final int entityX=Main.WIDTH/2;
-    private static final int entityY=Main.WIDTH/2-entityRad;
+    private static final int entityY=Main.WIDTH/3;
     // ресурсы подгружаются с класса Main
 
 
@@ -72,7 +72,7 @@ public class GameSc implements Screen {
         databaseHelper=new DatabaseHelper();
         //databaseHelper.setNickname(player.nickname);
         databaseHelper.entryNotify();
-        //camera=new OrthographicCamera(Main.WIDTH*1.5f,Main.HEIGHT*1.5f);
+        camera=new OrthographicCamera(Main.WIDTH,Main.HEIGHT);
     }
 
 
@@ -140,13 +140,13 @@ public class GameSc implements Screen {
     public void render(float delta) {
         GameUpdate();
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        //Main.batch.setProjectionMatrix(camera.combined);
-        //camera.update();
+        Main.batch.setProjectionMatrix(camera.combined);
+        camera.update();
         Main.batch.begin();
         Main.batch.draw(Main.background,0,0);
         GameRender(Main.batch);
         // сплюсовать радиусы для отображения игрока ровно в центре
-        //camera.position.set(player.send.getX()+player.R,player.send.getY()+player.R,0);
+        camera.position.set(player.send_in_ONLINE.getX()-player.R,player.send_in_ONLINE.getY()-player.R,0);
         Main.batch.end();
     }
 

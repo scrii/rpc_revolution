@@ -13,9 +13,9 @@ public class Elbrium extends Actor {
         super(img, position);
 
         switch (rank){
-            case 1: health=100;score=5;R= Main.WIDTH/25;Speed=4;break;
-            case 2: health=200;score=10;R= Main.WIDTH/15;Speed=3;break;
-            case 3: health=300;score=20;R= Main.WIDTH/10;Speed=2;break;
+            case 1: health=100;score=5;R= Main.WIDTH/50;Speed=0.1f;break;
+            case 2: health=200;score=10;R= Main.WIDTH/35;Speed=0.08f;break;
+            case 3: health=300;score=20;R= Main.WIDTH/25;Speed=0.05f;break;
     }
 
 
@@ -30,7 +30,7 @@ public class Elbrium extends Actor {
 
     @Override
     public void draw(SpriteBatch batch) {
-        batch.draw(img,position.getX(),position.getY(),R*2,R*2);
+        batch.draw(img,position.getX()-R,position.getY()-R,R*2,R*2);
     }
 
     @Override
@@ -40,6 +40,6 @@ public class Elbrium extends Actor {
         //
         //
 
-        position.add(direction.getX(),direction.getY());
+        position.add(direction.getX()*Speed,direction.getY()*Speed);
     }
 }

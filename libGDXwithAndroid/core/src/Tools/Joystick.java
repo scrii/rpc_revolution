@@ -47,8 +47,15 @@ public class Joystick {
         //StickBounds.add(GameSc.player.X,GameSc.player.Y);
         //CircleBounds.add();
         //StickBounds.add();
-        batch.draw(CircleImg, CircleBounds.pos.getX()-Rcircle, CircleBounds.pos.getY()-Rcircle, Rcircle * 2, Rcircle * 2);
-        batch.draw(StickImg, StickBounds.pos.getX()-Rstick, StickBounds.pos.getY()-Rstick, Rstick * 2, Rstick * 2);
+
+
+        /*//
+        CircleBounds.pos.add(GameSc.player.direction.getX(),GameSc.player.direction.getY());
+        StickBounds.pos.add(GameSc.player.direction.getX(),GameSc.player.direction.getY());
+        //*/
+
+        batch.draw(CircleImg, CircleBounds.pos.getX()-Rcircle+joyDirection.getX()*Speed, CircleBounds.pos.getY()-Rcircle+joyDirection.getY()*Speed, Rcircle * 2, Rcircle * 2);
+        batch.draw(StickImg, StickBounds.pos.getX()-Rstick+joyDirection.getX()*Speed, StickBounds.pos.getY()-Rstick+joyDirection.getY()*Speed, Rstick * 2, Rstick * 2);
     }
 
     public void update(float x, float y, boolean isDownTouch, int pointer) {
