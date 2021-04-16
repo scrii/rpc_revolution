@@ -144,14 +144,33 @@ public class GameSc implements Screen {
     public void render(float delta) {
         GameUpdate();
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+
+
+
+
         Main.batch.setProjectionMatrix(camera.combined);
         camera.update();
         Main.batch.begin();
+        camera.position.set(player.send_in_ONLINE.getX(),player.send_in_ONLINE.getY(),0);
         Main.batch.draw(Main.background,0,0);
-        GameRender(Main.batch);
+        backRender(Main.batch);
         // сплюсовать радиусы для отображения игрока ровно в центре
-        camera.position.set(player.send_in_ONLINE.getX()-player.R,player.send_in_ONLINE.getY()-player.R,0);
+        // руда - batch
         Main.batch.end();
+
+        Main.frontBatch.begin();
+        Main.frontBatch.setColor(1,1,1,1);
+        frontRender(Main.frontBatch);
+        Main.frontBatch.end();
+
+        Main.playerBatch.begin();
+        Main.playerBatch.setColor(0,0,1,1);
+        playerRender(Main.playerBatch);
+        Main.playerBatch.end();
+
+
+
     }
 
     @Override
@@ -189,10 +208,19 @@ public class GameSc implements Screen {
         for(int i=0;i<ore.size;i++){ore.get(i).update();ore.get(i).setCount(i);if(ore.get(i).isOut){ore.get(i).removeElbrium(i);}}
     }
 
-    public void GameRender(SpriteBatch batch){
-        player.draw(batch);
-        joy.draw(batch);
-        joy2.draw(batch);
+    public void frontRender(SpriteBatch frontBatch){
+
+        joy.draw(frontBatch);
+        joy2.draw(frontBatch);
+
+    }
+
+    public void playerRender(SpriteBatch playerRender){
+        player.draw(playerRender);
+    }
+
+    public void backRender(SpriteBatch batch){
+
         for(int i=0;i<bullets.size;i++)bullets.get(i).draw(batch);
         for(int i=0;i<ore.size;i++)ore.get(i).draw(batch);
 
@@ -206,7 +234,7 @@ public class GameSc implements Screen {
 
 
 
-        player =new Player("SCRI" ,Main.actor,new Point2D(entityX,entityY),40,entityRad,20);
+        player =new Player("SCRI" ,Main.actor,new Point2D(entityX,entityY),10,entityRad,20);
         //getter.setPlayer(player);
         joy=new Joystick(Main.circle,Main.stickImg,new Point2D(joyX,joyY),joySize);
 

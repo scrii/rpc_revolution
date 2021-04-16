@@ -31,7 +31,7 @@ public class PlayerDataCreator {
         y=0;
         read();
         databaseHelper=new DatabaseHelper();
-        sendToFirebase = new Message(text_message,nickname,x,y,gold,elbrium,speed,attack,health,protect,color_background,color_front);
+        sendToFirebase = new Message(nickname,x,y,gold,elbrium,speed,attack,health,protect,color_background,color_front);
 
 
     }
