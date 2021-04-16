@@ -12,20 +12,20 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 public class GetterANDSetterFile {
-    int real_sign,real_attack,real_xp,real_level,real_money,real_health,real_maneuverability,real_ore_elbrium,real_protection,real_speed;
-    String real_message,real_nickname;
-    public int sign;
-    public int attack;
-    public int guardian_exp;
-    public int guardian_level;
-    public int guardian_money;
-    public int health;
-    public int maneuverability;
-    public String message;
-    public int ore_elbrium;
-    public int protection;
-    public int speed;
-    public String nickname;
+    int real_sign=0,real_attack=0,real_xp=0,real_level=0,real_money=0,real_health=0,real_maneuverability=0,real_ore_elbrium=0,real_protection=0,real_speed=0;
+    String real_message="",real_nickname="";
+    public int sign = 0;
+    public int attack = 0;
+    public int guardian_exp = 0;
+    public int guardian_level = 0;
+    public int guardian_money = 0;
+    public int health = 0;
+    public int maneuverability = 0;
+    public String message = "";
+    public int ore_elbrium = 0;
+    public int protection = 0;
+    public int speed = 0;
+    public String nickname = "";
     GetterANDSetterFile(){
 
     }

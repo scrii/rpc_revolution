@@ -82,7 +82,7 @@ public class ScrollingActivity extends AppCompatActivity implements View.OnClick
                     experience = experience + 1;
                     money = money + 1;
                     info_money.setText(money + "");
-                    if (experience % 150 == 0) {
+                    if (experience % 50 == 0) {
                         level = level + 1;
                         info_level.setText(level+"");
                         plus_health = getterANDSetterFile.get_Health();

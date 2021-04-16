@@ -56,5 +56,8 @@
     <string name="int_start_level">0</string>
     <string name="money">Монеты</string>
     <string name="exit">Выход</string>
+    <string name="plus_two">+2</string>
+    <string name="ore">Руда</string>
+
 
 </resources>
