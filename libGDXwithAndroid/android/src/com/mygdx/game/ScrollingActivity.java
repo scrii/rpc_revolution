@@ -1,12 +1,12 @@
 package com.mygdx.game;
 
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -22,14 +22,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 
 public class ScrollingActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -40,7 +33,7 @@ public class ScrollingActivity extends AppCompatActivity implements View.OnClick
     int money;
     int real_sign;
     int level;
-    int real_level,plus_health,real_health,plus_attack;
+    int real_level,plus_health,plus_attack;
     int mathematical_sequence_xp_to_level;
     CountDownTimer countDownTimer;
 
@@ -48,6 +41,7 @@ public class ScrollingActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
+
         GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
         real_sign = getterANDSetterFile.get_Sign();
         if(real_sign != 1)startActivity(new Intent(ScrollingActivity.this,EmailPasswordActivity.class));
@@ -100,7 +94,6 @@ public class ScrollingActivity extends AppCompatActivity implements View.OnClick
                         seconds = 60;
                         countDownTimer.start();
                     }
-
                 }
             };
             if (countDownTimer!=null){

@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     boolean xy = true; //34
     String s;
     EditText input;
-    String s1, color_front = "red", color_background = "blue";
+    String s1;
     double x = 0,y = 0;
     int protect,health,attack,speed;
     float elbrium,gold;

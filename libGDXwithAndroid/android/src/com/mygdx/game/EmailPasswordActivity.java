@@ -59,7 +59,6 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    firebaseDataCreate();
                     o++;
                 } else
                     o++;
@@ -122,8 +121,5 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
         findViewById(R.id.btn_sign_in).setOnClickListener(this);
         findViewById(R.id.btn_registration).setOnClickListener(this);
     }
-    private void firebaseDataCreate(){
 
-        //FirebaseDatabase.getInstance().getReference("email").setValue(new Message("circle.png"));
-    }
 }
