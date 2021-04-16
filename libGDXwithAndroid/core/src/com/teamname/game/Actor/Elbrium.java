@@ -1,12 +1,13 @@
 package com.teamname.game.Actor;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.teamname.game.Main;
 import com.teamname.game.Screens.GameSc;
 
 import Online.Message;
-import Online.Message_Elbrium;
+
 import Tools.Point2D;
 import pl.mk5.gdx.fireapp.GdxFIRDatabase;
 
@@ -67,6 +68,7 @@ public class Elbrium extends Actor {
     public void removeElbrium(int count){
         GdxFIRDatabase.instance().inReference("Elbrium_"+count).removeValue();
         GameSc.ore.removeIndex(count);
+        Gdx.app.log("ORE","ORE REMOVED");
     }
 
 

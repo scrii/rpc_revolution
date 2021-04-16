@@ -18,9 +18,7 @@ public class Spawner extends TimerTask {
 
     @Override
     public void run() {
-        Gdx.app.log("TIMER: ","TimerTask начал свое выполнение в:" + new Date());
         spawnOre();
-        Gdx.app.log("TIMER: ","TimerTask закончил свое выполнение в:" + new Date());
     }
 
     public void start(){
@@ -33,7 +31,7 @@ public class Spawner extends TimerTask {
         Elbrium elbrium = new Elbrium(Main.actor,new Point2D((float)Math.random()*Main.BACKGROUND_WIDTH/1.3f,
                 (float)Math.random()*Main.BACKGROUND_HEIGHT/1.3f),rank);
         GameSc.ore.add(elbrium);
-        Gdx.app.log("TIMER: ","ore spawned");
+        Gdx.app.log("TIMER","ore spawned");
     }
 
     public void setRank(int rank){
