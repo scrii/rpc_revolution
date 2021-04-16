@@ -40,7 +40,7 @@ public class ScrollingActivity extends AppCompatActivity implements View.OnClick
     int money;
     int real_sign;
     int level;
-    int real_level,plus_health,real_health,plus_attack;
+    int real_level,plus_health,plus_attack;
     int mathematical_sequence_xp_to_level;
     CountDownTimer countDownTimer;
 
@@ -100,7 +100,6 @@ public class ScrollingActivity extends AppCompatActivity implements View.OnClick
                         seconds = 60;
                         countDownTimer.start();
                     }
-
                 }
             };
             if (countDownTimer!=null){
