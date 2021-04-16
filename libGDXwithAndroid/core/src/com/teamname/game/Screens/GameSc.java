@@ -45,9 +45,9 @@ public class GameSc implements Screen {
 
 
 
-    private static final int joyX=(Main.HEIGHT/3)/2+(Main.HEIGHT/3)/4;
-    private static final int joyY=(Main.HEIGHT/3)/2+(Main.HEIGHT/3)/4;
-    private static final int joySize = Main.HEIGHT/3;
+    private int joyX=(Main.HEIGHT/3)/2+(Main.HEIGHT/3)/4;
+    private int joyY=(Main.HEIGHT/3)/2+(Main.HEIGHT/3)/4;
+    private int joySize = Main.HEIGHT/3;
     //private int X_realTimeCoords=Main.WIDTH;
     //private int Y_realTimeCoords=Main.HEIGHT;
 
@@ -223,9 +223,9 @@ public class GameSc implements Screen {
         }
     }
 
-    public static int getJoyX() {return joyX;}
+    //public static int getJoyX() {return joyX;}
 
-    public static int getJoyY() {return joyY;}
+    //public static int getJoyY() {return joyY;}
 
     public static void setPos(float x, float y){
         realTimeCoords.setPoint(x,y);
