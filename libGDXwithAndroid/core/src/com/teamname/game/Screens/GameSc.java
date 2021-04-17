@@ -34,7 +34,7 @@ public class GameSc implements Screen {
     Joystick joy,joy2;
     public static Player player;
     Sprite sprite=new Sprite(Main.background);
-    OrthographicCamera camera;
+    public static OrthographicCamera camera;
     static Point2D realTimeCoords=new Point2D(0,0);
 
     public static Array<Bullet> bullets;
@@ -76,7 +76,7 @@ public class GameSc implements Screen {
         //databaseHelper.setNickname(player.nickname);
         databaseHelper.entryNotify();
 
-        camera=new OrthographicCamera(Main.WIDTH,Main.HEIGHT);
+        camera=new OrthographicCamera(Main.WIDTH/2.5f,Main.HEIGHT/2.5f);
     }
 
 
@@ -144,14 +144,36 @@ public class GameSc implements Screen {
     public void render(float delta) {
         GameUpdate();
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+
+
+
+
         Main.batch.setProjectionMatrix(camera.combined);
         camera.update();
         Main.batch.begin();
         Main.batch.draw(Main.background,0,0);
-        GameRender(Main.batch);
+        backRender(Main.batch);
+
+
         // сплюсовать радиусы для отображения игрока ровно в центре
-        camera.position.set(player.send_in_ONLINE.getX()-player.R,player.send_in_ONLINE.getY()-player.R,0);
+        // руда - batch
         Main.batch.end();
+
+        Main.frontBatch.begin();
+        Main.frontBatch.setColor(1,1,1,1);
+        frontRender(Main.frontBatch);
+        Main.frontBatch.end();
+
+        Main.playerBatch.begin();
+        Main.playerBatch.setColor(0,0,1,1);
+        Main.playerBatch.draw(Main.actor,Main.WIDTH/2-100,Main.HEIGHT/2-100,100,100);
+        playerRender(Main.playerBatch);
+
+        Main.playerBatch.end();
+
+
+
     }
 
     @Override
@@ -183,16 +205,28 @@ public class GameSc implements Screen {
 
     public void GameUpdate(){
         player.setDirection(joy.getDir());
+
         player.update();
         bullgen.update(joy2);
         for(int i=0;i<bullets.size;i++)bullets.get(i).update();
         for(int i=0;i<ore.size;i++){ore.get(i).update();ore.get(i).setCount(i);if(ore.get(i).isOut){ore.get(i).removeElbrium(i);}}
     }
 
-    public void GameRender(SpriteBatch batch){
-        player.draw(batch);
-        joy.draw(batch);
-        joy2.draw(batch);
+    public void frontRender(SpriteBatch frontBatch){
+
+        joy.draw(frontBatch);
+        joy2.draw(frontBatch);
+
+    }
+
+    public void playerRender(SpriteBatch playerRender){
+
+        player.draw(playerRender);
+
+    }
+
+    public void backRender(SpriteBatch batch){
+
         for(int i=0;i<bullets.size;i++)bullets.get(i).draw(batch);
         for(int i=0;i<ore.size;i++)ore.get(i).draw(batch);
 
@@ -206,7 +240,7 @@ public class GameSc implements Screen {
 
 
 
-        player =new Player("SCRI" ,Main.actor,new Point2D(entityX,entityY),40,entityRad,20);
+        player =new Player("SCRI" ,Main.actor,new Point2D(entityX,entityY),3,entityRad,20);
         //getter.setPlayer(player);
         joy=new Joystick(Main.circle,Main.stickImg,new Point2D(joyX,joyY),joySize);
 

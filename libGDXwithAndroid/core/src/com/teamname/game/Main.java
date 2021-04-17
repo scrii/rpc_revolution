@@ -13,7 +13,7 @@ import pl.mk5.gdx.fireapp.GdxFIRApp;
 
 
 public class Main extends Game {
-	public static SpriteBatch batch;
+	public static SpriteBatch batch,frontBatch,playerBatch;
 	public Texture img;
 	public static int WIDTH,HEIGHT;
 	public static Texture circle,stickImg,background,actor;
@@ -39,6 +39,8 @@ public class Main extends Game {
 		//getter=new Getter();
 		//getter.sendToFirebase(new Message("234","43"));
 		batch = new SpriteBatch();
+		frontBatch=new SpriteBatch();
+		playerBatch=new SpriteBatch();
 		WIDTH= Gdx.graphics.getWidth();
 		HEIGHT=Gdx.graphics.getHeight();
 		circle=new Texture("circle.png");

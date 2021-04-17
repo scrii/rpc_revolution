@@ -31,15 +31,15 @@ public class PlayerDataCreator {
         y=0;
         read();
         databaseHelper=new DatabaseHelper();
-        sendToFirebase = new Message(text_message,nickname,x,y,gold,elbrium,speed,attack,health,protect,color_background,color_front);
+        sendToFirebase = new Message(nickname,x,y,gold,elbrium,speed,attack,health,protect,color_background,color_front);
 
 
     }
 
     public void update(Point2D pos){
         ///read();
-        sendToFirebase.x=pos.getX();
-        sendToFirebase.y=pos.getY();
+        sendToFirebase.x=pos.getX()-100;
+        sendToFirebase.y=pos.getY()-100;
         databaseHelper.updateValues(nickname,sendToFirebase);
     }
 
