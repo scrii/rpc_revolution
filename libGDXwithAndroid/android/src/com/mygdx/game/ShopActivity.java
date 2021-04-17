@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,8 @@ import androidx.preference.PreferenceFragmentCompat;
 
 
 public class ShopActivity extends AppCompatActivity {
+    public int seconds = 2;
+    CountDownTimer countDownTimer;
     int ore_elbrium;
     int price_ore_elbrium = 3,new_price_ore_elbrium;
     int protection,new_price_protection; //защита
@@ -58,20 +61,37 @@ public class ShopActivity extends AppCompatActivity {
         real_money = findViewById(R.id.real_money);
 
         GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
+        countDownTimer = new CountDownTimer(seconds*1000,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                seconds--;
+                real_ore.setText("");
+                real_health.setText("");
+                real_damage.setText("");
+                real_protect.setText("");
+                real_speed.setText("");
+                real_money.setText("");
 
-        real_ore.setText("");
-        real_health.setText("");
-        real_damage.setText("");
-        real_protect.setText("");
-        real_speed.setText("");
-        real_money.setText("");
+                real_ore.setText(getterANDSetterFile.get_Ore_Elbrium()+"");
+                real_health.setText(getterANDSetterFile.get_Health()+"");
+                real_damage.setText(getterANDSetterFile.get_Attack()+"");
+                real_protect.setText(getterANDSetterFile.get_Protection()+"");
+                real_speed.setText(getterANDSetterFile.get_Speed()+"");
+                real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
+            }
 
-        real_ore.setText(getterANDSetterFile.get_Ore_Elbrium()+"");
-        real_health.setText(getterANDSetterFile.get_Health()+"");
-        real_damage.setText(getterANDSetterFile.get_Attack()+"");
-        real_protect.setText(getterANDSetterFile.get_Protection()+"");
-        real_speed.setText(getterANDSetterFile.get_Speed()+"");
-        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
+            @Override
+            public void onFinish() {
+                if (countDownTimer != null){
+                    seconds = 2;
+                    countDownTimer.start();
+                }
+            }
+        };
+        if (countDownTimer!=null){
+            seconds = 2;
+            countDownTimer.start();
+        }
 
         maneuverability_plus_one.setOnClickListener(new View.OnClickListener() {
             @Override

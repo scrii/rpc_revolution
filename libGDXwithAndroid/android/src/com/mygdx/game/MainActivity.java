@@ -91,11 +91,11 @@ public class MainActivity extends AppCompatActivity {
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View v) {
                 startActivity(playActivity);
             }
         });
-
         ///
 
         //FirebaseDatabase.getInstance().getReference(nickname)
