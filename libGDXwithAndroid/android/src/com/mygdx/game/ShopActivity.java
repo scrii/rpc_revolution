@@ -93,6 +93,20 @@ public class ShopActivity extends AppCompatActivity {
             countDownTimer.start();
         }
 
+        real_ore.setText("");
+        real_health.setText("");
+        real_damage.setText("");
+        real_protect.setText("");
+        real_speed.setText("");
+        real_money.setText("");
+
+        real_ore.setText(getterANDSetterFile.get_Ore_Elbrium()+"");
+        real_health.setText(getterANDSetterFile.get_Health()+"");
+        real_damage.setText(getterANDSetterFile.get_Attack()+"");
+        real_protect.setText(getterANDSetterFile.get_Protection()+"");
+        real_speed.setText(getterANDSetterFile.get_Speed()+"");
+        real_money.setText(getterANDSetterFile.get_Guardian_Money()+"");
+
         maneuverability_plus_one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

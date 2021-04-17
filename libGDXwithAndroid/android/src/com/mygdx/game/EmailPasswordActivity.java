@@ -39,16 +39,22 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
     private EditText ETemail;
     private EditText ETpassword;
     int number=0,o;
+    String s;
     public void signin (String email, String password)
     {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    CreatorFiles sd = new CreatorFiles();
+                    sd.create();
+                    s = registration_nickname.getText().toString();
                     GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
                     getterANDSetterFile.set_Sign(1);
+                    getterANDSetterFile.set_Nickname(s);
                     number = 1;
-                    startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
+                    if(getterANDSetterFile.get_Nickname()!="")startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
+                    else Toast.makeText(getApplicationContext(),"Ник не может быть пустым!",Toast.LENGTH_LONG).show();
                 } else
                     Toast.makeText(getApplicationContext(), "Aвторизация провалена", Toast.LENGTH_SHORT).show();
             }
@@ -62,11 +68,15 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
                     o++;
                 } else
                     o++;
-
+                CreatorFiles sd = new CreatorFiles();
+                sd.create();
+                s = registration_nickname.getText().toString();
                 GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
                 getterANDSetterFile.set_Sign(1);
+                getterANDSetterFile.set_Nickname(s);
                 number = 1;
-                startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
+                if(getterANDSetterFile.get_Nickname()!="")startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
+                else Toast.makeText(getApplicationContext(),"Ник не может быть пустым!",Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -75,7 +85,9 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
         if(view.getId() == R.id.btn_sign_in)
         {
             try {
-                String s = registration_nickname.getText().toString();
+                CreatorFiles sd = new CreatorFiles();
+                sd.create();
+                s = registration_nickname.getText().toString();
                 GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
                 getterANDSetterFile.set_Nickname(s);
                 signin(ETemail.getText().toString(),ETpassword.getText().toString());
@@ -103,12 +115,13 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
         GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
         number = getterANDSetterFile.get_Sign();
         mAuth = FirebaseAuth.getInstance();
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    String s = registration_nickname.getText().toString();
+                    s = registration_nickname.getText().toString();
                     GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
                     getterANDSetterFile.set_Nickname(s);
                 } else {
@@ -121,5 +134,4 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
         findViewById(R.id.btn_sign_in).setOnClickListener(this);
         findViewById(R.id.btn_registration).setOnClickListener(this);
     }
-
 }

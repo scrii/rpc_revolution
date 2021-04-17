@@ -41,7 +41,6 @@ public class ScrollingActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
-
         GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
         real_sign = getterANDSetterFile.get_Sign();
         if(real_sign != 1)startActivity(new Intent(ScrollingActivity.this,EmailPasswordActivity.class));
@@ -100,7 +99,6 @@ public class ScrollingActivity extends AppCompatActivity implements View.OnClick
                 seconds = 60;
                 countDownTimer.start();
             }
-        //Создание таймера
 
         room1.setOnClickListener(new View.OnClickListener() {
             @Override
