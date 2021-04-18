@@ -57,6 +57,11 @@ public class GameSc implements Screen {
     private static final int entityRad = Main.HEIGHT/20;
     private static final int entityX=Main.WIDTH/2;
     private static final int entityY=Main.WIDTH/3;
+
+/*    private static final float leftSide = ;
+    private static final float rightSide;
+    private static final float upSide;
+    private static final float downSide = ;*/
     // ресурсы подгружаются с класса Main
 
 
@@ -75,8 +80,8 @@ public class GameSc implements Screen {
         databaseHelper=new DatabaseHelper();
         //databaseHelper.setNickname(player.nickname);
         databaseHelper.entryNotify();
-
         camera=new OrthographicCamera(Main.WIDTH/2.5f,Main.HEIGHT/2.5f);
+        //camera=new OrthographicCamera(Main.WIDTH*3f,Main.HEIGHT*3f);
     }
 
 
@@ -208,8 +213,12 @@ public class GameSc implements Screen {
 
         player.update();
         bullgen.update(joy2);
-        for(int i=0;i<bullets.size;i++)bullets.get(i).update();
+        for(int i=0;i<bullets.size;i++){bullets.get(i).update();bullets.get(i).setCount(i);if(bullets.get(i).isOut){bullets.get(i).removeBullet(i);}}
         for(int i=0;i<ore.size;i++){ore.get(i).update();ore.get(i).setCount(i);if(ore.get(i).isOut){ore.get(i).removeElbrium(i);}}
+
+
+
+        // send in online
     }
 
     public void frontRender(SpriteBatch frontBatch){
@@ -240,15 +249,16 @@ public class GameSc implements Screen {
 
 
 
-        player =new Player("SCRI" ,Main.actor,new Point2D(entityX,entityY),3,entityRad,20);
+        player =new Player("SCRI" ,Main.actor,new Point2D(entityX,entityY),15,entityRad,20);
         //getter.setPlayer(player);
         joy=new Joystick(Main.circle,Main.stickImg,new Point2D(joyX,joyY),joySize);
 
-        bullets=new Array<Bullet>();
+
         ore=new Array<Elbrium>();
         bullgen=new BulletGenerator();
 
         joy2=new Joystick(Main.circle,Main.stickImg,new Point2D(Main.WIDTH-joyX,joyY),joySize);
+        bullets=new Array<Bullet>();
         spawner.start();
 
     }

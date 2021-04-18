@@ -52,7 +52,7 @@ public class Player extends Actor {
         // !!! поставить значение ширины и высоты в константы
         //batch.draw(img, position.getX()-R,position.getY()-R,50,50);
 
-        GameSc.camera.position.set(position.getX()-R,position.getY()-R,0);
+        GameSc.camera.position.set(send_in_ONLINE.getX()-R,send_in_ONLINE.getY()-R,0);
     }
 
     @Override
@@ -72,6 +72,14 @@ public class Player extends Actor {
         send_in_ONLINE=position;
        // send_in_ONLINE.add(-100,-100);
 
+        // общая ширина - половина экрана
+
+        // 8 условий - 4 для камеры - 4 для игрока
+
+        if(send_in_ONLINE.getX()+R>=Main.BACKGROUND_WIDTH-Main.WIDTH/2)send_in_ONLINE.setX(Main.BACKGROUND_WIDTH-Main.WIDTH/2-R);
+        if(send_in_ONLINE.getX()-R<=Main.WIDTH/2)send_in_ONLINE.setX(Main.WIDTH/2+R);
+        if(send_in_ONLINE.getX()+R>=Main.BACKGROUND_HEIGHT-Main.HEIGHT)send_in_ONLINE.setY(Main.BACKGROUND_HEIGHT-Main.HEIGHT-R);
+        if(send_in_ONLINE.getX()-R<=Main.HEIGHT/2)send_in_ONLINE.setY(Main.HEIGHT/2+R);
 
         //databaseHelper.sendCoords("email",send_in_ONLINE.getX(),send_in_ONLINE.getY());
 
@@ -83,7 +91,9 @@ public class Player extends Actor {
        // test push = GdxFIRDatabase.instance().inReference("test").push().setValue(new Message("metadata"));
 
         if(isMove){playerData.update(send_in_ONLINE);
-            //playerCollectData.getPosition("scriii");
+            playerCollectData.getPosition("scriii");
+
+
         }
 
         //Gdx.app.log("PLAYER_MOVE",isMove+"");

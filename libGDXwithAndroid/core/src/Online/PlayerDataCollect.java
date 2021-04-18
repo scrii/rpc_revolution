@@ -24,17 +24,7 @@ public class PlayerDataCollect {
 
     public void getPosition(String ref){
 
-        Promise<Message> listener = GdxFIRDatabase.inst()
-                .inReference(ref)
-                .onDataChange(Message.class)
-                .after(GdxFIRAuth.inst().signInAnonymously())
-                .then(new Consumer<Message>() {
 
-                          @Override
-                          public void accept(Message message) {
-                              Gdx.app.log("COORDS", message.x + " " + message.y);
-                          }
-                      });
     }
 
     /*class DatabaseListenExample {
