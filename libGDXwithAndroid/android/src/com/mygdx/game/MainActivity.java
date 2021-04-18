@@ -45,8 +45,9 @@ public class MainActivity extends AppCompatActivity {
     EditText input;
     String s1;
     double x = 0,y = 0;
-    int protect,health,attack,speed,k,count=0;
-    float elbrium,gold;
+    double protect,health,attack,speed;
+    double elbrium,gold;
+    int count=0,k;
     String[] words;
 
     @Override
@@ -141,8 +142,8 @@ public class MainActivity extends AppCompatActivity {
                     textMessage.setTextColor(getResources().getColor(R.color.ping));
                     s = "";
                 }
-
                 else textMessage.setTextColor(getResources().getColor(R.color.white));
+                if(s.contains("@") && !words[0].equals("@"+nickname))textMessage.setTextColor(getResources().getColor(R.color.ping2));
 
                 if(xy){
                     myListView.smoothScrollToPosition(2000000000);

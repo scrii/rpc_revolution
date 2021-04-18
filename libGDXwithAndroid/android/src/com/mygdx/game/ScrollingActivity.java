@@ -29,11 +29,11 @@ public class ScrollingActivity extends AppCompatActivity implements View.OnClick
     public int seconds;
     int experience;
     int real_xp;
-    int real_money;
-    int money;
+    double real_money;
+    double money,plus_health,plus_attack;
     int real_sign;
     int level;
-    int real_level,plus_health,plus_attack;
+    int real_level;
     int mathematical_sequence_xp_to_level;
     CountDownTimer countDownTimer;
 

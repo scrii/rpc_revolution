@@ -33,9 +33,9 @@
                 android:textStyle="bold"
                 android:layout_gravity="left"/>
             <TextView
-                android:layout_width="40dp"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/real_money"
+                android:id="@+id/real_money_characteristic"
                 android:text="@string/int_start_level"
                 android:layout_gravity="right"
                 android:textSize="20dp"
@@ -57,8 +57,8 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/real_health"
-                android:layout_width="40dp"
+                android:id="@+id/real_health_characteristic"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:text="@string/int_start_health"
@@ -81,8 +81,8 @@
                 android:textSize="20dp"
                 android:textStyle="bold" />
             <TextView
-                android:id="@+id/real_damage"
-                android:layout_width="40dp"
+                android:id="@+id/real_damage_characteristic"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:text="@string/int_start_damage"
@@ -105,8 +105,8 @@
                 android:textSize="20dp"
                 android:textStyle="bold" />
             <TextView
-                android:id="@+id/real_protect"
-                android:layout_width="40dp"
+                android:id="@+id/real_protect_characteristic"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:text="@string/int_start_damage"
@@ -129,8 +129,8 @@
                 android:textSize="20dp"
                 android:textStyle="bold" />
             <TextView
-                android:id="@+id/real_speed"
-                android:layout_width="40dp"
+                android:id="@+id/real_speed_characteristic"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:text="@string/int_start_health"
@@ -152,10 +152,10 @@
                 android:textSize="20dp"
                 android:textStyle="bold"/>
             <TextView
-                android:layout_width="40dp"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:id="@+id/real_ore"
+                android:id="@+id/real_ore_characteristic"
                 android:text="@string/int_start_level"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
@@ -186,7 +186,7 @@
             <TextView
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/real_maneuverability"
+                android:id="@+id/maneuverability_price"
                 android:text="@string/int_start_health"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
@@ -211,7 +211,7 @@
             <TextView
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/real_attack"
+                android:id="@+id/attack_price"
                 android:text="@string/int_start_health"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
@@ -237,7 +237,7 @@
             <TextView
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/real_protection"
+                android:id="@+id/protection_price"
                 android:text="@string/int_start_protection"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
@@ -263,7 +263,7 @@
             <TextView
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/real_speed_plus_one"
+                android:id="@+id/speed_price"
                 android:text="@string/int_start_protection"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
