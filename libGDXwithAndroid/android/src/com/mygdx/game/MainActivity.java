@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.github.library.bubbleview.BubbleTextView;
@@ -39,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
     ListView myListView;
     BubbleTextView textMessage;
     boolean xy = true; //34
-    String s;
+    String s,ping;
     EditText input;
     String s1;
     double x = 0,y = 0;
-    int protect,health,attack,speed;
+    int protect,health,attack,speed,k,count=0;
     float elbrium,gold;
-
+    String[] words;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +72,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 s1 = input.getText().toString();
+                for(k=0;k<s1.length();k++)count++;
                 getterANDSetterFile.set_Message(s1);
-                if(nickname != null && !TextUtils.isEmpty(input.getText()) ||!s1.equals(""))FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), nickname));
-                else if(!s1.equals(" ")||!s1.equals("") && !TextUtils.isEmpty(input.getText()))FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+                if(count<=100 && nickname != null && !TextUtils.isEmpty(input.getText()) ||!s1.equals(""))FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), nickname));
+                else if(count<=100 && !s1.equals(" ")||!s1.equals("") && !TextUtils.isEmpty(input.getText()))FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+                else Toast.makeText(getApplicationContext(),"Превышено ограничение символов!",Toast.LENGTH_SHORT).show();
                 input.setText("");
                 s1 = input.getText().toString();
                 xy = true;
@@ -91,17 +95,11 @@ public class MainActivity extends AppCompatActivity {
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View v) {
                 startActivity(playActivity);
             }
         });
-
-        ///
-
-        //FirebaseDatabase.getInstance().getReference(nickname)
-
-        ///
-
     }
 
 
@@ -138,6 +136,14 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else textMessage.setTextColor(getResources().getColor(R.color.white));
+                words = s.split(" ");
+                if(!s.contains("*")&&!textMessage.getText().toString().contains("*") && words[0].equals("@"+nickname)){
+                    textMessage.setTextColor(getResources().getColor(R.color.ping));
+                    s = "";
+                }
+
+                else textMessage.setTextColor(getResources().getColor(R.color.white));
+
                 if(xy){
                     myListView.smoothScrollToPosition(2000000000);
                     xy = false;
@@ -146,21 +152,5 @@ public class MainActivity extends AppCompatActivity {
         };
         listMessages.setAdapter(adapter);
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == SIGN_IN_REQUEST_CODE)
-        {
-            if (resultCode == RESULT_OK)
-            {
-                Snackbar.make(activity_main, "Вход выполнен", Snackbar.LENGTH_SHORT).show();
-                displayChat();
-            } else {
-                Snackbar.make(activity_main, "Вход не выполнен", Snackbar.LENGTH_SHORT).show();
-                finish();
-            }
-        }
     }
 }

@@ -26,4 +26,6 @@
     <color name="try_user">#00ADFB</color>
     <color name="comment">#e66000</color>
     <color name="background_primary">#5f6a7d</color>
+    <color name="ping">#fe5e9d</color>
+    <color name="ping2">#5efebf</color>
 </resources>
