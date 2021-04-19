@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                     textMessage.setTextColor(getResources().getColor(R.color.ping));
                     s = "";
                 }
-                else textMessage.setTextColor(getResources().getColor(R.color.white));
+                else if(!s.contains("*")&&!textMessage.getText().toString().contains("*"))textMessage.setTextColor(getResources().getColor(R.color.white));
                 if(s.contains("@") && !words[0].equals("@"+nickname))textMessage.setTextColor(getResources().getColor(R.color.ping2));
 
                 if(xy){

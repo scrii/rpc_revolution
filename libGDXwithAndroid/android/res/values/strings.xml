@@ -30,14 +30,14 @@
         <item>Темный фон</item>
     </string-array>
     <string name="string_health">Здоровье</string>
-    <string name="int_start_health">10</string>
+    <string name="int_start_health">10.0</string>
     <string name="string_damage">Урон</string>
-    <string name="int_start_damage">3</string>
+    <string name="int_start_damage">3.0</string>
     <string name="string_protection">Защита</string>
     <string name="string_speed">Скорость</string>
     <string name="string_maneuverability">Манёвренность</string>
     <string name="string_attack">Атака</string>
-    <string name="int_start_protection">30</string>
+    <string name="int_start_protection">30.0</string>
     <string name="drop">Сбрасывает все значения, полностью возвращая деньги. Экспрементируйте!</string>
     <string name="drop_mini">Сбросить всё</string>
     <string name="plus_one">+1</string>
@@ -54,10 +54,12 @@
     <string name="confirm">Подтведить</string>
     <string name="level">Уровень</string>
     <string name="int_start_level">0</string>
+    <string name="int_start_ore">0.0</string>
     <string name="money">Монеты</string>
     <string name="exit">Выход</string>
     <string name="plus_two">+2</string>
     <string name="ore">Руда</string>
+    <string name="sale_ore">Продать Elbrium</string>
 
 
 </resources>

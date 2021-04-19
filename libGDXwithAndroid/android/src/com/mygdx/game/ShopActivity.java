@@ -17,6 +17,7 @@ import androidx.preference.PreferenceFragmentCompat;
 public class ShopActivity extends AppCompatActivity {
     public int seconds = 1;
     CountDownTimer countDownTimer;
+    double old_money;
     double ore_elbrium;
     int price_ore_elbrium = 3;
     double protection; //защита
@@ -28,10 +29,10 @@ public class ShopActivity extends AppCompatActivity {
     double attack; //урон
     int price_attack = 10;
     double maneuverability,new_price_maneuverability,new_price_attack,new_price_protection,new_price_speed,new_price_ore_elbrium,new_price_ore_elbrium_speed; //манёвренность
-    int price_maneuverability = 10;
-    double inverse_health,inverse_attack,inverse_protection,inverse_speed;
+    int price_maneuverability = 10,number_elbrium=0;
+    double inverse_health,inverse_attack,inverse_protection,inverse_speed,inverse_money,r_inverse_health,r_inverse_attack,r_inverse_protection,r_inverse_speed,r_inverse_money;
 
-    Button maneuverability_plus_one,attack_plus_one,protect_plus_one,speed_plus_one,null_number_btn;
+    Button maneuverability_plus_one,attack_plus_one,protect_plus_one,speed_plus_one,sale_of_elbrium;
     TextView real_money_characteristic,real_health_characteristic,real_damage_characteristic,real_protect_characteristic,real_speed_characteristic,real_ore_characteristic,maneuverability_price,attack_price,protection_price,speed_price;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,6 @@ public class ShopActivity extends AppCompatActivity {
         attack_plus_one = findViewById(R.id.attack_plus_one);
         protect_plus_one = findViewById(R.id.protect_plus_one);
         speed_plus_one = findViewById(R.id.speed_plus_one);
-        null_number_btn = findViewById(R.id.null_number_btn);
         real_money_characteristic = findViewById(R.id.real_money_characteristic);
         real_health_characteristic = findViewById(R.id.real_health_characteristic);
         real_damage_characteristic = findViewById(R.id.real_damage_characteristic);
@@ -52,6 +52,7 @@ public class ShopActivity extends AppCompatActivity {
         attack_price = findViewById(R.id.attack_price);
         protection_price = findViewById(R.id.protection_price);
         speed_price = findViewById(R.id.speed_price);
+        sale_of_elbrium = findViewById(R.id.sale_elbrium);
 
         GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
         countDownTimer = new CountDownTimer(seconds*1000,1000) {
@@ -64,6 +65,11 @@ public class ShopActivity extends AppCompatActivity {
                 real_protect_characteristic.setText(Math.round(getterANDSetterFile.get_Protection()*100.0)/100.0+"");
                 real_speed_characteristic.setText(Math.round(getterANDSetterFile.get_Speed()*100.0)/100.0+"");
                 real_money_characteristic.setText(Math.round(getterANDSetterFile.get_Guardian_Money()*100.0)/100.0+"");
+
+                attack_price.setText(Math.round((10 + price_attack*getterANDSetterFile.get_Coefficient_Attack())*100.0)/100.0+"");
+                speed_price.setText(Math.round((30 + price_speed*getterANDSetterFile.get_Coefficient_Speed())*100.0)/100.0+"");
+                protection_price.setText(Math.round((30 + price_protection*getterANDSetterFile.get_Coefficient_Protection())*100.0)/100.0+"");
+                maneuverability_price.setText(Math.round((10 + price_maneuverability*getterANDSetterFile.get_Maneuverability())*100.0)/100.0+"");
             }
 
             @Override
@@ -85,6 +91,11 @@ public class ShopActivity extends AppCompatActivity {
         real_protect_characteristic.setText(Math.round(getterANDSetterFile.get_Protection()*100.0)/100.0+"");
         real_speed_characteristic.setText(Math.round(getterANDSetterFile.get_Speed()*100.0)/100.0+"");
         real_money_characteristic.setText(Math.round(getterANDSetterFile.get_Guardian_Money()*100.0)/100.0+"");
+
+        attack_price.setText(Math.round((10 + price_attack*getterANDSetterFile.get_Coefficient_Attack())*100.0)/100.0+"");
+        speed_price.setText(Math.round((30 + price_speed*getterANDSetterFile.get_Coefficient_Speed())*100.0)/100.0+"");
+        protection_price.setText(Math.round((30 + price_protection*getterANDSetterFile.get_Coefficient_Protection())*100.0)/100.0+"");
+        maneuverability_price.setText(Math.round((10 + price_maneuverability*getterANDSetterFile.get_Maneuverability())*100.0)/100.0+"");
 
         maneuverability_plus_one.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,7 +182,7 @@ public class ShopActivity extends AppCompatActivity {
                         getterANDSetterFile.set_Coefficient_Speed(getterANDSetterFile.get_Coefficient_Speed()+1);
                         real_money_characteristic.setText(Math.round(getterANDSetterFile.get_Guardian_Money()*100.0)/100.0+"");
                         real_speed_characteristic.setText(Math.round(getterANDSetterFile.get_Speed()*100.0)/100.0+"");
-                        protection_price.setText(Math.round(new_price_speed*100.0)/100.0+"");
+                        speed_price.setText(Math.round(new_price_speed*100.0)/100.0+"");
                     }
                     else{
                         new_price_ore_elbrium_speed = 15 + price_ore_elbrium * (getterANDSetterFile.get_Ore_Elbrium()-15);
@@ -183,7 +194,7 @@ public class ShopActivity extends AppCompatActivity {
                             real_ore_characteristic.setText(Math.round(getterANDSetterFile.get_Ore_Elbrium()*100.0)/100.0+"");
                             real_money_characteristic.setText(Math.round(getterANDSetterFile.get_Guardian_Money()*100.0)/100.0+"");
                             real_speed_characteristic.setText(Math.round(getterANDSetterFile.get_Speed()*100.0)/100.0+"");
-                            protection_price.setText(Math.round(new_price_speed*100.0)/100.0+"");
+                            speed_price.setText(Math.round(new_price_speed*100.0)/100.0+"");
                         }
                         else Toast.makeText(getApplicationContext(),"Недостаточно средств или руды",Toast.LENGTH_SHORT).show();
                     }
@@ -192,60 +203,17 @@ public class ShopActivity extends AppCompatActivity {
             }
         });
 
-        null_number_btn.setOnClickListener(new View.OnClickListener() { //не работает
+        sale_of_elbrium.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(getterANDSetterFile.get_Speed()!=3 && getterANDSetterFile.get_Attack()!=3 && getterANDSetterFile.get_Protection()!=3){
-                    if(getterANDSetterFile.get_Attack()>3.0){
-                        inverse_attack = getterANDSetterFile.get_Coefficient_Attack();
-                        getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() + price_attack * inverse_attack);
-                        real_money_characteristic.setText(Math.round(getterANDSetterFile.get_Guardian_Money()*100.0)/100.0+"");
-                        getterANDSetterFile.set_Attack(3);
-                        real_damage_characteristic.setText("3");
-                        attack_price.setText("10");
-                    }
-                    else{
-                        getterANDSetterFile.set_Attack(3);
-                        real_damage_characteristic.setText("3");
-                        attack_price.setText("10");
-                    }
-                    if(getterANDSetterFile.get_Protection()>3.0){
-                        inverse_protection = getterANDSetterFile.get_Coefficient_Protection();
-                        getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() + price_protection * inverse_protection);
-                        real_money_characteristic.setText(Math.round(getterANDSetterFile.get_Guardian_Money()*100.0)/100.0+"");
-                        getterANDSetterFile.set_Protection(3);
-                        real_protect_characteristic.setText("3");
-                        protection_price.setText("30");
-                    }
-                    else{
-                        getterANDSetterFile.set_Protection(3);
-                        real_protect_characteristic.setText("3");
-                        attack_price.setText("30");
-                    }
-                    if(getterANDSetterFile.get_Speed()>3.0){
-                        inverse_speed = getterANDSetterFile.get_Coefficient_Speed();
-                        getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() + price_speed*inverse_speed);
-                        real_money_characteristic.setText(Math.round(getterANDSetterFile.get_Guardian_Money()*100.0)/100.0+"");
-                        getterANDSetterFile.set_Speed(3);
-                        getterANDSetterFile.set_Protection(3);
-                        real_speed_characteristic.setText("10");
-                        maneuverability_price.setText("10");
-                        real_protect_characteristic.setText("3");
-                        protection_price.setText("30");
-                        speed_price.setText("30");
-                    }
-                    else{
-                        getterANDSetterFile.set_Speed(3);
-                        getterANDSetterFile.set_Protection(3);
-                        real_speed_characteristic.setText("10");
-                        maneuverability_price.setText("10");
-                        real_protect_characteristic.setText("3");
-                        protection_price.setText("30");
-                        speed_price.setText("30");
-                    }
+                if(getterANDSetterFile.get_Ore_Elbrium()>0.0){
+                    getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() + getterANDSetterFile.get_Ore_Elbrium()*3);
+                    getterANDSetterFile.set_Ore_Elbrium(0.0);
                 }
+                else Toast.makeText(getApplicationContext(),"Elbrium не найден",Toast.LENGTH_SHORT).show();
             }
         });
+
         //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
         if (savedInstanceState == null) {
             getSupportFragmentManager()

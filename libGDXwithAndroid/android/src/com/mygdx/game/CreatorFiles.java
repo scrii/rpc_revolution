@@ -10,51 +10,6 @@ public class CreatorFiles {
 
     }
     public void create(){
-        File file1 = new File("/data/data/com.mygdx.game/The_core_of_the_second_life.txt");
-        if(!file1.exists()){
-            try {
-                if (!file1.exists()) file1.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                PrintWriter printWriter1 = new PrintWriter(file1);
-                printWriter1.write(String.valueOf(0));
-                printWriter1.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-        File file2 = new File("/data/data/com.mygdx.game/Jump_into_hyperspace.txt");
-        if(!file2.exists()){
-            try {
-                if (!file2.exists()) file2.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                PrintWriter printWriter2 = new PrintWriter(file2);
-                printWriter2.write(String.valueOf(0));
-                printWriter2.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-        File file3 = new File("/data/data/com.mygdx.game/Fast_drill_effect.txt");
-        if(!file3.exists()){
-            try {
-                if (!file3.exists()) file3.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                PrintWriter printWriter3 = new PrintWriter(file3);
-                printWriter3.write(String.valueOf(0));
-                printWriter3.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
         File file4 = new File("/data/data/com.mygdx.game/Health.txt");
         if(!file4.exists()){
             try {
@@ -213,5 +168,20 @@ public class CreatorFiles {
                 e.printStackTrace();
             }
         }
+    }
+    public void delete(){
+        new File("/data/data/com.mygdx.game/Sign.txt").delete();
+        new File("/data/data/com.mygdx.game/The_core_of_the_second_life.txt").delete();
+        new File("/data/data/com.mygdx.game/Jump_into_hyperspace.txt").delete();
+        new File("/data/data/com.mygdx.game/Health.txt").delete();
+        new File("/data/data/com.mygdx.game/Protection.txt").delete();
+        new File("/data/data/com.mygdx.game/Attack.txt").delete();
+        new File("/data/data/com.mygdx.game/Speed.txt").delete();
+        new File("/data/data/com.mygdx.game/Maneuverability.txt").delete();
+        new File("/data/data/com.mygdx.game/Ore_Elbrium.txt").delete();
+        new File("/data/data/com.mygdx.game/Message.txt").delete();
+        new File("/data/data/com.mygdx.game/guardian_money.txt").delete();
+        new File("/data/data/com.mygdx.game/guardian_level.txt").delete();
+        new File("/data/data/com.mygdx.game/guardian_exp.txt").delete();
     }
 }
