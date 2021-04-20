@@ -81,6 +81,7 @@ public class GameSc implements Screen {
         //databaseHelper.setNickname(player.nickname);
         databaseHelper.entryNotify();
         camera=new OrthographicCamera(Main.WIDTH/2.5f,Main.HEIGHT/2.5f);
+
         //camera=new OrthographicCamera(Main.WIDTH*3f,Main.HEIGHT*3f);
     }
 

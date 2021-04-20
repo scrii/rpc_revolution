@@ -14,6 +14,7 @@ import Online.PlayerDataCreator;
 import Tools.Joystick;
 import Tools.Point2D;
 import pl.mk5.gdx.fireapp.GdxFIRDatabase;
+import pl.mk5.gdx.fireapp.GdxFIRStorage;
 
 public class Player extends Actor {
 
@@ -91,7 +92,8 @@ public class Player extends Actor {
        // test push = GdxFIRDatabase.instance().inReference("test").push().setValue(new Message("metadata"));
 
         if(isMove){playerData.update(send_in_ONLINE);
-            playerCollectData.getPosition("scriii");
+            //playerCollectData.getPosition("scri");
+
 
 
         }
