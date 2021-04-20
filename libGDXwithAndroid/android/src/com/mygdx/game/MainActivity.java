@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 for(k=0;k<s1.length();k++)count++;
                 getterANDSetterFile.set_Message(s1);
                 if(count<=100 && nickname != null && !TextUtils.isEmpty(input.getText()) ||!s1.equals(""))FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), nickname));
-                else if(count<=100 && !s1.equals(" ")||!s1.equals("") && !TextUtils.isEmpty(input.getText()))FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+                //else if(count<=100 && !s1.equals(" ")||!s1.equals("") && !TextUtils.isEmpty(input.getText()))FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
                 else Toast.makeText(getApplicationContext(),"Превышено ограничение символов!",Toast.LENGTH_SHORT).show();
                 input.setText("");
                 s1 = input.getText().toString();

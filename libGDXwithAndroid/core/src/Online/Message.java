@@ -5,8 +5,8 @@ import com.teamname.game.Screens.MenuSc;
 
 public class Message {
     public String author;
-    public double x;
-    public double y;
+    public float x;
+    public float y;
     public float gold;
     public float elbrium;
     public int speed;
@@ -18,7 +18,7 @@ public class Message {
 
 
 
-    public Message(String author, double x, double y, float gold, float elbrium, int speed, int attack, int health, int protect, String color_background, String color_front) {
+    public Message(String author, float x, float y, float gold, float elbrium, int speed, int attack, int health, int protect, String color_background, String color_front) {
         this.author = author;
         this.x = x;
         this.y = y;
@@ -32,7 +32,13 @@ public class Message {
         this.color_front = color_front;
     }
 
-
+    @Override
+    public String toString() {
+        return "Message{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 
     public Message(String data){author=data;}
 
@@ -44,13 +50,7 @@ public class Message {
 
 
 
-    public void setX(double x) {
-        this.x = x;
-    }
 
-    public void setY(double y) {
-        this.y = y;
-    }
 
     public void setGold(float gold) {
         this.gold = gold;

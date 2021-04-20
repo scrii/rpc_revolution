@@ -29,6 +29,7 @@ public class Bullet extends Actor {
         position.add(direction.getX()*Speed,direction.getY()*Speed);
         bounds.pos.setPoint(position);
         //Gdx.app.log("bullet_position", position.toString());
+        GdxFIRDatabase.instance().inReference("Bullet"+count).setValue(position.toString());
         isOut = (position.getX()+R<0 || position.getY()-R> Main.BACKGROUND_HEIGHT
                 || position.getX()-R>Main.BACKGROUND_WIDTH || position.getY()+R<0);
 
@@ -40,7 +41,9 @@ public class Bullet extends Actor {
 
     public void removeBullet(int count){
         //GdxFIRDatabase.instance().inReference("Elbrium_"+count).removeValue();
+        GdxFIRDatabase.instance().inReference("Bullet"+count).removeValue();
         GameSc.bullets.removeIndex(count);
+
         //Gdx.app.log("ORE","ORE REMOVED");
     }
 
