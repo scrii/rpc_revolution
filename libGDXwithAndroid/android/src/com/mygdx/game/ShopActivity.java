@@ -30,7 +30,6 @@ public class ShopActivity extends AppCompatActivity {
     int price_attack = 10;
     double maneuverability,new_price_maneuverability,new_price_attack,new_price_protection,new_price_speed,new_price_ore_elbrium,new_price_ore_elbrium_speed; //манёвренность
     int price_maneuverability = 10,number_elbrium=0;
-    double inverse_health,inverse_attack,inverse_protection,inverse_speed,inverse_money,r_inverse_health,r_inverse_attack,r_inverse_protection,r_inverse_speed,r_inverse_money;
 
     Button maneuverability_plus_one,attack_plus_one,protect_plus_one,speed_plus_one,sale_of_elbrium;
     TextView real_money_characteristic,real_health_characteristic,real_damage_characteristic,real_protect_characteristic,real_speed_characteristic,real_ore_characteristic,maneuverability_price,attack_price,protection_price,speed_price;
@@ -125,8 +124,8 @@ public class ShopActivity extends AppCompatActivity {
                 if(getterANDSetterFile.get_Guardian_Money()>=new_price_attack){
                     if(getterANDSetterFile.get_Speed()>0.1){
                         getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money()-new_price_attack);
-                        getterANDSetterFile.set_Attack(getterANDSetterFile.get_Speed()+0.1);
-                        getterANDSetterFile.set_Speed(getterANDSetterFile.get_Protection()-0.1);
+                        getterANDSetterFile.set_Attack(getterANDSetterFile.get_Attack()+0.1);
+                        getterANDSetterFile.set_Speed(getterANDSetterFile.get_Speed()-0.1);
                         getterANDSetterFile.set_Coefficient_Attack(getterANDSetterFile.get_Coefficient_Attack()+1);
                         real_damage_characteristic.setText(Math.round(getterANDSetterFile.get_Attack()*100.0)/100.0+"");
                         real_speed_characteristic.setText(Math.round(getterANDSetterFile.get_Speed()*100.0)/100.0+"");

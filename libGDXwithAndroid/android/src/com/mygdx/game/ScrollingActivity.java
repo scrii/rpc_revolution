@@ -61,6 +61,8 @@ public class ScrollingActivity extends AppCompatActivity {
         experience = real_xp;
         money = real_money;
         level = real_level;
+        info_money.setText(getterANDSetterFile.get_Guardian_Money() + "");
+        info_level.setText(getterANDSetterFile.get_Guardian_Level()+"");
             countDownTimer = new CountDownTimer(seconds * 1000, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
@@ -84,7 +86,6 @@ public class ScrollingActivity extends AppCompatActivity {
                         plus_attack = plus_attack + 5;
                         getterANDSetterFile.set_Attack(plus_attack);
                     }
-
                     getterANDSetterFile.set_Guardian_Money(money);
                     getterANDSetterFile.set_Guardian_Exp(experience);
                     getterANDSetterFile.set_Guardian_Level(level);
@@ -141,8 +142,22 @@ public class ScrollingActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.exit) { //здесь предствален обработчик нажатия типа setOnClickListener
-            CreatorFiles creatorFiles = new CreatorFiles();
-            creatorFiles.delete();
+            new File("/data/data/com.mygdx.game/Sign.txt").delete();
+            new File("/data/data/com.mygdx.game/The_core_of_the_second_life.txt").delete();
+            new File("/data/data/com.mygdx.game/Jump_into_hyperspace.txt").delete();
+            new File("/data/data/com.mygdx.game/Health.txt").delete();
+            new File("/data/data/com.mygdx.game/Protection.txt").delete();
+            new File("/data/data/com.mygdx.game/Attack.txt").delete();
+            new File("/data/data/com.mygdx.game/Speed.txt").delete();
+            new File("/data/data/com.mygdx.game/Maneuverability.txt").delete();
+            new File("/data/data/com.mygdx.game/Ore_Elbrium.txt").delete();
+            new File("/data/data/com.mygdx.game/Message.txt").delete();
+            new File("/data/data/com.mygdx.game/guardian_money.txt").delete();
+            new File("/data/data/com.mygdx.game/guardian_level.txt").delete();
+            new File("/data/data/com.mygdx.game/guardian_exp.txt").delete();
+            new File("/data/data/com.mygdx.game/CoefficientAttack.txt").delete();
+            new File("/data/data/com.mygdx.game/CoefficientProtection.txt").delete();
+            new File("/data/data/com.mygdx.game/CoefficientSpeed.txt").delete();
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(this,ScrollingActivity.class));
             return true;

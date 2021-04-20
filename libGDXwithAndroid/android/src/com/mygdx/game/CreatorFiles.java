@@ -169,19 +169,4 @@ public class CreatorFiles {
             }
         }
     }
-    public void delete(){
-        new File("/data/data/com.mygdx.game/Sign.txt").delete();
-        new File("/data/data/com.mygdx.game/The_core_of_the_second_life.txt").delete();
-        new File("/data/data/com.mygdx.game/Jump_into_hyperspace.txt").delete();
-        new File("/data/data/com.mygdx.game/Health.txt").delete();
-        new File("/data/data/com.mygdx.game/Protection.txt").delete();
-        new File("/data/data/com.mygdx.game/Attack.txt").delete();
-        new File("/data/data/com.mygdx.game/Speed.txt").delete();
-        new File("/data/data/com.mygdx.game/Maneuverability.txt").delete();
-        new File("/data/data/com.mygdx.game/Ore_Elbrium.txt").delete();
-        new File("/data/data/com.mygdx.game/Message.txt").delete();
-        new File("/data/data/com.mygdx.game/guardian_money.txt").delete();
-        new File("/data/data/com.mygdx.game/guardian_level.txt").delete();
-        new File("/data/data/com.mygdx.game/guardian_exp.txt").delete();
-    }
 }
