@@ -109,6 +109,7 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_password);
+
         CreatorFiles sd = new CreatorFiles();
         sd.create();
         registration_nickname = findViewById(R.id.registration_nickname);
