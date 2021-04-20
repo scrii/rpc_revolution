@@ -8,7 +8,8 @@
     android:id="@+id/shop"
     tools:context=".ShopActivity"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/shop_activity">
+    tools:showIn="@layout/shop_activity"
+    >
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
