@@ -10,51 +10,6 @@ public class CreatorFiles {
 
     }
     public void create(){
-        File file1 = new File("/data/data/com.mygdx.game/The_core_of_the_second_life.txt");
-        if(!file1.exists()){
-            try {
-                if (!file1.exists()) file1.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                PrintWriter printWriter1 = new PrintWriter(file1);
-                printWriter1.write(String.valueOf(0));
-                printWriter1.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-        File file2 = new File("/data/data/com.mygdx.game/Jump_into_hyperspace.txt");
-        if(!file2.exists()){
-            try {
-                if (!file2.exists()) file2.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                PrintWriter printWriter2 = new PrintWriter(file2);
-                printWriter2.write(String.valueOf(0));
-                printWriter2.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-        File file3 = new File("/data/data/com.mygdx.game/Fast_drill_effect.txt");
-        if(!file3.exists()){
-            try {
-                if (!file3.exists()) file3.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                PrintWriter printWriter3 = new PrintWriter(file3);
-                printWriter3.write(String.valueOf(0));
-                printWriter3.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
         File file4 = new File("/data/data/com.mygdx.game/Health.txt");
         if(!file4.exists()){
             try {
@@ -109,7 +64,7 @@ public class CreatorFiles {
             }
             try {
                 PrintWriter printWriter7 = new PrintWriter(file7);
-                printWriter7.write(String.valueOf(10));
+                printWriter7.write(String.valueOf(3));
                 printWriter7.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -124,7 +79,7 @@ public class CreatorFiles {
             }
             try {
                 PrintWriter printWriter8 = new PrintWriter(file8);
-                printWriter8.write(String.valueOf(1));
+                printWriter8.write(String.valueOf(0));
                 printWriter8.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -161,9 +116,54 @@ public class CreatorFiles {
                 e.printStackTrace();
             }
             try {
-                PrintWriter printWriter9 = new PrintWriter(file9);
-                printWriter9.write(String.valueOf(1));
-                printWriter9.close();
+                PrintWriter printWriter11 = new PrintWriter(file11);
+                printWriter11.write(String.valueOf(1));
+                printWriter11.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        File file12 = new File("/data/data/com.mygdx.game/CoefficientAttack.txt");
+        if(!file12.exists()){
+            try {
+                if (!file12.exists()) file12.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                PrintWriter printWriter12 = new PrintWriter(file12);
+                printWriter12.write(String.valueOf(0));
+                printWriter12.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        File file13 = new File("/data/data/com.mygdx.game/CoefficientProtection.txt");
+        if(!file13.exists()){
+            try {
+                if (!file13.exists()) file13.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                PrintWriter printWriter13 = new PrintWriter(file13);
+                printWriter13.write(String.valueOf(0));
+                printWriter13.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        File file14 = new File("/data/data/com.mygdx.game/CoefficientSpeed.txt");
+        if(!file14.exists()){
+            try {
+                if (!file14.exists()) file14.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                PrintWriter printWriter14 = new PrintWriter(file14);
+                printWriter14.write(String.valueOf(0));
+                printWriter14.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ScrollingActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/exit"
         android:orderInCategory="1000"
         android:title="@string/action_settings"
         app:showAsAction="never"/>

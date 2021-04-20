@@ -24,17 +24,16 @@ import android.widget.TextView;
 
 import java.io.File;
 
-public class ScrollingActivity extends AppCompatActivity implements View.OnClickListener{
+public class ScrollingActivity extends AppCompatActivity {
 
     public int seconds;
     int experience;
     int real_xp;
-    int real_money;
-    int money;
+    double real_money;
+    double money,plus_health,plus_attack;
     int real_sign;
     int level;
-    int real_level,plus_health,plus_attack;
-    int mathematical_sequence_xp_to_level;
+    int real_level;
     CountDownTimer countDownTimer;
 
     @Override
@@ -42,6 +41,7 @@ public class ScrollingActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
         GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
+        //getterANDSetterFile.set_Guardian_Money(1000000.0);
         real_sign = getterANDSetterFile.get_Sign();
         if(real_sign != 1)startActivity(new Intent(ScrollingActivity.this,EmailPasswordActivity.class));
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -61,13 +61,14 @@ public class ScrollingActivity extends AppCompatActivity implements View.OnClick
         experience = real_xp;
         money = real_money;
         level = real_level;
-        mathematical_sequence_xp_to_level = 50;
+        info_money.setText(getterANDSetterFile.get_Guardian_Money() + "");
+        info_level.setText(getterANDSetterFile.get_Guardian_Level()+"");
             countDownTimer = new CountDownTimer(seconds * 1000, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     seconds--;
-                    info_money.setText(money + "");
-                    info_level.setText(level+"");
+                    info_money.setText(getterANDSetterFile.get_Guardian_Money() + "");
+                    info_level.setText(getterANDSetterFile.get_Guardian_Level()+"");
                 }
 
                 @Override
@@ -85,7 +86,6 @@ public class ScrollingActivity extends AppCompatActivity implements View.OnClick
                         plus_attack = plus_attack + 5;
                         getterANDSetterFile.set_Attack(plus_attack);
                     }
-
                     getterANDSetterFile.set_Guardian_Money(money);
                     getterANDSetterFile.set_Guardian_Exp(experience);
                     getterANDSetterFile.set_Guardian_Level(level);
@@ -141,7 +141,7 @@ public class ScrollingActivity extends AppCompatActivity implements View.OnClick
             startActivity(new Intent(ScrollingActivity.this,ShopActivity.class));
             return true;
         }
-        if (id == R.id.action_settings) { //здесь предствален обработчик нажатия типа setOnClickListener
+        if (id == R.id.exit) { //здесь предствален обработчик нажатия типа setOnClickListener
             new File("/data/data/com.mygdx.game/Sign.txt").delete();
             new File("/data/data/com.mygdx.game/The_core_of_the_second_life.txt").delete();
             new File("/data/data/com.mygdx.game/Jump_into_hyperspace.txt").delete();
@@ -155,20 +155,13 @@ public class ScrollingActivity extends AppCompatActivity implements View.OnClick
             new File("/data/data/com.mygdx.game/guardian_money.txt").delete();
             new File("/data/data/com.mygdx.game/guardian_level.txt").delete();
             new File("/data/data/com.mygdx.game/guardian_exp.txt").delete();
+            new File("/data/data/com.mygdx.game/CoefficientAttack.txt").delete();
+            new File("/data/data/com.mygdx.game/CoefficientProtection.txt").delete();
+            new File("/data/data/com.mygdx.game/CoefficientSpeed.txt").delete();
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(this,ScrollingActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) { //вот бы ничего не сломалось
-
-    }
-
-    @Override
-    public void onClick(View v) { //вот бы ничего не сломалось
-
     }
 }
