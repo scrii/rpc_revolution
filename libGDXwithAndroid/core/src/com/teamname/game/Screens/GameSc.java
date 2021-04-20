@@ -246,8 +246,8 @@ public class GameSc implements Screen {
 
         //FileHandle file = Gdx.files.absolute("nickname.txt");
         //String name = file.readString();
-
-
+        // //
+        // // //
 
 
         player =new Player("SCRI" ,Main.actor,new Point2D(entityX,entityY),5,entityRad,20);
