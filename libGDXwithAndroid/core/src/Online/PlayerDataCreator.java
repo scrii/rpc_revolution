@@ -57,7 +57,7 @@ public class PlayerDataCreator {
 
     public void read(){
         String myData1 = "";
-        File myExternalFile1 = new File("Protection.txt");
+        File myExternalFile1 = new File("/data/data/com.mygdx.game/Protection.txt");
         try {
             FileInputStream fis1 = new FileInputStream(myExternalFile1);
             DataInputStream in1 = new DataInputStream(fis1);
@@ -73,7 +73,7 @@ public class PlayerDataCreator {
         }
         //=====================================================================
         String myData2 = "";
-        File myExternalFile2 = new File("Health.txt");
+        File myExternalFile2 = new File("/data/data/com.mygdx.game/Health.txt");
         try {
             FileInputStream fis2 = new FileInputStream(myExternalFile2);
             DataInputStream in2 = new DataInputStream(fis2);
@@ -89,7 +89,7 @@ public class PlayerDataCreator {
         }
         //=====================================================================
         String myData3 = "";
-        File myExternalFile3 = new File("Attack.txt");
+        File myExternalFile3 = new File("/data/data/com.mygdx.game/Attack.txt");
         try {
             FileInputStream fis3 = new FileInputStream(myExternalFile3);
             DataInputStream in3 = new DataInputStream(fis3);
@@ -105,7 +105,7 @@ public class PlayerDataCreator {
         }
         //=====================================================================
         String myData4 = "";
-        File myExternalFile4 = new File("Speed.txt");
+        File myExternalFile4 = new File("/data/data/com.mygdx.game/Speed.txt");
         try {
             FileInputStream fis4 = new FileInputStream(myExternalFile4);
             DataInputStream in4 = new DataInputStream(fis4);
@@ -121,7 +121,7 @@ public class PlayerDataCreator {
         }
         //=======================================================================
         String myData5 = "";
-        File myExternalFile5 = new File("guardian_money.txt");
+        File myExternalFile5 = new File("/data/data/com.mygdx.game/guardian_money.txt");
         try {
             FileInputStream fis5 = new FileInputStream(myExternalFile5);
             DataInputStream in5 = new DataInputStream(fis5);
@@ -137,7 +137,7 @@ public class PlayerDataCreator {
         }
         //=======================================================================
         String myData6 = "";
-        File myExternalFile6 = new File("Ore_Elbrium.txt");
+        File myExternalFile6 = new File("/data/data/com.mygdx.game/Ore_Elbrium.txt");
         try {
             FileInputStream fis6 = new FileInputStream(myExternalFile6);
             DataInputStream in6 = new DataInputStream(fis6);
@@ -153,7 +153,7 @@ public class PlayerDataCreator {
         }
         //=======================================================================
         String myData36 = "";
-        File myExternalFile36 = new File("nickname.txt");
+        File myExternalFile36 = new File("/data/data/com.mygdx.game/nickname.txt");
         try {
             FileInputStream fis36 = new FileInputStream(myExternalFile36);
             DataInputStream in36 = new DataInputStream(fis36);
@@ -172,7 +172,7 @@ public class PlayerDataCreator {
         }
         //========================================================================
         String myData = "";
-        File myExternalFile = new File("Message.txt");
+        File myExternalFile = new File("/data/data/com.mygdx.game/Message.txt");
         try {
             FileInputStream fis = new FileInputStream(myExternalFile);
             DataInputStream in = new DataInputStream(fis);
