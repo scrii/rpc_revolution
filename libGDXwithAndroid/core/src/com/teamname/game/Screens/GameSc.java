@@ -250,7 +250,7 @@ public class GameSc implements Screen {
 
 
 
-        player =new Player("SCRI" ,Main.actor,new Point2D(entityX,entityY),15,entityRad,20);
+        player =new Player("SCRI" ,Main.actor,new Point2D(entityX,entityY),5,entityRad,20);
         //getter.setPlayer(player);
         joy=new Joystick(Main.circle,Main.stickImg,new Point2D(joyX,joyY),joySize);
 
