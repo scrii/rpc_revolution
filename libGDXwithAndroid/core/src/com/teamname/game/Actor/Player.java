@@ -86,9 +86,9 @@ public class Player extends Actor {
 
         // 8 условий - 4 для камеры - 4 для игрока
 
-        if(send_in_ONLINE.getX()+R>=Main.BACKGROUND_WIDTH-Main.WIDTH/2)send_in_ONLINE.setX(Main.BACKGROUND_WIDTH-Main.WIDTH/2-R);
+        if(send_in_ONLINE.getY()+R>=Main.BACKGROUND_WIDTH-Main.WIDTH/2)send_in_ONLINE.setY(Main.BACKGROUND_WIDTH-Main.WIDTH/2-R);
         if(send_in_ONLINE.getX()-R<=Main.WIDTH/2)send_in_ONLINE.setX(Main.WIDTH/2+R);
-        if(send_in_ONLINE.getX()+R>=Main.BACKGROUND_HEIGHT-Main.HEIGHT)send_in_ONLINE.setY(Main.BACKGROUND_HEIGHT-Main.HEIGHT-R);
+        if(send_in_ONLINE.getY()+R>=Main.BACKGROUND_HEIGHT-Main.HEIGHT)send_in_ONLINE.setY(Main.BACKGROUND_HEIGHT-Main.HEIGHT-R);
         if(send_in_ONLINE.getX()-R<=Main.HEIGHT/2)send_in_ONLINE.setY(Main.HEIGHT/2+R);
 
         //databaseHelper.sendCoords("email",send_in_ONLINE.getX(),send_in_ONLINE.getY());
