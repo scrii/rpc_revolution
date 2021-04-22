@@ -49,7 +49,7 @@ public class GameSc implements Screen {
     Buttons testButton;
     BulletGenerator bullgen;
     String test;
-    Test tst;
+    Message tst;
 
     //PlayerDataCreator playerData;
 
@@ -88,9 +88,9 @@ public class GameSc implements Screen {
         loadActors();
         databaseHelper=new DatabaseHelper();
         //databaseHelper.setNickname(player.nickname);
-        databaseHelper.entryNotify();
+        //databaseHelper.entryNotify();
         camera=new OrthographicCamera(Main.WIDTH/2.5f,Main.HEIGHT/2.5f);
-        tst = new Test(3,5);
+        tst = new Message("author",0,0,0,0,0,0,0,0,"back","front");
         testButton=new Buttons(Main.un_testButtonTX,Main.p_testButtonTX,
                 300, 300, 500, 500);
 
@@ -184,9 +184,9 @@ public class GameSc implements Screen {
 
         testButton.draw(Main.frontBatch,Gdx.input.getX(),Main.HEIGHT-Gdx.input.getY());
         if(testButton.isButtonTouch(Gdx.input.getX(),Main.HEIGHT-Gdx.input.getY())){
-            //Gdx.app.log("GSON",gson.toJson(tst));
+            tst.logIt("final_s", tst.toString());
 
-            GdxFIRDatabase.instance().inReference("gson_test").readValue(String.class)
+            /*GdxFIRDatabase.instance().inReference("gson_test").readValue(String.class)
                     .then(new Consumer<String>() {
                               @Override
                               public void accept(String s) {
@@ -194,7 +194,9 @@ public class GameSc implements Screen {
                                   test=s;
                                   Gdx.app.log("gson1", gson.fromJson("{"+test, Test.class).x+"");
                               }
-                          });
+                          });*/
+
+
 
         }
 
@@ -236,7 +238,7 @@ public class GameSc implements Screen {
     public void dispose() {
         //getter.deleteCOORDS();
         sprite.getTexture().dispose();
-        databaseHelper.entryNotify();
+        //databaseHelper.entryNotify();
     }
 
     public void GameUpdate(){

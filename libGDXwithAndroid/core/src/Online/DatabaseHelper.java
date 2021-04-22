@@ -15,6 +15,7 @@ import de.tomgrill.gdxfirebase.core.database.DataSnapshot;
 import de.tomgrill.gdxfirebase.core.database.DatabaseError;
 import de.tomgrill.gdxfirebase.core.database.FirebaseDatabase;
 import de.tomgrill.gdxfirebase.core.database.ValueEventListener;
+import pl.mk5.gdx.fireapp.GdxFIRApp;
 import pl.mk5.gdx.fireapp.GdxFIRDatabase;
 import pl.mk5.gdx.fireapp.distributions.DatabaseDistribution;
 import pl.mk5.gdx.fireapp.functional.Consumer;
@@ -32,6 +33,10 @@ public class DatabaseHelper {
 
     public void sendToFirebase(String heading, String msg){
         GdxFIRDatabase.instance().inReference(heading).setValue(msg);
+    }
+
+    public void init(){
+        GdxFIRApp.inst().configure();
     }
 
     public void removeFromFirebase(String reference){

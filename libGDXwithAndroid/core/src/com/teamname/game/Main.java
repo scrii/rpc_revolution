@@ -4,12 +4,15 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import Tools.GetterANDSetterFile;
 import Tools.Spawner;
 import com.teamname.game.Screens.GameSc;
 import com.teamname.game.Screens.MenuSc;
 
 //import Online.Getter;
 import pl.mk5.gdx.fireapp.GdxFIRApp;
+import pl.mk5.gdx.fireapp.GdxFIRDatabase;
 
 
 public class Main extends Game {
@@ -21,6 +24,8 @@ public class Main extends Game {
 	public static int BACKGROUND_WIDTH;
 	public static int BACKGROUND_HEIGHT;
 	public static Texture un_testButtonTX,p_testButtonTX;
+
+	private GetterANDSetterFile getter_setter;
 
 
 
@@ -60,7 +65,17 @@ public class Main extends Game {
 
 	@Override
 	public void dispose () {
-		//batch.dispose();
-		//img.dispose();
+		batch.dispose();
+		frontBatch.dispose();
+		playerBatch.dispose();
+		circle.dispose();
+		stickImg.dispose();
+		actor.dispose();
+		background.dispose();
+
+		getter_setter=new GetterANDSetterFile();
+		GdxFIRDatabase.instance().inReference(getter_setter.get_Nickname()).removeValue();
+		un_testButtonTX.dispose();
+		p_testButtonTX.dispose();
 	}
 }

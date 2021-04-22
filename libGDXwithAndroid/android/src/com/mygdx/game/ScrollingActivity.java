@@ -9,6 +9,7 @@ import android.os.Bundle;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
+import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -38,12 +39,24 @@ public class ScrollingActivity extends AppCompatActivity {
     int level;
     int real_level;
     CountDownTimer countDownTimer;
-
+    GetterANDSetterFile getterANDSetterFile;
+    // //
+    public Online.Message player_data;
+    // //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
-        GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
+        getterANDSetterFile = new GetterANDSetterFile();
+
+        // //
+        player_data=new Online.Message(getterANDSetterFile.get_Nickname(),-1,-1,
+                getterANDSetterFile.get_Guardian_Money(),getterANDSetterFile.get_Ore_Elbrium(),
+                getterANDSetterFile.get_Speed(),getterANDSetterFile.get_Attack(),getterANDSetterFile.get_Health(),
+                getterANDSetterFile.get_Protection(),"back","front");
+        FirebaseDatabase.getInstance().getReference(getterANDSetterFile.get_Nickname()).setValue(player_data.toString());
+        // //
+
         //getterANDSetterFile.set_Guardian_Money(1000000.0);
         real_sign = getterANDSetterFile.get_Sign();
         if(real_sign != 1)startActivity(new Intent(ScrollingActivity.this,EmailPasswordActivity.class));
