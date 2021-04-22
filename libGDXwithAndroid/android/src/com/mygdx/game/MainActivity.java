@@ -32,6 +32,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 
+import Online.DatabaseHelper;
 import Online.PlayerDataCreator;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     double elbrium,gold;
     int count=0,k;
     String[] words;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

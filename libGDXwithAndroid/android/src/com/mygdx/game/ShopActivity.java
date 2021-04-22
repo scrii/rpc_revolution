@@ -15,10 +15,13 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import com.google.firebase.database.FirebaseDatabase;
 
+import Online.Message;
+
 
 public class ShopActivity extends AppCompatActivity {
     // getter для считывания никнейма //
     GetterANDSetterFile getter_setter;
+    Message player_data;
     // //
 
     public int seconds = 1;
@@ -43,9 +46,13 @@ public class ShopActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shop_activity);
-        //
+        // //
         getter_setter=new GetterANDSetterFile();
-        //
+        player_data=new Online.Message(getter_setter.get_Nickname(),-1,-1,
+                getter_setter.get_Guardian_Money(),getter_setter.get_Ore_Elbrium(),
+                getter_setter.get_Speed(),getter_setter.get_Attack(),getter_setter.get_Health(),
+                getter_setter.get_Protection(),"back","front");
+        // //
         maneuverability_plus_one = findViewById(R.id.maneuverability_plus_one);
         attack_plus_one = findViewById(R.id.attack_plus_one);
         protect_plus_one = findViewById(R.id.protect_plus_one);
@@ -146,7 +153,8 @@ public class ShopActivity extends AppCompatActivity {
                 else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_SHORT).show();
 
                 // //
-                update_values("attack", getterANDSetterFile.get_Attack());
+                player_data.setAttack(getterANDSetterFile.get_Attack());
+                update_values();
                 // //
             }
         });
@@ -181,7 +189,8 @@ public class ShopActivity extends AppCompatActivity {
                 }
                 else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_SHORT).show();
                 // //
-                update_values("protect", getterANDSetterFile.get_Protection());
+                player_data.setProtect(getterANDSetterFile.get_Protection());
+                update_values();
                 // //
             }
         });
@@ -216,7 +225,8 @@ public class ShopActivity extends AppCompatActivity {
                 }
                 else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_SHORT).show();
                 // //
-                update_values("speed", getterANDSetterFile.get_Speed());
+                player_data.setSpeed(getterANDSetterFile.get_Speed());
+                update_values();
                 // //
             }
         });
@@ -267,8 +277,8 @@ public class ShopActivity extends AppCompatActivity {
 
     // FIREBASE //
 
-    public void update_values(String child, Object value){
-        FirebaseDatabase.getInstance().getReference(getter_setter.get_Nickname()).child(child).setValue(value);
+    public void update_values(){
+        FirebaseDatabase.getInstance().getReference(getter_setter.get_Nickname()).setValue(player_data.toString());
     }
 
     // FIREVASE //
