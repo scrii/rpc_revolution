@@ -54,7 +54,7 @@ public class ScrollingActivity extends AppCompatActivity {
                 getterANDSetterFile.get_Guardian_Money(),getterANDSetterFile.get_Ore_Elbrium(),
                 getterANDSetterFile.get_Speed(),getterANDSetterFile.get_Attack(),getterANDSetterFile.get_Health(),
                 getterANDSetterFile.get_Protection(),"back","front");
-        FirebaseDatabase.getInstance().getReference(getterANDSetterFile.get_Nickname()).setValue(player_data.toString());
+        FirebaseDatabase.getInstance().getReference("LONGDATA_"+getterANDSetterFile.get_Nickname()).setValue(player_data.toString());
         // //
 
         //getterANDSetterFile.set_Guardian_Money(1000000.0);

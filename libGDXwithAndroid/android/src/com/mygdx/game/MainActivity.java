@@ -111,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
 
         ListView listMessages = findViewById(R.id.listView);
         adapter = new FirebaseListAdapter<Message>(MainActivity.this, Message.class, R.layout.list_item, FirebaseDatabase.getInstance().getReference("Message")) {
-
             @Override
             protected void populateView(View v, Message model, int position) {
                 TextView author;

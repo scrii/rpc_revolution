@@ -26,6 +26,7 @@ import Online.PlayerDataCreator;
 import Online.Test;
 import Tools.BulletGenerator;
 import Tools.Buttons;
+import Tools.GetterANDSetterFile;
 import Tools.Joystick;
 import Tools.Point2D;
 import Tools.Spawner;
@@ -66,6 +67,11 @@ public class GameSc implements Screen {
     private static final int entityX=Main.WIDTH/2;
     private static final int entityY=Main.WIDTH/3;
 
+    public static final float player_x=Main.WIDTH/2-100;
+    public static final float player_y=Main.HEIGHT/2-50;
+    String online_players;
+    GetterANDSetterFile getter_setter;
+
 /*    private static final float leftSide = ;
     private static final float rightSide;
     private static final float upSide;
@@ -87,12 +93,16 @@ public class GameSc implements Screen {
         gson=new Gson();
         loadActors();
         databaseHelper=new DatabaseHelper();
+        getter_setter=new GetterANDSetterFile();
         //databaseHelper.setNickname(player.nickname);
         //databaseHelper.entryNotify();
-        camera=new OrthographicCamera(Main.WIDTH/2.5f,Main.HEIGHT/2.5f);
+        camera=new OrthographicCamera(Main.BACKGROUND_WIDTH,Main.BACKGROUND_HEIGHT);
         tst = new Message("author",0,0,0,0,0,0,0,0,"back","front");
         testButton=new Buttons(Main.un_testButtonTX,Main.p_testButtonTX,
                 300, 300, 500, 500);
+        if(databaseHelper.readString("online")==null || databaseHelper.readString("online").length() == 0)databaseHelper.sendToFirebase("online",getter_setter.get_Nickname());
+        else databaseHelper.sendToFirebase("online",online_players+";"+getter_setter.get_Nickname());
+        //return str == null || str.length() == 0;
 
         //camera=new OrthographicCamera(Main.WIDTH*3f,Main.HEIGHT*3f);
     }
@@ -205,7 +215,7 @@ public class GameSc implements Screen {
 
         Main.playerBatch.begin();
         Main.playerBatch.setColor(0,0,1,1);
-        Main.playerBatch.draw(Main.actor,Main.WIDTH/2-100,Main.HEIGHT/2-100,100,100);
+        Main.playerBatch.draw(Main.actor,player_x,player_y,100,100);
         playerRender(Main.playerBatch);
 
         Main.playerBatch.end();

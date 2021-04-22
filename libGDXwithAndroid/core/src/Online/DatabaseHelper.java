@@ -113,7 +113,6 @@ public class DatabaseHelper {
         }
 
         public String readString(String ref){
-            send="not readed";
             GdxFIRDatabase.instance().inReference(ref).readValue(String.class).then(new Consumer<String>() {
                 @Override
                 public void accept(String s) {
