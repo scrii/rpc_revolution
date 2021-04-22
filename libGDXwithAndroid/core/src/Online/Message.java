@@ -18,6 +18,8 @@ public class Message {
     public String color_background;
     public String color_front;
 
+    private Gson gson;
+
     private DatabaseHelper databaseHelper;
   //  private final Gson gson;
 
@@ -36,7 +38,7 @@ public class Message {
         this.protect = protect;
         this.color_background = color_background;
         this.color_front = color_front;
-        //gson=new Gson();
+        gson=new Gson();
     }
 
     public void setGold(double gold) {
@@ -76,6 +78,10 @@ public class Message {
                 "\"speed\":" + speed  + "," +
                 "\"x\":" + x  + "," +
                 "\"y\":" + y  + "}";
+    }
+
+    public Message getData(String metadata){
+        return gson.fromJson(metadata, Message.class);
     }
 
     public void logIt(String tag, String log){

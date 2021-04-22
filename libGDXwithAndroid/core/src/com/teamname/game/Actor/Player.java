@@ -11,6 +11,7 @@ import Online.DatabaseHelper;
 import Online.Message;
 import Online.PlayerDataCollect;
 import Online.PlayerDataCreator;
+import Tools.GetterANDSetterFile;
 import Tools.Joystick;
 import Tools.Point2D;
 import pl.mk5.gdx.fireapp.GdxFIRDatabase;
@@ -27,6 +28,8 @@ public class Player extends Actor {
     public String nickname;
     public PlayerDataCreator playerData;
     public PlayerDataCollect playerCollectData;
+    private Message player_data;
+    private GetterANDSetterFile getter_setter;
 
 
 
@@ -39,6 +42,12 @@ public class Player extends Actor {
         databaseHelper=new DatabaseHelper();
         playerData=new PlayerDataCreator();
         playerCollectData=new PlayerDataCollect();
+        getter_setter=new GetterANDSetterFile();
+
+        player_data=new Online.Message(getter_setter.get_Nickname(),-1,-1,
+                getter_setter.get_Guardian_Money(),getter_setter.get_Ore_Elbrium(),
+                getter_setter.get_Speed(),getter_setter.get_Attack(),getter_setter.get_Health(),
+                getter_setter.get_Protection(),"back","front");
 
     }
 
@@ -91,7 +100,10 @@ public class Player extends Actor {
 
        // test push = GdxFIRDatabase.instance().inReference("test").push().setValue(new Message("metadata"));
 
-        if(isMove){playerData.update(send_in_ONLINE);
+        if(isMove){
+            player_data.x=send_in_ONLINE.getX();
+            player_data.y=send_in_ONLINE.getY();
+            databaseHelper.sendToFirebase(getter_setter.get_Nickname(),player_data.toString());
             //playerCollectData.getPosition("scri");
 
 

@@ -88,7 +88,7 @@ public class GameSc implements Screen {
         loadActors();
         databaseHelper=new DatabaseHelper();
         //databaseHelper.setNickname(player.nickname);
-        databaseHelper.entryNotify();
+        //databaseHelper.entryNotify();
         camera=new OrthographicCamera(Main.WIDTH/2.5f,Main.HEIGHT/2.5f);
         tst = new Message("author",0,0,0,0,0,0,0,0,"back","front");
         testButton=new Buttons(Main.un_testButtonTX,Main.p_testButtonTX,
@@ -238,7 +238,7 @@ public class GameSc implements Screen {
     public void dispose() {
         //getter.deleteCOORDS();
         sprite.getTexture().dispose();
-        databaseHelper.entryNotify();
+        //databaseHelper.entryNotify();
     }
 
     public void GameUpdate(){
