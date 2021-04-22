@@ -91,7 +91,7 @@ public class Player extends Actor {
         if(send_in_ONLINE.getY()+R>=Main.BACKGROUND_HEIGHT-Main.HEIGHT)send_in_ONLINE.setY(Main.BACKGROUND_HEIGHT-Main.HEIGHT-R);
         if(send_in_ONLINE.getX()-R<=Main.HEIGHT/2)send_in_ONLINE.setY(Main.HEIGHT/2+R);
 
-        //databaseHelper.sendCoords("email",send_in_ONLINE.getX(),send_in_ONLINE.getY());
+        //databaseHelper.sendCoords("email",send_in_ONLINE.getX(),send_in_ONLINE.getY());/
 
         //playerData.setCoords(send_in_ONLINE);
 
