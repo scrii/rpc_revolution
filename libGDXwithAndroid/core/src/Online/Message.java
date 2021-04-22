@@ -1,5 +1,6 @@
 package Online;
 
+import com.google.gson.Gson;
 import com.teamname.game.Screens.MenuSc;
 
 
@@ -7,18 +8,22 @@ public class Message {
     public String author;
     public float x;
     public float y;
-    public float gold;
-    public float elbrium;
-    public int speed;
-    public int attack;
-    public int health;
-    public int protect;
+    public double gold;
+    public double elbrium;
+    public double speed;
+    public double attack;
+    public double health;
+    public double protect;
     public String color_background;
     public String color_front;
 
+    private DatabaseHelper databaseHelper;
+    private final Gson gson;
 
 
-    public Message(String author, float x, float y, float gold, float elbrium, int speed, int attack, int health, int protect, String color_background, String color_front) {
+
+
+    public Message(String author, float x, float y, double gold, double elbrium, double speed, double attack, double health, double protect, String color_background, String color_front) {
         this.author = author;
         this.x = x;
         this.y = y;
@@ -30,6 +35,7 @@ public class Message {
         this.protect = protect;
         this.color_background = color_background;
         this.color_front = color_front;
+        gson=new Gson();
     }
 
     @Override
@@ -40,7 +46,7 @@ public class Message {
                 '}';
     }
 
-    public Message(String data){author=data;}
+    //public Message(String data){author=data;}
 
 
 
@@ -80,7 +86,13 @@ public class Message {
         this.color_background = color_background;
     }
 
+    public double getSpeed() {
+        return speed;
+    }
+
     public void setColor_front(String color_front) {
         this.color_front = color_front;
     }
+
+
 }

@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
+import com.google.gson.Gson;
 import com.teamname.game.Actor.Bullet;
 import com.teamname.game.Actor.Elbrium;
 import com.teamname.game.Actor.Player;
@@ -22,11 +23,14 @@ import Online.DatabaseHelper;
 //import Online.Getter;
 import Online.Message;
 import Online.PlayerDataCreator;
+import Online.Test;
 import Tools.BulletGenerator;
+import Tools.Buttons;
 import Tools.Joystick;
 import Tools.Point2D;
 import Tools.Spawner;
 import pl.mk5.gdx.fireapp.GdxFIRDatabase;
+import pl.mk5.gdx.fireapp.functional.Consumer;
 
 public class GameSc implements Screen {
 
@@ -40,8 +44,12 @@ public class GameSc implements Screen {
     public static Array<Bullet> bullets;
     public static Array<Elbrium> ore;
     private Spawner spawner;
+    private Gson gson;
 
+    Buttons testButton;
     BulletGenerator bullgen;
+    String test;
+    Test tst;
 
     //PlayerDataCreator playerData;
 
@@ -76,11 +84,15 @@ public class GameSc implements Screen {
     public GameSc(Main main){
         this.main=main;
         spawner=new Spawner();
+        gson=new Gson();
         loadActors();
         databaseHelper=new DatabaseHelper();
         //databaseHelper.setNickname(player.nickname);
         databaseHelper.entryNotify();
         camera=new OrthographicCamera(Main.WIDTH/2.5f,Main.HEIGHT/2.5f);
+        tst = new Test(3,5);
+        testButton=new Buttons(Main.un_testButtonTX,Main.p_testButtonTX,
+                300, 300, 500, 500);
 
         //camera=new OrthographicCamera(Main.WIDTH*3f,Main.HEIGHT*3f);
     }
@@ -169,6 +181,24 @@ public class GameSc implements Screen {
         Main.frontBatch.begin();
         Main.frontBatch.setColor(1,1,1,1);
         frontRender(Main.frontBatch);
+
+        testButton.draw(Main.frontBatch,Gdx.input.getX(),Main.HEIGHT-Gdx.input.getY());
+        if(testButton.isButtonTouch(Gdx.input.getX(),Main.HEIGHT-Gdx.input.getY())){
+            //Gdx.app.log("GSON",gson.toJson(tst));
+
+            GdxFIRDatabase.instance().inReference("gson_test").readValue(String.class)
+                    .then(new Consumer<String>() {
+                              @Override
+                              public void accept(String s) {
+                                  Gdx.app.log("gson",s);
+                                  test=s;
+                                  Gdx.app.log("gson1", gson.fromJson("{"+test, Test.class).x+"");
+                              }
+                          });
+
+        }
+
+
         Main.frontBatch.end();
 
         Main.playerBatch.begin();

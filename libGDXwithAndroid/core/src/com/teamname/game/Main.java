@@ -20,7 +20,7 @@ public class Main extends Game {
 
 	public static int BACKGROUND_WIDTH;
 	public static int BACKGROUND_HEIGHT;
-
+	public static Texture un_testButtonTX,p_testButtonTX;
 
 
 
@@ -50,6 +50,10 @@ public class Main extends Game {
 		background=new Texture("testlocation.png");
 		BACKGROUND_WIDTH=background.getWidth();
 		BACKGROUND_HEIGHT=background.getHeight();
+
+		un_testButtonTX=new Texture("test_button_un_pressed.png");
+		p_testButtonTX=new Texture("test_button_pressed.png");
+
 		setScreen(new GameSc(this));
 	}
 

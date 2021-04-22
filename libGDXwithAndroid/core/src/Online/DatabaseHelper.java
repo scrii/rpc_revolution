@@ -17,10 +17,12 @@ import de.tomgrill.gdxfirebase.core.database.FirebaseDatabase;
 import de.tomgrill.gdxfirebase.core.database.ValueEventListener;
 import pl.mk5.gdx.fireapp.GdxFIRDatabase;
 import pl.mk5.gdx.fireapp.distributions.DatabaseDistribution;
+import pl.mk5.gdx.fireapp.functional.Consumer;
 
 public class DatabaseHelper {
 
     String nickname;
+    String send;
     //DatabaseReference reference = GDXFirebase.FirebaseDatabase().getReference("storetest");
     //String key = reference.push().getKey();
     //reference.child(key).setValue("some value");
@@ -103,6 +105,17 @@ public class DatabaseHelper {
             
         };
         //FirebaseDatabase fDB = GdxFIRDatabase.instance().inReference(reference).;
+        }
+
+        public String readString(String ref){
+            send="not readed";
+            GdxFIRDatabase.instance().inReference(ref).readValue(String.class).then(new Consumer<String>() {
+                @Override
+                public void accept(String s) {
+                    send=s;
+                }
+            });
+            return send;
         }
         //GDXFirebase.FirebaseDatabase().getReference(reference).addValueEventListener(vListener);
         //Gdx.app.log("READED_PL_DATA",GdxFIRDatabase.instance().inReference(reference).readValue(Message.class).toString());

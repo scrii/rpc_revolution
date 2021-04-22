@@ -13,8 +13,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 
 public class ShopActivity extends AppCompatActivity {
+    // getter для считывания никнейма //
+    GetterANDSetterFile getter_setter;
+    // //
+
     public int seconds = 1;
     CountDownTimer countDownTimer;
     double old_money;
@@ -37,6 +43,9 @@ public class ShopActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shop_activity);
+        //
+        getter_setter=new GetterANDSetterFile();
+        //
         maneuverability_plus_one = findViewById(R.id.maneuverability_plus_one);
         attack_plus_one = findViewById(R.id.attack_plus_one);
         protect_plus_one = findViewById(R.id.protect_plus_one);
@@ -135,6 +144,10 @@ public class ShopActivity extends AppCompatActivity {
                     else Toast.makeText(getApplicationContext(),"Ваша скорость слишком мала",Toast.LENGTH_SHORT).show();
                 }
                 else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_SHORT).show();
+
+                // //
+                update_values("attack", getterANDSetterFile.get_Attack());
+                // //
             }
         });
 
@@ -167,6 +180,9 @@ public class ShopActivity extends AppCompatActivity {
                     }
                 }
                 else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_SHORT).show();
+                // //
+                update_values("protect", getterANDSetterFile.get_Protection());
+                // //
             }
         });
 
@@ -199,6 +215,9 @@ public class ShopActivity extends AppCompatActivity {
                     }
                 }
                 else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_SHORT).show();
+                // //
+                update_values("speed", getterANDSetterFile.get_Speed());
+                // //
             }
         });
 
@@ -245,4 +264,12 @@ public class ShopActivity extends AppCompatActivity {
         }
     }
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+    // FIREBASE //
+
+    public void update_values(String child, Object value){
+        FirebaseDatabase.getInstance().getReference(getter_setter.get_Nickname()).child(child).setValue(value);
+    }
+
+    // FIREVASE //
 }
