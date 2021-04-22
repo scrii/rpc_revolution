@@ -100,8 +100,9 @@ public class GameSc implements Screen {
         tst = new Message("author",0,0,0,0,0,0,0,0,"back","front");
         testButton=new Buttons(Main.un_testButtonTX,Main.p_testButtonTX,
                 300, 300, 500, 500);
-        if(databaseHelper.readString("online")==null || databaseHelper.readString("online").length() == 0)databaseHelper.sendToFirebase("online",getter_setter.get_Nickname());
-        else databaseHelper.sendToFirebase("online",online_players+";"+getter_setter.get_Nickname());
+        databaseHelper.acceptString("online");
+        if(databaseHelper.readString()==null || databaseHelper.readString().length() == 0)databaseHelper.sendToFirebase("online",getter_setter.get_Nickname());
+        else databaseHelper.sendToFirebase("online",databaseHelper.readString()+";"+getter_setter.get_Nickname());
         //return str == null || str.length() == 0;
 
         //camera=new OrthographicCamera(Main.WIDTH*3f,Main.HEIGHT*3f);
