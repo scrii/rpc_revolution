@@ -23,7 +23,7 @@ public class PersonActivity extends AppCompatActivity {
     Button confirm;
     String s;
     @Override
-    protected void onCreate(Bundle savedInstanceState) { //what
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person);
         name_person = findViewById(R.id.name_person);
@@ -34,11 +34,11 @@ public class PersonActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 s = name_person.getText().toString();
-                if(s!=null)getterANDSetterFile.set_Nickname(s);
+                if(!s.equals(""))getterANDSetterFile.set_Nickname(s);
                 else Toast.makeText(getApplicationContext(),"Никнейм не может быть пустым",Toast.LENGTH_SHORT).show();
             }
         });
-        if(s!=null)getterANDSetterFile.set_Nickname(s);
+        if(!s.equals(""))getterANDSetterFile.set_Nickname(s);
         else Toast.makeText(getApplicationContext(),"Никнейм не может быть пустым",Toast.LENGTH_SHORT).show();
         //===========================================================
         //Запрещено трогать код ниже!!!!!!
