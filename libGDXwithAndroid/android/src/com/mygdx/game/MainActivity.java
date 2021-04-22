@@ -77,10 +77,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 s1 = input.getText().toString();
-
                 getterANDSetterFile.set_Message(s1);
-                if(nickname != null && !TextUtils.isEmpty(input.getText()) ||!s1.equals(""))FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), nickname));
-                else if(!s1.equals(" ")||!s1.equals("") && !TextUtils.isEmpty(input.getText()))FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+                if(nickname != null && !s1.equals(""))FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), nickname));
+                else if(!s1.equals(""))FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+                else Toast.makeText(getApplicationContext(),"Сообщение не может быть пустым",Toast.LENGTH_SHORT).show();
                 input.setText("");
                 s1 = input.getText().toString();
                 xy = true;
