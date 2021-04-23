@@ -44,10 +44,11 @@ public class Player extends Actor {
         playerCollectData=new PlayerDataCollect();
         getter_setter=new GetterANDSetterFile();
 
-        player_data=new Online.Message(getter_setter.get_Nickname(),-1,-1,
+        player_data=new Online.Message(getter_setter.get_Nickname(),GameSc.player_x,GameSc.player_y,
                 getter_setter.get_Guardian_Money(),getter_setter.get_Ore_Elbrium(),
                 getter_setter.get_Speed(),getter_setter.get_Attack(),getter_setter.get_Health(),
                 getter_setter.get_Protection(),"back","front");
+        databaseHelper.sendToFirebase(getter_setter.get_Nickname(), player_data.toString());
 
     }
 
@@ -88,8 +89,9 @@ public class Player extends Actor {
 
         if(send_in_ONLINE.getY()+R>=Main.BACKGROUND_WIDTH-Main.WIDTH/2)send_in_ONLINE.setY(Main.BACKGROUND_WIDTH-Main.WIDTH/2-R);
         if(send_in_ONLINE.getX()-R<=Main.WIDTH/2)send_in_ONLINE.setX(Main.WIDTH/2+R);
-        if(send_in_ONLINE.getY()+R>=Main.BACKGROUND_HEIGHT-Main.HEIGHT)send_in_ONLINE.setY(Main.BACKGROUND_HEIGHT-Main.HEIGHT-R);
-        if(send_in_ONLINE.getX()-R<=Main.HEIGHT/2)send_in_ONLINE.setY(Main.HEIGHT/2+R);
+
+        if(send_in_ONLINE.getX()+R>=Main.BACKGROUND_HEIGHT-Main.HEIGHT)send_in_ONLINE.setX(Main.BACKGROUND_HEIGHT-Main.HEIGHT-R);
+        if(send_in_ONLINE.getX()-R<=Main.HEIGHT/2)send_in_ONLINE.setX(Main.HEIGHT/2+R);
 
         //databaseHelper.sendCoords("email",send_in_ONLINE.getX(),send_in_ONLINE.getY());/
 

@@ -88,6 +88,10 @@ public class Message {
         Gdx.app.log(tag, log);
     }
 
+    public void deleteMessage(String ref){
+        databaseHelper.removeFromFirebase(ref);
+    }
+
     //{"attack":0.0,"author":"author",
     // "color_background":"back","color_front":"front","elbrium":0.0,"gold":0.0,"health":0.0,"protect":0.0,"speed":0.0,"x":0.0,"y":0.0}//{"attack":0.0,"author":"author",
     // "color_background":"back","color_front":"front","elbrium":0.0,"gold":0.0,"health":0.0,"protect":0.0,"speed":0.0,"x":0.0,"y":0.0}

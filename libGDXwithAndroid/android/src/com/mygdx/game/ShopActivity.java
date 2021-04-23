@@ -278,7 +278,7 @@ public class ShopActivity extends AppCompatActivity {
     // FIREBASE //
 
     public void update_values(){
-        FirebaseDatabase.getInstance().getReference(getter_setter.get_Nickname()).setValue(player_data.toString());
+        FirebaseDatabase.getInstance().getReference("LONGDATA_"+getter_setter.get_Nickname()).setValue(player_data.toString());
     }
 
     // FIREVASE //
