@@ -10,7 +10,10 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -49,13 +52,13 @@ public class MainActivity extends AppCompatActivity {
     ListView myListView;
     BubbleTextView textMessage;
     boolean xy = true; //34
-    String s,ping;
+    String s,comment;
     EditText input;
     String s1;
     double x = 0,y = 0;
     double protect,health,attack,speed;
     double elbrium,gold;
-    int count=0,k;
+    int count=0,k1,k2,g1,g2,m1,m2;
     String[] words;
     int spaces;
     private static final int NOTIFY_ID = 101;
@@ -157,12 +160,20 @@ public class MainActivity extends AppCompatActivity {
                 else author.setTextColor(getResources().getColor(R.color.user2));
                 int kolvo_symbols = 0;
                 s = textMessage.getText().toString();
+                comment = textMessage.getText().toString();
                 if(s.contains("*") && textMessage.getText().toString().contains("*")) {
                     for (int i = 0; i < s.length(); i++) {
                         if (s.charAt(i) == '*' && s.contains("*")) {
                             kolvo_symbols++;
                             if (kolvo_symbols == 2 && s.contains("*")) {
-                                textMessage.setTextColor(getResources().getColor(R.color.comment));
+                                k1 = comment.indexOf("*");
+                                k2 = comment.lastIndexOf("*");
+                                SpannableStringBuilder builder = new SpannableStringBuilder();
+                                SpannableString colorSpannable= new SpannableString(s);
+                                colorSpannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.comment)),k1,k2+1,0);
+                                //textMessage.setTextColor(getResources().getColor(R.color.comment));
+                                builder.append(colorSpannable);
+                                textMessage.setText(builder, TextView.BufferType.SPANNABLE);
                                 kolvo_symbols = 0;
                                 s = "";
                             }
@@ -172,8 +183,14 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else textMessage.setTextColor(getResources().getColor(R.color.white));
                 words = s.split(" ");
-                if(!s.contains("*")&&!textMessage.getText().toString().contains("*") && words[0].equals("@"+nickname)){
-                    textMessage.setTextColor(getResources().getColor(R.color.ping));
+                if(!s.contains("*")&&!textMessage.getText().toString().contains("*") && s.contains("@"+nickname)){
+                    g1 = s.indexOf("@");
+                    g2 = nickname.length()+g1;
+                    SpannableStringBuilder builder1 = new SpannableStringBuilder();
+                    SpannableString colorSpannable1= new SpannableString(s);
+                    colorSpannable1.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.ping)),g1,g2+1,0);
+                    builder1.append(colorSpannable1);
+                    textMessage.setText(builder1, TextView.BufferType.SPANNABLE);
                     Intent notificationIntent = new Intent(MainActivity.this, MainActivity.class);
                     PendingIntent contentIntent = PendingIntent.getActivity(MainActivity.this,
                             0, notificationIntent,
@@ -194,8 +211,7 @@ public class MainActivity extends AppCompatActivity {
                     s = "";
                 }
                 else if(!s.contains("*")&&!textMessage.getText().toString().contains("*"))textMessage.setTextColor(getResources().getColor(R.color.white));
-                if(s.contains("@") && !words[0].equals("@"+nickname))textMessage.setTextColor(getResources().getColor(R.color.ping2));
-
+                if(s.contains("@") && !s.contains("@"+nickname))textMessage.setTextColor(getResources().getColor(R.color.ping2));
                 if(xy){
                     myListView.smoothScrollToPosition(2000000000);
                     xy = false;
