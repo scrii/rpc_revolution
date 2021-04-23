@@ -195,7 +195,9 @@ public class GameSc implements Screen {
 
         testButton.draw(Main.frontBatch,Gdx.input.getX(),Main.HEIGHT-Gdx.input.getY());
         if(testButton.isButtonTouch(Gdx.input.getX(),Main.HEIGHT-Gdx.input.getY())){
-            databaseHelper.acceptString(getter_setter.get_Nickname());
+            //databaseHelper.acceptString(getter_setter.get_Nickname());
+            databaseHelper.acceptString("scri");
+
             //tst.logIt("final_s", tst.toString());
 
             /*GdxFIRDatabase.instance().inReference("gson_test").readValue(String.class)
