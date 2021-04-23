@@ -100,9 +100,9 @@ public class GameSc implements Screen {
         tst = new Message("author",0,0,0,0,0,0,0,0,"back","front");
         testButton=new Buttons(Main.un_testButtonTX,Main.p_testButtonTX,
                 300, 300, 500, 500);
-        databaseHelper.acceptString("online");
-        if(databaseHelper.readString()==null || databaseHelper.readString().length() == 0)databaseHelper.sendToFirebase("online",getter_setter.get_Nickname());
-        else databaseHelper.sendToFirebase("online",databaseHelper.readString()+";"+getter_setter.get_Nickname());
+       // databaseHelper.acceptString("online");
+ // //      if(databaseHelper.readString()==null || databaseHelper.readString().length() == 0)databaseHelper.sendToFirebase("online",getter_setter.get_Nickname());
+     //   else databaseHelper.sendToFirebase("online",databaseHelper.readString()+";"+getter_setter.get_Nickname());
         //return str == null || str.length() == 0;
 
         //camera=new OrthographicCamera(Main.WIDTH*3f,Main.HEIGHT*3f);
@@ -195,7 +195,8 @@ public class GameSc implements Screen {
 
         testButton.draw(Main.frontBatch,Gdx.input.getX(),Main.HEIGHT-Gdx.input.getY());
         if(testButton.isButtonTouch(Gdx.input.getX(),Main.HEIGHT-Gdx.input.getY())){
-            tst.logIt("final_s", tst.toString());
+            databaseHelper.acceptString(getter_setter.get_Nickname());
+            //tst.logIt("final_s", tst.toString());
 
             /*GdxFIRDatabase.instance().inReference("gson_test").readValue(String.class)
                     .then(new Consumer<String>() {
