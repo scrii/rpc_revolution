@@ -116,15 +116,16 @@ public class DatabaseHelper {
             GdxFIRDatabase.instance().inReference(ref).readValue(String.class).then(new Consumer<String>() {
                 @Override
                 public void accept(String s) {
-                    send=s;
+                    readString(s);
                 }
 
             });
 
         }
 
-        public String readString(){
-            return send;
+        public void readString(String s){
+            Gdx.app.log("ahahaha",s);
+
         }
 
         //GDXFirebase.FirebaseDatabase().getReference(reference).addValueEventListener(vListener);
