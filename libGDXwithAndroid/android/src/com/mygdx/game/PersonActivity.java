@@ -27,17 +27,8 @@ public class PersonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person);
         name_person = findViewById(R.id.name_person);
-        confirm = findViewById(R.id.confirm);
         s = name_person.getText().toString();                                //Получение вводимого имени в String (true)
         GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                s = name_person.getText().toString();
-                if(!s.equals(""))getterANDSetterFile.set_Nickname(s);
-                else Toast.makeText(getApplicationContext(),"Никнейм не может быть пустым",Toast.LENGTH_SHORT).show();
-            }
-        });
         if(!s.equals(""))getterANDSetterFile.set_Nickname(s);
         else Toast.makeText(getApplicationContext(),"Никнейм не может быть пустым",Toast.LENGTH_SHORT).show();
         //===========================================================

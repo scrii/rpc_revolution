@@ -96,10 +96,10 @@ public class ScrollingActivity extends AppCompatActivity {
                         level = level + 1;
                         info_level.setText(level+"");
                         plus_health = getterANDSetterFile.get_Health();
-                        plus_health = plus_health + 5;
+                        plus_health = plus_health + 4;
                         getterANDSetterFile.set_Health(plus_health);
                         plus_attack = getterANDSetterFile.get_Attack();
-                        plus_attack = plus_attack + 5;
+                        plus_attack = plus_attack + 0.5;
                         getterANDSetterFile.set_Attack(plus_attack);
                     }
                     getterANDSetterFile.set_Guardian_Money(money);

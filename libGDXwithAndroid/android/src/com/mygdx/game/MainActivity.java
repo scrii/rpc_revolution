@@ -2,10 +2,14 @@ package com.mygdx.game;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -53,7 +57,13 @@ public class MainActivity extends AppCompatActivity {
     double elbrium,gold;
     int count=0,k;
     String[] words;
+    int spaces;
+    private static final int NOTIFY_ID = 101;
+    TextView word;
+    int sec=1;
+    CountDownTimer countDownTimer;
 
+    private static String CHANNEL_ID = "Elbrium channel";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         myListView = findViewById(R.id.listView);
         myListView.isFastScrollEnabled();
         input = findViewById(R.id.editText);
+        word = findViewById(R.id.number_of_words_entered);
         GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
         protect = getterANDSetterFile.get_Protection();
         health = getterANDSetterFile.get_Health();
@@ -73,26 +84,47 @@ public class MainActivity extends AppCompatActivity {
         nickname = getterANDSetterFile.get_Nickname();
         activity_main = findViewById(R.id.activity_main);
         button = findViewById(R.id.button2);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 s1 = input.getText().toString();
-                getterANDSetterFile.set_Message(s1);
-                if(nickname != null && !s1.equals("") && !s1.contains("\n"))FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), nickname));
-                else if(!s1.equals("") && !s1.contains("\n"))FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+                spaces = s1.length() - s1.replace(" ", "").length();
+                if(nickname != null && !s1.equals("") && !s1.contains("\n\n\n\n") && s1.length()!=spaces){
+                    if(s1.length()<550)FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), nickname));
+                    else Toast.makeText(getApplicationContext(),"Сообщение слишком большое!",Toast.LENGTH_SHORT).show();
+                }
+                //else if(!s1.equals("") && !s1.contains("\n\n\n\n\n") && s1.length()!=spaces)FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
                 else Toast.makeText(getApplicationContext(),"Сообщение не может быть пустым",Toast.LENGTH_SHORT).show();
+                getterANDSetterFile.set_Message(s1);
                 input.setText("");
                 s1 = input.getText().toString();
                 xy = true;
             }
         });
-        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
-            startActivityForResult(AuthUI.getInstance()
-                    .createSignInIntentBuilder()
-                    .build(), SIGN_IN_REQUEST_CODE);
-        } else {
-            displayChat();
+        countDownTimer = new CountDownTimer(sec*10,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                sec--;
+                count = input.getText().toString().length();
+                word.setText(count+"");
+            }
+
+            @Override
+            public void onFinish() {
+                count = input.getText().toString().length();
+                word.setText(count+"");
+                if (countDownTimer != null){
+                    sec = 1;
+                    countDownTimer.start();
+                }
+            }
+        };
+        if (countDownTimer!=null){
+            sec = 1;
+            countDownTimer.start();
         }
+        displayChat();
         final Intent playActivity = new Intent(this, AndroidLauncher.class);
 
         Button play = findViewById(R.id.start);
@@ -143,6 +175,23 @@ public class MainActivity extends AppCompatActivity {
                 words = s.split(" ");
                 if(!s.contains("*")&&!textMessage.getText().toString().contains("*") && words[0].equals("@"+nickname)){
                     textMessage.setTextColor(getResources().getColor(R.color.ping));
+                    Intent notificationIntent = new Intent(MainActivity.this, MainActivity.class);
+                    PendingIntent contentIntent = PendingIntent.getActivity(MainActivity.this,
+                            0, notificationIntent,
+                            PendingIntent.FLAG_CANCEL_CURRENT);
+
+                    NotificationCompat.Builder builder =
+                            new NotificationCompat.Builder(MainActivity.this, CHANNEL_ID)
+                                    .setSmallIcon(R.drawable.ic_launcher_background)
+                                    .setContentTitle("Напоминание")
+                                    .setContentText("Вас упоминули!")
+                                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                    .setContentIntent(contentIntent);
+
+                    NotificationManagerCompat notificationManager =
+                            NotificationManagerCompat.from(MainActivity.this);
+                    notificationManager.notify(NOTIFY_ID, builder.build());
+
                     s = "";
                 }
                 else if(!s.contains("*")&&!textMessage.getText().toString().contains("*"))textMessage.setTextColor(getResources().getColor(R.color.white));
