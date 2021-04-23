@@ -8,6 +8,7 @@ import androidx.core.app.NotificationManagerCompat;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.SpannableString;
@@ -55,10 +56,9 @@ public class MainActivity extends AppCompatActivity {
     String s,comment;
     EditText input;
     String s1;
-    double x = 0,y = 0;
     double protect,health,attack,speed;
     double elbrium,gold;
-    int count=0,k1,k2,g1,g2,m1,m2;
+    int count=0,k1,k2,g1,g2,n=-1;
     String[] words;
     int spaces;
     private static final int NOTIFY_ID = 101;
@@ -94,8 +94,12 @@ public class MainActivity extends AppCompatActivity {
                 s1 = input.getText().toString();
                 spaces = s1.length() - s1.replace(" ", "").length();
                 if(nickname != null && !s1.equals("") && !s1.contains("\n\n\n\n") && s1.length()!=spaces){
-                    if(s1.length()<=550)FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), nickname));
-                    else Toast.makeText(getApplicationContext(),"Сообщение слишком большое!",Toast.LENGTH_SHORT).show();
+                    if(s1.length()<=550){
+                        FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), nickname));
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(),"Сообщение слишком большое!",Toast.LENGTH_SHORT).show();
+                    }
                 }
                 //else if(!s1.equals("") && !s1.contains("\n\n\n\n\n") && s1.length()!=spaces)FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
                 else Toast.makeText(getApplicationContext(),"Сообщение не может быть пустым",Toast.LENGTH_SHORT).show();
@@ -105,12 +109,23 @@ public class MainActivity extends AppCompatActivity {
                 xy = true;
             }
         });
+        final Toast toast = Toast.makeText(getApplicationContext(),"Вы превысили ограничение!",Toast.LENGTH_SHORT);
         countDownTimer = new CountDownTimer(sec*10,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 sec--;
                 count = input.getText().toString().length();
                 word.setText(count+"");
+                if(count>550){
+                    word.setTextColor(Color.RED);
+                    n=1;
+                    toast.show();
+                }
+                else {
+                    n=0;
+                    toast.cancel();
+                    word.setTextColor(getResources().getColor(R.color.grey_500));
+                }
             }
 
             @Override
