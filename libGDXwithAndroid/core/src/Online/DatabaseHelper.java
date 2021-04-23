@@ -1,6 +1,7 @@
 package Online;
 
 import com.badlogic.gdx.Gdx;
+import com.google.gson.Gson;
 
 import java.util.Collection;
 import java.util.Map;
@@ -24,11 +25,14 @@ public class DatabaseHelper {
 
     String nickname;
     String send="default";
+    private Gson gson;
+    String metadata;
     //DatabaseReference reference = GDXFirebase.FirebaseDatabase().getReference("storetest");
     //String key = reference.push().getKey();
     //reference.child(key).setValue("some value");
 
     public DatabaseHelper(){
+        gson=new Gson();
     }
 
     public void sendToFirebase(String heading, String msg){
@@ -112,15 +116,29 @@ public class DatabaseHelper {
         //FirebaseDatabase fDB = GdxFIRDatabase.instance().inReference(reference).;
         }
 
+        public Message acceptPlayer(String ref){
+            acceptString(ref);
+            return toMessage(metadata);
+        }
+
         public void acceptString(String ref){
             GdxFIRDatabase.instance().inReference(ref).readValue(String.class).then(new Consumer<String>() {
                 @Override
                 public void accept(String s) {
+                    Gdx.app.log("tagg",toMessage(s).x+"");
                     readString(s);
                 }
 
             });
 
+        }
+
+        public void setMetadata(String s){
+            Gdx.app.log("tagg","{"+s);
+        }
+
+        public Message toMessage(String s){
+            return gson.fromJson("{"+s, Message.class);
         }
 
         public void readString(String s){
