@@ -22,12 +22,5 @@
             app:autoSave="true"
             app:rememberCount="3"
             app:rememberId="nickname"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/confirm"
-            android:layout_marginTop="185dp"
-            android:layout_gravity="right"
-            android:text="@string/confirm"/>
 
 </LinearLayout>
