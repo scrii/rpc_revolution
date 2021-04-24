@@ -126,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
                     word.setTextColor(getResources().getColor(R.color.grey_500));
                 }
             }
-
             @Override
             public void onFinish() {
                 count = input.getText().toString().length();

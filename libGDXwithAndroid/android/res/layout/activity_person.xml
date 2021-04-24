@@ -10,17 +10,23 @@
 
         <cn.zhaiyifan.rememberedittext.RememberEditText
             android:id="@+id/name_person"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="150dp"
-            android:hint="@string/enter_your_nickname"
-            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginRight="16dp"
+            android:hint="@string/enter_your_nickname"
+            android:inputType="text"
             app:autoFill="true"
             app:autoSave="true"
             app:rememberCount="3"
-            app:rememberId="nickname"/>
+            app:rememberId="nickname" />
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
 
 </LinearLayout>
