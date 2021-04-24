@@ -39,6 +39,7 @@
         <activity android:name=".EmailPasswordActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity"
+            android:noHistory="true"
             android:screenOrientation="portrait"/>
         <activity android:name=".PersonActivity"
             android:screenOrientation="portrait"/>
