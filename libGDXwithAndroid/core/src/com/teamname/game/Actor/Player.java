@@ -1,21 +1,17 @@
 package com.teamname.game.Actor;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.teamname.game.Main;
 import com.teamname.game.Screens.GameSc;
 
-import Online.DatabaseHelper;
+import FirebaseHelper.DatabaseHelper;
 //import Online.DatabaseHelper;
-import Online.Message;
-import Online.PlayerDataCollect;
-import Online.PlayerDataCreator;
+import FirebaseHelper.Message;
+import FirebaseHelper.PlayerDataCollect;
+import FirebaseHelper.PlayerDataCreator;
 import Tools.GetterANDSetterFile;
-import Tools.Joystick;
 import Tools.Point2D;
-import pl.mk5.gdx.fireapp.GdxFIRDatabase;
-import pl.mk5.gdx.fireapp.GdxFIRStorage;
 
 public class Player extends Actor {
 
@@ -44,7 +40,7 @@ public class Player extends Actor {
         playerCollectData=new PlayerDataCollect();
         getter_setter=new GetterANDSetterFile();
 
-        player_data=new Online.Message(getter_setter.get_Nickname(),GameSc.player_x,GameSc.player_y,
+        player_data=new Message(getter_setter.get_Nickname(),GameSc.player_x,GameSc.player_y,
                 getter_setter.get_Guardian_Money(),getter_setter.get_Ore_Elbrium(),
                 getter_setter.get_Speed(),getter_setter.get_Attack(),getter_setter.get_Health(),
                 getter_setter.get_Protection(),"back","front");

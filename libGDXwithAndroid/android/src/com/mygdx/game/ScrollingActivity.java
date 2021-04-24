@@ -1,14 +1,11 @@
 package com.mygdx.game;
 
 import android.content.Intent;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Bundle;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,15 +15,17 @@ import android.os.CountDownTimer;
 import android.text.SpannableString;
 
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.File;
+
+import FirebaseHelper.Message;
+import FirebaseHelper.Online;
+
 
 public class ScrollingActivity extends AppCompatActivity {
 
@@ -41,7 +40,8 @@ public class ScrollingActivity extends AppCompatActivity {
     CountDownTimer countDownTimer;
     GetterANDSetterFile getterANDSetterFile;
     // //
-    public Online.Message player_data;
+    public Message player_data;
+    Online online;
     // //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +50,13 @@ public class ScrollingActivity extends AppCompatActivity {
         getterANDSetterFile = new GetterANDSetterFile();
 
         // //
-        player_data=new Online.Message(getterANDSetterFile.get_Nickname(),-1,-1,
+        player_data=new Message(getterANDSetterFile.get_Nickname(),-1,-1,
                 getterANDSetterFile.get_Guardian_Money(),getterANDSetterFile.get_Ore_Elbrium(),
                 getterANDSetterFile.get_Speed(),getterANDSetterFile.get_Attack(),getterANDSetterFile.get_Health(),
                 getterANDSetterFile.get_Protection(),"back","front");
-        FirebaseDatabase.getInstance().getReference("LONGDATA_"+getterANDSetterFile.get_Nickname()).setValue(player_data.toString());
+        FirebaseDatabase.getInstance().getReference("LONGDATA").push().setValue(player_data.toString());
+        online=new Online();
+        //online.online(0);
         // //
 
         //getterANDSetterFile.set_Guardian_Money(1000000.0);

@@ -1,8 +1,7 @@
-package Online;
+package FirebaseHelper;
 
 import com.badlogic.gdx.Gdx;
 import com.google.gson.Gson;
-import com.teamname.game.Screens.MenuSc;
 
 
 public class Message {

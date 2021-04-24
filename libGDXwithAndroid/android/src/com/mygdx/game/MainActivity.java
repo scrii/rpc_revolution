@@ -1,11 +1,9 @@
 package com.mygdx.game;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,7 +11,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
@@ -24,24 +21,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.github.library.bubbleview.BubbleTextView;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 
-
-import Online.DatabaseHelper;
-import Online.PlayerDataCreator;
+import FirebaseHelper.Online;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,9 +49,19 @@ public class MainActivity extends AppCompatActivity {
     TextView word;
     int sec=1;
     CountDownTimer countDownTimer;
+    // //
+    GetterANDSetterFile getterANDSetterFile;
+    Online online;
+    // //
 
     private static String CHANNEL_ID = "Elbrium channel";
-
+    // //
+    @Override
+    protected void onDestroy() {
+        Log.d("MAINACTIVITY","KILLED");
+        super.onDestroy();
+    }
+    // //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +71,11 @@ public class MainActivity extends AppCompatActivity {
         myListView.isFastScrollEnabled();
         input = findViewById(R.id.editText);
         word = findViewById(R.id.number_of_words_entered);
-        GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
+        getterANDSetterFile = new GetterANDSetterFile();
+        // //
+        online=new Online();
+        online.online(0);
+        // //
         protect = getterANDSetterFile.get_Protection();
         health = getterANDSetterFile.get_Health();
         attack = getterANDSetterFile.get_Attack();
@@ -87,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         nickname = getterANDSetterFile.get_Nickname();
         activity_main = findViewById(R.id.activity_main);
         button = findViewById(R.id.button2);
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,7 +150,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View v) {
+                // //
+                MainActivity.this.finish();
+                // //
                 startActivity(playActivity);
+
             }
         });
     }

@@ -1,24 +1,13 @@
-package Online;
+package FirebaseHelper;
 
 import com.badlogic.gdx.Gdx;
 
-import java.awt.event.MouseWheelEvent;
-
-import Tools.Point2D;
 import de.tomgrill.gdxfirebase.core.GDXFirebase;
-import de.tomgrill.gdxfirebase.core.database.FirebaseDatabase;
-import pl.mk5.gdx.fireapp.GdxFIRApp;
-import pl.mk5.gdx.fireapp.GdxFIRAuth;
-import pl.mk5.gdx.fireapp.GdxFIRDatabase;
-import pl.mk5.gdx.fireapp.GdxFIRStorage;
-import pl.mk5.gdx.fireapp.functional.Consumer;
-import pl.mk5.gdx.fireapp.promises.ListenerPromise;
-import pl.mk5.gdx.fireapp.promises.Promise;
 
 public class PlayerDataCollect {
 
     //количестве игроков, возможно, стоит закинуть их под общее поле
-    DatabaseHelper databaseHelper;
+    FirebaseHelper.DatabaseHelper databaseHelper;
     String pos;
 
     public PlayerDataCollect() {

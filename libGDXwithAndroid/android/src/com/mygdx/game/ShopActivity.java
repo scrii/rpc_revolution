@@ -2,7 +2,6 @@ package com.mygdx.game;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +14,7 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import com.google.firebase.database.FirebaseDatabase;
 
-import Online.Message;
+import FirebaseHelper.Message;
 
 
 public class ShopActivity extends AppCompatActivity {
@@ -48,7 +47,7 @@ public class ShopActivity extends AppCompatActivity {
         setContentView(R.layout.shop_activity);
         // //
         getter_setter=new GetterANDSetterFile();
-        player_data=new Online.Message(getter_setter.get_Nickname(),-1,-1,
+        player_data=new Message(getter_setter.get_Nickname(),-1,-1,
                 getter_setter.get_Guardian_Money(),getter_setter.get_Ore_Elbrium(),
                 getter_setter.get_Speed(),getter_setter.get_Attack(),getter_setter.get_Health(),
                 getter_setter.get_Protection(),"back","front");

@@ -25,7 +25,7 @@ public class GetterANDSetterFile {
     public double protection = 0;
     public double speed = 0;
     public String nickname = "";
-    GetterANDSetterFile(){
+    public GetterANDSetterFile(){
 
     }
     public int get_Sign(){
