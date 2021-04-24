@@ -1,9 +1,13 @@
 package com.teamname.game.Actor;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.teamname.game.Main;
 import com.teamname.game.Screens.GameSc;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import FirebaseHelper.DatabaseHelper;
 //import Online.DatabaseHelper;
@@ -26,6 +30,9 @@ public class Player extends Actor {
     public PlayerDataCollect playerCollectData;
     private Message player_data;
     private GetterANDSetterFile getter_setter;
+    private Timer timer;
+    private static final int logOutSec=4;
+    private int counter=logOutSec;
 
 
 
@@ -45,7 +52,7 @@ public class Player extends Actor {
                 getter_setter.get_Speed(),getter_setter.get_Attack(),getter_setter.get_Health(),
                 getter_setter.get_Protection(),"back","front");
         databaseHelper.sendToFirebase(getter_setter.get_Nickname(), player_data.toString());
-
+        timeCheck();
     }
 
     // метод оповещения о движении
@@ -99,14 +106,13 @@ public class Player extends Actor {
        // test push = GdxFIRDatabase.instance().inReference("test").push().setValue(new Message("metadata"));
 
         if(isMove){
+            counter=logOutSec;
             player_data.x=send_in_ONLINE.getX();
             player_data.y=send_in_ONLINE.getY();
             databaseHelper.sendToFirebase(getter_setter.get_Nickname(),player_data.toString());
             //playerCollectData.getPosition("scri");
-
-
-
         }
+
 
         //Gdx.app.log("PLAYER_MOVE",isMove+"");
 
@@ -114,6 +120,20 @@ public class Player extends Actor {
         //if(isMove)databaseHelper.sendCoords("email",send_in_ONLINE.getX(),send_in_ONLINE.getY());
 
 
+    }
+
+    public void timeCheck(){
+        timer=new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                if(counter==0){
+                    Gdx.app.log("PLayer", "afk for "+logOutSec+" seconds");
+                    databaseHelper.logOut();}
+                else counter--;
+            }
+        };
+        timer.scheduleAtFixedRate(task,0,1000);
     }
 
     public Point2D getPosition(){

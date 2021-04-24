@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     CountDownTimer countDownTimer;
     // //
     GetterANDSetterFile getterANDSetterFile;
-    Online online;
+    //Online online;
     // //
 
     private static String CHANNEL_ID = "Elbrium channel";
@@ -73,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
         word = findViewById(R.id.number_of_words_entered);
         getterANDSetterFile = new GetterANDSetterFile();
         // //
-        online=new Online();
-        online.online(0);
+        //online=new Online();
+        //online.online(0);
         // //
         protect = getterANDSetterFile.get_Protection();
         health = getterANDSetterFile.get_Health();

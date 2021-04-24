@@ -105,7 +105,7 @@ public class DatabaseHelper {
         public void readString(int case_){
 
             // 0 - reference online
-            // 1 -содержит ли поле online никнейм игрока
+            // 1 - удалить из поля online, закрыть приложение
 
             switch (case_){
                 case 0: GdxFIRDatabase.instance().inReference("online").readValue(String.class).then(new Consumer<String>() {
@@ -131,7 +131,9 @@ public class DatabaseHelper {
         }
 
         private void tmp_delete_from_online(String s){
-            if(s!=null&s.contains(getter_setter.get_Nickname()))sendToFirebase("online", s.replace(getter_setter.get_Nickname(),""));
+            if(s!=null&s.contains(getter_setter.get_Nickname()))sendToFirebase("online", s.replace(getter_setter.get_Nickname()+";",""));
+            Gdx.app.log("Game_manager", "GAME STOPED");
+            Gdx.app.exit();
         }
 
 
@@ -152,6 +154,10 @@ public class DatabaseHelper {
         }
 
         public String stringReturn(String s){return s;}
+
+        public void logOut(){
+            readString(1);
+        }
 
 
         //GDXFirebase.FirebaseDatabase().getReference(reference).addValueEventListener(vListener);
