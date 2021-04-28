@@ -2,11 +2,13 @@ package com.mygdx.game;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.SpannableString;
@@ -16,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,44 +27,51 @@ import android.widget.Toast;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.github.library.bubbleview.BubbleTextView;
 import com.google.firebase.database.FirebaseDatabase;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
-import FirebaseHelper.Online;
+
+import static androidx.core.app.NotificationCompat.PRIORITY_HIGH;
 
 public class MainActivity extends AppCompatActivity {
 
     private static int SIGN_IN_REQUEST_CODE = 1;
     public FirebaseListAdapter<Message> adapter;
     RelativeLayout activity_main;
-    Button button;
-    String nickname;
+    ImageButton button;
+    String nickname; //
     ListView myListView;
     BubbleTextView textMessage;
     boolean xy = true; //34
-    String s,comment;
+    String s,comment,text_notify;
     EditText input;
     String s1;
     double protect,health,attack,speed;
     double elbrium,gold;
-    int count=0,k1,k2,g1,g2,n=-1;
-    String[] words;
-    int spaces;
-    private static final int NOTIFY_ID = 101;
+    int count=0,k1,k2,g1,g2,n=-1,p=0;
+    String[] words,mas;
+    int spaces,int_mas=0;
     TextView word;
-    int sec=1;
+    int sec=1,z=1;
     CountDownTimer countDownTimer;
-    // //
     GetterANDSetterFile getterANDSetterFile;
-    //Online online;
-    // //
 
-    private static String CHANNEL_ID = "Elbrium channel";
-    // //
+    public String time_string="";
+    private NotificationManager notificationManager;
+    private static final int NOTIFY_ID = 1;
+    private static final String CHANNEL_ID = "CHANNEL_ID";
+
+
+
     @Override
     protected void onDestroy() {
         Log.d("MAINACTIVITY","KILLED");
         super.onDestroy();
     }
-    // //
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,10 +82,6 @@ public class MainActivity extends AppCompatActivity {
         input = findViewById(R.id.editText);
         word = findViewById(R.id.number_of_words_entered);
         getterANDSetterFile = new GetterANDSetterFile();
-        // //
-        //online=new Online();
-        //online.online(0);
-        // //
         protect = getterANDSetterFile.get_Protection();
         health = getterANDSetterFile.get_Health();
         attack = getterANDSetterFile.get_Attack();
@@ -100,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Сообщение слишком большое!",Toast.LENGTH_SHORT).show();
                     }
                 }
-                //else if(!s1.equals("") && !s1.contains("\n\n\n\n\n") && s1.length()!=spaces)FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
                 else Toast.makeText(getApplicationContext(),"Сообщение не может быть пустым",Toast.LENGTH_SHORT).show();
                 getterANDSetterFile.set_Message(s1);
                 input.setText("");
@@ -157,7 +162,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void displayChat() {
-
         ListView listMessages = findViewById(R.id.listView);
         adapter = new FirebaseListAdapter<Message>(MainActivity.this, Message.class, R.layout.list_item, FirebaseDatabase.getInstance().getReference("Message")) {
             @Override
@@ -172,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
                     myListView.smoothScrollToPosition(2000000000);
                 }
                 else author.setTextColor(getResources().getColor(R.color.user2));
+
                 int kolvo_symbols = 0;
                 s = textMessage.getText().toString();
                 comment = textMessage.getText().toString();
@@ -185,7 +190,6 @@ public class MainActivity extends AppCompatActivity {
                                 SpannableStringBuilder builder = new SpannableStringBuilder();
                                 SpannableString colorSpannable= new SpannableString(s);
                                 colorSpannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.comment)),k1,k2+1,0);
-                                //textMessage.setTextColor(getResources().getColor(R.color.comment));
                                 builder.append(colorSpannable);
                                 textMessage.setText(builder, TextView.BufferType.SPANNABLE);
                                 kolvo_symbols = 0;
@@ -205,23 +209,33 @@ public class MainActivity extends AppCompatActivity {
                     colorSpannable1.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.ping)),g1,g2+1,0);
                     builder1.append(colorSpannable1);
                     textMessage.setText(builder1, TextView.BufferType.SPANNABLE);
-                    Intent notificationIntent = new Intent(MainActivity.this, MainActivity.class);
-                    PendingIntent contentIntent = PendingIntent.getActivity(MainActivity.this,
-                            0, notificationIntent,
-                            PendingIntent.FLAG_CANCEL_CURRENT);
 
-                    NotificationCompat.Builder builder =
-                            new NotificationCompat.Builder(MainActivity.this, CHANNEL_ID)
-                                    .setSmallIcon(R.drawable.ic_launcher_background)
-                                    .setContentTitle("Напоминание")
-                                    .setContentText("Вас упоминули!")
-                                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                                    .setContentIntent(contentIntent);
-
-                    NotificationManagerCompat notificationManager =
-                            NotificationManagerCompat.from(MainActivity.this);
-                    notificationManager.notify(NOTIFY_ID, builder.build());
-
+                    //Уведомления
+                    Date currentDate = new Date();
+                    DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+                    String timeText = timeFormat.format(currentDate);
+                    if(timeText.contains(timeFormat.format(model.getMessageTime()+1000)+"") || timeText.contains(timeFormat.format(model.getMessageTime()+2000)+""))p=1;
+                    else p=0;
+                    Log.d("Time_m1",timeText);
+                    Log.d("Time_m2",model.getMessageTime()+"");
+                    if(p==1){
+                        notificationManager = (NotificationManager)getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                        NotificationCompat.Builder notificationBuilder =
+                                new NotificationCompat.Builder(getApplicationContext(),CHANNEL_ID)
+                                        .setAutoCancel(false)
+                                        .setSmallIcon(R.drawable.ic_launcher_foreground)
+                                        .setWhen(System.currentTimeMillis())
+                                        .setContentIntent(pendingIntent)
+                                        .setContentTitle("Последнее упоминание")
+                                        .setContentText(author.getText().toString() + ": " + textMessage.getText().toString())
+                                        .setPriority(PRIORITY_HIGH);
+                        createChannelIfNeeded(notificationManager);
+                        notificationManager.notify(NOTIFY_ID,notificationBuilder.build());
+                    }
+                    //Уведомления
                     s = "";
                 }
                 else if(!s.contains("*")&&!textMessage.getText().toString().contains("*"))textMessage.setTextColor(getResources().getColor(R.color.white));
@@ -234,5 +248,11 @@ public class MainActivity extends AppCompatActivity {
         };
         listMessages.setAdapter(adapter);
 
+    }
+    public static void createChannelIfNeeded(NotificationManager manager){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID,CHANNEL_ID,NotificationManager.IMPORTANCE_DEFAULT);
+            manager.createNotificationChannel(notificationChannel);
+        }
     }
 }

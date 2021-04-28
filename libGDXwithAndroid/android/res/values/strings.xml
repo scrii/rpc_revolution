@@ -50,7 +50,7 @@
     <string name="room_one">R1</string>
     <string name="go_to_space">В путь!</string>
     <string name="send">Send</string>
-    <string name="enter_your_nickname">Введите своё имя</string>
+    <string name="enter_your_nickname">Введите свой никнейм</string>
     <string name="confirm">Подтведить</string>
     <string name="level">Уровень</string>
     <string name="int_start_level">0</string>

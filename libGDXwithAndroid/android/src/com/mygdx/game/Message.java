@@ -1,13 +1,18 @@
 package com.mygdx.game;
 
+import java.util.Date;
+
 public class Message {
 
     private String textMessage;
     private String author;
+    private long messageTime;
+    private String r_message="";
 
     public Message(String textMessage, String author) {
         this.textMessage = textMessage;
         this.author = author;
+        messageTime = new Date().getTime();
     }
 
     public Message() {
@@ -19,9 +24,7 @@ public class Message {
 
     public void setTextMessage(String textMessage) {
         this.textMessage = textMessage;
-        //return textMessage;
     }
-
 
     public String getAuthor() {
         return author;
@@ -31,4 +34,18 @@ public class Message {
         this.author = author;
     }
 
+    public long getMessageTime() {
+        return messageTime;
+    }
+
+    public void setMessageTime(long messageTime) {
+        this.messageTime = messageTime;
+    }
+
+    public String last_message(){
+        for (int i = 0; i < 10000000; i++) {
+            r_message = getTextMessage();
+        }
+        return r_message;
+    }
 }
