@@ -15,6 +15,7 @@ import android.os.CountDownTimer;
 import android.text.SpannableString;
 
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -142,11 +143,15 @@ public class ScrollingActivity extends AppCompatActivity {
         s1.setSpan(new ForegroundColorSpan(Color.RED), 0, s1.length(), 0);
         item2.setTitle(s1);
 
-        MenuItem item3 = menu.getItem(2);                                              //Красный цвет Выход в menu_scrolling
+        MenuItem item4 = menu.getItem(2);
+        SpannableString s3 = new SpannableString("О нас");
+        s3.setSpan(new ForegroundColorSpan(Color.RED), 0, s3.length(), 0);
+        item4.setTitle(s3);
+
+        MenuItem item3 = menu.getItem(3);                                              //Красный цвет Выход в menu_scrolling
         SpannableString s2 = new SpannableString("Выход");
         s2.setSpan(new ForegroundColorSpan(Color.RED), 0, s2.length(), 0);
         item3.setTitle(s2);
-
         return true;
     }
 
@@ -159,6 +164,10 @@ public class ScrollingActivity extends AppCompatActivity {
         }
         if(id == R.id.shop){
             startActivity(new Intent(ScrollingActivity.this,ShopActivity.class));
+            return true;
+        }
+        if(id == R.id.about_us_menu){
+            startActivity(new Intent(ScrollingActivity.this,About_us.class));
             return true;
         }
         if (id == R.id.exit) { //здесь предствален обработчик нажатия типа setOnClickListener

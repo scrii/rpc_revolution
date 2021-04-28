@@ -62,5 +62,9 @@
     <string name="sale_ore">Продать Elbrium</string>
     <string name="maximum">550</string>
     <string name="backslash">/</string>
+    <string name="wifi_error">Ой, кажется что-то пошло не так... Проверьте своё подключение к интернету.</string>
+    <string name="person_menu">Пользователь</string>
+    <string name="shop_menu">Магазин</string>
+    <string name="about_us_menu">О нас</string>
 
 </resources>

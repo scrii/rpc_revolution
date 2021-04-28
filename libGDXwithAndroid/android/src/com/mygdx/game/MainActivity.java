@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private static int SIGN_IN_REQUEST_CODE = 1;
     public FirebaseListAdapter<Message> adapter;
     RelativeLayout activity_main;
-    Button button;
+    ImageButton button;
     String nickname;
     ListView myListView;
     BubbleTextView textMessage;
@@ -103,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
                 //else if(!s1.equals("") && !s1.contains("\n\n\n\n\n") && s1.length()!=spaces)FirebaseDatabase.getInstance().getReference("Message").push().setValue(new Message(input.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
                 else Toast.makeText(getApplicationContext(),"Сообщение не может быть пустым",Toast.LENGTH_SHORT).show();
                 getterANDSetterFile.set_Message(s1);
+                Intent playActivity = new Intent(MainActivity.this, AndroidLauncher.class);
+                if(s1.contains("#join"))startActivity(playActivity);
+                if(s1.contains("#leave"))startActivity(new Intent(MainActivity.this,ScrollingActivity.class));
                 input.setText("");
                 s1 = input.getText().toString();
                 xy = true;
@@ -147,10 +151,8 @@ public class MainActivity extends AppCompatActivity {
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
-
             public void onClick(View v) {
                 startActivity(playActivity);
-
             }
         });
     }
@@ -209,7 +211,6 @@ public class MainActivity extends AppCompatActivity {
                     PendingIntent contentIntent = PendingIntent.getActivity(MainActivity.this,
                             0, notificationIntent,
                             PendingIntent.FLAG_CANCEL_CURRENT);
-
                     NotificationCompat.Builder builder =
                             new NotificationCompat.Builder(MainActivity.this, CHANNEL_ID)
                                     .setSmallIcon(R.drawable.ic_launcher_background)
@@ -217,15 +218,14 @@ public class MainActivity extends AppCompatActivity {
                                     .setContentText("Вас упоминули!")
                                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                                     .setContentIntent(contentIntent);
-
                     NotificationManagerCompat notificationManager =
                             NotificationManagerCompat.from(MainActivity.this);
                     notificationManager.notify(NOTIFY_ID, builder.build());
-
                     s = "";
                 }
                 else if(!s.contains("*")&&!textMessage.getText().toString().contains("*"))textMessage.setTextColor(getResources().getColor(R.color.white));
                 if(s.contains("@") && !s.contains("@"+nickname))textMessage.setTextColor(getResources().getColor(R.color.ping2));
+                if((s.contains("#join") || s.contains("#leave")))textMessage.setTextColor(getResources().getColor(R.color.command1));
                 if(xy){
                     myListView.smoothScrollToPosition(2000000000);
                     xy = false;
