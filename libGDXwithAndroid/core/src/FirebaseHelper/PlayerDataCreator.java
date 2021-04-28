@@ -1,14 +1,5 @@
-package Online;
+package FirebaseHelper;
 
-
-import com.teamname.game.Actor.Player;
-
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 import Tools.GetterANDSetterFile;
 import Tools.Point2D;
@@ -24,7 +15,7 @@ public class PlayerDataCreator {
     Message sendToFirebase;
     GetterANDSetterFile getter_setter;
 
-    DatabaseHelper databaseHelper;
+    FirebaseHelper.DatabaseHelper databaseHelper;
 
 
 

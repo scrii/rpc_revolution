@@ -1,24 +1,14 @@
-package Online;
+package FirebaseHelper;
 
 import com.badlogic.gdx.Gdx;
 import com.google.gson.Gson;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.Set;
 
-
-import Tools.Point2D;
-import de.tomgrill.gdxfirebase.core.FirebaseLoader;
+import Tools.GetterANDSetterFile;
 import de.tomgrill.gdxfirebase.core.GDXFirebase;
 //import de.tomgrill.gdxfirebase.core.database.DatabaseReference;
-import de.tomgrill.gdxfirebase.core.database.DataSnapshot;
-import de.tomgrill.gdxfirebase.core.database.DatabaseError;
-import de.tomgrill.gdxfirebase.core.database.FirebaseDatabase;
-import de.tomgrill.gdxfirebase.core.database.ValueEventListener;
 import pl.mk5.gdx.fireapp.GdxFIRApp;
 import pl.mk5.gdx.fireapp.GdxFIRDatabase;
-import pl.mk5.gdx.fireapp.distributions.DatabaseDistribution;
 import pl.mk5.gdx.fireapp.functional.Consumer;
 
 public class DatabaseHelper {
@@ -26,13 +16,15 @@ public class DatabaseHelper {
     String nickname;
     String send="default";
     private Gson gson;
-    String metadata;
+    String s;
+    GetterANDSetterFile getter_setter;
     //DatabaseReference reference = GDXFirebase.FirebaseDatabase().getReference("storetest");
     //String key = reference.push().getKey();
     //reference.child(key).setValue("some value");
 
     public DatabaseHelper(){
         gson=new Gson();
+        getter_setter=new GetterANDSetterFile();
     }
 
     public void sendToFirebase(String heading, String msg){
@@ -48,7 +40,9 @@ public class DatabaseHelper {
     }
 
     public void entryNotify(){
-        sendToFirebase("players",nickname);
+        //acceptString("online");
+        if(s.length()>0)sendToFirebase("online",s+";"+getter_setter.get_Nickname());
+        else sendToFirebase("online",getter_setter.get_Nickname());
     }
 
     public void addField(String reference, String field){
@@ -64,8 +58,18 @@ public class DatabaseHelper {
     }
 
 
+    public void collectPlayer(String ref){
+        GdxFIRDatabase.instance().inReference(ref).readValue(Message.class).then(new Consumer<Message>() {
+            @Override
+            public void accept(Message message) {
+                logger(message);
+            }
+        });
+    }
 
-
+    public void logger(Message message){
+        Gdx.app.log("TAGG", message.x+"");
+    }
 
     public void sendCoords(String email, float x, float y){
         GDXFirebase.FirebaseDatabase().getReference(email).child("coordinats_x").setValue(x);
@@ -93,58 +97,68 @@ public class DatabaseHelper {
 
     //public Point2D getPosition()
 
-    public void readValue(String reference){
-        Message temp;
-        DatabaseDistribution mDB = GdxFIRDatabase.instance().inReference(reference);
-        ValueEventListener vListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds : dataSnapshot.getChildren()){
-                    Message fromFirebase = ds.getValue(Message.class);
-                    assert fromFirebase != null;
-                    Gdx.app.log("COORDS!",fromFirebase.x+" "+fromFirebase.y);
-                }
+
+
+
+
+
+        public void readString(int case_){
+
+            // 0 - reference online
+            // 1 - удалить из поля online, закрыть приложение
+
+            switch (case_){
+                case 0: GdxFIRDatabase.instance().inReference("online").readValue(String.class).then(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) {
+                        tmp_online(s);
+                    }
+                });break;
+
+                case 1: GdxFIRDatabase.instance().inReference("online").readValue(String.class).then(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) {
+                        tmp_delete_from_online(s);
+                    }
+                });break;
             }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-
-            
-        };
-        //FirebaseDatabase fDB = GdxFIRDatabase.instance().inReference(reference).;
         }
 
-        public Message acceptPlayer(String ref){
-            acceptString(ref);
-            return toMessage(metadata);
+        private void tmp_online(String s){
+            if(s==null)sendToFirebase("online", getter_setter.get_Nickname()+";");
+            else if(!s.contains(getter_setter.get_Nickname()))sendToFirebase("online", s+getter_setter.get_Nickname()+";");
         }
 
-        public void acceptString(String ref){
-            GdxFIRDatabase.instance().inReference(ref).readValue(String.class).then(new Consumer<String>() {
-                @Override
-                public void accept(String s) {
-                    Gdx.app.log("tagg",toMessage(s).x+"");
-                    readString(s);
-                }
-
-            });
-
+        private void tmp_delete_from_online(String s){
+            if(s!=null&s.contains(getter_setter.get_Nickname()))sendToFirebase("online", s.replace(getter_setter.get_Nickname()+";",""));
+            Gdx.app.log("Game_manager", "GAME STOPED");
+            Gdx.app.exit();
         }
 
-        public void setMetadata(String s){
-            Gdx.app.log("tagg","{"+s);
-        }
+
+
+
+
 
         public Message toMessage(String s){
             return gson.fromJson("{"+s, Message.class);
         }
 
-        public void readString(String s){
-            Gdx.app.log("ahahaha",s);
-
+        public void setMetadata(String s){
+            this.s=s;
         }
+
+        public void createPlayer(){
+            GdxFIRDatabase.instance().inReference(getter_setter.get_Nickname()).setValue(new Message(getter_setter.get_Nickname(), 0,0,getter_setter.get_Guardian_Money(),getter_setter.get_Ore_Elbrium(),getter_setter.get_Speed(),getter_setter.get_Attack(),getter_setter.get_Health(),getter_setter.get_Health(),"back","front").toString());
+        }
+
+        public String stringReturn(String s){return s;}
+
+        public void logOut(){
+            readString(1);
+        }
+
 
         //GDXFirebase.FirebaseDatabase().getReference(reference).addValueEventListener(vListener);
         //Gdx.app.log("READED_PL_DATA",GdxFIRDatabase.instance().inReference(reference).readValue(Message.class).toString());

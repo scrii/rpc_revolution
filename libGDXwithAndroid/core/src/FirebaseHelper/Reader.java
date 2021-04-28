@@ -1,4 +1,4 @@
-package Online;
+package FirebaseHelper;
 
 import com.badlogic.gdx.Gdx;
 

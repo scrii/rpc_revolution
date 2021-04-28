@@ -6,8 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.teamname.game.Main;
 import com.teamname.game.Screens.GameSc;
 
-import Online.Message;
-
 import Tools.Point2D;
 import pl.mk5.gdx.fireapp.GdxFIRDatabase;
 

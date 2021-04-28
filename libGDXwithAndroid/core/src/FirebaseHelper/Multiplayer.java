@@ -1,10 +1,10 @@
-package Online;
+package FirebaseHelper;
 
 import java.util.ArrayList;
 
 public class Multiplayer {
     ArrayList<String> players;
-    DatabaseHelper databaseHelper;
+    FirebaseHelper.DatabaseHelper databaseHelper;
 
     public Multiplayer(){
         databaseHelper=new DatabaseHelper();

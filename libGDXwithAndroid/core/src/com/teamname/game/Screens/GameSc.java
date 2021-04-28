@@ -3,13 +3,10 @@ package com.teamname.game.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.google.gson.Gson;
 import com.teamname.game.Actor.Bullet;
@@ -19,19 +16,15 @@ import com.teamname.game.Main;
 //import com.
 
 
-import Online.DatabaseHelper;
+import FirebaseHelper.DatabaseHelper;
 //import Online.Getter;
-import Online.Message;
-import Online.PlayerDataCreator;
-import Online.Test;
+import FirebaseHelper.Message;
 import Tools.BulletGenerator;
 import Tools.Buttons;
 import Tools.GetterANDSetterFile;
 import Tools.Joystick;
 import Tools.Point2D;
 import Tools.Spawner;
-import pl.mk5.gdx.fireapp.GdxFIRDatabase;
-import pl.mk5.gdx.fireapp.functional.Consumer;
 
 public class GameSc implements Screen {
 
@@ -97,9 +90,9 @@ public class GameSc implements Screen {
         //databaseHelper.setNickname(player.nickname);
         //databaseHelper.entryNotify();
         camera=new OrthographicCamera(Main.BACKGROUND_WIDTH,Main.BACKGROUND_HEIGHT);
-        tst = new Message("author",0,0,0,0,0,0,0,0,"back","front");
         testButton=new Buttons(Main.un_testButtonTX,Main.p_testButtonTX,
                 300, 300, 500, 500);
+        databaseHelper.readString(0);
        // databaseHelper.acceptString("online");
  // //      if(databaseHelper.readString()==null || databaseHelper.readString().length() == 0)databaseHelper.sendToFirebase("online",getter_setter.get_Nickname());
      //   else databaseHelper.sendToFirebase("online",databaseHelper.readString()+";"+getter_setter.get_Nickname());
@@ -196,7 +189,10 @@ public class GameSc implements Screen {
         testButton.draw(Main.frontBatch,Gdx.input.getX(),Main.HEIGHT-Gdx.input.getY());
         if(testButton.isButtonTouch(Gdx.input.getX(),Main.HEIGHT-Gdx.input.getY())){
             //databaseHelper.acceptString(getter_setter.get_Nickname());
-            databaseHelper.acceptString("scri");
+           // databaseHelper.entryNotify();
+           //databaseHelper.acceptString("scri");
+
+            databaseHelper.collectPlayer(getter_setter.get_Nickname());
 
             //tst.logIt("final_s", tst.toString());
 
