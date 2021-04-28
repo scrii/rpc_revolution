@@ -65,7 +65,7 @@ public class ScrollingActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         CollapsingToolbarLayout toolBarLayout = findViewById(R.id.toolbar_layout);
-        toolBarLayout.setTitle(getTitle());
+        //toolBarLayout.setTitle(getterANDSetterFile.get_Nickname());
         TextView info_level = findViewById(R.id.level);
         TextView info_money = findViewById(R.id.money);
         Button room1  = findViewById(R.id.room_one_button);
@@ -87,10 +87,12 @@ public class ScrollingActivity extends AppCompatActivity {
                     seconds--;
                     info_money.setText(getterANDSetterFile.get_Guardian_Money() + "");
                     info_level.setText(getterANDSetterFile.get_Guardian_Level()+"");
+                    toolBarLayout.setTitle(getterANDSetterFile.get_Nickname());
                 }
 
                 @Override
                 public void onFinish() {
+                    toolBarLayout.setTitle(getterANDSetterFile.get_Nickname());
                     experience = experience + 1;
                     money = money + 1;
                     info_money.setText(money + "");
@@ -160,22 +162,21 @@ public class ScrollingActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.exit) { //здесь предствален обработчик нажатия типа setOnClickListener
-            new File("/data/data/com.mygdx.game/Sign.txt").delete();
-            new File("/data/data/com.mygdx.game/The_core_of_the_second_life.txt").delete();
-            new File("/data/data/com.mygdx.game/Jump_into_hyperspace.txt").delete();
-            new File("/data/data/com.mygdx.game/Health.txt").delete();
-            new File("/data/data/com.mygdx.game/Protection.txt").delete();
-            new File("/data/data/com.mygdx.game/Attack.txt").delete();
-            new File("/data/data/com.mygdx.game/Speed.txt").delete();
+            GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
+            getterANDSetterFile.set_Guardian_Money(0.0);
+            getterANDSetterFile.set_Guardian_Exp(0);
+            getterANDSetterFile.set_Guardian_Level(0);
+            getterANDSetterFile.set_Sign(0);
+            getterANDSetterFile.set_Ore_Elbrium(0.0);
+            getterANDSetterFile.set_Coefficient_Attack(0);
+            getterANDSetterFile.set_Coefficient_Protection(0);
+            getterANDSetterFile.set_Coefficient_Speed(0);
+            getterANDSetterFile.set_Health(10.0);
+            getterANDSetterFile.set_Attack(3.0);
+            getterANDSetterFile.set_Protection(3.0);
+            getterANDSetterFile.set_Speed(3.0);
             new File("/data/data/com.mygdx.game/Maneuverability.txt").delete();
-            new File("/data/data/com.mygdx.game/Ore_Elbrium.txt").delete();
             new File("/data/data/com.mygdx.game/Message.txt").delete();
-            new File("/data/data/com.mygdx.game/guardian_money.txt").delete();
-            new File("/data/data/com.mygdx.game/guardian_level.txt").delete();
-            new File("/data/data/com.mygdx.game/guardian_exp.txt").delete();
-            new File("/data/data/com.mygdx.game/CoefficientAttack.txt").delete();
-            new File("/data/data/com.mygdx.game/CoefficientProtection.txt").delete();
-            new File("/data/data/com.mygdx.game/CoefficientSpeed.txt").delete();
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(this,ScrollingActivity.class));
             return true;

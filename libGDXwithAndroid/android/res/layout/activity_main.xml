@@ -11,10 +11,11 @@
     >
 
     <LinearLayout
+        android:id="@+id/ll2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/ll2"
         android:orientation="vertical">
+
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar1"
             android:layout_width="match_parent"
@@ -28,88 +29,95 @@
                 android:layout_height="wrap_content"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/Theme.MyApplication.PopupOverlay">
+
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/aboutroom1"
-                    android:text="@string/room_one"
-                    android:textSize="20dp"
-                    />
-                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/room_one"
+                    android:textSize="20dp" />
+
+                <Button
                     android:id="@+id/start"
-                    android:text="@string/go_to_space"
-                    android:gravity="center"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/go_to_space" />
 
             </androidx.appcompat.widget.Toolbar>
 
 
         </com.google.android.material.appbar.AppBarLayout>
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="left"
-        android:layout_weight="1"
-        android:divider="@null"
-        android:dividerHeight="1dp"
-        android:fastScrollEnabled="true"
-        android:overScrollMode="never"/>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:divider="@null"
+            android:dividerHeight="1dp"
+            android:fastScrollEnabled="true"
+            android:overScrollMode="never" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="19dp"
-                android:id="@+id/number_of_words_entered"
-                android:text="@string/int_start_level"
-                android:layout_gravity="center"
-                android:textSize="17dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="19dp"
-                android:id="@+id/nnnn"
-                android:layout_gravity="center"
-                android:text="@string/backslash"
-                android:textSize="17dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="19dp"
-                android:id="@+id/number_max"
-                android:layout_gravity="center"
-                android:text="@string/maximum"
-                android:textSize="17dp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <EditText
-                android:id="@+id/editText"
+            android:orientation="vertical">
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="15"
-                android:inputType="textMultiLine"
-                android:layout_gravity="bottom"
-                android:layout_weight="2" />
+                android:orientation="horizontal">
 
-            <Button
-                android:text="@string/send"
+                <TextView
+                    android:id="@+id/number_of_words_entered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="19dp"
+                    android:layout_gravity="center"
+                    android:text="@string/int_start_level"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:id="@+id/nnnn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="19dp"
+                    android:layout_gravity="center"
+                    android:text="@string/backslash"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:id="@+id/number_max"
+                    android:layout_width="wrap_content"
+                    android:layout_height="19dp"
+                    android:layout_gravity="center"
+                    android:text="@string/maximum"
+                    android:textSize="17dp" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button2"
-                android:layout_gravity="bottom"
-                android:layout_weight="3"
-                />
-        </LinearLayout>
+                android:orientation="horizontal">
 
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:maxEms="32"
+                    android:minEms="17"
+                    android:inputType="textMultiLine" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:src="@drawable/ic_send" />
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 </RelativeLayout>
