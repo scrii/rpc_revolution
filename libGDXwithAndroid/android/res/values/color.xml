@@ -14,7 +14,6 @@
     <color name="colorPrimary">#039BE5</color>
     <color name="colorPrimaryDark">#0288D1</color>
     <color name="colorAccent">#FFA000</color>
-
     <color name="grey_100">#F5F5F5</color>
     <color name="grey_300">#E0E0E0</color>
     <color name="grey_500">#9E9E9E</color>
@@ -28,4 +27,5 @@
     <color name="background_primary">#5f6a7d</color>
     <color name="ping">#fe5e9d</color>
     <color name="ping2">#5efebf</color>
+    <color name="command1">#91f3fe</color>
 </resources>

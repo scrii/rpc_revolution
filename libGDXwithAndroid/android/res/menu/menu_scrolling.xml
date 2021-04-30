@@ -6,16 +6,23 @@
     <item
         android:id="@+id/exit"
         android:orderInCategory="1000"
-        android:title="@string/action_settings"
+        android:title="@string/exit"
         app:showAsAction="never"/>
     <item
         android:id="@+id/action_person"
         android:orderInCategory="200"
-        android:title="Person"
+        android:title="@string/person_menu"
         app:showAsAction="never"/>
     <item
         android:id="@+id/shop"
         android:orderInCategory="300"
-        android:title="Shop"
+        android:title="@string/shop_menu"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/about_us_menu"
+        android:orderInCategory="400"
+        android:title="@string/about_us_menu"
+        app:showAsAction="never"/>
+
 </menu>
