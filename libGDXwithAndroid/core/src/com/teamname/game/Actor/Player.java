@@ -29,10 +29,11 @@ public class Player extends Actor {
     public PlayerDataCreator playerData;
     public PlayerDataCollect playerCollectData;
     private Message player_data;
-    private GetterANDSetterFile getter_setter;
+    public GetterANDSetterFile getter_setter;
     private Timer timer;
     private static final int logOutSec=4;
     private int counter=logOutSec;
+    public float damage;
 
 
 
@@ -46,7 +47,7 @@ public class Player extends Actor {
         playerData=new PlayerDataCreator();
         playerCollectData=new PlayerDataCollect();
         getter_setter=new GetterANDSetterFile();
-
+        damage= (float) (getter_setter.get_Attack()/10);
         player_data=new Message(getter_setter.get_Nickname(),GameSc.player_x,GameSc.player_y,
                 getter_setter.get_Guardian_Money(),getter_setter.get_Ore_Elbrium(),
                 getter_setter.get_Speed(),getter_setter.get_Attack(),getter_setter.get_Health(),
@@ -84,6 +85,7 @@ public class Player extends Actor {
         Y=direction.getY()*Speed;
         position.add(X,Y);
         send_in_ONLINE=position;
+        bounds.pos.setPoint(position);
        // send_in_ONLINE.add(-100,-100);
 
         // общая ширина - половина экрана

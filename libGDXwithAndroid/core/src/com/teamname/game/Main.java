@@ -20,7 +20,7 @@ public class Main extends Game {
 	public static SpriteBatch batch,frontBatch,playerBatch;
 	public Texture img;
 	public static int WIDTH,HEIGHT;
-	public static Texture circle,stickImg,background,actor;
+	public static Texture circle,stickImg,background,actor,damaged_txr;
 
 	public static int BACKGROUND_WIDTH;
 	public static int BACKGROUND_HEIGHT;
@@ -59,6 +59,7 @@ public class Main extends Game {
 		BACKGROUND_WIDTH=background.getWidth();
 		BACKGROUND_HEIGHT=background.getHeight();
 
+		damaged_txr=new Texture("dameged_txr_elbrium.png");
 		un_testButtonTX=new Texture("test_button_un_pressed.png");
 		p_testButtonTX=new Texture("test_button_pressed.png");
 

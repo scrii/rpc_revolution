@@ -13,7 +13,6 @@ import java.util.TimerTask;
 public class Spawner extends TimerTask {
     private int rank;
     public Spawner(){
-        rank=-1;
     }
 
     @Override
@@ -28,8 +27,9 @@ public class Spawner extends TimerTask {
     }
 
     private void spawnOre() {
+        rank= (int) (Math.random() * 5);
         Elbrium elbrium = new Elbrium(Main.actor,new Point2D((float)Math.random()*Main.BACKGROUND_WIDTH/1.3f,
-                (float)Math.random()*Main.BACKGROUND_HEIGHT/1.3f),rank);
+                (float)Math.random()*Main.BACKGROUND_HEIGHT/1.3f),rank,Main.damaged_txr);
         GameSc.ore.add(elbrium);
         Gdx.app.log("TIMER","ore spawned");
     }
@@ -41,6 +41,7 @@ public class Spawner extends TimerTask {
     public void deleteOre(){
 
     }
+
 
 
 

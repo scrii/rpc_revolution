@@ -1,5 +1,7 @@
 package Tools;
 
+import com.badlogic.gdx.Gdx;
+
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
@@ -568,5 +570,10 @@ public class GetterANDSetterFile {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public void add_elbrium(int e){
+        set_Ore_Elbrium(get_Ore_Elbrium()+e);
+        Gdx.app.log("GetterANDSetter","Elbrium upd: "+get_Ore_Elbrium());
     }
 }

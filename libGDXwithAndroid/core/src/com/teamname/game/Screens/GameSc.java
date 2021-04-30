@@ -258,6 +258,7 @@ public class GameSc implements Screen {
         bullgen.update(joy2);
         for(int i=0;i<bullets.size;i++){bullets.get(i).update();bullets.get(i).setCount(i);if(bullets.get(i).isOut){bullets.get(i).removeBullet(i);}}
         for(int i=0;i<ore.size;i++){ore.get(i).update();ore.get(i).setCount(i);if(ore.get(i).isOut){ore.get(i).removeElbrium(i);}}
+        collision();
 
 
 
@@ -324,5 +325,18 @@ public class GameSc implements Screen {
     public static Point2D getPos(){
         return realTimeCoords;
     }
+
+    public void collision(){
+        for(int i=0;i<bullets.size;i++)
+            for(int j=0;j<ore.size;j++)
+                if(bullets.get(i).bounds.Overlaps(ore.get(j).bounds)){
+                    ore.get(j).damaged(bullets.get(i),i);
+                    bullets.removeIndex(i);
+                    Gdx.app.log("collision",j+"");
+                }
+                else ore.get(j).counter=ore.get(j).logOutSec;
+    }
+
+
 
 }

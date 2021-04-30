@@ -24,6 +24,11 @@ public class Point2D {
         this.y+=y;
     }
 
+    public void add(Point2D p){
+        this.x+=p.getX();
+        this.y+=p.getY();
+    }
+
 
     public float getX() {return x;}
     public float getY() {return y;}

@@ -39,10 +39,16 @@ public class Bullet extends Actor {
         this.count = count;
     }
 
+    public int getCount() {
+        return count;
+    }
+
     public void removeBullet(int count){
         //GdxFIRDatabase.instance().inReference("Elbrium_"+count).removeValue();
+        Gdx.app.log("BULLET",count+"");
         GdxFIRDatabase.instance().inReference("Bullet"+count).removeValue();
         GameSc.bullets.removeIndex(count);
+
 
         //Gdx.app.log("ORE","ORE REMOVED");
     }
