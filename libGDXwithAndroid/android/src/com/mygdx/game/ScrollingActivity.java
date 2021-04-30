@@ -6,8 +6,12 @@ import android.os.Bundle;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -50,7 +54,9 @@ public class ScrollingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling);
         getterANDSetterFile = new GetterANDSetterFile();
 
+
         // //
+        online(-1);
         player_data=new Message(getterANDSetterFile.get_Nickname(),-1,-1,
                 getterANDSetterFile.get_Guardian_Money(),getterANDSetterFile.get_Ore_Elbrium(),
                 getterANDSetterFile.get_Speed(),getterANDSetterFile.get_Attack(),getterANDSetterFile.get_Health(),
@@ -192,4 +198,20 @@ public class ScrollingActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    // //
+    public void online(int case_){
+        FirebaseDatabase.getInstance().getReference("online").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                getterANDSetterFile.set_online(snapshot.getValue().toString());
+                Log.e("ScrollingAc",getterANDSetterFile.get_Online());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    // //
 }

@@ -569,4 +569,42 @@ public class GetterANDSetterFile {
             e.printStackTrace();
         }
     }
+
+    // //
+    public void set_online(String s){
+        File file = new File("/data/data/com.mygdx.game/Online.txt");
+        try {
+            if (!file.exists()) file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            PrintWriter printWriter = new PrintWriter(file);
+            printWriter.write(s);
+            printWriter.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    public String get_Online(){
+        String myData = "";
+        File myExternalFile = new File("/data/data/com.mygdx.game/Online.txt");
+        try {
+            FileInputStream fis = new FileInputStream(myExternalFile);
+            DataInputStream in = new DataInputStream(fis);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            String strLine;
+            while ((strLine = br.readLine()) != null) {
+                myData = myData + strLine;
+            }
+            br.close();
+            in.close();
+            fis.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return myData;
+    }
+    // //
+
 }

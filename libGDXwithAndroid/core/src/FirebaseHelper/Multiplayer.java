@@ -4,19 +4,22 @@ import com.badlogic.gdx.Gdx;
 
 import java.util.ArrayList;
 
+import Tools.GetterANDSetterFile;
+
 public class Multiplayer {
     ArrayList<String> meta_players;
     DatabaseHelper databaseHelper;
     String valueOf_online;
+    GetterANDSetterFile gs;
 
     public Multiplayer(){
         databaseHelper=new DatabaseHelper();
         meta_players=new ArrayList<>();
+        gs=new GetterANDSetterFile();
     }
 
     public void getPlayers(){
-        databaseHelper.getP();
-        valueOf_online=databaseHelper.getValueOf_online();
-        Gdx.app.error("Multiplayer Manager","valueOf_online: "+valueOf_online);
+
+        Gdx.app.error("Multiplayer Manager","valueOf_online: "+gs.get_Online());
     }
 }

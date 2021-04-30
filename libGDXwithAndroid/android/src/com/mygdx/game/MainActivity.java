@@ -252,6 +252,7 @@ public class MainActivity extends AppCompatActivity {
         switch (case_){
             case 0:FirebaseDatabase.getInstance().getReference("online").onDisconnect().setValue(s.replace(getterANDSetterFile.get_Nickname() + ";", ""));break;
             case 1:FirebaseDatabase.getInstance().getReference("online").setValue(s.replace(getterANDSetterFile.get_Nickname() + ";", ""));break;
+            default: break;
         }
 
 
@@ -261,7 +262,9 @@ public class MainActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference("online").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                getterANDSetterFile.set_online(snapshot.getValue().toString());
                 updateOnline(snapshot.getValue().toString(),case_);
+                Log.e("MainAc",getterANDSetterFile.get_Online());
             }
 
             @Override

@@ -67,8 +67,9 @@ public class Main extends Game {
 		p_testButtonTX=new Texture("test_button_pressed.png");
 
 
-		//mp=new Multiplayer();
+		mp=new Multiplayer();
 		//mp.getPlayers();
+		mp.getPlayers();
 		monitoring();
 
 		setScreen(new GameSc(this));
