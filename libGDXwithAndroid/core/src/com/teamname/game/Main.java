@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import FirebaseHelper.Multiplayer;
 import Tools.GetterANDSetterFile;
 import Tools.Spawner;
 import com.teamname.game.Screens.GameSc;
@@ -26,6 +27,8 @@ public class Main extends Game {
 	public static Texture un_testButtonTX,p_testButtonTX;
 
 	private GetterANDSetterFile getter_setter;
+
+	Multiplayer mp;
 
 
 
@@ -58,6 +61,11 @@ public class Main extends Game {
 
 		un_testButtonTX=new Texture("test_button_un_pressed.png");
 		p_testButtonTX=new Texture("test_button_pressed.png");
+
+
+		//mp=new Multiplayer();
+		//mp.getPlayers();
+
 
 		setScreen(new GameSc(this));
 	}
