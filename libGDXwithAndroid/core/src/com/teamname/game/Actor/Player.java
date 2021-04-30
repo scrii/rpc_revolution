@@ -52,7 +52,7 @@ public class Player extends Actor {
                 getter_setter.get_Speed(),getter_setter.get_Attack(),getter_setter.get_Health(),
                 getter_setter.get_Protection(),"back","front");
         databaseHelper.sendToFirebase(getter_setter.get_Nickname(), player_data.toString());
-        timeCheck();
+        //timeCheck();
     }
 
     // метод оповещения о движении

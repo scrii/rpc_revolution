@@ -89,7 +89,7 @@ public class GameSc implements Screen {
         getter_setter=new GetterANDSetterFile();
         //databaseHelper.setNickname(player.nickname);
         //databaseHelper.entryNotify();
-        camera=new OrthographicCamera(Main.BACKGROUND_WIDTH,Main.BACKGROUND_HEIGHT);
+        camera=new OrthographicCamera(Main.WIDTH,Main.HEIGHT);
         testButton=new Buttons(Main.un_testButtonTX,Main.p_testButtonTX,
                 300, 300, 500, 500);
         databaseHelper.readString(0);
