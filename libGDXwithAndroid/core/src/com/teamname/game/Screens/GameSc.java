@@ -19,6 +19,7 @@ import com.teamname.game.Main;
 import FirebaseHelper.DatabaseHelper;
 //import Online.Getter;
 import FirebaseHelper.Message;
+import FirebaseHelper.Multiplayer;
 import Tools.BulletGenerator;
 import Tools.Buttons;
 import Tools.GetterANDSetterFile;
@@ -39,6 +40,7 @@ public class GameSc implements Screen {
     public static Array<Elbrium> ore;
     private Spawner spawner;
     private Gson gson;
+    private Multiplayer multiplayer;
 
     Buttons testButton;
     BulletGenerator bullgen;
@@ -84,6 +86,7 @@ public class GameSc implements Screen {
         this.main=main;
         spawner=new Spawner();
         gson=new Gson();
+        multiplayer=new Multiplayer();
         loadActors();
         databaseHelper=new DatabaseHelper();
         getter_setter=new GetterANDSetterFile();
@@ -178,13 +181,17 @@ public class GameSc implements Screen {
         backRender(Main.batch);
 
 
+
         // сплюсовать радиусы для отображения игрока ровно в центре
         // руда - batch
         Main.batch.end();
 
+
         Main.frontBatch.begin();
         Main.frontBatch.setColor(1,1,1,1);
         frontRender(Main.frontBatch);
+
+
 
         testButton.draw(Main.frontBatch,Gdx.input.getX(),Main.HEIGHT-Gdx.input.getY());
         if(testButton.isButtonTouch(Gdx.input.getX(),Main.HEIGHT-Gdx.input.getY())){
@@ -219,6 +226,8 @@ public class GameSc implements Screen {
         playerRender(Main.playerBatch);
 
         Main.playerBatch.end();
+
+
 
 
 
@@ -283,6 +292,7 @@ public class GameSc implements Screen {
 
         for(int i=0;i<bullets.size;i++)bullets.get(i).draw(batch);
         for(int i=0;i<ore.size;i++)ore.get(i).draw(batch);
+        multiplayer.draw(batch);
 
     }
 

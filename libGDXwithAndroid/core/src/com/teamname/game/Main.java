@@ -19,7 +19,7 @@ import pl.mk5.gdx.fireapp.GdxFIRDatabase;
 
 
 public class Main extends Game {
-	public static SpriteBatch batch,frontBatch,playerBatch;
+	public static SpriteBatch batch,frontBatch,playerBatch,other;
 	public Texture img;
 	public static int WIDTH,HEIGHT;
 	public static Texture circle,stickImg,background,actor,damaged_txr;
@@ -52,6 +52,7 @@ public class Main extends Game {
 		batch = new SpriteBatch();
 		frontBatch=new SpriteBatch();
 		playerBatch=new SpriteBatch();
+		other=new SpriteBatch();
 		WIDTH= Gdx.graphics.getWidth();
 		HEIGHT=Gdx.graphics.getHeight();
 		circle=new Texture("circle.png");
@@ -67,9 +68,9 @@ public class Main extends Game {
 		p_testButtonTX=new Texture("test_button_pressed.png");
 
 
-		mp=new Multiplayer();
+		//mp=new Multiplayer();
 		//mp.getPlayers();
-		mp.getPlayers();
+
 		monitoring();
 
 		setScreen(new GameSc(this));
