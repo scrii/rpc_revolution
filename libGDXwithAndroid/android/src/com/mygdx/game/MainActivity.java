@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -24,7 +25,13 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.github.library.bubbleview.BubbleTextView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.OnDisconnect;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.core.Repo;
+import com.google.firebase.database.core.RepoInfo;
 
 import FirebaseHelper.Online;
 
@@ -58,9 +65,11 @@ public class MainActivity extends AppCompatActivity {
     private static String CHANNEL_ID = "Elbrium channel";
     // //
     @Override
-    protected void onDestroy() {
-        Log.d("MAINACTIVITY","KILLED");
-        super.onDestroy();
+    protected void onPause() {
+
+        //updateOnline();
+        Log.e("MAINACTIVITY", "PAUSED");
+        super.onPause();
     }
     // //
     @Override
@@ -73,9 +82,11 @@ public class MainActivity extends AppCompatActivity {
         input = findViewById(R.id.editText);
         word = findViewById(R.id.number_of_words_entered);
         getterANDSetterFile = new GetterANDSetterFile();
+        online(0);
         // //
         //online=new Online();
         //online.online(0);
+        //online(1);
         // //
         protect = getterANDSetterFile.get_Protection();
         health = getterANDSetterFile.get_Health();
@@ -235,4 +246,29 @@ public class MainActivity extends AppCompatActivity {
         listMessages.setAdapter(adapter);
 
     }
+
+    // //
+    public void updateOnline(String s, int case_){
+        switch (case_){
+            case 0:FirebaseDatabase.getInstance().getReference("online").onDisconnect().setValue(s.replace(getterANDSetterFile.get_Nickname() + ";", ""));break;
+            case 1:FirebaseDatabase.getInstance().getReference("online").setValue(s.replace(getterANDSetterFile.get_Nickname() + ";", ""));break;
+        }
+
+
+    }
+
+    public void online(int case_){
+        FirebaseDatabase.getInstance().getReference("online").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                updateOnline(snapshot.getValue().toString(),case_);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    // //
 }

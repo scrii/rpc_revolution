@@ -247,6 +247,7 @@ public class GameSc implements Screen {
     @Override
     public void dispose() {
         //getter.deleteCOORDS();
+
         sprite.getTexture().dispose();
         //databaseHelper.entryNotify();
     }

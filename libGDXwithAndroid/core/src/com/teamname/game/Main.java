@@ -2,9 +2,11 @@ package com.teamname.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.LifecycleListener;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import FirebaseHelper.DatabaseHelper;
 import FirebaseHelper.Multiplayer;
 import Tools.GetterANDSetterFile;
 import Tools.Spawner;
@@ -27,6 +29,7 @@ public class Main extends Game {
 	public static Texture un_testButtonTX,p_testButtonTX;
 
 	private GetterANDSetterFile getter_setter;
+	DatabaseHelper db;
 
 	Multiplayer mp;
 
@@ -58,7 +61,7 @@ public class Main extends Game {
 		background=new Texture("testlocation.png");
 		BACKGROUND_WIDTH=background.getWidth();
 		BACKGROUND_HEIGHT=background.getHeight();
-
+		db=new DatabaseHelper();
 		damaged_txr=new Texture("dameged_txr_elbrium.png");
 		un_testButtonTX=new Texture("test_button_un_pressed.png");
 		p_testButtonTX=new Texture("test_button_pressed.png");
@@ -66,7 +69,7 @@ public class Main extends Game {
 
 		//mp=new Multiplayer();
 		//mp.getPlayers();
-
+		monitoring();
 
 		setScreen(new GameSc(this));
 	}
@@ -86,5 +89,25 @@ public class Main extends Game {
 		GdxFIRDatabase.instance().inReference(getter_setter.get_Nickname()).removeValue();
 		un_testButtonTX.dispose();
 		p_testButtonTX.dispose();
+	}
+
+	public void monitoring(){
+		Gdx.app.addLifecycleListener(new LifecycleListener() {
+			@Override
+			public void pause() {
+				Gdx.app.error("Main","paused");
+			}
+
+			@Override
+			public void resume() {
+				Gdx.app.error("Main","res");
+			}
+
+			@Override
+			public void dispose() {
+				db.logOut();
+				Gdx.app.error("Main","dispose");
+			}
+		});
 	}
 }

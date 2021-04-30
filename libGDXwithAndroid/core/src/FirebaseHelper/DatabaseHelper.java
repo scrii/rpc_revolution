@@ -189,7 +189,9 @@ public class DatabaseHelper {
         readString(1);
     }
 
-
+    public void test(){
+        //GdxFIRDatabase.instance().inReference(getter_setter.get_Nickname()).onConnect().thenListener()
+    }
     //GDXFirebase.FirebaseDatabase().getReference(reference).addValueEventListener(vListener);
     //Gdx.app.log("READED_PL_DATA",GdxFIRDatabase.instance().inReference(reference).readValue(Message.class).toString());
 }

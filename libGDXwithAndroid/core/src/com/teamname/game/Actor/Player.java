@@ -53,7 +53,7 @@ public class Player extends Actor {
                 getter_setter.get_Speed(),getter_setter.get_Attack(),getter_setter.get_Health(),
                 getter_setter.get_Protection(),"back","front");
         databaseHelper.sendToFirebase(getter_setter.get_Nickname(), player_data.toString());
-        //timeCheck();
+        timeCheck();
     }
 
     // метод оповещения о движении
@@ -131,7 +131,9 @@ public class Player extends Actor {
             public void run() {
                 if(counter==0){
                     Gdx.app.log("PLayer", "afk for "+logOutSec+" seconds");
-                    databaseHelper.logOut();}
+                    databaseHelper.logOut();
+                    timer.cancel();
+                }
                 else counter--;
             }
         };
