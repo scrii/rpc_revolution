@@ -16,6 +16,8 @@ android {
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
             jniLibs.srcDirs = ['libs']
+
+
         }
 
     }

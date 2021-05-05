@@ -28,4 +28,8 @@
     <color name="ping">#fe5e9d</color>
     <color name="ping2">#5efebf</color>
     <color name="command1">#91f3fe</color>
+    <color name="color_one">#9c91fe</color>
+    <color name="color_two">#fe9c91</color>
+    <color name="text_shadow">#7F000000</color>
+
 </resources>

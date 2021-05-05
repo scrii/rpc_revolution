@@ -1,7 +1,9 @@
 package com.mygdx.game;
 
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -27,6 +29,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.File;
+import java.io.IOException;
 
 import FirebaseHelper.Message;
 import FirebaseHelper.Online;
@@ -43,6 +46,7 @@ public class ScrollingActivity extends AppCompatActivity {
     int level;
     int real_level;
     CountDownTimer countDownTimer;
+    MediaPlayer player1,player2;
     GetterANDSetterFile getterANDSetterFile;
     // //
     public Message player_data;
@@ -53,7 +57,20 @@ public class ScrollingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
         getterANDSetterFile = new GetterANDSetterFile();
-
+//        try {
+//            AssetFileDescriptor afd1 = getAssets().openFd("ScrollingActivityElbrium1.mp3");
+//            AssetFileDescriptor afd2 = getAssets().openFd("ScrollingActivityElbrium2.mp3");
+//            player1 = new MediaPlayer();
+//            player1.setDataSource(afd1.getFileDescriptor(), afd1.getStartOffset(), afd1.getLength());
+//            //player1.prepare();
+//            player1.start();
+//            player2 = new MediaPlayer();
+//            player2.setDataSource(afd2.getFileDescriptor(), afd2.getStartOffset(), afd2.getLength());
+//            //player2.prepare();
+//            //player2.start();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         // //
         online(-1);
@@ -93,6 +110,8 @@ public class ScrollingActivity extends AppCompatActivity {
                     info_money.setText(getterANDSetterFile.get_Guardian_Money() + "");
                     info_level.setText(getterANDSetterFile.get_Guardian_Level()+"");
                     toolBarLayout.setTitle(getterANDSetterFile.get_Nickname());
+                    //if(!player1.isPlaying())player2.start();
+                    //else player1.start();
                 }
 
                 @Override
