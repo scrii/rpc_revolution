@@ -56,7 +56,7 @@ public class ScrollingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
-        getterANDSetterFile = new GetterANDSetterFile();
+        getterANDSetterFile = new GetterANDSetterFile(); //
 //        try {
 //            AssetFileDescriptor afd1 = getAssets().openFd("ScrollingActivityElbrium1.mp3");
 //            AssetFileDescriptor afd2 = getAssets().openFd("ScrollingActivityElbrium2.mp3");
