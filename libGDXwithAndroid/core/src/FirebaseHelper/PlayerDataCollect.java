@@ -2,7 +2,7 @@ package FirebaseHelper;
 
 import com.badlogic.gdx.Gdx;
 
-import de.tomgrill.gdxfirebase.core.GDXFirebase;
+//<!!!---> import de.tomgrill.gdxfirebase.core.GDXFirebase;
 
 public class PlayerDataCollect {
 
@@ -16,7 +16,7 @@ public class PlayerDataCollect {
 
     public void getPosition(String ref){
 
-        Gdx.app.log("aaaa", GDXFirebase.FirebaseDatabase("final-server-bf945-default-rtdb").getReference("scri").getKey());
+        //<!!!---> Gdx.app.log("aaaa", GDXFirebase.FirebaseDatabase("final-server-bf945-default-rtdb").getReference("scri").getKey());
     //Promise<Message> m = GdxFIRDatabase.inst().inReference(ref).readValue(Message.class);
        /* Gdx
         GdxFIRDatabase.inst().inReference("").

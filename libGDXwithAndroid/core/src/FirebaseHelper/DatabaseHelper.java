@@ -5,10 +5,10 @@ import com.google.gson.Gson;
 
 
 import Tools.GetterANDSetterFile;
-import de.tomgrill.gdxfirebase.core.GDXFirebase;
+//<!!!---> import de.tomgrill.gdxfirebase.core.GDXFirebase;
 //import de.tomgrill.gdxfirebase.core.database.DatabaseReference;
-import de.tomgrill.gdxfirebase.core.auth.OnCompleteListener;
-import de.tomgrill.gdxfirebase.core.auth.Task;
+//<!!!---> import de.tomgrill.gdxfirebase.core.auth.OnCompleteListener;
+//<!!!---> import de.tomgrill.gdxfirebase.core.auth.Task;
 import pl.mk5.gdx.fireapp.GdxFIRApp;
 import pl.mk5.gdx.fireapp.GdxFIRDatabase;
 import pl.mk5.gdx.fireapp.functional.Consumer;
@@ -75,15 +75,13 @@ public class DatabaseHelper {
         Gdx.app.log("TAGG", message.x + "");
     }
 
-    public void sendCoords(String email, float x, float y) {
-        GDXFirebase.FirebaseDatabase().getReference(email).child("coordinats_x").setValue(x);
-        GDXFirebase.FirebaseDatabase().getReference(email).child("coordinats_y").setValue(y);
+
 
 
         //GDXFirebase.FirebaseDatabase().getReference("email").child("coordinats_y").setValue(y+"");
         /*GdxFIRDatabase.instance().inReference("email").inReference("y").setValue(x);
         GdxFIRDatabase.instance().inReference("email").inReference("y").setValue(y);*/
-    }
+
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
@@ -178,7 +176,7 @@ public class DatabaseHelper {
     }
 
     public void createPlayer() {
-        GdxFIRDatabase.instance().inReference(getter_setter.get_Nickname()).setValue(new Message(getter_setter.get_Nickname(), 0, 0, getter_setter.get_Guardian_Money(), getter_setter.get_Ore_Elbrium(), getter_setter.get_Speed(), getter_setter.get_Attack(), getter_setter.get_Health(), getter_setter.get_Health(), "back", "front").toString());
+        //GdxFIRDatabase.instance().inReference(getter_setter.get_Nickname()).setValue(new Message(getter_setter.get_Nickname(), 0, 0, getter_setter.get_Guardian_Money(), getter_setter.get_Ore_Elbrium(), getter_setter.get_Speed(), getter_setter.get_Attack(), getter_setter.get_Health(), getter_setter.get_Health(), "back", "front").toString());
     }
 
     public String stringReturn(String s) {

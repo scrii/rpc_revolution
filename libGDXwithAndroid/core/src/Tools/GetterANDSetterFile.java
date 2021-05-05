@@ -12,20 +12,20 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 public class GetterANDSetterFile {
-    double real_attack=0,real_health=0,real_protection=0,real_speed=0,real_money=0,real_ore_elbrium=0,real_maneuverability=0;
+    float real_attack=0,real_health=0,real_protection=0,real_speed=0,real_money=0,real_ore_elbrium=0,real_maneuverability=0;
     int  real_sign=0,real_xp=0,real_level=0,coefficient_attack=0,coefficient_protection=0,coefficient_speed=0;
     String real_message="",real_nickname="";
     public int sign = 0,f_attack=0,f_protection=0,f_speed=0;
-    public double attack = 0;
+    public float attack = 0;
     public int guardian_exp = 0;
     public int guardian_level = 0;
-    public double guardian_money = 0;
-    public double health = 0;
-    public double maneuverability = 0;
+    public float guardian_money = 0;
+    public float health = 0;
+    public float maneuverability = 0;
     public String message = "";
-    public double ore_elbrium = 0;
-    public double protection = 0;
-    public double speed = 0;
+    public float ore_elbrium = 0;
+    public float protection = 0;
+    public float speed = 0;
     public String nickname = "";
     public GetterANDSetterFile(){
 
@@ -50,7 +50,7 @@ public class GetterANDSetterFile {
         }
         return real_sign;
     }
-    public double get_Attack(){
+    public float get_Attack(){
         String myData = "";
         File myExternalFile = new File("/data/data/com.mygdx.game/Attack.txt");
         try {
@@ -60,7 +60,7 @@ public class GetterANDSetterFile {
             String strLine;
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
-                real_attack = Double.parseDouble(myData);
+                real_attack = Float.parseFloat(myData);
             }
             br.close();
             in.close();
@@ -130,7 +130,7 @@ public class GetterANDSetterFile {
         }
         return real_nickname;
     }
-    public double get_Guardian_Money(){
+    public float get_Guardian_Money(){
         String myData = "";
         File myExternalFile = new File("/data/data/com.mygdx.game/guardian_money.txt");
         try {
@@ -140,7 +140,7 @@ public class GetterANDSetterFile {
             String strLine;
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
-                real_money = Double.parseDouble(myData);
+                real_money = Float.parseFloat(myData);
             }
             br.close();
             in.close();
@@ -150,7 +150,7 @@ public class GetterANDSetterFile {
         }
         return real_money;
     }
-    public double get_Health(){
+    public float get_Health(){
         String myData = "";
         File myExternalFile = new File("/data/data/com.mygdx.game/Health.txt");
         try {
@@ -160,7 +160,7 @@ public class GetterANDSetterFile {
             String strLine;
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
-                real_health = Double.parseDouble(myData);
+                real_health = Float.parseFloat(myData);
             }
             br.close();
             in.close();
@@ -170,7 +170,7 @@ public class GetterANDSetterFile {
         }
         return real_health;
     }
-    public double get_Maneuverability(){
+    public float get_Maneuverability(){
         String myData = "";
         File myExternalFile = new File("/data/data/com.mygdx.game/Maneuverability.txt");
         try {
@@ -180,7 +180,7 @@ public class GetterANDSetterFile {
             String strLine;
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
-                real_maneuverability = Double.parseDouble(myData);
+                real_maneuverability = Float.parseFloat(myData);
             }
             br.close();
             in.close();
@@ -210,7 +210,7 @@ public class GetterANDSetterFile {
         }
         return real_message;
     }
-    public double get_Ore_Elbrium(){
+    public float get_Ore_Elbrium(){
         String myData = "";
         File myExternalFile = new File("/data/data/com.mygdx.game/Ore_Elbrium.txt");
         try {
@@ -220,7 +220,7 @@ public class GetterANDSetterFile {
             String strLine;
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
-                real_ore_elbrium = Double.parseDouble(myData);
+                real_ore_elbrium = Float.parseFloat(myData);
             }
             br.close();
             in.close();
@@ -230,7 +230,7 @@ public class GetterANDSetterFile {
         }
         return real_ore_elbrium;
     }
-    public double get_Protection(){
+    public float get_Protection(){
         String myData = "";
         File myExternalFile = new File("/data/data/com.mygdx.game/Protection.txt");
         try {
@@ -240,7 +240,7 @@ public class GetterANDSetterFile {
             String strLine;
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
-                real_protection = Double.parseDouble(myData);
+                real_protection = Float.parseFloat(myData);
             }
             br.close();
             in.close();
@@ -250,7 +250,7 @@ public class GetterANDSetterFile {
         }
         return real_protection;
     }
-    public double get_Speed(){
+    public float get_Speed(){
         String myData = "";
         File myExternalFile = new File("/data/data/com.mygdx.game/Speed.txt");
         try {
@@ -260,7 +260,7 @@ public class GetterANDSetterFile {
             String strLine;
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
-                real_speed = Double.parseDouble(myData);
+                real_speed = Float.parseFloat(myData);
             }
             br.close();
             in.close();
@@ -395,7 +395,7 @@ public class GetterANDSetterFile {
             e.printStackTrace();
         }
     }
-    public void set_Attack(double r_attack){
+    public void set_Attack(float r_attack){
         attack = r_attack;
         File file = new File("/data/data/com.mygdx.game/Attack.txt");
         try {
@@ -443,7 +443,7 @@ public class GetterANDSetterFile {
             e.printStackTrace();
         }
     }
-    public void set_Guardian_Money(double r_money){
+    public void set_Guardian_Money(float r_money){
         guardian_money = r_money;
         File file = new File("/data/data/com.mygdx.game/guardian_money.txt");
         try {
@@ -459,7 +459,7 @@ public class GetterANDSetterFile {
             e.printStackTrace();
         }
     }
-    public void set_Health(double r_health){
+    public void set_Health(float r_health){
         health = r_health;
         File file = new File("/data/data/com.mygdx.game/Health.txt");
         try {
@@ -475,7 +475,7 @@ public class GetterANDSetterFile {
             e.printStackTrace();
         }
     }
-    public void set_Maneuverability(double r_maneuverability){
+    public void set_Maneuverability(float r_maneuverability){
         maneuverability = r_maneuverability;
         File file = new File("/data/data/com.mygdx.game/Maneuverability.txt");
         try {
@@ -507,7 +507,7 @@ public class GetterANDSetterFile {
             e.printStackTrace();
         }
     }
-    public void set_Ore_Elbrium(double r_ore_elbrium){
+    public void set_Ore_Elbrium(float r_ore_elbrium){
         ore_elbrium = r_ore_elbrium;
         File file = new File("/data/data/com.mygdx.game/Ore_Elbrium.txt");
         try {
@@ -523,7 +523,7 @@ public class GetterANDSetterFile {
             e.printStackTrace();
         }
     }
-    public void set_Protection(double r_protection){
+    public void set_Protection(float r_protection){
         protection = r_protection;
         File file = new File("/data/data/com.mygdx.game/Protection.txt");
         try {
@@ -539,7 +539,7 @@ public class GetterANDSetterFile {
             e.printStackTrace();
         }
     }
-    public void set_Speed(double r_speed){
+    public void set_Speed(float r_speed){
         speed = r_speed;
         File file = new File("/data/data/com.mygdx.game/Speed.txt");
         try {
@@ -609,5 +609,9 @@ public class GetterANDSetterFile {
             e.printStackTrace();
         }
         return myData;
+    }
+
+    public String getTexture(){
+        return "texture";
     }
 }

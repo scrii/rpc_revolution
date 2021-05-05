@@ -19,14 +19,16 @@ import pl.mk5.gdx.fireapp.GdxFIRDatabase;
 
 
 public class Main extends Game {
-	public static SpriteBatch batch,frontBatch,playerBatch,other;
+	public static SpriteBatch batch,frontBatch,playerBatch,hudBatch;
 	public Texture img;
 	public static int WIDTH,HEIGHT;
-	public static Texture circle,stickImg,background,actor,damaged_txr;
+	public static Texture circle,stickImg,background,actor,damaged_txr,deathSc;
 
 	public static int BACKGROUND_WIDTH;
 	public static int BACKGROUND_HEIGHT;
 	public static Texture un_testButtonTX,p_testButtonTX;
+
+	public static GameSc gameSc;
 
 	private GetterANDSetterFile getter_setter;
 	DatabaseHelper db;
@@ -52,7 +54,7 @@ public class Main extends Game {
 		batch = new SpriteBatch();
 		frontBatch=new SpriteBatch();
 		playerBatch=new SpriteBatch();
-		other=new SpriteBatch();
+		hudBatch=new SpriteBatch();
 		WIDTH= Gdx.graphics.getWidth();
 		HEIGHT=Gdx.graphics.getHeight();
 		circle=new Texture("circle.png");
@@ -66,14 +68,15 @@ public class Main extends Game {
 		damaged_txr=new Texture("dameged_txr_elbrium.png");
 		un_testButtonTX=new Texture("test_button_un_pressed.png");
 		p_testButtonTX=new Texture("test_button_pressed.png");
-
+		deathSc=new Texture("deathSc.jpg");
+		gameSc=new GameSc(this);
 
 		//mp=new Multiplayer();
 		//mp.getPlayers();
 
 		monitoring();
 
-		setScreen(new GameSc(this));
+		setScreen(gameSc);
 	}
 
 

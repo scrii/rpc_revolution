@@ -8,6 +8,9 @@ import com.teamname.game.Actor.Player;
 import com.teamname.game.Main;
 import com.teamname.game.Screens.GameSc;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class Joystick {
     Texture CircleImg, StickImg;
@@ -22,10 +25,19 @@ public class Joystick {
     Point2D StickPos;
     Point2D direction;
     float joyX,joyY;
+    boolean isDownTouch,fireJoy;
+    public boolean oreOverlaps=false;
     Point2D joyDirection=new Point2D(0,0);
+    private static final int logOutSec=5;
+    private int counter=logOutSec;
+    Timer timer;
+    float realSpeed=0;
+    boolean rspeedN;
+    int case_;
+
 
     // Size общий размер джойстика
-    public Joystick(Texture cimg, Texture simg, Point2D point, float Size) {
+    public Joystick(Texture cimg, Texture simg, Point2D point, float Size, int case_) {
         CircleImg = cimg;
         StickImg = simg;
         Rcircle = Size / 2;
@@ -38,20 +50,14 @@ public class Joystick {
         Speed=GameSc.player.Speed;
         joyX=point.getX();
         joyY=point.getY();
+        this.case_=case_;
+
+        //if(case_==0)timeCheck();
+        fireJoy=!(case_==0);
     }
 
 
     public void draw(SpriteBatch batch) {
-        // !!! реализовать нормальное следование джойстика за персонажем
-        //CircleBounds.add(GameSc.player.direction.getX(),GameSc.player.direction.getY());
-        //StickBounds.add(GameSc.player.X,GameSc.player.Y);
-        //CircleBounds.add();
-        //StickBounds.add();
-
-
-
-
-
         batch.draw(CircleImg, CircleBounds.pos.getX()-Rcircle, CircleBounds.pos.getY()-Rcircle, Rcircle * 2, Rcircle * 2);
         batch.draw(StickImg, StickBounds.pos.getX()-Rstick, StickBounds.pos.getY()-Rstick, Rstick * 2, Rstick * 2);
     }
@@ -64,6 +70,7 @@ public class Joystick {
             dy = CircleBounds.pos.getY() - y;
         }
         length = (float) Math.sqrt(dx * dx + dy * dy);
+
         //попали в окружность - ок
         if (CircleBounds.isContains(touch) && isDownTouch && this.pointer == -1) this.pointer = pointer;
         if (CircleBounds.Overlaps(StickBounds) && isDownTouch && pointer == this.pointer)
@@ -85,12 +92,21 @@ public class Joystick {
     public void atControl(Point2D point) {
         StickBounds.pos.setPoint(point);
         GameSc.player.isMove=true;
+        isDownTouch=true;
+        counter=0;
+        rspeedN=true;
+        float coef = (float)Math.sqrt(Math.pow(StickBounds.pos.getX()-CircleBounds.pos.getX(),2)+Math.pow(StickBounds.pos.getY()-CircleBounds.pos.getY(),2));
+        //if(case_!=1)Gdx.app.error("JOYSTICK","coef: "+Rcircle);
+        if(case_!=1&&(GameSc.player.Speed * coef) / Rcircle<=GameSc.player.Speed) {
+            GameSc.player.setRealSpeed((GameSc.player.Speed * coef) / Rcircle);
+            // Gdx.app.error("realSPeed",GameSc.player.getRealSpeed()+"");}
+        }
         //Gdx.app.log("PLAYER_MOVE", "TRUE");
         //узнаем разность x окружности и стика (дифферинциалы)
         float dx = CircleBounds.pos.getX() - point.getX();
         float dy = CircleBounds.pos.getY() - point.getY();
         float dist = (float) Math.sqrt(dx * dx + dy * dy);
-
+        //Gdx.app.log("isDownTouch",isDownTouch+"");
         //ошибка division by zero (решено)
         if(dist!=0)direction.setPoint(-(dx / dist), -(dy / dist));
         else{direction.setPoint(0,0);}
@@ -104,7 +120,13 @@ public class Joystick {
         StickBounds.pos.setPoint(CircleBounds.pos);
         // задать velocity для плавного возвращения
         // когда пользователь отпускает стик, камере не передается информация
-        direction.setPoint(0, 0);
+        if(fireJoy||!fireJoy)direction.setPoint(0,0);
+        GameSc.player.setRealSpeed(0);
+        //direction.setPoint(0, 0);
+        isDownTouch=false;
+        rspeedN=false;
+        //GameSc.player.setRealSpeed(0);
+        //Gdx.app.error("REALspeed",GameSc.player.getRealSpeed()+"");
 
         pointer = -1;
     }
@@ -114,4 +136,24 @@ public class Joystick {
     }
 
 
+
+    public void timeCheck(){
+        timer=new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                //Gdx.app.log("counter",counter+"");
+                //if(counter==0)counter=logOutSec;
+
+                if(isDownTouch&&GameSc.player.getRealSpeed()<Speed)
+                    GameSc.player.changeSpeed(0.1f);
+                else if(!isDownTouch&&GameSc.player.getRealSpeed()>0.7f)
+                    GameSc.player.changeSpeed(-0.5f);
+                else if(!isDownTouch&&GameSc.player.getRealSpeed()<=0.7f)
+                    GameSc.player.setRealSpeed(0);
+                Gdx.app.error("Joystick","realSpeed: "+GameSc.player.getRealSpeed());
+            }
+        };
+        timer.scheduleAtFixedRate(task,0,100);
+    }
 }

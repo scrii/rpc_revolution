@@ -23,11 +23,12 @@ public class Spawner extends TimerTask {
     public void start(){
         TimerTask timerTask = new Spawner();
         Timer timer = new Timer(true);
-        timer.scheduleAtFixedRate(timerTask, 0, 3*60*1000);
+        timer.scheduleAtFixedRate(timerTask, 0, 1000);
+        //timer.scheduleAtFixedRate(timerTask, 0, 3*60*1000);
     }
 
     private void spawnOre() {
-        rank= (int) (Math.random() * 5);
+        rank= +(int) (Math.random() * 3);
         Elbrium elbrium = new Elbrium(Main.actor,new Point2D((float)Math.random()*Main.BACKGROUND_WIDTH/1.3f,
                 (float)Math.random()*Main.BACKGROUND_HEIGHT/1.3f),rank,Main.damaged_txr);
         GameSc.ore.add(elbrium);

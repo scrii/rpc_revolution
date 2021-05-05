@@ -605,6 +605,11 @@ public class GetterANDSetterFile {
         }
         return myData;
     }
+
+    public String getTexture(){
+        return "texture";
+    }
+
     // //
 
 }

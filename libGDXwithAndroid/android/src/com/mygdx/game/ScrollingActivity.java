@@ -57,10 +57,8 @@ public class ScrollingActivity extends AppCompatActivity {
 
         // //
         online(-1);
-        player_data=new Message(getterANDSetterFile.get_Nickname(),-1,-1,
-                getterANDSetterFile.get_Guardian_Money(),getterANDSetterFile.get_Ore_Elbrium(),
-                getterANDSetterFile.get_Speed(),getterANDSetterFile.get_Attack(),getterANDSetterFile.get_Health(),
-                getterANDSetterFile.get_Protection(),"back","front");
+        player_data=new Message(getterANDSetterFile.getTexture(),-1,-1,(float)getterANDSetterFile.get_Attack(),
+                (float)getterANDSetterFile.get_Health(),(float)getterANDSetterFile.get_Protection());
         FirebaseDatabase.getInstance().getReference("LONGDATA").push().setValue(player_data.toString());
         online=new Online();
         //online.online(0);

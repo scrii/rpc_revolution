@@ -47,10 +47,8 @@ public class ShopActivity extends AppCompatActivity {
         setContentView(R.layout.shop_activity);
         // //
         getter_setter=new GetterANDSetterFile();
-        player_data=new Message(getter_setter.get_Nickname(),-1,-1,
-                getter_setter.get_Guardian_Money(),getter_setter.get_Ore_Elbrium(),
-                getter_setter.get_Speed(),getter_setter.get_Attack(),getter_setter.get_Health(),
-                getter_setter.get_Protection(),"back","front");
+        player_data=new Message(getter_setter.getTexture(),-1,-1,(float)getter_setter.get_Attack(),
+                (float)getter_setter.get_Health(),(float)getter_setter.get_Protection());
         // //
         maneuverability_plus_one = findViewById(R.id.maneuverability_plus_one);
         attack_plus_one = findViewById(R.id.attack_plus_one);
@@ -152,7 +150,7 @@ public class ShopActivity extends AppCompatActivity {
                 else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_SHORT).show();
 
                 // //
-                player_data.setAttack(getterANDSetterFile.get_Attack());
+                player_data.setAttack((float)getterANDSetterFile.get_Attack());
                 update_values();
                 // //
             }
@@ -188,7 +186,7 @@ public class ShopActivity extends AppCompatActivity {
                 }
                 else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_SHORT).show();
                 // //
-                player_data.setProtect(getterANDSetterFile.get_Protection());
+                player_data.setProtect((float)getterANDSetterFile.get_Protection());
                 update_values();
                 // //
             }
@@ -224,7 +222,7 @@ public class ShopActivity extends AppCompatActivity {
                 }
                 else Toast.makeText(getApplicationContext(),"Недостаточно средств",Toast.LENGTH_SHORT).show();
                 // //
-                player_data.setSpeed(getterANDSetterFile.get_Speed());
+                //player_data.setSpeed(getterANDSetterFile.get_Speed());
                 update_values();
                 // //
             }

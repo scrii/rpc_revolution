@@ -45,4 +45,9 @@ public class Point2D {
         this.x=x;
         this.y=y;
     }
+
+    public void reverse(){
+        x=-x;
+        y=-y;
+    }
 }

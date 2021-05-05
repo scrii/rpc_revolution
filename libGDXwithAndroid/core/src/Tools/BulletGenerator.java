@@ -32,13 +32,12 @@ public class BulletGenerator {
 
     public void update(Joystick joy){
         isFire= joy.getDir().getX() != 0 || joy.getDir().getY() != 0;
-
         if(isFire && isTime) {
             Point2D point = new Point2D(GameSc.player.send_in_ONLINE.getX()-GameSc.player.R-GameSc.player.R/5-GameSc.player.R/5,GameSc.player.send_in_ONLINE.getY()-GameSc.player.R-GameSc.player.R/5-GameSc.player.R/5);
             GameSc.bullets.add(new Bullet(Main.actor, point, 23, GameSc.player.R/5, joy.getDir()));
             isTime=false;
             counter=Sec;
-            Gdx.app.error("isTime",isTime+"");
+            //Gdx.app.error("isTime",isTime+"");
         }
     }
 }

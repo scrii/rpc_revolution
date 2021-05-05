@@ -51,6 +51,7 @@ public class Multiplayer {
     private void tmp(String s){
         valueOf_online=s;
         meta_players.clear();
+        players.clear();
         meta_players.addAll(Arrays.asList(valueOf_online.split(";")));
         meta_players.remove(gs.get_Nickname());
         //Gdx.app.error("MP",meta_players.toString()+"");

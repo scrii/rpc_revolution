@@ -23,10 +23,10 @@ public class PlayerDataCreator {
         x=0;
         y=0;
         getter_setter = new GetterANDSetterFile();
-        read();
+        //read();
 
         databaseHelper=new DatabaseHelper();
-        sendToFirebase = new Message(nickname,x,y,gold,elbrium,speed,attack,health,protect,color_background,color_front);
+        //sendToFirebase = new Message(nickname,x,y,gold,elbrium,speed,attack,health,protect,color_background,color_front);
 
 
 

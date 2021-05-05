@@ -21,11 +21,16 @@ public class Player extends Actor {
 
     private int Score;
     private float health;
+    private float realSpeed=0;
     public float X;
     public float Y;
+
+    public float getRealSpeed() {
+        return realSpeed;
+    }
+
     public Point2D send_in_ONLINE;
     public boolean isMove;
-    public String nickname;
     public PlayerDataCreator playerData;
     public PlayerDataCollect playerCollectData;
     private Message player_data;
@@ -34,26 +39,29 @@ public class Player extends Actor {
     private static final int logOutSec=4;
     private int counter=logOutSec;
     public float damage;
+    private boolean leftC, rightC, upC, downC;
 
 
 
     private DatabaseHelper databaseHelper;
 
-    public Player(String nickname,Texture img, Point2D position, float Speed, float R, float health) {
+    public Player(Texture img, Point2D position, float Speed, float R, float health) {
         super(img, position, Speed, R);
         this.health=health;
-        this.nickname=nickname;
+
         databaseHelper=new DatabaseHelper();
         playerData=new PlayerDataCreator();
         playerCollectData=new PlayerDataCollect();
         getter_setter=new GetterANDSetterFile();
-        damage= (float) (getter_setter.get_Attack()/10);
-        player_data=new Message(getter_setter.get_Nickname(),GameSc.player_x,GameSc.player_y,
-                getter_setter.get_Guardian_Money(),getter_setter.get_Ore_Elbrium(),
-                getter_setter.get_Speed(),getter_setter.get_Attack(),getter_setter.get_Health(),
-                getter_setter.get_Protection(),"back","front");
+
+        this.health+=getter_setter.get_Health();
+
+        damage= (float) (getter_setter.get_Attack());
+        player_data=new Message(getter_setter.getTexture(),GameSc.player_x,GameSc.player_y,
+                getter_setter.get_Attack(),getter_setter.get_Health(),
+                getter_setter.get_Protection());
         databaseHelper.sendToFirebase(getter_setter.get_Nickname(), player_data.toString());
-        //timeCheck();
+        timeCheck();
     }
 
     // метод оповещения о движении
@@ -72,56 +80,24 @@ public class Player extends Actor {
 
     @Override
     public void update() {
-        // не зашел ли игрок за границу
-        /*if(position.getX()+R>= Main.WIDTH)position.setX(Main.WIDTH-R);
-        if(position.getX()-R<=0)position.setX(R);
-        if(position.getY()+R>=Main.HEIGHT)position.setY(Main.HEIGHT-R);
-        if(position.getY()-R<=0)position.setY(R);*/
-
-
-
-
-        X=direction.getX()*Speed;
-        Y=direction.getY()*Speed;
+        X=direction.getX()*realSpeed;
+        Y=direction.getY()*realSpeed;
         position.add(X,Y);
         send_in_ONLINE=position;
         bounds.pos.setPoint(position);
-       // send_in_ONLINE.add(-100,-100);
-
-        // общая ширина - половина экрана
-
-        // 8 условий - 4 для камеры - 4 для игрока
-
-        if(send_in_ONLINE.getY()+R>=Main.BACKGROUND_WIDTH-Main.WIDTH/2)send_in_ONLINE.setY(Main.BACKGROUND_WIDTH-Main.WIDTH/2-R);
-        if(send_in_ONLINE.getX()-R<=Main.WIDTH/2)send_in_ONLINE.setX(Main.WIDTH/2+R);
-
-        if(send_in_ONLINE.getX()+R>=Main.BACKGROUND_HEIGHT-Main.HEIGHT)send_in_ONLINE.setX(Main.BACKGROUND_HEIGHT-Main.HEIGHT-R);
-        if(send_in_ONLINE.getX()-R<=Main.HEIGHT/2)send_in_ONLINE.setX(Main.HEIGHT/2+R);
-
-        //databaseHelper.sendCoords("email",send_in_ONLINE.getX(),send_in_ONLINE.getY());/
-
-        //playerData.setCoords(send_in_ONLINE);
-
-        //databaseHelper.playerDataUpdate(nickname, playerData.getMessage());
-
-
-       // test push = GdxFIRDatabase.instance().inReference("test").push().setValue(new Message("metadata"));
-
+        cameraCheck();
+        playerCheck();
         if(isMove){
             counter=logOutSec;
             player_data.x=send_in_ONLINE.getX();
             player_data.y=send_in_ONLINE.getY();
             databaseHelper.sendToFirebase(getter_setter.get_Nickname(),player_data.toString());
-            //playerCollectData.getPosition("scri");
         }
 
+    }
 
-        //Gdx.app.log("PLAYER_MOVE",isMove+"");
-
-        // отправка координат, условия остановки
-        //if(isMove)databaseHelper.sendCoords("email",send_in_ONLINE.getX(),send_in_ONLINE.getY());
-
-
+    public float getHealth() {
+        return health;
     }
 
     public void timeCheck(){
@@ -143,4 +119,61 @@ public class Player extends Actor {
     public Point2D getPosition(){
         return send_in_ONLINE;
     }
+
+    public void motion(){
+        GameSc.camera.position.set(send_in_ONLINE.getX()-R,send_in_ONLINE.getY()-R,0);
+    }
+
+    public void motion(float final_float, int case_){
+        switch (case_){
+            case 0: GameSc.camera.position.set(final_float-R,send_in_ONLINE.getY()-R,0);break;
+            case 1: GameSc.camera.position.set(send_in_ONLINE.getX()-R,final_float-R,0);break;
+        }
+    }
+
+    public void motion(float final_x, float final_y){
+        GameSc.camera.position.set(final_x-R,final_y-R,0);
+    }
+
+    private void cameraCheck(){
+        leftC=send_in_ONLINE.getX()-R<=Main.WIDTH/2;
+        rightC=send_in_ONLINE.getX()+R>=Main.BACKGROUND_WIDTH-Main.WIDTH/2;
+        upC=send_in_ONLINE.getY()+R>=Main.BACKGROUND_HEIGHT-Main.HEIGHT/2;
+        downC=send_in_ONLINE.getY()-R<=Main.HEIGHT/2;
+
+        if(leftC){motion(Main.WIDTH/2+R, 0);GameSc.batchDraw=false;}
+        if(upC){motion(Main.BACKGROUND_HEIGHT-Main.HEIGHT/2+R,1);GameSc.batchDraw=false;}
+        if(downC){motion(Main.HEIGHT/2+R,1);GameSc.batchDraw=false;}
+        if(rightC){motion(Main.BACKGROUND_WIDTH- Main.WIDTH/2+R,0);GameSc.batchDraw=false;}
+
+        if(leftC&&upC){motion(Main.WIDTH/2+R,Main.BACKGROUND_HEIGHT-Main.HEIGHT/2-R);GameSc.batchDraw=false;}
+        if(leftC&&downC){motion(Main.WIDTH/2+R,Main.HEIGHT/2+R);GameSc.batchDraw=false;}
+        if(rightC&&upC){motion(Main.BACKGROUND_WIDTH- Main.WIDTH/2-R,Main.BACKGROUND_HEIGHT-Main.HEIGHT/2-R);GameSc.batchDraw=false;}
+        if(rightC&&downC){motion(Main.BACKGROUND_WIDTH- Main.WIDTH/2-R,Main.HEIGHT/2+R);GameSc.batchDraw=false;}
+
+        if(!leftC&&!upC&&!rightC&&!downC){motion();GameSc.batchDraw=true;}
+    }
+
+    public void playerCheck(){
+        // не зашел ли игрок за границу
+        if(position.getX()+R>= Main.BACKGROUND_WIDTH){send_in_ONLINE.setX(Main.BACKGROUND_WIDTH-R);setRealSpeed(0);}
+        if(position.getX()-3*R<=0){send_in_ONLINE.setX(3*R);setRealSpeed(0);}
+        if(position.getY()+2*R>=Main.BACKGROUND_HEIGHT){send_in_ONLINE.setY(Main.BACKGROUND_HEIGHT-2*R);setRealSpeed(0);}
+        if(position.getY()-2*R<=0){send_in_ONLINE.setY(2*R);setRealSpeed(0);}
+
+    }
+
+    public void setRealSpeed(float realSpeed) {
+        this.realSpeed = realSpeed;
+    }
+
+    public void changeSpeed(float val){
+        realSpeed+=val;
+        //Gdx.app.error("REALspeed",realSpeed+"");
+    }
+
+    public void changeHealth(float h){
+        health+=h;
+    }
+
 }
