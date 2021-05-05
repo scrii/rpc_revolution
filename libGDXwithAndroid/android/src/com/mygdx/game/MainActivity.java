@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else textMessage.setTextColor(getResources().getColor(R.color.white));
                 words = s.split(" ");
-                if(!s.contains("*")&&!textMessage.getText().toString().contains("*") && s.contains("@"+nickname)){
+                if(!s.contains("*")&&!textMessage.getText().toString().contains("*") && s.contains("@"+nickname) || s.contains("@all")){
                     g1 = s.indexOf("@");
                     g2 = nickname.length()+g1;
                     SpannableStringBuilder builder1 = new SpannableStringBuilder();
