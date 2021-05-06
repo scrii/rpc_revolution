@@ -8,8 +8,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-database'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-analytics'
-
-    implementation 'com.google.code.gson:gson:2.8.6'
 }
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
