@@ -70,7 +70,7 @@ public class ScrollingActivity extends AppCompatActivity {
         player1.start();
 
         // //
-        online(-1);
+        //online(-1);
         player_data=new Message(getterANDSetterFile.getTexture(),-1,-1,(float)getterANDSetterFile.get_Attack(),
                 (float)getterANDSetterFile.get_Health(),(float)getterANDSetterFile.get_Protection());
         FirebaseDatabase.getInstance().getReference("LONGDATA").push().setValue(player_data.toString());
