@@ -8,6 +8,7 @@ import androidx.core.app.NotificationManagerCompat;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.SpannableString;
@@ -55,8 +56,10 @@ public class MainActivity extends AppCompatActivity {
     int spaces;
     private static final int NOTIFY_ID = 101;
     TextView word;
-    int sec=1;
+    int sec=1,nothing_to_be_done=0;
+    MediaPlayer player2,player1;
     CountDownTimer countDownTimer;
+    int tf;
     // //
     GetterANDSetterFile getterANDSetterFile;
     //Online online;
@@ -69,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
         //updateOnline();
         Log.e("MAINACTIVITY", "PAUSED");
+        player2.pause();
+        player1.start();
+        Player_TWO(0);
         super.onPause();
     }
     // //
@@ -77,11 +83,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+        Player_TWO(1);
+        player1 = MediaPlayer.create(MainActivity.this, R.raw.sound1);
+        player1.pause();
+        player2 = MediaPlayer.create(MainActivity.this,R.raw.sound2);
         myListView = findViewById(R.id.listView);
         myListView.isFastScrollEnabled();
         input = findViewById(R.id.editText);
+
         word = findViewById(R.id.number_of_words_entered);
         getterANDSetterFile = new GetterANDSetterFile();
+        if (!player2.isPlaying())player2.start();
+        else {nothing_to_be_done++;}
+
         online(0);
         // //
         //online=new Online();
@@ -274,4 +288,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     // //
+    public int Player_TWO(int tf1){
+        tf = tf1;
+        return tf;
+   }
+    public int getPlayer_TWO(){
+        return tf;
+    }
 }

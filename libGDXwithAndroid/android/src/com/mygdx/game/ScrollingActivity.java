@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import android.app.Application;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Color;
@@ -34,7 +35,6 @@ import java.io.IOException;
 import FirebaseHelper.Message;
 import FirebaseHelper.Online;
 
-
 public class ScrollingActivity extends AppCompatActivity {
 
     public int seconds;
@@ -46,31 +46,32 @@ public class ScrollingActivity extends AppCompatActivity {
     int level;
     int real_level;
     CountDownTimer countDownTimer;
-    MediaPlayer player1,player2;
+    MediaPlayer player1;
+    MainActivity mainActivity;
     GetterANDSetterFile getterANDSetterFile;
     // //
     public Message player_data;
     Online online;
+    @Override
+    protected void onPause() {
+        player1.pause();
+        super.onPause();
+    }
+    @Override
+    protected void onStart(){
+        player1.start();
+        super.onStart();
+    }
     // //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
         getterANDSetterFile = new GetterANDSetterFile(); //
-//        try {
-//            AssetFileDescriptor afd1 = getAssets().openFd("ScrollingActivityElbrium1.mp3");
-//            AssetFileDescriptor afd2 = getAssets().openFd("ScrollingActivityElbrium2.mp3");
-//            player1 = new MediaPlayer();
-//            player1.setDataSource(afd1.getFileDescriptor(), afd1.getStartOffset(), afd1.getLength());
-//            //player1.prepare();
-//            player1.start();
-//            player2 = new MediaPlayer();
-//            player2.setDataSource(afd2.getFileDescriptor(), afd2.getStartOffset(), afd2.getLength());
-//            //player2.prepare();
-//            //player2.start();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        player1 = MediaPlayer.create(ScrollingActivity.this, R.raw.sound1);
+        mainActivity = new MainActivity();
+        //player2 = MediaPlayer.create(ScrollingActivity.this,R.raw.sound2);
+        player1.start();
 
         // //
         online(-1);
@@ -110,8 +111,8 @@ public class ScrollingActivity extends AppCompatActivity {
                     info_money.setText(getterANDSetterFile.get_Guardian_Money() + "");
                     info_level.setText(getterANDSetterFile.get_Guardian_Level()+"");
                     toolBarLayout.setTitle(getterANDSetterFile.get_Nickname());
-                    //if(!player1.isPlaying())player2.start();
-                    //else player1.start();
+                    //if(mainActivity.getPlayer_TWO() == 0)player1.start(); //false
+                    //if(mainActivity.getPlayer_TWO()==1)player1.pause();
                 }
 
                 @Override
@@ -147,6 +148,7 @@ public class ScrollingActivity extends AppCompatActivity {
         room1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                player1.pause();
                 startActivity(new Intent(ScrollingActivity.this,MainActivity.class));
             }
         });
@@ -230,5 +232,6 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         });
     }
+
     // //
 }
