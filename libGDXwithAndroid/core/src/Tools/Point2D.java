@@ -3,12 +3,6 @@ package Tools;
 public class Point2D {
     private float x,y;
     private String author;
-
-    @Override
-    public String toString() {
-        return x+" "+y;
-    }
-
     public Point2D(Point2D p){
         x=p.getX();
         y=p.getY();
@@ -22,11 +16,6 @@ public class Point2D {
     public void add(float x, float y){
         this.x+=x;
         this.y+=y;
-    }
-
-    public void add(Point2D p){
-        this.x+=p.getX();
-        this.y+=p.getY();
     }
 
 
@@ -44,10 +33,5 @@ public class Point2D {
     public void setPoint(float x,float y){
         this.x=x;
         this.y=y;
-    }
-
-    public void reverse(){
-        x=-x;
-        y=-y;
     }
 }
