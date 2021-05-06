@@ -29,12 +29,7 @@ import com.github.library.bubbleview.BubbleTextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.OnDisconnect;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.core.Repo;
-import com.google.firebase.database.core.RepoInfo;
-
-import FirebaseHelper.Online;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -74,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         Log.e("MAINACTIVITY", "PAUSED");
         player2.pause();
         player1.start();
-        Player_TWO(0);
         super.onPause();
     }
     // //
@@ -83,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
-        Player_TWO(1);
         player1 = MediaPlayer.create(MainActivity.this, R.raw.sound1);
         player1.pause();
         player2 = MediaPlayer.create(MainActivity.this,R.raw.sound2);
@@ -288,11 +281,5 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     // //
-    public int Player_TWO(int tf1){
-        tf = tf1;
-        return tf;
-   }
-    public int getPlayer_TWO(){
-        return tf;
-    }
+
 }

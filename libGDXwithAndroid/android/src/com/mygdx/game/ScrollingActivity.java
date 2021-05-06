@@ -1,8 +1,6 @@
 package com.mygdx.game;
 
-import android.app.Application;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -30,7 +28,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.File;
-import java.io.IOException;
 
 import FirebaseHelper.Message;
 import FirebaseHelper.Online;
@@ -47,7 +44,7 @@ public class ScrollingActivity extends AppCompatActivity {
     int real_level;
     CountDownTimer countDownTimer;
     MediaPlayer player1;
-    MainActivity mainActivity;
+
     GetterANDSetterFile getterANDSetterFile;
     // //
     public Message player_data;
@@ -69,7 +66,6 @@ public class ScrollingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling);
         getterANDSetterFile = new GetterANDSetterFile(); //
         player1 = MediaPlayer.create(ScrollingActivity.this, R.raw.sound1);
-        mainActivity = new MainActivity();
         //player2 = MediaPlayer.create(ScrollingActivity.this,R.raw.sound2);
         player1.start();
 
@@ -81,8 +77,6 @@ public class ScrollingActivity extends AppCompatActivity {
         online=new Online();
         //online.online(0);
         // //
-
-        //getterANDSetterFile.set_Guardian_Money(1000000.0);
         real_sign = getterANDSetterFile.get_Sign();
         if(real_sign != 1)startActivity(new Intent(ScrollingActivity.this,EmailPasswordActivity.class));
         Toolbar toolbar = findViewById(R.id.toolbar);
