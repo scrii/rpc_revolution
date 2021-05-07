@@ -51,9 +51,9 @@ public class MainActivity extends AppCompatActivity {
     int spaces;
     private static final int NOTIFY_ID = 101;
     TextView word;
-    int sec=1,nothing_to_be_done=0;
+    int sec=1;
     CountDownTimer countDownTimer;
-    int tf;
+    MediaPlayer player1;
     // //
     GetterANDSetterFile getterANDSetterFile;
     //Online online;
@@ -64,8 +64,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         //updateOnline();
+        player1.pause();
         Log.e("MAINACTIVITY", "PAUSED");
         super.onPause();
+    }
+    @Override
+    protected void onStart(){
+        player1.start();
+        super.onStart();
     }
     // //
     @Override
@@ -76,7 +82,8 @@ public class MainActivity extends AppCompatActivity {
         myListView = findViewById(R.id.listView);
         myListView.isFastScrollEnabled();
         input = findViewById(R.id.editText);
-
+        player1 = MediaPlayer.create(MainActivity.this, R.raw.startsound);
+        player1.start();
         word = findViewById(R.id.number_of_words_entered);
         getterANDSetterFile = new GetterANDSetterFile();
 
