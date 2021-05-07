@@ -30,26 +30,15 @@ public class ShopActivity extends AppCompatActivity {
     int price_attack = 10;
     double new_price_maneuverability,new_price_attack,new_price_protection,new_price_speed,new_price_ore_elbrium,new_price_ore_elbrium_speed; //манёвренность
     int price_maneuverability = 10;
-    MediaPlayer player3;
     Button maneuverability_plus_one,attack_plus_one,protect_plus_one,speed_plus_one,sale_of_elbrium;
     TextView real_money_characteristic,real_health_characteristic,real_damage_characteristic,real_protect_characteristic,real_speed_characteristic,real_ore_characteristic,maneuverability_price,attack_price,protection_price,speed_price;
 
-    @Override
-    protected void onStart(){
-        player3.start();
-        super.onStart();
-    }
-    @Override
-    protected void onPause(){
-        player3.stop();
-        super.onPause();
-    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shop_activity);
-        player3 = MediaPlayer.create(ShopActivity.this,R.raw.sound3);
-        player3.start();
+
         // //
         getter_setter=new GetterANDSetterFile();
         player_data=new Message(getter_setter.getTexture(),-1,-1,(float)getter_setter.get_Attack(),

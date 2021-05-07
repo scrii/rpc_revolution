@@ -68,8 +68,7 @@ public class ScrollingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
         getterANDSetterFile = new GetterANDSetterFile(); //
-        player1 = MediaPlayer.create(ScrollingActivity.this, R.raw.sound1);
-        //player2 = MediaPlayer.create(ScrollingActivity.this,R.raw.sound2);
+        player1 = MediaPlayer.create(ScrollingActivity.this, R.raw.startsound);
         player1.start();
 
         coordinatorLayout = findViewById(R.id.ToStart);
