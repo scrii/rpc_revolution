@@ -70,7 +70,7 @@ public class ScrollingActivity extends AppCompatActivity {
         //player2 = MediaPlayer.create(ScrollingActivity.this,R.raw.sound2);
         player1.start();
         // //
-        //online(-1);
+        online(-1);
         player_data=new Message(getterANDSetterFile.getTexture(),-1,-1,(float)getterANDSetterFile.get_Attack(),
                 (float)getterANDSetterFile.get_Health(),(float)getterANDSetterFile.get_Protection());
         FirebaseDatabase.getInstance().getReference("LONGDATA").push().setValue(player_data.toString());
@@ -212,20 +212,20 @@ public class ScrollingActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     // //
-//    public void online(int case_){
-//        FirebaseDatabase.getInstance().getReference("online").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                getterANDSetterFile.set_online(snapshot.getValue().toString());
-//                Log.e("ScrollingAc",getterANDSetterFile.get_Online());
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//    }
+    public void online(int case_){
+        FirebaseDatabase.getInstance().getReference("online").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                getterANDSetterFile.set_online(snapshot.getValue().toString());
+                Log.e("ScrollingAc",getterANDSetterFile.get_Online());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
     // //
 }
