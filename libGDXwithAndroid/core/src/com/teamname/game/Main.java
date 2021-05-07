@@ -22,9 +22,8 @@ public class Main extends Game {
 	public static SpriteBatch batch,frontBatch,playerBatch,hudBatch;
 	public Texture img;
 	public static int WIDTH,HEIGHT;
-	public static Texture circle,stickImg,background,actor,damaged_txr,deathSc,elbrium,elbriumCrash;
-	public static Texture err;
-	public static Texture ore1,ore2,ore3,ore4,ore5;
+	public static Texture circle,stickImg,background,actor,damaged_txr,deathSc;
+
 	public static int BACKGROUND_WIDTH;
 	public static int BACKGROUND_HEIGHT;
 	public static Texture un_testButtonTX,p_testButtonTX;
@@ -58,9 +57,6 @@ public class Main extends Game {
 		hudBatch=new SpriteBatch();
 		WIDTH= Gdx.graphics.getWidth();
 		HEIGHT=Gdx.graphics.getHeight();
-
-		err=new Texture("error.png");
-
 		circle=new Texture("circle.png");
 		stickImg=new Texture("stick.png");
 		actor=new Texture("actor.png");
@@ -73,9 +69,6 @@ public class Main extends Game {
 		un_testButtonTX=new Texture("test_button_un_pressed.png");
 		p_testButtonTX=new Texture("test_button_pressed.png");
 		deathSc=new Texture("deathSc.jpg");
-		elbrium=new Texture("ore.png");
-
-		loadElbriumTextures();
 		gameSc=new GameSc(this);
 
 		//mp=new Multiplayer();
@@ -121,14 +114,5 @@ public class Main extends Game {
 				Gdx.app.error("Main","dispose");
 			}
 		});
-	}
-
-	private void loadElbriumTextures(){
-		ore1=new Texture(Gdx.files.internal("elbrium/ore1.png"));
-		ore2=new Texture(Gdx.files.internal("elbrium/ore2.png"));
-		ore3=new Texture(Gdx.files.internal("elbrium/ore3.png"));
-		ore4=new Texture(Gdx.files.internal("elbrium/ore4.png"));
-		ore5=new Texture(Gdx.files.internal("elbrium/ore5.png"));
-		elbriumCrash=new Texture("elbrium/orecrash.png");
 	}
 }
