@@ -67,8 +67,9 @@ public class Elbrium extends Actor {
         Speed+=deltaSpeed;
         direction.setPoint(b.direction.getX(),b.direction.getY());
         if(health<=0){
+            //textureCase=0;
             GameSc.player.getter_setter.add_elbrium(score);
-            GameSc.ore.removeIndex(count);
+            //GameSc.ore.removeIndex(count);
             Gdx.app.log("Elbrium #"+count, "i died :(");
         }
 
@@ -77,11 +78,11 @@ public class Elbrium extends Actor {
     public Elbrium(Texture img, Point2D position, int rank) {
         super(img, position);
         counter=-1;
-        switchReg=0;
+
         textureCase=1;
         player_damage=GameSc.player.damage;
         //region=new TextureRegion(Main.elbrium,);
-        animation=new Animation(new TextureRegion(Main.elbriumCrash),4,2);
+        animation=new Animation(new TextureRegion(Main.elbriumCrash),4,4);
 
         switch (rank){
             case -1: health=10;score=100;R=Main.WIDTH/50;Speed=0.8f;deltaSpeed=0.001f;damage=50;break;
@@ -107,13 +108,19 @@ public class Elbrium extends Actor {
 
     @Override
     public void draw(SpriteBatch batch) {
-        batch.draw(thisTexture(),position.getX()-R,position.getY()-R,R*2,R*2);
+        if(health>0)batch.draw(thisTexture(),position.getX()-R,position.getY()-R,R*2,R*2);
+        else batch.draw(animation.getFrame(),position.getX()-R,position.getY()-R,R*2,R*2);
+        //batch.draw(thisTexture(),position.getX()-R,position.getY()-R,R*2,R*2);
         //batch.draw(region);
     }
 
     @Override
     public void update() {
         // вылетел за карту? удаляем
+
+
+        if(health<=0)animation.update(0.1f);
+        if(animation.isDone())GameSc.ore.removeValue(this,true);
         position.add(direction.getX()*Speed,direction.getY()*Speed);
         bounds.pos.setPoint(position);
         GdxFIRDatabase.instance().inReference("Elbrium_"+count).setValue(position.toString());
@@ -148,6 +155,7 @@ public class Elbrium extends Actor {
 
     private Texture thisTexture(){
         switch (textureCase){
+            case 0: animation.getFrame();
             case 1:return Main.ore1;
             case 2:return Main.ore2;
             case 3:return Main.ore3;

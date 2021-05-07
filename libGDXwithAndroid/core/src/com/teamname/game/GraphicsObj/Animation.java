@@ -1,5 +1,6 @@
 package com.teamname.game.GraphicsObj;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 
@@ -11,8 +12,10 @@ public class Animation {
     private float currentFrameTime;
     private int frameCount;
     private int frame;
+    private boolean isDone;
 
     public Animation(TextureRegion region, int frameCount, int cycleTime){
+        isDone=false;
         frames = new ArrayList<>();
         int frameWidth = region.getRegionWidth() / frameCount;
         for(int i=0;i<frameCount;i++)
@@ -29,13 +32,23 @@ public class Animation {
             currentFrameTime=0;
         }
         if(frame>=frameCount)
+        {
             frame=0;
+            isDone=true;
+        }
+        Gdx.app.error("frame",frame+"");
+        Gdx.app.log("frameCount",frameCount+"");
+        Gdx.app.error("currentFrameTime",currentFrameTime+"");
+        Gdx.app.log("maxFrameTime",maxFrameTime+"");
     }
 
     public TextureRegion getFrame(){
         return frames.get(frame);
     }
 
+    public boolean isDone(){
+        return isDone;
+    }
 
 
 }

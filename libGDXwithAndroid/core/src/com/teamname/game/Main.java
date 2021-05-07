@@ -74,7 +74,7 @@ public class Main extends Game {
 		p_testButtonTX=new Texture("test_button_pressed.png");
 		deathSc=new Texture("deathSc.jpg");
 		elbrium=new Texture("ore.png");
-		elbriumCrash=new Texture("orecrash.png");
+
 		loadElbriumTextures();
 		gameSc=new GameSc(this);
 
@@ -129,5 +129,6 @@ public class Main extends Game {
 		ore3=new Texture(Gdx.files.internal("elbrium/ore3.png"));
 		ore4=new Texture(Gdx.files.internal("elbrium/ore4.png"));
 		ore5=new Texture(Gdx.files.internal("elbrium/ore5.png"));
+		elbriumCrash=new Texture("elbrium/orecrash.png");
 	}
 }
