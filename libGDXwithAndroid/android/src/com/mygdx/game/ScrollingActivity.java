@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
@@ -15,6 +16,7 @@ import com.google.firebase.database.ValueEventListener;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.os.CountDownTimer;
 import android.text.SpannableString;
@@ -68,7 +70,11 @@ public class ScrollingActivity extends AppCompatActivity {
         player1 = MediaPlayer.create(ScrollingActivity.this, R.raw.sound1);
         //player2 = MediaPlayer.create(ScrollingActivity.this,R.raw.sound2);
         player1.start();
-
+        CoordinatorLayout coordinatorLayout;
+        coordinatorLayout = findViewById(R.id.ToStart);
+        coordinatorLayout.setBackgroundResource(R.drawable.spin_animation);
+        AnimationDrawable frameAnimation = (AnimationDrawable) coordinatorLayout.getBackground();
+        frameAnimation.start();
         // //
         //online(-1);
         player_data=new Message(getterANDSetterFile.getTexture(),-1,-1,(float)getterANDSetterFile.get_Attack(),
