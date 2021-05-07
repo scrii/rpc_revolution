@@ -46,8 +46,9 @@ public class ScrollingActivity extends AppCompatActivity {
     int real_level;
     CountDownTimer countDownTimer;
     MediaPlayer player1;
-
+    CoordinatorLayout coordinatorLayout;
     GetterANDSetterFile getterANDSetterFile;
+    AnimationDrawable frameAnimation;
     // //
     public Message player_data;
     Online online;
@@ -70,10 +71,10 @@ public class ScrollingActivity extends AppCompatActivity {
         player1 = MediaPlayer.create(ScrollingActivity.this, R.raw.sound1);
         //player2 = MediaPlayer.create(ScrollingActivity.this,R.raw.sound2);
         player1.start();
-        CoordinatorLayout coordinatorLayout;
+
         coordinatorLayout = findViewById(R.id.ToStart);
         coordinatorLayout.setBackgroundResource(R.drawable.spin_animation);
-        AnimationDrawable frameAnimation = (AnimationDrawable) coordinatorLayout.getBackground();
+        frameAnimation = (AnimationDrawable) coordinatorLayout.getBackground();
         frameAnimation.start();
         // //
         //online(-1);
@@ -113,6 +114,10 @@ public class ScrollingActivity extends AppCompatActivity {
                     toolBarLayout.setTitle(getterANDSetterFile.get_Nickname());
                     //if(mainActivity.getPlayer_TWO() == 0)player1.start(); //false
                     //if(mainActivity.getPlayer_TWO()==1)player1.pause();
+                    if(getterANDSetterFile.get_StartChat()==1){
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        getterANDSetterFile.set_StartChat(0);
+                    }
                 }
 
                 @Override
@@ -149,7 +154,8 @@ public class ScrollingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 player1.pause();
-                startActivity(new Intent(ScrollingActivity.this,MainActivity.class));
+                //startActivity(new Intent(ScrollingActivity.this,MainActivity.class));
+                startActivity(new Intent(ScrollingActivity.this,AndroidLauncher.class));
             }
         });
     }

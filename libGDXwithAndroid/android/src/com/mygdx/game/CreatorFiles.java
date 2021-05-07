@@ -168,5 +168,20 @@ public class CreatorFiles {
                 e.printStackTrace();
             }
         }
+        File file15 = new File("/data/data/com.mygdx.game/StartChat.txt");
+        if(!file15.exists()){
+            try {
+                if (!file15.exists()) file15.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                PrintWriter printWriter15 = new PrintWriter(file15);
+                printWriter15.write(String.valueOf(0));
+                printWriter15.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
