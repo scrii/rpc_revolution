@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         if (!player2.isPlaying())player2.start();
         else {nothing_to_be_done++;}
 
-        online(0);
+        //online(0);
         // //
         //online=new Online();
         //online.online(0);
