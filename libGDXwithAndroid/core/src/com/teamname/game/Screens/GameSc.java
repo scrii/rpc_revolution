@@ -100,10 +100,6 @@ public class GameSc implements Screen {
         //camera=new OrthographicCamera(Main.WIDTH*3f,Main.HEIGHT*3f);
     }
 
-    public GameSc(){}
-
-
-
     @Override
     public void show() {
         Gdx.input.setInputProcessor(new InputProcessor() {

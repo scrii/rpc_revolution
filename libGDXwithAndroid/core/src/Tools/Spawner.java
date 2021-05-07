@@ -30,7 +30,7 @@ public class Spawner extends TimerTask {
     private void spawnOre() {
         rank= +(int) (Math.random() * 3);
         Elbrium elbrium = new Elbrium(Main.actor,new Point2D((float)Math.random()*Main.BACKGROUND_WIDTH/1.3f,
-                (float)Math.random()*Main.BACKGROUND_HEIGHT/1.3f),rank,Main.damaged_txr);
+                (float)Math.random()*Main.BACKGROUND_HEIGHT/1.3f),rank);
         GameSc.ore.add(elbrium);
         Gdx.app.log("TIMER","ore spawned");
     }
