@@ -145,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
                     toast.cancel();
                     word.setTextColor(getResources().getColor(R.color.grey_500));
                 }
+                if(!player1.isPlaying())player1.start();
             }
             @Override
             public void onFinish() {

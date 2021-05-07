@@ -113,6 +113,7 @@ public class ScrollingActivity extends AppCompatActivity {
                     toolBarLayout.setTitle(getterANDSetterFile.get_Nickname());
                     //if(mainActivity.getPlayer_TWO() == 0)player1.start(); //false
                     //if(mainActivity.getPlayer_TWO()==1)player1.pause();
+                    if(!player1.isPlaying())player1.start();
                     if(getterANDSetterFile.get_StartChat()==1){
                         startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         getterANDSetterFile.set_StartChat(0);
