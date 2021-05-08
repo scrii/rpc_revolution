@@ -62,7 +62,7 @@ public class Elbrium extends Actor {
 
     }
 
-    public Elbrium(Texture img, Point2D position, int rank, Texture dameged_txr) {
+    public Elbrium(Texture img, Point2D position, int rank) {
         super(img, position);
         counter=-1;
         player_damage=GameSc.player.damage;
