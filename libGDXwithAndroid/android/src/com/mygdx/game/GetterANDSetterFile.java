@@ -11,9 +11,9 @@ import java.io.PrintWriter;
 
 public class GetterANDSetterFile {
     double real_attack=0,real_health=0,real_protection=0,real_speed=0,real_money=0,real_ore_elbrium=0,real_maneuverability=0;
-    int  real_sign=0,real_xp=0,real_level=0,coefficient_attack=0,coefficient_protection=0,coefficient_speed=0;
+    int  real_sign=0,real_xp=0,real_level=0,coefficient_attack=0,coefficient_protection=0,coefficient_speed=0,real_startChat=0;
     String real_message="",real_nickname="";
-    public int sign = 0,f_attack=0,f_protection=0,f_speed=0;
+    public int sign = 0,f_attack=0,f_protection=0,f_speed=0,f_startChat=0;
     public double attack = 0;
     public int guardian_exp = 0;
     public int guardian_level = 0;
@@ -27,6 +27,26 @@ public class GetterANDSetterFile {
     public String nickname = "";
     public GetterANDSetterFile(){
 
+    }
+    public int get_StartChat(){
+        String myData = "";
+        File myExternalFile = new File("/data/data/com.mygdx.game/StartChat.txt");
+        try {
+            FileInputStream fis = new FileInputStream(myExternalFile);
+            DataInputStream in = new DataInputStream(fis);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            String strLine;
+            while ((strLine = br.readLine()) != null) {
+                myData = myData + strLine;
+                real_startChat = Integer.parseInt(myData);
+            }
+            br.close();
+            in.close();
+            fis.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return real_startChat;
     }
     public int get_Sign(){
         String myData = "";
@@ -327,6 +347,22 @@ public class GetterANDSetterFile {
             e.printStackTrace();
         }
         return coefficient_speed;
+    }
+    public void set_StartChat(int c_startChat){
+        f_startChat = c_startChat;
+        File file = new File("/data/data/com.mygdx.game/StartChat.txt");
+        try {
+            if (!file.exists()) file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            PrintWriter printWriter = new PrintWriter(file);
+            printWriter.write(String.valueOf(f_startChat));
+            printWriter.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
     public void set_Coefficient_Attack(int c_attack){
         f_attack = c_attack;

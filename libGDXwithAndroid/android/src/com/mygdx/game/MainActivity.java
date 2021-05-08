@@ -51,10 +51,9 @@ public class MainActivity extends AppCompatActivity {
     int spaces;
     private static final int NOTIFY_ID = 101;
     TextView word;
-    int sec=1,nothing_to_be_done=0;
-    MediaPlayer player2,player1;
+    int sec=1;
     CountDownTimer countDownTimer;
-    int tf;
+    MediaPlayer player1;
     // //
     GetterANDSetterFile getterANDSetterFile;
     //Online online;
@@ -64,12 +63,15 @@ public class MainActivity extends AppCompatActivity {
     // //
     @Override
     protected void onPause() {
-
         //updateOnline();
+        player1.pause();
         Log.e("MAINACTIVITY", "PAUSED");
-        player2.pause();
-        player1.start();
         super.onPause();
+    }
+    @Override
+    protected void onStart(){
+        player1.start();
+        super.onStart();
     }
     // //
     @Override
@@ -77,17 +79,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
-        player1 = MediaPlayer.create(MainActivity.this, R.raw.sound1);
-        player1.pause();
-        player2 = MediaPlayer.create(MainActivity.this,R.raw.sound2);
         myListView = findViewById(R.id.listView);
         myListView.isFastScrollEnabled();
         input = findViewById(R.id.editText);
-
+        player1 = MediaPlayer.create(MainActivity.this, R.raw.startsound);
+        player1.start();
         word = findViewById(R.id.number_of_words_entered);
         getterANDSetterFile = new GetterANDSetterFile();
-        if (!player2.isPlaying())player2.start();
-        else {nothing_to_be_done++;}
 
         //online(0);
         // //
@@ -147,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
                     toast.cancel();
                     word.setTextColor(getResources().getColor(R.color.grey_500));
                 }
+                if(!player1.isPlaying())player1.start();
             }
             @Override
             public void onFinish() {
