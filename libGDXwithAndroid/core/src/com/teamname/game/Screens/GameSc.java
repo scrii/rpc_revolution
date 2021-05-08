@@ -56,7 +56,8 @@ public class GameSc implements Screen {
     private int joyY=(Main.HEIGHT/3)/2+(Main.HEIGHT/3)/4;
     private int joySize = Main.HEIGHT/3;
 
-    private static final int entityRad = Main.HEIGHT/20;
+    private static final int entityRad = Main.HEIGHT/15;
+
     private static final int entityX=Main.BACKGROUND_WIDTH/2-100;
     private static final int entityY=Main.BACKGROUND_HEIGHT/2-50;
 
@@ -166,7 +167,7 @@ public class GameSc implements Screen {
         Main.batch.draw(Main.background,0,0);
         playerRender(0);
         backRender(Main.batch);
-        if(!batchDraw)Main.batch.draw(Main.actor,player.send_in_ONLINE.getX()-2*player.R,player.send_in_ONLINE.getY()-player.R,100,100);
+        if(!batchDraw)Main.batch.draw(player.img,player.send_in_ONLINE.getX()-2*player.R,player.send_in_ONLINE.getY()-player.R,player.R*2,player.R*2);
         // сплюсовать радиусы для отображения игрока ровно в центре
         // руда - batch
         Main.batch.end();
@@ -178,7 +179,7 @@ public class GameSc implements Screen {
 
         if(batchDraw){
             Main.playerBatch.begin();
-            Main.playerBatch.draw(Main.actor,player_x,player_y,100,100);
+            Main.playerBatch.draw(player.img,player_x,player_y,player.R*2,player.R*2);
             Main.playerBatch.end();
         }
 
@@ -211,8 +212,10 @@ public class GameSc implements Screen {
 
         player.update();
         bullgen.update(joy2);
-        for(int i=0;i<bullets.size;i++){bullets.get(i).update();bullets.get(i).setCount(i);if(bullets.get(i).isOut){bullets.get(i).removeBullet(i);}}
-        for(int i=0;i<ore.size;i++){ore.get(i).update();ore.get(i).setCount(i);if(ore.get(i).isOut){ore.get(i).removeElbrium(i);}}
+        for(Bullet b : bullets){b.update();b.setCount(bullets.indexOf(b,true));if(b.isOut)bullets.removeValue(b,true);}
+        //for(int i=0;i<bullets.size;i++){bullets.get(i).update();bullets.get(i).setCount(i);if(bullets.get(i).isOut){bullets.get(i).removeBullet(i);}}
+        for(Elbrium e : ore){e.update();e.setCount(ore.indexOf(e,true));if(e.isOut)ore.removeValue(e,true);}
+        //for(int i=0;i<ore.size;i++){ore.get(i).update();ore.get(i).setCount(i);if(ore.get(i).isOut){ore.get(i).removeElbrium(i);}}
         collision();
         ore_player_collision();
     }
@@ -226,11 +229,11 @@ public class GameSc implements Screen {
         switch(case_){
             case 1:
                 Main.playerBatch.begin();
-                Main.playerBatch.draw(Main.actor, player_x, player_y, 100, 100);
+                Main.playerBatch.draw(player.img, player_x, player_y, 100, 100);
                 Main.playerBatch.end();
                 break;
             case 0:
-                Main.batch.draw(Main.actor, player_x, player_y, 100, 100);
+                Main.batch.draw(player.img, player_x, player_y, 100, 100);
                 break;
         }
     }
@@ -243,15 +246,15 @@ public class GameSc implements Screen {
     }
 
     public void loadActors(){
-        player =new Player(Main.actor,new Point2D(entityX,entityY),5,entityRad,100);
+        player =new Player(Main.player1,new Point2D(entityX,entityY),5,entityRad,100);
         //getter.setPlayer(player);
         joy=new Joystick(Main.circle,Main.stickImg,new Point2D(joyX,joyY),joySize,0);
 
-        ore=new Array<Elbrium>();
+        ore=new Array<>();
         bullgen=new BulletGenerator();
 
         joy2=new Joystick(Main.circle,Main.stickImg,new Point2D(Main.WIDTH-joyX,joyY),joySize,-1);
-        bullets=new Array<Bullet>();
+        bullets=new Array<>();
         spawner.start();
     }
 
@@ -289,29 +292,16 @@ public class GameSc implements Screen {
     public void ore_player_collision(){
         for(Elbrium elbrium : ore)
             if(elbrium.bounds.Overlaps(player.bounds)){
-                //joy.oreOverlaps=true;
-                //Gdx.app.error("ELB","overlaps");
-                float dx = elbrium.position.getX() - player.send_in_ONLINE.getX();
-                float dy = elbrium.position.getY() - player.send_in_ONLINE.getY();
-                float length = (float) Math.sqrt(dx * dx + dy * dy);
-
-                player.changeHealth(-elbrium.getDamage());
-                player.changeSpeed(-0.1f);
-                if(player.direction.getX()!=0&&player.direction.getY()!=0)elbrium.direction.setPoint(player.direction);
-                else elbrium.direction.reverse();
-                elbrium.changeHealth(-getter_setter.get_Protection());
-                Gdx.app.error("player health",player.getHealth()+"");
-                //player.send_in_ONLINE.setPoint(new Point2D(-elbrium.R/length*dx, -elbrium.R/length*dy));
-                /*if(!CircleBounds.isContains(StickBounds.pos)){
-            StickBounds.pos.setX(-Rcircle/ length * dx +joyX);StickBounds.pos.setY(-Rcircle/ length * dy +joyY);
-
-            if(pointer==this.pointer) {
-            dx = CircleBounds.pos.getX() - x;
-            dy = CircleBounds.pos.getY() - y;
-        }
-        length = (float) Math.sqrt(dx * dx + dy * dy);*/
-
+                Gdx.app.log("player","collision");
             }
+        // //
+        /*player.changeHealth(-elbrium.getDamage());
+        player.changeSpeed(-0.1f);
+        if(player.direction.getX()!=0&&player.direction.getY()!=0)elbrium.direction.setPoint(player.direction);
+        else elbrium.direction.reverse();
+        elbrium.changeHealth(-getter_setter.get_Protection());
+        Gdx.app.error("player health",player.getHealth()+"");*/
+        // //
             //else joy.oreOverlaps=false;
 }
         public void death(){
