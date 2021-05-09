@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -17,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.widget.NestedScrollView;
 
 import android.os.CountDownTimer;
 import android.text.SpannableString;
@@ -27,7 +29,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import java.io.File;
 
@@ -46,9 +50,8 @@ public class ScrollingActivity extends AppCompatActivity {
     int real_level;
     CountDownTimer countDownTimer;
     MediaPlayer player1;
-    CoordinatorLayout coordinatorLayout;
     GetterANDSetterFile getterANDSetterFile;
-    AnimationDrawable frameAnimation;
+    NestedScrollView nestedScrollView;
     // //
     public Message player_data;
     Online online;
@@ -70,11 +73,8 @@ public class ScrollingActivity extends AppCompatActivity {
         getterANDSetterFile = new GetterANDSetterFile(); //
         player1 = MediaPlayer.create(ScrollingActivity.this, R.raw.startsound);
         player1.start();
-
-        coordinatorLayout = findViewById(R.id.ToStart);
-        coordinatorLayout.setBackgroundResource(R.drawable.spin_animation);
-        frameAnimation = (AnimationDrawable) coordinatorLayout.getBackground();
-        frameAnimation.start();
+        nestedScrollView = findViewById(R.id.gg);
+        //nestedScrollView.setBackgroundResource(R.drawable.ic_launcher);
         // //
         //online(-1);
         player_data=new Message(getterANDSetterFile.getTexture(),-1,-1,(float)getterANDSetterFile.get_Attack(),
