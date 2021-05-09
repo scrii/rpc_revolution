@@ -68,7 +68,7 @@ public class Main extends Game {
 		stickImg=new Texture("stick.png");
 		actor=new Texture("actor.png");
 		//GdxFIRDatabase.instance().inReference("heading").setValue("msg");
-		background=new Texture("testlocation.png");
+		background=new Texture("testlocation.jpg");
 		BACKGROUND_WIDTH=background.getWidth();
 		BACKGROUND_HEIGHT=background.getHeight();
 		db=new DatabaseHelper();
@@ -79,6 +79,7 @@ public class Main extends Game {
 		elbrium=new Texture("ore.png");
 
 		loadElbriumTextures();
+		loadPlayerTextures();
 		gameSc=new GameSc(this);
 
 		//mp=new Multiplayer();

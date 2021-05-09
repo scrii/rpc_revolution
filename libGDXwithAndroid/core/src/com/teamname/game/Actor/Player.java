@@ -37,6 +37,7 @@ public class Player extends Actor {
     public GetterANDSetterFile getter_setter;
     private Timer timer;
     private static final int logOutSec=60;
+    private static final float SIZE_COEF=GameSc.SIZE_COEF;
     private int counter=logOutSec;
     public float damage;
     private boolean leftC, rightC, upC, downC;
@@ -136,10 +137,10 @@ public class Player extends Actor {
     }
 
     private void cameraCheck(){
-        leftC=send_in_ONLINE.getX()-R<=Main.WIDTH/2;
-        rightC=send_in_ONLINE.getX()+R>=Main.BACKGROUND_WIDTH-Main.WIDTH/2;
-        upC=send_in_ONLINE.getY()+R>=Main.BACKGROUND_HEIGHT-Main.HEIGHT/2;
-        downC=send_in_ONLINE.getY()-R<=Main.HEIGHT/2;
+        leftC=send_in_ONLINE.getX()-R<=Main.WIDTH/2/SIZE_COEF;
+        rightC=send_in_ONLINE.getX()+R>=Main.BACKGROUND_WIDTH-Main.WIDTH/2/SIZE_COEF;
+        upC=send_in_ONLINE.getY()+R>=Main.BACKGROUND_HEIGHT-Main.HEIGHT/2/SIZE_COEF;
+        downC=send_in_ONLINE.getY()-R<=Main.HEIGHT/2/SIZE_COEF;
 
         if(leftC){motion(Main.WIDTH/2+R, 0);GameSc.batchDraw=false;}
         if(upC){motion(Main.BACKGROUND_HEIGHT-Main.HEIGHT/2+R,1);GameSc.batchDraw=false;}

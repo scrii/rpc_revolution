@@ -73,8 +73,8 @@ public class ScrollingActivity extends AppCompatActivity {
 
         coordinatorLayout = findViewById(R.id.ToStart);
         coordinatorLayout.setBackgroundResource(R.drawable.spin_animation);
-        frameAnimation = (AnimationDrawable) coordinatorLayout.getBackground();
-        frameAnimation.start();
+        ///frameAnimation = (AnimationDrawable) coordinatorLayout.getBackground();
+//        frameAnimation.start();
         // //
         //online(-1);
         player_data=new Message(getterANDSetterFile.getTexture(),-1,-1,(float)getterANDSetterFile.get_Attack(),
