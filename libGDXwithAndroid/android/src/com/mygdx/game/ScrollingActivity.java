@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.widget.NestedScrollView;
 
 import android.os.CountDownTimer;
 import android.text.SpannableString;
@@ -46,7 +47,7 @@ public class ScrollingActivity extends AppCompatActivity {
     int real_level;
     CountDownTimer countDownTimer;
     MediaPlayer player1;
-    CoordinatorLayout coordinatorLayout;
+    NestedScrollView nestedScrollView;
     GetterANDSetterFile getterANDSetterFile;
     AnimationDrawable frameAnimation;
     // //
@@ -67,14 +68,15 @@ public class ScrollingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
+
         getterANDSetterFile = new GetterANDSetterFile(); //
         player1 = MediaPlayer.create(ScrollingActivity.this, R.raw.startsound);
         player1.start();
 
-        coordinatorLayout = findViewById(R.id.ToStart);
-        coordinatorLayout.setBackgroundResource(R.drawable.spin_animation);
-        frameAnimation = (AnimationDrawable) coordinatorLayout.getBackground();
-        frameAnimation.start();
+        nestedScrollView = findViewById(R.id.gg);
+        //nestedScrollView.setBackgroundResource((new CanvasBackground(this)));
+//        frameAnimation = (AnimationDrawable) nestedScrollView.getBackground();
+//        frameAnimation.start();
         // //
         //online(-1);
         player_data=new Message(getterANDSetterFile.getTexture(),-1,-1,(float)getterANDSetterFile.get_Attack(),
