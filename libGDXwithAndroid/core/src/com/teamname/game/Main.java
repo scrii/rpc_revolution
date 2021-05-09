@@ -23,8 +23,11 @@ public class Main extends Game {
 	public Texture img;
 	public static int WIDTH,HEIGHT;
 	public static Texture circle,stickImg,background,actor,damaged_txr,deathSc,elbrium,elbriumCrash;
+
 	public static Texture err;
 	public static Texture ore1,ore2,ore3,ore4,ore5;
+	public static Texture player1, player2, player3, player4, player5;
+
 	public static int BACKGROUND_WIDTH;
 	public static int BACKGROUND_HEIGHT;
 	public static Texture un_testButtonTX,p_testButtonTX;
@@ -117,7 +120,7 @@ public class Main extends Game {
 
 			@Override
 			public void dispose() {
-				db.logOut();
+				//db.logOut();
 				Gdx.app.error("Main","dispose");
 			}
 		});
@@ -130,5 +133,13 @@ public class Main extends Game {
 		ore4=new Texture(Gdx.files.internal("elbrium/ore4.png"));
 		ore5=new Texture(Gdx.files.internal("elbrium/ore5.png"));
 		elbriumCrash=new Texture("elbrium/orecrash.png");
+	}
+
+	private void loadPlayerTextures(){
+		player1=new Texture("players/player1.png");
+		/*player2=new Texture("players/player2.png");
+		player3=new Texture("players/player3.png");
+		player4=new Texture("players/player4.png");
+		player5=new Texture("players/player5.png");*/
 	}
 }
