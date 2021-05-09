@@ -47,7 +47,7 @@ public class GameSc implements Screen {
     private Multiplayer multiplayer;
     public static boolean batchDraw;
 
-    Buttons testButton;
+    Buttons chat_button;
     BulletGenerator bullgen;
     float deathScAlpha=0;
 
@@ -90,8 +90,6 @@ public class GameSc implements Screen {
         //databaseHelper.setNickname(player.nickname);
         //databaseHelper.entryNotify();
         camera=new OrthographicCamera(Main.WIDTH/SIZE_COEF,Main.HEIGHT/SIZE_COEF);
-        testButton=new Buttons(Main.un_testButtonTX,Main.p_testButtonTX,
-                300, 300, 500, 500);
         databaseHelper.readString(0);
 
        // databaseHelper.acceptString("online");
@@ -172,9 +170,11 @@ public class GameSc implements Screen {
         player.bounds.pos.setPoint(player.send_in_ONLINE.getX()-2*player.R,player.send_in_ONLINE.getY()-player.R);}
         // сплюсовать радиусы для отображения игрока ровно в центре
         // руда - batch
+
         Main.batch.end();
 
         Main.frontBatch.begin();
+        buttonsLogic(Main.frontBatch);
         Main.frontBatch.setColor(1,1,1,1);
         frontRender(Main.frontBatch);
         Main.frontBatch.end();
@@ -248,6 +248,10 @@ public class GameSc implements Screen {
     }
 
     public void loadActors(){
+        chat_button=new Buttons(Main.chat_button_un,Main.chat_button,joySize*1.3f,joySize*1.3f/2,joyX,Main.HEIGHT/3f);
+
+
+
         player =new Player(Main.player1,new Point2D(entityX,entityY),5,entityRad,100);
         //getter.setPlayer(player);
         joy=new Joystick(Main.circle,Main.stickImg,new Point2D(joyX,joyY),joySize,0);
@@ -265,6 +269,7 @@ public class GameSc implements Screen {
         for(int i=0;i<5;i++){
             joy.update(x,y,isDownTouch,pointer);
             joy2.update(x,y,isDownTouch,pointer);
+            chat_button.action(x,y,isDownTouch,pointer);
         }
     }
 
@@ -324,6 +329,11 @@ public class GameSc implements Screen {
                     }
                 };
                 timer.scheduleAtFixedRate(task,0,60);
+        }
+
+        public void buttonsLogic(SpriteBatch btch){
+        chat_button.draw(btch);
+            if(chat_button.isTouch())Gdx.app.error("chatBUTTON","pressed");
         }
 
 }

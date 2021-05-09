@@ -27,6 +27,8 @@ public class Main extends Game {
 	public static Texture err;
 	public static Texture ore1,ore2,ore3,ore4,ore5;
 	public static Texture player1, player2, player3, player4, player5;
+	public static Texture chat_button,chat_button_un;
+
 
 	public static int BACKGROUND_WIDTH;
 	public static int BACKGROUND_HEIGHT;
@@ -68,7 +70,7 @@ public class Main extends Game {
 		stickImg=new Texture("stick.png");
 		actor=new Texture("actor.png");
 		//GdxFIRDatabase.instance().inReference("heading").setValue("msg");
-		background=new Texture("testlocation.jpg");
+		background=new Texture("testlocation.png");
 		BACKGROUND_WIDTH=background.getWidth();
 		BACKGROUND_HEIGHT=background.getHeight();
 		db=new DatabaseHelper();
@@ -80,6 +82,8 @@ public class Main extends Game {
 
 		loadElbriumTextures();
 		loadPlayerTextures();
+		loadButtonTextures();
+
 		gameSc=new GameSc(this);
 
 		//mp=new Multiplayer();
@@ -100,9 +104,6 @@ public class Main extends Game {
 		stickImg.dispose();
 		actor.dispose();
 		background.dispose();
-
-		getter_setter=new GetterANDSetterFile();
-		GdxFIRDatabase.instance().inReference(getter_setter.get_Nickname()).removeValue();
 		un_testButtonTX.dispose();
 		p_testButtonTX.dispose();
 	}
@@ -142,5 +143,10 @@ public class Main extends Game {
 		player3=new Texture("players/player3.png");
 		player4=new Texture("players/player4.png");
 		player5=new Texture("players/player5.png");*/
+	}
+
+	private void loadButtonTextures(){
+		chat_button = new Texture("buttons/chatb.png");
+		chat_button_un=new Texture("buttons/chatbun.png");
 	}
 }

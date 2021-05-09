@@ -9,6 +9,14 @@ import com.teamname.game.Main;
 public class Buttons {
     Texture unPressed;
     Texture pressed;
+    Texture texture;
+    private int pointer=-1;
+
+    public boolean isTouch() {
+        return isTouch;
+    }
+
+    private boolean isTouch=false;
 
     float width;
     float height;
@@ -21,6 +29,7 @@ public class Buttons {
     public Buttons(Texture unPressed, Texture pressed, float width, float height, float startX, float startY) {
         this.unPressed = unPressed;
         this.pressed = pressed;
+        texture=unPressed;
         this.width = width;
         this.height = height;
         this.startX=startX;
@@ -32,18 +41,28 @@ public class Buttons {
     public boolean isButtonTouch(float clickX, float clickY){
         // нужно инвертировать координаты
         // Main.HEIGHT-startY
-
         return clickX>startX&&clickX<endX&&clickY>startY&&clickY<endY;
     }
 
 
-    public void draw(SpriteBatch batch, float clickX, float clickY) {
-        if(isButtonTouch(clickX,clickY)&&Gdx.input.isTouched()){batch.draw(pressed,startX,startY,width,height);}
-        else batch.draw(unPressed,startX,startY,width,height);
+    public void draw(SpriteBatch batch) {
+        batch.draw(texture,startX,startY,width,height);
     }
 
-    public void setAction(){
+    public void action(float x, float y, boolean isDownTouch, int pointer){
+        if(isDownTouch&&isButtonTouch(x,y)&&this.pointer==-1)this.pointer=pointer;
+        if(isDownTouch&&this.pointer==pointer){isTouch=true;texture=pressed;}
+        if(!isDownTouch&&this.pointer==pointer)unPressed();
+    }
 
+    public void unPressed(){
+        isTouch=false;
+        setTexture(unPressed);
+        pointer=-1;
+    }
+
+    public void setTexture(Texture texture){
+        this.texture=texture;
     }
 
 }
