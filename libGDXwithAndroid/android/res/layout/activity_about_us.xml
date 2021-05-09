@@ -97,7 +97,20 @@
             android:layout_height="wrap_content"
             android:id="@+id/bags"
             android:autoLink="email"/>
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/vk"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:id="@+id/vk_text"/>
+    </LinearLayout>
     </LinearLayout>
 
 
