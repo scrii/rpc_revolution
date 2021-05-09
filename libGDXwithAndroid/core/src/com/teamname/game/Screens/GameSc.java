@@ -331,9 +331,9 @@ public class GameSc implements Screen {
                 timer.scheduleAtFixedRate(task,0,60);
         }
 
-        public void buttonsLogic(SpriteBatch btch){
+        private void buttonsLogic(SpriteBatch btch){
         chat_button.draw(btch);
-            if(chat_button.isTouch())Gdx.app.error("chatBUTTON","pressed");
+            if(chat_button.isTouch())getter_setter.set_StartChat(1);
         }
 
 }

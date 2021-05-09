@@ -614,4 +614,20 @@ public class GetterANDSetterFile {
     public String getTexture(){
         return "texture";
     }
+
+    public void set_StartChat(int c_startChat){
+        File file = new File("/data/data/com.mygdx.game/StartChat.txt");
+        try {
+            if (!file.exists()) file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            PrintWriter printWriter = new PrintWriter(file);
+            printWriter.write(String.valueOf(c_startChat));
+            printWriter.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }
