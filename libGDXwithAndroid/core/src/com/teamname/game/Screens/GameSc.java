@@ -43,6 +43,7 @@ public class GameSc implements Screen {
     public static Array<Elbrium> ore;
     private Spawner spawner;
     private Gson gson;
+    public static final float SIZE_COEF=1;
     private Multiplayer multiplayer;
     public static boolean batchDraw;
 
@@ -88,7 +89,7 @@ public class GameSc implements Screen {
         getter_setter=new GetterANDSetterFile();
         //databaseHelper.setNickname(player.nickname);
         //databaseHelper.entryNotify();
-        camera=new OrthographicCamera(Main.WIDTH,Main.HEIGHT);
+        camera=new OrthographicCamera(Main.WIDTH/SIZE_COEF,Main.HEIGHT/SIZE_COEF);
         testButton=new Buttons(Main.un_testButtonTX,Main.p_testButtonTX,
                 300, 300, 500, 500);
         databaseHelper.readString(0);
@@ -167,7 +168,8 @@ public class GameSc implements Screen {
         Main.batch.draw(Main.background,0,0);
         playerRender(0);
         backRender(Main.batch);
-        if(!batchDraw)Main.batch.draw(player.img,player.send_in_ONLINE.getX()-2*player.R,player.send_in_ONLINE.getY()-player.R,player.R*2,player.R*2);
+        if(!batchDraw){Main.batch.draw(player.img,player.send_in_ONLINE.getX()-2*player.R,player.send_in_ONLINE.getY()-player.R,player.R*2/SIZE_COEF,player.R*2/SIZE_COEF);
+        player.bounds.pos.setPoint(player.send_in_ONLINE.getX()-2*player.R,player.send_in_ONLINE.getY()-player.R);}
         // сплюсовать радиусы для отображения игрока ровно в центре
         // руда - batch
         Main.batch.end();
