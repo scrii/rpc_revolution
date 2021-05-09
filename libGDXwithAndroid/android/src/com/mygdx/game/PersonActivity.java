@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -20,7 +21,7 @@ import java.io.PrintWriter;
 
 public class PersonActivity extends AppCompatActivity {
     EditText name_person;
-    Button confirm;
+    Button confirm,econom;
     String s;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,17 @@ public class PersonActivity extends AppCompatActivity {
         else confirm.setVisibility(View.INVISIBLE);
         if(!s.equals(""))getterANDSetterFile.set_Nickname(s);
         else Toast.makeText(getApplicationContext(),"Никнейм не может быть пустым",Toast.LENGTH_SHORT).show();
+
+        econom = findViewById(R.id.econom);
+
+        econom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getterANDSetterFile.set_TrueOrFalse(getterANDSetterFile.get_TrueOrFalse()+1);
+                if(getterANDSetterFile.get_TrueOrFalse()%2==0)econom.setBackgroundColor(Color.parseColor("#fd5845"));
+                else econom.setBackgroundColor(Color.parseColor("#91fe9c"));
+            }
+        });
         //===========================================================
         //Запрещено трогать код ниже!!!!!!
         if (savedInstanceState == null) {

@@ -29,6 +29,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -51,7 +52,7 @@ public class ScrollingActivity extends AppCompatActivity {
     CountDownTimer countDownTimer;
     MediaPlayer player1;
     GetterANDSetterFile getterANDSetterFile;
-    NestedScrollView nestedScrollView;
+    FrameLayout frameLayout;
     // //
     public Message player_data;
     Online online;
@@ -73,8 +74,9 @@ public class ScrollingActivity extends AppCompatActivity {
         getterANDSetterFile = new GetterANDSetterFile(); //
         player1 = MediaPlayer.create(ScrollingActivity.this, R.raw.startsound);
         player1.start();
-        nestedScrollView = findViewById(R.id.gg);
+        frameLayout = findViewById(R.id.gg);
         //nestedScrollView.setBackgroundResource(R.drawable.ic_launcher);
+
         // //
         //online(-1);
         player_data=new Message(getterANDSetterFile.getTexture(),-1,-1,(float)getterANDSetterFile.get_Attack(),
@@ -111,13 +113,12 @@ public class ScrollingActivity extends AppCompatActivity {
                     info_money.setText(getterANDSetterFile.get_Guardian_Money() + "");
                     info_level.setText(getterANDSetterFile.get_Guardian_Level()+"");
                     toolBarLayout.setTitle(getterANDSetterFile.get_Nickname());
-                    //if(mainActivity.getPlayer_TWO() == 0)player1.start(); //false
-                    //if(mainActivity.getPlayer_TWO()==1)player1.pause();
                     if(!player1.isPlaying())player1.start();
                     if(getterANDSetterFile.get_StartChat()==1){
                         startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         getterANDSetterFile.set_StartChat(0);
                     }
+
                 }
 
                 @Override
@@ -165,7 +166,7 @@ public class ScrollingActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_scrolling, menu);
         int positionOfMenuItem = 0;                                                           //Красный цвет Person в menu_scrolling
         MenuItem item = menu.getItem(positionOfMenuItem);
-        SpannableString s = new SpannableString("Пользователь");
+        SpannableString s = new SpannableString("Настройки");
         s.setSpan(new ForegroundColorSpan(Color.RED), 0, s.length(), 0);
         item.setTitle(s);
 

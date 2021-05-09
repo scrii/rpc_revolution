@@ -183,5 +183,20 @@ public class CreatorFiles {
                 e.printStackTrace();
             }
         }
+        File file16 = new File("/data/data/com.mygdx.game/TrueOrFalse.txt");
+        if(!file16.exists()){
+            try {
+                if (!file16.exists()) file16.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                PrintWriter printWriter16 = new PrintWriter(file16);
+                printWriter16.write(String.valueOf(0));
+                printWriter16.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

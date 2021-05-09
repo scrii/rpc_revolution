@@ -66,5 +66,8 @@
     <string name="person_menu">Пользователь</string>
     <string name="shop_menu">Магазин</string>
     <string name="about_us_menu">О нас</string>
+    <string name="econom">Экономия ресурсов</string>
+    <string name="izm">Смена никнейма</string>
+    <string name="settings">Настройки</string>
 
 </resources>
