@@ -90,7 +90,7 @@ public class GameSc implements Screen {
         cometAnimation=new Animation(new TextureRegion(Main.comet_fr1),4,4,3);
         spawner=new Spawner();
         gson=new Gson();
-        multiplayer=new Multiplayer();
+        //multiplayer=new Multiplayer();
         loadActors();
         databaseHelper=new DatabaseHelper();
         getter_setter=new GetterANDSetterFile();
