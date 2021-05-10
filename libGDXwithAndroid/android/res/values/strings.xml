@@ -6,7 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_settings">Settings</string>
 
-
     <string name="title_activity_person">Person</string>
     <string name="title_activity_shop">Shop</string>
     <string name="title_activity_room1">ScrollingActivity</string>
@@ -62,12 +61,12 @@
     <string name="sale_ore">Продать Elbrium</string>
     <string name="maximum">550</string>
     <string name="backslash">/</string>
-    <string name="wifi_error">Ой, кажется что-то пошло не так... Проверьте своё подключение к интернету.</string>
     <string name="person_menu">Пользователь</string>
     <string name="shop_menu">Магазин</string>
     <string name="about_us_menu">О нас</string>
     <string name="econom">Экономия ресурсов</string>
     <string name="izm">Смена никнейма</string>
     <string name="settings">Настройки</string>
-
+    <string name="econom_text">Оптимизация для слабых устройств</string>
+    <string name="appearance">Внешний вид                     </string>
 </resources>

@@ -9,4 +9,9 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+    <string-array name="appearance_array">
+        <item>Имя 1</item>
+        <item>Имя 2</item>
+        <item>Имя 3</item>
+    </string-array>
 </resources>
