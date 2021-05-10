@@ -11,32 +11,22 @@ import java.io.PrintWriter;
 
 public class GetterANDSetterFile {
     double real_attack=0,real_health=0,real_protection=0,real_speed=0,real_money=0,real_ore_elbrium=0,real_maneuverability=0;
-    int  real_sign=0,real_xp=0,real_level=0,coefficient_attack=0,coefficient_protection=0,coefficient_speed=0,real_startChat=0,real_TrueOrFalse=0;
-    String real_message="",real_nickname="";
-    public int sign = 0,f_attack=0,f_protection=0,f_speed=0,f_startChat=0;
-    public double attack = 0;
-    public int guardian_exp = 0;
-    public int TrueOrFalse=0;
-    public int guardian_level = 0;
-    public double guardian_money = 0;
-    public double health = 0;
-    public double maneuverability = 0;
-    public String message = "";
-    public double ore_elbrium = 0;
-    public double protection = 0;
-    public double speed = 0;
-    public String nickname = "";
-    public GetterANDSetterFile(){
-
-    }
+    int  real_sign=0,real_xp=0,real_level=0,coefficient_attack=0,coefficient_protection=0,coefficient_speed=0,real_startChat=0,TrueOrFalse=0;
+    String real_message="",real_nickname="",myData = "",strLine;
+    File myExternalFile;
+    FileInputStream fis;
+    DataInputStream in;
+    BufferedReader br;
+    File file;
+    PrintWriter printWriter;
+    public GetterANDSetterFile(){}
     public int get_StartChat(){
-        String myData = "";
-        File myExternalFile = new File("/data/data/com.mygdx.game/StartChat.txt");
+        myData = "";
+        myExternalFile = new File("/data/data/com.mygdx.game/StartChat.txt");
         try {
-            FileInputStream fis = new FileInputStream(myExternalFile);
-            DataInputStream in = new DataInputStream(fis);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
                 real_startChat = Integer.parseInt(myData);
@@ -50,13 +40,12 @@ public class GetterANDSetterFile {
         return real_startChat;
     }
     public int get_Sign(){
-        String myData = "";
-        File myExternalFile = new File("/data/data/com.mygdx.game/Sign.txt");
+        myData = "";
+        myExternalFile = new File("/data/data/com.mygdx.game/Sign.txt");
         try {
-            FileInputStream fis = new FileInputStream(myExternalFile);
-            DataInputStream in = new DataInputStream(fis);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
                 real_sign = Integer.parseInt(myData);
@@ -70,13 +59,12 @@ public class GetterANDSetterFile {
         return real_sign;
     }
     public double get_Attack(){
-        String myData = "";
-        File myExternalFile = new File("/data/data/com.mygdx.game/Attack.txt");
+        myData = "";
+        myExternalFile = new File("/data/data/com.mygdx.game/Attack.txt");
         try {
-            FileInputStream fis = new FileInputStream(myExternalFile);
-            DataInputStream in = new DataInputStream(fis);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
                 real_attack = Double.parseDouble(myData);
@@ -90,13 +78,12 @@ public class GetterANDSetterFile {
         return real_attack;
     }
     public int get_Guardian_Exp(){
-        String myData = "";
-        File myExternalFile = new File("/data/data/com.mygdx.game/guardian_exp.txt");
+        myData = "";
+        myExternalFile = new File("/data/data/com.mygdx.game/guardian_exp.txt");
         try {
-            FileInputStream fis = new FileInputStream(myExternalFile);
-            DataInputStream in = new DataInputStream(fis);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
                 real_xp = Integer.parseInt(myData);
@@ -110,13 +97,12 @@ public class GetterANDSetterFile {
         return real_xp;
     }
     public int get_Guardian_Level(){
-        String myData = "";
-        File myExternalFile = new File("/data/data/com.mygdx.game/guardian_level.txt");
+        myData = "";
+        myExternalFile = new File("/data/data/com.mygdx.game/guardian_level.txt");
         try {
-            FileInputStream fis = new FileInputStream(myExternalFile);
-            DataInputStream in = new DataInputStream(fis);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
                 real_level = Integer.parseInt(myData);
@@ -130,13 +116,12 @@ public class GetterANDSetterFile {
         return real_level;
     }
     public String get_Nickname(){
-        String myData = "";
-        File myExternalFile = new File("/data/data/com.mygdx.game/nickname.txt");
+        myData = "";
+        myExternalFile = new File("/data/data/com.mygdx.game/nickname.txt");
         try {
-            FileInputStream fis = new FileInputStream(myExternalFile);
-            DataInputStream in = new DataInputStream(fis);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
                 real_nickname = myData;
@@ -150,13 +135,12 @@ public class GetterANDSetterFile {
         return real_nickname;
     }
     public double get_Guardian_Money(){
-        String myData = "";
-        File myExternalFile = new File("/data/data/com.mygdx.game/guardian_money.txt");
+        myData = "";
+        myExternalFile = new File("/data/data/com.mygdx.game/guardian_money.txt");
         try {
-            FileInputStream fis = new FileInputStream(myExternalFile);
-            DataInputStream in = new DataInputStream(fis);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
                 real_money = Double.parseDouble(myData);
@@ -170,13 +154,12 @@ public class GetterANDSetterFile {
         return real_money;
     }
     public double get_Health(){
-        String myData = "";
-        File myExternalFile = new File("/data/data/com.mygdx.game/Health.txt");
+        myData = "";
+        myExternalFile = new File("/data/data/com.mygdx.game/Health.txt");
         try {
-            FileInputStream fis = new FileInputStream(myExternalFile);
-            DataInputStream in = new DataInputStream(fis);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
                 real_health = Double.parseDouble(myData);
@@ -190,13 +173,12 @@ public class GetterANDSetterFile {
         return real_health;
     }
     public double get_Maneuverability(){
-        String myData = "";
-        File myExternalFile = new File("/data/data/com.mygdx.game/Maneuverability.txt");
+        myData = "";
+        myExternalFile = new File("/data/data/com.mygdx.game/Maneuverability.txt");
         try {
-            FileInputStream fis = new FileInputStream(myExternalFile);
-            DataInputStream in = new DataInputStream(fis);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
                 real_maneuverability = Double.parseDouble(myData);
@@ -210,13 +192,12 @@ public class GetterANDSetterFile {
         return real_maneuverability;
     }
     public String get_Message(){
-        String myData = "";
-        File myExternalFile = new File("/data/data/com.mygdx.game/Message.txt");
+        myData = "";
+        myExternalFile = new File("/data/data/com.mygdx.game/Message.txt");
         try {
-            FileInputStream fis = new FileInputStream(myExternalFile);
-            DataInputStream in = new DataInputStream(fis);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
                 real_message = myData;
@@ -230,13 +211,12 @@ public class GetterANDSetterFile {
         return real_message;
     }
     public double get_Ore_Elbrium(){
-        String myData = "";
-        File myExternalFile = new File("/data/data/com.mygdx.game/Ore_Elbrium.txt");
+        myData = "";
+        myExternalFile = new File("/data/data/com.mygdx.game/Ore_Elbrium.txt");
         try {
-            FileInputStream fis = new FileInputStream(myExternalFile);
-            DataInputStream in = new DataInputStream(fis);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
                 real_ore_elbrium = Double.parseDouble(myData);
@@ -250,13 +230,12 @@ public class GetterANDSetterFile {
         return real_ore_elbrium;
     }
     public double get_Protection(){
-        String myData = "";
-        File myExternalFile = new File("/data/data/com.mygdx.game/Protection.txt");
+        myData = "";
+        myExternalFile = new File("/data/data/com.mygdx.game/Protection.txt");
         try {
-            FileInputStream fis = new FileInputStream(myExternalFile);
-            DataInputStream in = new DataInputStream(fis);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
                 real_protection = Double.parseDouble(myData);
@@ -270,13 +249,12 @@ public class GetterANDSetterFile {
         return real_protection;
     }
     public double get_Speed(){
-        String myData = "";
-        File myExternalFile = new File("/data/data/com.mygdx.game/Speed.txt");
+        myData = "";
+        myExternalFile = new File("/data/data/com.mygdx.game/Speed.txt");
         try {
-            FileInputStream fis = new FileInputStream(myExternalFile);
-            DataInputStream in = new DataInputStream(fis);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
                 real_speed = Double.parseDouble(myData);
@@ -290,13 +268,12 @@ public class GetterANDSetterFile {
         return real_speed;
     }
     public int get_Coefficient_Attack(){
-        String myData = "";
-        File myExternalFile = new File("/data/data/com.mygdx.game/CoefficientAttack.txt");
+        myData = "";
+        myExternalFile = new File("/data/data/com.mygdx.game/CoefficientAttack.txt");
         try {
-            FileInputStream fis = new FileInputStream(myExternalFile);
-            DataInputStream in = new DataInputStream(fis);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
                 coefficient_attack = Integer.parseInt(myData);
@@ -310,13 +287,12 @@ public class GetterANDSetterFile {
         return coefficient_attack;
     }
     public int get_Coefficient_Protection(){
-        String myData = "";
-        File myExternalFile = new File("/data/data/com.mygdx.game/CoefficientProtection.txt");
+        myData = "";
+        myExternalFile = new File("/data/data/com.mygdx.game/CoefficientProtection.txt");
         try {
-            FileInputStream fis = new FileInputStream(myExternalFile);
-            DataInputStream in = new DataInputStream(fis);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
                 coefficient_protection = Integer.parseInt(myData);
@@ -330,13 +306,12 @@ public class GetterANDSetterFile {
         return coefficient_protection;
     }
     public int get_Coefficient_Speed(){
-        String myData = "";
-        File myExternalFile = new File("/data/data/com.mygdx.game/CoefficientSpeed.txt");
+        myData = "";
+        myExternalFile = new File("/data/data/com.mygdx.game/CoefficientSpeed.txt");
         try {
-            FileInputStream fis = new FileInputStream(myExternalFile);
-            DataInputStream in = new DataInputStream(fis);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
                 coefficient_speed = Integer.parseInt(myData);
@@ -350,13 +325,12 @@ public class GetterANDSetterFile {
         return coefficient_speed;
     }
     public int get_TrueOrFalse(){
-        String myData = "";
-        File myExternalFile = new File("/data/data/com.mygdx.game/TrueOrFalse.txt");
+        myData = "";
+        myExternalFile = new File("/data/data/com.mygdx.game/TrueOrFalse.txt");
         try {
-            FileInputStream fis = new FileInputStream(myExternalFile);
-            DataInputStream in = new DataInputStream(fis);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
                 TrueOrFalse = Integer.parseInt(myData);
@@ -370,80 +344,50 @@ public class GetterANDSetterFile {
         return TrueOrFalse;
     }
     public void set_TrueOrFalse(int c_TrueOrFalse){
-        real_TrueOrFalse = c_TrueOrFalse;
-        File file = new File("/data/data/com.mygdx.game/TrueOrFalse.txt");
+        file = new File("/data/data/com.mygdx.game/TrueOrFalse.txt");
         try {
-            if (!file.exists()) file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            PrintWriter printWriter = new PrintWriter(file);
-            printWriter.write(String.valueOf(real_TrueOrFalse));
+            printWriter = new PrintWriter(file);
+            printWriter.write(String.valueOf(c_TrueOrFalse));
             printWriter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
     public void set_StartChat(int c_startChat){
-        f_startChat = c_startChat;
-        File file = new File("/data/data/com.mygdx.game/StartChat.txt");
+        file = new File("/data/data/com.mygdx.game/StartChat.txt");
         try {
-            if (!file.exists()) file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            PrintWriter printWriter = new PrintWriter(file);
-            printWriter.write(String.valueOf(f_startChat));
+            printWriter = new PrintWriter(file);
+            printWriter.write(String.valueOf(c_startChat));
             printWriter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
     public void set_Coefficient_Attack(int c_attack){
-        f_attack = c_attack;
-        File file = new File("/data/data/com.mygdx.game/CoefficientAttack.txt");
+        file = new File("/data/data/com.mygdx.game/CoefficientAttack.txt");
         try {
-            if (!file.exists()) file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            PrintWriter printWriter = new PrintWriter(file);
-            printWriter.write(String.valueOf(f_attack));
+            printWriter = new PrintWriter(file);
+            printWriter.write(String.valueOf(c_attack));
             printWriter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
     public void set_Coefficient_Protection(int c_protection){
-        f_protection = c_protection;
-        File file = new File("/data/data/com.mygdx.game/CoefficientProtection.txt");
+        file = new File("/data/data/com.mygdx.game/CoefficientProtection.txt");
         try {
-            if (!file.exists()) file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            PrintWriter printWriter = new PrintWriter(file);
-            printWriter.write(String.valueOf(f_protection));
+            printWriter = new PrintWriter(file);
+            printWriter.write(String.valueOf(c_protection));
             printWriter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
     public void set_Coefficient_Speed(int c_speed){
-        f_speed = c_speed;
-        File file = new File("/data/data/com.mygdx.game/CoefficientSpeed.txt");
+        file = new File("/data/data/com.mygdx.game/CoefficientSpeed.txt");
         try {
-            if (!file.exists()) file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            PrintWriter printWriter = new PrintWriter(file);
-            printWriter.write(String.valueOf(f_speed));
+            printWriter = new PrintWriter(file);
+            printWriter.write(String.valueOf(c_speed));
             printWriter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -451,192 +395,120 @@ public class GetterANDSetterFile {
     }
 
     public void set_Sign(int r_sign){
-        sign = r_sign;
-        File file = new File("/data/data/com.mygdx.game/Sign.txt");
+        file = new File("/data/data/com.mygdx.game/Sign.txt");
         try {
-            if (!file.exists()) file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            PrintWriter printWriter = new PrintWriter(file);
-            printWriter.write(String.valueOf(sign));
+            printWriter = new PrintWriter(file);
+            printWriter.write(String.valueOf(r_sign));
             printWriter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
     public void set_Attack(double r_attack){
-        attack = r_attack;
-        File file = new File("/data/data/com.mygdx.game/Attack.txt");
+        file = new File("/data/data/com.mygdx.game/Attack.txt");
         try {
-            if (!file.exists()) file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            PrintWriter printWriter = new PrintWriter(file);
-            printWriter.write(String.valueOf(attack));
+            printWriter = new PrintWriter(file);
+            printWriter.write(String.valueOf(r_attack));
             printWriter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
     public void set_Guardian_Exp(int r_guardian_exp){
-        guardian_exp = r_guardian_exp;
-        File file = new File("/data/data/com.mygdx.game/guardian_exp.txt");
+        file = new File("/data/data/com.mygdx.game/guardian_exp.txt");
         try {
-            if (!file.exists()) file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            PrintWriter printWriter = new PrintWriter(file);
-            printWriter.write(String.valueOf(guardian_exp));
+            printWriter = new PrintWriter(file);
+            printWriter.write(String.valueOf(r_guardian_exp));
             printWriter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
     public void set_Guardian_Level(int r_guardian_level){
-        guardian_level = r_guardian_level;
-        File file = new File("/data/data/com.mygdx.game/guardian_level.txt");
+        file = new File("/data/data/com.mygdx.game/guardian_level.txt");
         try {
-            if (!file.exists()) file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            PrintWriter printWriter = new PrintWriter(file);
-            printWriter.write(String.valueOf(guardian_level));
+            printWriter = new PrintWriter(file);
+            printWriter.write(String.valueOf(r_guardian_level));
             printWriter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
     public void set_Guardian_Money(double r_money){
-        guardian_money = r_money;
-        File file = new File("/data/data/com.mygdx.game/guardian_money.txt");
+        file = new File("/data/data/com.mygdx.game/guardian_money.txt");
         try {
-            if (!file.exists()) file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            PrintWriter printWriter = new PrintWriter(file);
-            printWriter.write(String.valueOf(guardian_money));
+            printWriter = new PrintWriter(file);
+            printWriter.write(String.valueOf(r_money));
             printWriter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
     public void set_Health(double r_health){
-        health = r_health;
-        File file = new File("/data/data/com.mygdx.game/Health.txt");
+        file = new File("/data/data/com.mygdx.game/Health.txt");
         try {
-            if (!file.exists()) file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            PrintWriter printWriter = new PrintWriter(file);
-            printWriter.write(String.valueOf(health));
+            printWriter = new PrintWriter(file);
+            printWriter.write(String.valueOf(r_health));
             printWriter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
     public void set_Maneuverability(double r_maneuverability){
-        maneuverability = r_maneuverability;
-        File file = new File("/data/data/com.mygdx.game/Maneuverability.txt");
+        file = new File("/data/data/com.mygdx.game/Maneuverability.txt");
         try {
-            if (!file.exists()) file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            PrintWriter printWriter = new PrintWriter(file);
-            printWriter.write(String.valueOf(maneuverability));
+            printWriter = new PrintWriter(file);
+            printWriter.write(String.valueOf(r_maneuverability));
             printWriter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
     public void set_Message(String r_message){
-        message = r_message;
-        File file = new File("/data/data/com.mygdx.game/Message.txt");
+        file = new File("/data/data/com.mygdx.game/Message.txt");
         try {
-            if (!file.exists()) file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            PrintWriter printWriter = new PrintWriter(file);
-            printWriter.write(message);
+            printWriter = new PrintWriter(file);
+            printWriter.write(r_message);
             printWriter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
     public void set_Ore_Elbrium(double r_ore_elbrium){
-        ore_elbrium = r_ore_elbrium;
-        File file = new File("/data/data/com.mygdx.game/Ore_Elbrium.txt");
+        file = new File("/data/data/com.mygdx.game/Ore_Elbrium.txt");
         try {
-            if (!file.exists()) file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            PrintWriter printWriter = new PrintWriter(file);
-            printWriter.write(String.valueOf(ore_elbrium));
+            printWriter = new PrintWriter(file);
+            printWriter.write(String.valueOf(r_ore_elbrium));
             printWriter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
     public void set_Protection(double r_protection){
-        protection = r_protection;
-        File file = new File("/data/data/com.mygdx.game/Protection.txt");
+        file = new File("/data/data/com.mygdx.game/Protection.txt");
         try {
-            if (!file.exists()) file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            PrintWriter printWriter = new PrintWriter(file);
-            printWriter.write(String.valueOf(protection));
+            printWriter = new PrintWriter(file);
+            printWriter.write(String.valueOf(r_protection));
             printWriter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
     public void set_Speed(double r_speed){
-        speed = r_speed;
-        File file = new File("/data/data/com.mygdx.game/Speed.txt");
+        file = new File("/data/data/com.mygdx.game/Speed.txt");
         try {
-            if (!file.exists()) file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            PrintWriter printWriter = new PrintWriter(file);
-            printWriter.write(String.valueOf(speed));
+            printWriter = new PrintWriter(file);
+            printWriter.write(String.valueOf(r_speed));
             printWriter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
     public void set_Nickname(String r_nickname){
-        nickname = r_nickname;
-        File file = new File("/data/data/com.mygdx.game/nickname.txt");
+        file = new File("/data/data/com.mygdx.game/nickname.txt");
         try {
-            if (!file.exists()) file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            PrintWriter printWriter = new PrintWriter(file);
-            printWriter.write(nickname);
+            printWriter = new PrintWriter(file);
+            printWriter.write(r_nickname);
             printWriter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -645,14 +517,14 @@ public class GetterANDSetterFile {
 
     // //
     public void set_online(String s){
-        File file = new File("/data/data/com.mygdx.game/Online.txt");
+        file = new File("/data/data/com.mygdx.game/Online.txt");
         try {
             if (!file.exists()) file.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
-            PrintWriter printWriter = new PrintWriter(file);
+            printWriter = new PrintWriter(file);
             printWriter.write(s);
             printWriter.close();
         } catch (FileNotFoundException e) {
@@ -660,13 +532,11 @@ public class GetterANDSetterFile {
         }
     }
     public String get_Online(){
-        String myData = "";
-        File myExternalFile = new File("/data/data/com.mygdx.game/Online.txt");
+        myExternalFile = new File("/data/data/com.mygdx.game/Online.txt");
         try {
-            FileInputStream fis = new FileInputStream(myExternalFile);
-            DataInputStream in = new DataInputStream(fis);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
             while ((strLine = br.readLine()) != null) {
                 myData = myData + strLine;
             }
@@ -682,7 +552,5 @@ public class GetterANDSetterFile {
     public String getTexture(){
         return "texture";
     }
-
     // //
-
 }
