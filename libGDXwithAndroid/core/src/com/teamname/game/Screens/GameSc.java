@@ -7,11 +7,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.google.gson.Gson;
 import com.teamname.game.Actor.Bullet;
 import com.teamname.game.Actor.Elbrium;
 import com.teamname.game.Actor.Player;
+import com.teamname.game.GraphicsObj.Animation;
 import com.teamname.game.Main;
 //import com.
 
@@ -33,7 +35,7 @@ import Tools.Spawner;
 public class GameSc implements Screen {
 
 
-    Joystick joy,joy2;
+    public static Joystick joy,joy2;
     public static Player player;
     Sprite sprite=new Sprite(Main.background);
     public static OrthographicCamera camera;
@@ -46,6 +48,10 @@ public class GameSc implements Screen {
     public static final float SIZE_COEF=1;
     private Multiplayer multiplayer;
     public static boolean batchDraw;
+
+    private Animation cometAnimation;
+    private float cometPosX=100;
+    private float cometPosY=1000;
 
     Buttons chat_button;
     BulletGenerator bullgen;
@@ -62,8 +68,8 @@ public class GameSc implements Screen {
     private static final int entityX=Main.BACKGROUND_WIDTH/2-100;
     private static final int entityY=Main.BACKGROUND_HEIGHT/2-50;
 
-    public static final float player_x=Main.WIDTH/2-entityRad;
-    public static final float player_y=Main.HEIGHT/2-entityRad;
+    public static final float player_x=Main.WIDTH/2f-entityRad;
+    public static final float player_y=Main.HEIGHT/2f-entityRad;
 
     //<!!! --->
 
@@ -81,6 +87,7 @@ public class GameSc implements Screen {
 
     public GameSc(Main main){
         this.main=main;
+        cometAnimation=new Animation(new TextureRegion(Main.comet_fr1),4,4,3);
         spawner=new Spawner();
         gson=new Gson();
         multiplayer=new Multiplayer();
@@ -163,6 +170,7 @@ public class GameSc implements Screen {
         Main.batch.setProjectionMatrix(camera.combined);
         camera.update();
         Main.batch.begin();
+//        if(multiplayer.isSomeoneIN())multiplayer.draw(Main.batch);
         Main.batch.draw(Main.background,0,0);
         playerRender(0);
         backRender(Main.batch);
@@ -170,6 +178,8 @@ public class GameSc implements Screen {
         player.bounds.pos.setPoint(player.send_in_ONLINE.getX()-2*player.R,player.send_in_ONLINE.getY()-player.R);}
         // сплюсовать радиусы для отображения игрока ровно в центре
         // руда - batch
+
+        Main.batch.draw(cometAnimation.getFrame(),cometPosX,cometPosY);
 
         Main.batch.end();
 
@@ -210,6 +220,10 @@ public class GameSc implements Screen {
     }
 
     public void GameUpdate(){
+        cometPosX+=1;
+
+        if(cometAnimation.isDone())cometAnimation.setNewTextureReg(getCometRegion());
+        cometAnimation.update(0.1f);
         player.setDirection(joy.getDir());
 
         player.update();
@@ -334,6 +348,15 @@ public class GameSc implements Screen {
         private void buttonsLogic(SpriteBatch btch){
         chat_button.draw(btch);
             if(chat_button.isTouch())getter_setter.set_StartChat(1);
+        }
+
+        private TextureRegion getCometRegion(){
+            switch (cometAnimation.getSceneCount()){
+                case 1: return new TextureRegion(Main.comet_fr1);
+                case 2: return new TextureRegion(Main.comet_fr2);
+                case 3: return new TextureRegion(Main.comet_fr3);
+            }
+            return new TextureRegion(Main.err);
         }
 
 }

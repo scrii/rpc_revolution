@@ -62,6 +62,10 @@ public class Joystick {
         batch.draw(StickImg, StickBounds.pos.getX()-Rstick, StickBounds.pos.getY()-Rstick, Rstick * 2, Rstick * 2);
     }
 
+    public int getPointer() {
+        return pointer;
+    }
+
     public void update(float x, float y, boolean isDownTouch, int pointer) {
         //при каких обстоятельствах вызываем atControl()
         Point2D touch = new Point2D(x, y);

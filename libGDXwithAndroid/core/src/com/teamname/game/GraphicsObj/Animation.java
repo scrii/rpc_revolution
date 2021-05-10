@@ -13,8 +13,14 @@ public class Animation {
     private int frameCount;
     private int frame;
     private boolean isDone;
+    private int sceneCount;
+    private int scenes;
 
-    public Animation(TextureRegion region, int frameCount, int cycleTime){
+    public int getSceneCount() {
+        return sceneCount;
+    }
+
+    public Animation(TextureRegion region, int frameCount, int cycleTime, int scenes){
         isDone=false;
         frames = new ArrayList<>();
         int frameWidth = region.getRegionWidth() / frameCount;
@@ -23,6 +29,19 @@ public class Animation {
         this.frameCount=frameCount;
         maxFrameTime=cycleTime/frameCount;
         frame=0;
+        this.sceneCount=1;
+        this.scenes=scenes;
+    }
+
+    public void setNewTextureReg(TextureRegion region){
+        isDone=false;
+        frames.clear();
+        int frameWidth = region.getRegionWidth() / frameCount;
+        for(int i=0;i<frameCount;i++)
+            frames.add(new TextureRegion(region,i*frameWidth,0,frameWidth,region.getRegionHeight()));
+
+        frame=0;
+        Gdx.app.error("region",region.toString());
     }
 
     public void update(float dt){
@@ -35,11 +54,14 @@ public class Animation {
         {
             frame=0;
             isDone=true;
+            if(scenes>1&&sceneCount<scenes)sceneCount++;
+            else if(sceneCount==scenes)sceneCount=1;
+            //Gdx.app.error("sceneCount",sceneCount+"");
         }
-        Gdx.app.error("frame",frame+"");
-        Gdx.app.log("frameCount",frameCount+"");
-        Gdx.app.error("currentFrameTime",currentFrameTime+"");
-        Gdx.app.log("maxFrameTime",maxFrameTime+"");
+        //Gdx.app.error("frame",frame+"");
+        //Gdx.app.log("frameCount",frameCount+"");
+        //Gdx.app.error("currentFrameTime",currentFrameTime+"");
+        //Gdx.app.log("maxFrameTime",maxFrameTime+"");
     }
 
     public TextureRegion getFrame(){
