@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         myListView.isFastScrollEnabled();
         input = findViewById(R.id.editText);
         word = findViewById(R.id.number_of_words_entered);
-        getterANDSetterFile = new GetterANDSetterFile();
+        getterANDSetterFile = new GetterANDSetterFile(); //
 
         //online(0);
         // //
