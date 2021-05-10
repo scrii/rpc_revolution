@@ -1,6 +1,7 @@
 package FirebaseHelper;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.google.gson.Gson;
 import com.teamname.game.Main;
@@ -35,8 +36,15 @@ public class Multiplayer {
         Gdx.app.error("Multiplayer Manager","valueOf_online: "+gs.get_Online());
     }
 
+    public boolean isSomeoneIN(){
+        return !players.isEmpty();
+    }
+
     public void draw(SpriteBatch batch){
-        for(Message m : players)batch.draw(Main.actor,m.x,m.y, GameSc.player.R*2,2*GameSc.player.R);
+        for(Message m : players){
+            //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            batch.draw(Main.player1,m.x,m.y, GameSc.player.R*2,2*GameSc.player.R);
+        }
     }
 
     private void startListener(){

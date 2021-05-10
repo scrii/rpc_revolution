@@ -82,7 +82,7 @@ public class Elbrium extends Actor {
         textureCase=1;
         player_damage=GameSc.player.damage;
         //region=new TextureRegion(Main.elbrium,);
-        animation=new Animation(new TextureRegion(Main.elbriumCrash),4,4);
+        animation=new Animation(new TextureRegion(Main.elbriumCrash),4,4,1);
 
         switch (rank){
             case -1: health=10;score=100;R=Main.WIDTH/50;Speed=0.8f;deltaSpeed=0.001f;damage=50;break;

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.teamname.game.GraphicsObj.GraphicsObj;
 import com.teamname.game.Main;
+import com.teamname.game.Screens.GameSc;
 
 public class Buttons {
     Texture unPressed;
@@ -51,7 +52,7 @@ public class Buttons {
 
     public void action(float x, float y, boolean isDownTouch, int pointer){
         if(isDownTouch&&isButtonTouch(x,y)&&this.pointer==-1)this.pointer=pointer;
-        if(isDownTouch&&this.pointer==pointer){isTouch=true;texture=pressed;}
+        if(isDownTouch&&this.pointer==pointer&& GameSc.joy.getPointer()==-1&&GameSc.joy2.getPointer()==-1){isTouch=true;texture=pressed;}
         if(!isDownTouch&&this.pointer==pointer)unPressed();
     }
 

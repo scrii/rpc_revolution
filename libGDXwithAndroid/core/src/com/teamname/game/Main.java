@@ -28,6 +28,7 @@ public class Main extends Game {
 	public static Texture ore1,ore2,ore3,ore4,ore5;
 	public static Texture player1, player2, player3, player4, player5;
 	public static Texture chat_button,chat_button_un;
+	public static Texture comet_fr1,comet_fr2,comet_fr3;
 
 
 	public static int BACKGROUND_WIDTH;
@@ -83,6 +84,7 @@ public class Main extends Game {
 		loadElbriumTextures();
 		loadPlayerTextures();
 		loadButtonTextures();
+		loadCometTextures();
 
 		gameSc=new GameSc(this);
 
@@ -148,5 +150,11 @@ public class Main extends Game {
 	private void loadButtonTextures(){
 		chat_button = new Texture("buttons/chatb.png");
 		chat_button_un=new Texture("buttons/chatbun.png");
+	}
+
+	private void loadCometTextures(){
+		comet_fr1=new Texture("cometa/frame1.png");
+		comet_fr2=new Texture("cometa/frame2.png");
+		comet_fr3=new Texture("cometa/frame3.png");
 	}
 }
