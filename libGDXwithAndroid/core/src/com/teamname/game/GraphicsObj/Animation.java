@@ -58,7 +58,7 @@ public class Animation {
             else if(sceneCount==scenes)sceneCount=1;
             //Gdx.app.error("sceneCount",sceneCount+"");
         }
-        //Gdx.app.error("frame",frame+"");
+        //.Gdx.app.error("frame",frame+"");
         //Gdx.app.log("frameCount",frameCount+"");
         //Gdx.app.error("currentFrameTime",currentFrameTime+"");
         //Gdx.app.log("maxFrameTime",maxFrameTime+"");
