@@ -41,7 +41,7 @@ import FirebaseHelper.Online;
 
 public class ScrollingActivity extends AppCompatActivity {
 
-    public int seconds;
+    public int seconds,k=1;
     int experience;
     int real_xp;
     double real_money;
@@ -50,30 +50,18 @@ public class ScrollingActivity extends AppCompatActivity {
     int level;
     int real_level;
     CountDownTimer countDownTimer;
-    MediaPlayer player1;
     GetterANDSetterFile getterANDSetterFile;
     FrameLayout frameLayout;
     // //
     public Message player_data;
     Online online;
-    @Override
-    protected void onPause() {
-        player1.pause();
-        super.onPause();
-    }
-    @Override
-    protected void onStart(){
-        player1.start();
-        super.onStart();
-    }
     // //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
+        k=1;
         getterANDSetterFile = new GetterANDSetterFile(); //
-        player1 = MediaPlayer.create(ScrollingActivity.this, R.raw.startsound);
-        player1.start();
         frameLayout = findViewById(R.id.gg);
         //nestedScrollView.setBackgroundResource(R.drawable.ic_launcher);
 
@@ -113,7 +101,6 @@ public class ScrollingActivity extends AppCompatActivity {
                     info_money.setText(getterANDSetterFile.get_Guardian_Money() + "");
                     info_level.setText(getterANDSetterFile.get_Guardian_Level()+"");
                     toolBarLayout.setTitle(getterANDSetterFile.get_Nickname());
-                    if(!player1.isPlaying())player1.start();
                     if(getterANDSetterFile.get_StartChat()==1){
                         startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         getterANDSetterFile.set_StartChat(0);
@@ -154,8 +141,6 @@ public class ScrollingActivity extends AppCompatActivity {
         room1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                player1.pause();
-                //startActivity(new Intent(ScrollingActivity.this,MainActivity.class));
                 startActivity(new Intent(ScrollingActivity.this,AndroidLauncher.class));
             }
         });

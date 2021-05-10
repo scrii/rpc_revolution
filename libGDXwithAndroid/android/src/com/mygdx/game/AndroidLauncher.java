@@ -2,14 +2,9 @@ package com.mygdx.game;
 
 import android.os.Bundle;
 import android.view.View;
-
-
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.google.firebase.database.FirebaseDatabase;
 import com.teamname.game.Main;
-
-import FirebaseHelper.PlayerDataCreator;
 
 public class AndroidLauncher extends AndroidApplication {
 

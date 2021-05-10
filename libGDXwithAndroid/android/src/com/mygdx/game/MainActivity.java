@@ -1,9 +1,11 @@
 package com.mygdx.game;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.preference.PreferenceFragmentCompat;
 
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -15,6 +17,7 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,37 +56,31 @@ public class MainActivity extends AppCompatActivity {
     TextView word;
     int sec=1;
     CountDownTimer countDownTimer;
-    MediaPlayer player1;
     // //
     GetterANDSetterFile getterANDSetterFile;
     //Online online;
     // //
 
     private static String CHANNEL_ID = "Elbrium channel";
+
+
+
     // //
     @Override
     protected void onPause() {
         //updateOnline();
-        player1.pause();
         Log.e("MAINACTIVITY", "PAUSED");
         super.onPause();
-    }
-    @Override
-    protected void onStart(){
-        player1.start();
-        super.onStart();
     }
     // //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         myListView = findViewById(R.id.listView);
         myListView.isFastScrollEnabled();
         input = findViewById(R.id.editText);
-        player1 = MediaPlayer.create(MainActivity.this, R.raw.startsound);
-        player1.start();
         word = findViewById(R.id.number_of_words_entered);
         getterANDSetterFile = new GetterANDSetterFile();
 
@@ -145,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
                     toast.cancel();
                     word.setTextColor(getResources().getColor(R.color.grey_500));
                 }
-                if(!player1.isPlaying())player1.start();
             }
             @Override
             public void onFinish() {
@@ -162,16 +158,30 @@ public class MainActivity extends AppCompatActivity {
             countDownTimer.start();
         }
         displayChat();
-        final Intent playActivity = new Intent(this, AndroidLauncher.class);
 
-        Button play = findViewById(R.id.start);
-
-        play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(playActivity);
-            }
-        });
+        if (savedInstanceState == null) {
+            //getSupportFragmentManager().beginTransaction().replace(R.id.activity_main, new ShopActivity.SettingsFragment()).commit();
+        }
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+    public static class SettingsFragment extends PreferenceFragmentCompat {
+        @Override
+        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+            //setPreferencesFromResource(R.xml.root_preferences, rootKey);
+        }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 

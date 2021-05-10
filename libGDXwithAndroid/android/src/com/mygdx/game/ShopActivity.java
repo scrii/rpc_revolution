@@ -240,12 +240,10 @@ public class ShopActivity extends AppCompatActivity {
                     .replace(R.id.shop, new SettingsFragment())
                     .commit();
         }
-        else Toast.makeText(getApplicationContext(),"Error 1: ShopActivity",Toast.LENGTH_LONG).show();
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        else Toast.makeText(getApplicationContext(),"Error 2: ShopActivity",Toast.LENGTH_LONG).show();
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
