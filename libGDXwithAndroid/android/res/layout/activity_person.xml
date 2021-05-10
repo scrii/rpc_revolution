@@ -5,11 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/person"
     android:orientation="vertical"
-    tools:context=".PersonActivity">
-
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+    tools:context=".PersonActivity"
+    tools:showIn="@layout/activity_person">
 
         <TextView
             android:layout_width="wrap_content"
@@ -41,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginRight="16dp"
+            android:layout_marginTop="120dp"
             android:visibility="invisible"
             android:text="@string/confirm" />
 
@@ -51,21 +49,46 @@
             android:id="@+id/setting_tv"
             android:textStyle="bold"
             android:textSize="17dp"
+            android:layout_marginTop="30dp"
             android:text="@string/settings"/>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left">
-                <Button
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="275dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/econom_tv"
+                    android:layout_gravity="center"
+                    android:text="@string/econom_text"
+                    android:textSize="16dp"/>
+                <Switch
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/econom"
-                    android:padding="6dp"
                     android:id="@+id/econom"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="@color/black"
-                    android:layout_gravity="left"
-                    android:textSize="17dp"/>
+                    android:checked="false"
+                    android:layout_marginLeft="38dp"/>
         </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="30dp">
+                        <TextView
+                            android:layout_width="240dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/apperance_tv"
+                            android:text="@string/appearance"
+                            android:textSize="16dp"
+                            android:layout_gravity="center"/>
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/appearance_spinner"
+                            android:layout_marginLeft="75dp"
+                            android:entries="@array/appearance_array"/>
+                </LinearLayout>
+
 </LinearLayout>

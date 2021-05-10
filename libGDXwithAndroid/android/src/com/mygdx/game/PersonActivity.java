@@ -1,28 +1,28 @@
 package com.mygdx.game;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-
-
 public class PersonActivity extends AppCompatActivity {
     EditText name_person;
-    Button confirm,econom;
+    Button confirm;
     String s;
+    Switch econom;
+    Spinner appearance;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,12 +48,27 @@ public class PersonActivity extends AppCompatActivity {
 
         econom = findViewById(R.id.econom);
 
-        econom.setOnClickListener(new View.OnClickListener() {
+        if(getterANDSetterFile.get_TrueOrFalse()%2==0)econom.setChecked(false);
+        else econom.setChecked(true);
+        econom.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 getterANDSetterFile.set_TrueOrFalse(getterANDSetterFile.get_TrueOrFalse()+1);
-                if(getterANDSetterFile.get_TrueOrFalse()%2==0)econom.setBackgroundColor(Color.parseColor("#fd5845"));
-                else econom.setBackgroundColor(Color.parseColor("#91fe9c"));
+                if(getterANDSetterFile.get_TrueOrFalse()%2==0)econom.setChecked(false);
+                else econom.setChecked(true);
+            }
+        });
+        appearance = findViewById(R.id.appearance_spinner);
+        final String[] s2 = {""};
+        appearance.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent,
+                                       View itemSelected, int selectedItemPosition, long selectedId) {
+                s2[0] = String.valueOf(appearance.getSelectedItem());
+                Log.e("Select Item",s2[0]);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
         //===========================================================
