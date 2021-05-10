@@ -257,7 +257,7 @@ public class GameSc implements Screen {
     public void backRender(SpriteBatch batch){
         for(int i=0;i<bullets.size;i++)bullets.get(i).draw(batch);
         for(int i=0;i<ore.size;i++)ore.get(i).draw(batch);
-        multiplayer.draw(batch);
+//        multiplayer.draw(batch);
         player.draw(batch);
     }
 
