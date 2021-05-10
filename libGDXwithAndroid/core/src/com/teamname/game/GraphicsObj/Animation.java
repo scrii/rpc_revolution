@@ -59,12 +59,13 @@ public class Animation {
         {
             isDone=true;
             //setNewTextureReg(GameSc.);
+            if(scenes>1)setNewTextureReg(GameSc.getCometRegion(this));
             frame=0;
             //Gdx.app.error("sceneCount",sceneCount+"");
         }
         if(scenes>1&&sceneCount<scenes)sceneCount++;
         else if(sceneCount==scenes)sceneCount=1;
-        Gdx.app.error("frame",frame+"");
+        //Gdx.app.error("frame",frame+"");
         //.Gdx.app.error("frame",frame+"");
         //Gdx.app.log("frameCount",frameCount+"");
         //Gdx.app.error("currentFrameTime",currentFrameTime+"");
