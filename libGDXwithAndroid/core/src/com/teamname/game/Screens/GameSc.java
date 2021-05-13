@@ -222,7 +222,7 @@ public class GameSc implements Screen {
     public void GameUpdate(){
         cometPosX+=1;
 
-        if(cometAnimation.isDone())cometAnimation.setNewTextureReg(getCometRegion());
+        //if(cometAnimation.isDone()){cometAnimation.setNewTextureReg(getCometRegion());}
         cometAnimation.update(0.1f);
         player.setDirection(joy.getDir());
 
@@ -350,8 +350,9 @@ public class GameSc implements Screen {
             if(chat_button.isTouch())getter_setter.set_StartChat(1);
         }
 
-        private TextureRegion getCometRegion(){
-            switch (cometAnimation.getSceneCount()){
+        public static TextureRegion getCometRegion(Animation animation){
+        Gdx.app.error("switch",animation.getSceneCount()+"");
+            switch (animation.getSceneCount()){
                 case 1: return new TextureRegion(Main.comet_fr1);
                 case 2: return new TextureRegion(Main.comet_fr2);
                 case 3: return new TextureRegion(Main.comet_fr3);

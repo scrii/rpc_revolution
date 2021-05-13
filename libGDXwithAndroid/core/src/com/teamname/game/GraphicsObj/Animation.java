@@ -2,6 +2,7 @@ package com.teamname.game.GraphicsObj;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.teamname.game.Screens.GameSc;
 
 
 import java.util.ArrayList;
@@ -41,7 +42,11 @@ public class Animation {
             frames.add(new TextureRegion(region,i*frameWidth,0,frameWidth,region.getRegionHeight()));
 
         frame=0;
-        Gdx.app.error("region",region.toString());
+        //Gdx.app.error("region",region.toString());
+    }
+
+    public void setFrame(int frame) {
+        this.frame = frame;
     }
 
     public void update(float dt){
@@ -52,12 +57,15 @@ public class Animation {
         }
         if(frame>=frameCount)
         {
-            frame=0;
             isDone=true;
-            if(scenes>1&&sceneCount<scenes)sceneCount++;
-            else if(sceneCount==scenes)sceneCount=1;
+            //setNewTextureReg(GameSc.);
+            if(scenes>1)setNewTextureReg(GameSc.getCometRegion(this));
+            frame=0;
             //Gdx.app.error("sceneCount",sceneCount+"");
         }
+        if(scenes>1&&sceneCount<scenes)sceneCount++;
+        else if(sceneCount==scenes)sceneCount=1;
+        //Gdx.app.error("frame",frame+"");
         //.Gdx.app.error("frame",frame+"");
         //Gdx.app.log("frameCount",frameCount+"");
         //Gdx.app.error("currentFrameTime",currentFrameTime+"");
