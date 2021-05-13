@@ -105,9 +105,7 @@ public class ScrollingActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         getterANDSetterFile.set_StartChat(0);
                     }
-
                 }
-
                 @Override
                 public void onFinish() {
                     toolBarLayout.setTitle(getterANDSetterFile.get_Nickname());

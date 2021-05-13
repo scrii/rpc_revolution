@@ -226,7 +226,7 @@ public class ShopActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(getterANDSetterFile.get_Ore_Elbrium()>0.0){
-                    getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() + getterANDSetterFile.get_Ore_Elbrium()*3);
+                    getterANDSetterFile.set_Guardian_Money(getterANDSetterFile.get_Guardian_Money() + getterANDSetterFile.get_Ore_Elbrium()*2);
                     getterANDSetterFile.set_Ore_Elbrium(0.0);
                 }
                 else Toast.makeText(getApplicationContext(),"Elbrium не найден",Toast.LENGTH_SHORT).show();

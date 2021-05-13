@@ -7,8 +7,8 @@ import java.io.PrintWriter;
 
 public class CreatorFiles {
     CreatorFiles(){}
-    File file4,file5,file6,file7,file8,file9,file10,file11,file12,file13,file14,file15,file16;
-    PrintWriter printWriter4,printWriter5,printWriter6,printWriter7,printWriter8,printWriter9,printWriter11,printWriter12,printWriter13,printWriter14,printWriter15,printWriter16;
+    File file4,file5,file6,file7,file8,file9,file10,file11,file12,file13,file14,file15,file16,file17,file18;
+    PrintWriter printWriter4,printWriter5,printWriter6,printWriter7,printWriter8,printWriter9,printWriter11,printWriter12,printWriter13,printWriter14,printWriter15,printWriter16,printWriter17,printWriter18;
     public void create(){
         file4 = new File("/data/data/com.mygdx.game/Health.txt");
         file5 = new File("/data/data/com.mygdx.game/Protection.txt");
@@ -23,6 +23,8 @@ public class CreatorFiles {
         file14 = new File("/data/data/com.mygdx.game/CoefficientSpeed.txt");
         file15 = new File("/data/data/com.mygdx.game/StartChat.txt");
         file16 = new File("/data/data/com.mygdx.game/TrueOrFalse.txt");
+        file17 = new File("/data/data/com.mygdx.game/SoundMusic.txt");
+        file18 = new File("/data/data/com.mygdx.game/Appearance.txt");
         try {
             file4.createNewFile();
             file5.createNewFile();
@@ -37,6 +39,8 @@ public class CreatorFiles {
             file14.createNewFile();
             file15.createNewFile();
             file16.createNewFile();
+            file17.createNewFile();
+            file18.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -77,6 +81,12 @@ public class CreatorFiles {
                 printWriter16 = new PrintWriter(file16);
                 printWriter16.write(String.valueOf(0));
                 printWriter16.close();
+                printWriter17 = new PrintWriter(file17);
+                printWriter17.write(String.valueOf(1));
+                printWriter17.close();
+                printWriter18 = new PrintWriter(file18);
+                printWriter18.write(String.valueOf(0));
+                printWriter18.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }

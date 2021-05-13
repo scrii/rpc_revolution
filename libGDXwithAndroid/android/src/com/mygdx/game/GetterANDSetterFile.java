@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 
 public class GetterANDSetterFile {
     double real_attack=0,real_health=0,real_protection=0,real_speed=0,real_money=0,real_ore_elbrium=0,real_maneuverability=0;
-    int  real_sign=0,real_xp=0,real_level=0,coefficient_attack=0,coefficient_protection=0,coefficient_speed=0,real_startChat=0,TrueOrFalse=0;
+    int  real_sign=0,real_xp=0,real_level=0,coefficient_attack=0,coefficient_protection=0,coefficient_speed=0,real_startChat=0,TrueOrFalse=0,real_music=0,real_appearance=0;
     String real_message="",real_nickname="",myData = "",strLine;
     File myExternalFile;
     FileInputStream fis;
@@ -38,6 +38,25 @@ public class GetterANDSetterFile {
             e.printStackTrace();
         }
         return real_startChat;
+    }
+    public int get_Appearance(){
+        myData = "";
+        myExternalFile = new File("/data/data/com.mygdx.game/Appearance.txt");
+        try {
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
+            while ((strLine = br.readLine()) != null) {
+                myData = myData + strLine;
+                real_appearance = Integer.parseInt(myData);
+            }
+            br.close();
+            in.close();
+            fis.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return real_appearance;
     }
     public int get_Sign(){
         myData = "";
@@ -95,6 +114,25 @@ public class GetterANDSetterFile {
             e.printStackTrace();
         }
         return real_xp;
+    }
+    public int get_SoundMusic(){
+        myData = "";
+        myExternalFile = new File("/data/data/com.mygdx.game/SoundMusic.txt");
+        try {
+            fis = new FileInputStream(myExternalFile);
+            in = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(in));
+            while ((strLine = br.readLine()) != null) {
+                myData = myData + strLine;
+                real_music = Integer.parseInt(myData);
+            }
+            br.close();
+            in.close();
+            fis.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return real_music;
     }
     public int get_Guardian_Level(){
         myData = "";
@@ -353,6 +391,16 @@ public class GetterANDSetterFile {
             e.printStackTrace();
         }
     }
+    public void set_SoundMusic(int c_SoundMusic){
+        file = new File("/data/data/com.mygdx.game/SoundMusic.txt");
+        try {
+            printWriter = new PrintWriter(file);
+            printWriter.write(String.valueOf(c_SoundMusic));
+            printWriter.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
     public void set_StartChat(int c_startChat){
         file = new File("/data/data/com.mygdx.game/StartChat.txt");
         try {
@@ -393,12 +441,21 @@ public class GetterANDSetterFile {
             e.printStackTrace();
         }
     }
-
     public void set_Sign(int r_sign){
         file = new File("/data/data/com.mygdx.game/Sign.txt");
         try {
             printWriter = new PrintWriter(file);
             printWriter.write(String.valueOf(r_sign));
+            printWriter.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    public void set_Appearance(int r_appearance){
+        file = new File("/data/data/com.mygdx.game/Appearance.txt");
+        try {
+            printWriter = new PrintWriter(file);
+            printWriter.write(String.valueOf(r_appearance));
             printWriter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();

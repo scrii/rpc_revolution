@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -17,12 +19,17 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
 
+import java.util.ArrayList;
+
 public class PersonActivity extends AppCompatActivity {
     EditText name_person;
     Button confirm;
     String s;
-    Switch econom;
+    Switch econom,soundMusic;
     Spinner appearance;
+    ImageView imageView;
+    CountDownTimer countDownTimer;
+    int seconds=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +37,8 @@ public class PersonActivity extends AppCompatActivity {
         name_person = findViewById(R.id.name_person);
         s = name_person.getText().toString();               //Получение вводимого имени в String (true)
         confirm = findViewById(R.id.confirm);
+        imageView = findViewById(R.id.appearance_imageView);
+        soundMusic = findViewById(R.id.sound);
         GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
         if(getterANDSetterFile.get_Nickname()!=name_person.getText().toString()){
             confirm.setVisibility(View.VISIBLE);
@@ -58,19 +67,68 @@ public class PersonActivity extends AppCompatActivity {
                 else econom.setChecked(true);
             }
         });
+        soundMusic.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(!soundMusic.isChecked())getterANDSetterFile.set_SoundMusic(0);
+                else getterANDSetterFile.set_SoundMusic(1);
+
+            }
+        });
+        countDownTimer = new CountDownTimer(seconds*1000,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                seconds--;
+                if(getterANDSetterFile.get_Appearance()==1)imageView.setImageResource(R.mipmap.original);
+                if(getterANDSetterFile.get_Appearance()==2)imageView.setImageResource(R.mipmap.original2);
+                if(getterANDSetterFile.get_Appearance()==3)imageView.setImageResource(R.mipmap.original3);
+                if(getterANDSetterFile.get_Appearance()==4)imageView.setImageResource(R.mipmap.original4);
+                if(getterANDSetterFile.get_Appearance()==5)imageView.setImageResource(R.mipmap.original5);
+            }
+            @Override
+            public void onFinish() {
+                if (countDownTimer!=null){
+                    seconds = 1;
+                    countDownTimer.start();
+                }
+            }
+        };
+        if (countDownTimer!=null){
+            seconds = 1;
+            countDownTimer.start();
+        }
         appearance = findViewById(R.id.appearance_spinner);
         final String[] s2 = {""};
-        appearance.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent,
-                                       View itemSelected, int selectedItemPosition, long selectedId) {
-                s2[0] = String.valueOf(appearance.getSelectedItem());
-                Log.e("Select Item",s2[0]);
-            }
 
+        appearance.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent,View itemSelected, int selectedItemPosition, long selectedId) {
+                s2[0] = String.valueOf(appearance.getSelectedItem());
+                if(appearance.getSelectedItemId()==1){
+                    //imageView.setImageResource(R.mipmap.original);
+                    getterANDSetterFile.set_Appearance(1);
+                }
+                if(appearance.getSelectedItemId()==2){
+                    //imageView.setImageResource(R.mipmap.original2);
+                    getterANDSetterFile.set_Appearance(2);
+                }
+                if(appearance.getSelectedItemId()==3){
+                    //imageView.setImageResource(R.mipmap.original3);
+                    getterANDSetterFile.set_Appearance(3);
+                }
+                if(appearance.getSelectedItemId()==4){
+                    //imageView.setImageResource(R.mipmap.original4);
+                    getterANDSetterFile.set_Appearance(4);
+                }
+                if(appearance.getSelectedItemId()==5){
+                    //imageView.setImageResource(R.mipmap.original5);
+                    getterANDSetterFile.set_Appearance(5);
+                }
+            }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
         //===========================================================
         //Запрещено трогать код ниже!!!!!!
         if (savedInstanceState == null) {

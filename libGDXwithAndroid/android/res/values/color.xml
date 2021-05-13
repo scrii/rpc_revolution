@@ -31,5 +31,7 @@
     <color name="color_one">#9c91fe</color>
     <color name="color_two">#fe9c91</color>
     <color name="text_shadow">#7F000000</color>
-
+    <color name="Try">#ff2052</color>
+    <color name="True">#00cc99</color>
+    <color name="False">#cc0033</color>
 </resources>

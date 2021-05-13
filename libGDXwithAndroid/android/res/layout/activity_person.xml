@@ -30,17 +30,18 @@
             app:autoFill="true"
             app:autoSave="true"
             app:rememberCount="3"
-            app:rememberId="nickname" />
+            app:rememberId="nickname"/>
 
         <Button
             android:id="@+id/confirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:layout_marginTop="140dp"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="120dp"
-            android:visibility="invisible"
-            android:text="@string/confirm" />
+            android:text="@string/confirm"
+            android:visibility="visible" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -87,8 +88,43 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/appearance_spinner"
-                            android:layout_marginLeft="75dp"
+                            android:layout_marginLeft="55dp"
                             android:entries="@array/appearance_array"/>
                 </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp">
+                <TextView
+                    android:layout_width="275dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sound_tv"
+                    android:text="@string/sound"
+                    android:textSize="16dp"
+                    android:layout_gravity="center"/>
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sound"
+                    android:checked="true"
+                    android:layout_marginLeft="38dp"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/ap_tv"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/appearance"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/appearance_imageView"
+            />
 
 </LinearLayout>
