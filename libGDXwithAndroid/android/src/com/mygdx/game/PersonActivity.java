@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -29,6 +31,7 @@ public class PersonActivity extends AppCompatActivity {
     Spinner appearance;
     ImageView imageView;
     CountDownTimer countDownTimer;
+    MediaPlayer mediaPlayer;
     int seconds=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,12 +70,19 @@ public class PersonActivity extends AppCompatActivity {
                 else econom.setChecked(true);
             }
         });
+        if(getterANDSetterFile.get_SoundMusic()==1)soundMusic.setChecked(true);
+        else soundMusic.setChecked(false);
         soundMusic.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(!soundMusic.isChecked())getterANDSetterFile.set_SoundMusic(0);
-                else getterANDSetterFile.set_SoundMusic(1);
-
+                if(!soundMusic.isChecked()){
+                    getterANDSetterFile.set_SoundMusic(0);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Применяем...",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(PersonActivity.this,ScrollingActivity.class));
+                    getterANDSetterFile.set_SoundMusic(1);
+                }
             }
         });
         countDownTimer = new CountDownTimer(seconds*1000,1000) {

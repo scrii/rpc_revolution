@@ -70,4 +70,5 @@
     <string name="econom_text">Оптимизация для слабых устройств</string>
     <string name="appearance">Внешний вид                     </string>
     <string name="sound">Музыка</string>
+    <string name="error">Если вы это видите, что-то пошло не так</string>
 </resources>

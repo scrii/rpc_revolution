@@ -21,5 +21,4 @@
                 android:text="@string/entrance" />
         </androidx.core.widget.NestedScrollView>
 
-
 </FrameLayout>

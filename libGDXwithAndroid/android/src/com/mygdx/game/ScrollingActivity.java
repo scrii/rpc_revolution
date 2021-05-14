@@ -2,9 +2,7 @@ package com.mygdx.game;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -17,7 +15,6 @@ import com.google.firebase.database.ValueEventListener;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.widget.NestedScrollView;
 
 import android.os.CountDownTimer;
@@ -30,41 +27,43 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.MediaController;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import java.io.File;
 
 import FirebaseHelper.Message;
 import FirebaseHelper.Online;
 
-public class ScrollingActivity extends AppCompatActivity {
-
-    public int seconds,k=1;
-    int experience;
-    int real_xp;
-    double real_money;
-    double money,plus_health,plus_attack;
-    int real_sign;
-    int level;
-    int real_level;
+public class ScrollingActivity extends AppCompatActivity{
+    double money,plus_health,plus_attack,real_money;
+    int real_level,experience,real_sign,level,real_xp,seconds;
     CountDownTimer countDownTimer;
     GetterANDSetterFile getterANDSetterFile;
     FrameLayout frameLayout;
+    MediaPlayer mediaPlayer;
     // //
     public Message player_data;
     Online online;
     // //
     @Override
+    protected void onStart(){
+        if(getterANDSetterFile.get_SoundMusic()==1)mediaPlayer.start();
+        super.onStart();
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
-        k=1;
         getterANDSetterFile = new GetterANDSetterFile(); //
         frameLayout = findViewById(R.id.gg);
-        //nestedScrollView.setBackgroundResource(R.drawable.ic_launcher);
-
+        mediaPlayer = MediaPlayer.create(this,R.raw.startsound);
+        //frameLayout.setBackgroundResource(R.mipmap.background);
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                if(getterANDSetterFile.get_SoundMusic()==1)mediaPlayer.start();
+            }
+        });
         // //
         //online(-1);
         player_data=new Message(getterANDSetterFile.getTexture(),-1,-1,(float)getterANDSetterFile.get_Attack(),
@@ -102,9 +101,10 @@ public class ScrollingActivity extends AppCompatActivity {
                     info_level.setText(getterANDSetterFile.get_Guardian_Level()+"");
                     toolBarLayout.setTitle(getterANDSetterFile.get_Nickname());
                     if(getterANDSetterFile.get_StartChat()==1){
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         getterANDSetterFile.set_StartChat(0);
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
                     }
+                    if(getterANDSetterFile.get_SoundMusic()==0 && mediaPlayer.isPlaying())mediaPlayer.pause();
                 }
                 @Override
                 public void onFinish() {
@@ -135,10 +135,10 @@ public class ScrollingActivity extends AppCompatActivity {
                 seconds = 60;
                 countDownTimer.start();
             }
-
         room1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(getterANDSetterFile.get_SoundMusic()==1 && mediaPlayer.isPlaying())mediaPlayer.pause();
                 startActivity(new Intent(ScrollingActivity.this,AndroidLauncher.class));
             }
         });
@@ -159,7 +159,7 @@ public class ScrollingActivity extends AppCompatActivity {
         item2.setTitle(s1);
 
         MenuItem item4 = menu.getItem(2);
-        SpannableString s3 = new SpannableString("О нас");
+        SpannableString s3 = new SpannableString("О приложении");
         s3.setSpan(new ForegroundColorSpan(Color.RED), 0, s3.length(), 0);
         item4.setTitle(s3);
 

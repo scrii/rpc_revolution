@@ -19,7 +19,6 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -43,19 +42,20 @@ public class MainActivity extends AppCompatActivity {
     String nickname;
     ListView myListView;
     BubbleTextView textMessage;
-    boolean xy = true; //34
+    boolean xy = true;
     String s,comment,lucky="";
     EditText input;
     String s1;
     double protect,health,attack,speed;
     double elbrium,gold;
-    int count=0,k1,k2,g1,g2,n=-1,luck=0,z1,z2,r1,r2,d1,d2,m1,m2;
+    int count=0,k1,k2,g1,g2,n=-1,luck=0,z1,z2,r1,r2,d1,d2,m1,m2,x1=-1,x2=-1,y1=-1,y2=-1;
     String[] words;
     int spaces;
     private static final int NOTIFY_ID = 101;
     TextView word;
     int sec=1;
     CountDownTimer countDownTimer;
+    MediaPlayer mediaPlayer;
     // //
     GetterANDSetterFile getterANDSetterFile;
     //Online online;
@@ -65,15 +65,27 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         //updateOnline();
+        if(getterANDSetterFile.get_SoundMusic()==1)mediaPlayer.pause();
         Log.e("MAINACTIVITY", "PAUSED");
         super.onPause();
+    }
+    @Override
+    protected void onStart(){
+        if(getterANDSetterFile.get_SoundMusic()==1)mediaPlayer.start();
+        super.onStart();
     }
     // //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //getSupportActionBar().hide();
+        mediaPlayer = MediaPlayer.create(this,R.raw.chatsound);
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                if(getterANDSetterFile.get_SoundMusic()==1)mediaPlayer.start();
+            }
+        });
         myListView = findViewById(R.id.listView);
         myListView.isFastScrollEnabled();
         input = findViewById(R.id.editText);
@@ -184,7 +196,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void displayChat() {
-
         ListView listMessages = findViewById(R.id.listView);
         adapter = new FirebaseListAdapter<Message>(MainActivity.this, Message.class, R.layout.list_item, FirebaseDatabase.getInstance().getReference("Message")) {
             @Override
@@ -202,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
                 int kolvo_symbols = 0;
                 s = textMessage.getText().toString();
                 comment = textMessage.getText().toString();
-                if(s.contains("*") && textMessage.getText().toString().contains("*")) {
+                if(s.contains("*") && textMessage.getText().toString().contains("*") && !s.contains("#")) {
                     for (int i = 0; i < s.length(); i++) {
                         if (s.charAt(i) == '*' && s.contains("*")) {
                             kolvo_symbols++;
@@ -259,6 +270,11 @@ public class MainActivity extends AppCompatActivity {
                     SpannableString colorSpannable1= new SpannableString(s);
                     colorSpannable1.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.True)),z1,z2+1,0);
                     colorSpannable1.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.Try)),d1,d2+1,0);
+                    if(s.contains("*")){
+                        x1 = comment.indexOf("*");
+                        x2 = comment.lastIndexOf("*");
+                        colorSpannable1.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.comment)),x1,x2+1,0);
+                    }
                     builder1.append(colorSpannable1);
                     textMessage.setText(builder1, TextView.BufferType.SPANNABLE);
                 }
@@ -271,6 +287,11 @@ public class MainActivity extends AppCompatActivity {
                     SpannableString colorSpannable1= new SpannableString(s);
                     colorSpannable1.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.False)),r1,r2+1,0);
                     colorSpannable1.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.Try)),m1,m2+1,0);
+                    if(s.contains("*")){
+                        y1 = comment.indexOf("*");
+                        y2 = comment.lastIndexOf("*");
+                        colorSpannable1.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.comment)),y1,y2+1,0);
+                    }
                     builder1.append(colorSpannable1);
                     textMessage.setText(builder1, TextView.BufferType.SPANNABLE);
                 }

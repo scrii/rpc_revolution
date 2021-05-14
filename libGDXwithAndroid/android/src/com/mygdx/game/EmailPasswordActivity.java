@@ -50,10 +50,13 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
                     sd.create();
                     s = registration_nickname.getText().toString();
                     GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
-                    getterANDSetterFile.set_Sign(1);
+
                     getterANDSetterFile.set_Nickname(s);
                     number = 1;
-                    if(getterANDSetterFile.get_Nickname()!="")startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
+                    if(getterANDSetterFile.get_Nickname()!=""){
+                        getterANDSetterFile.set_Sign(1);
+                        startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
+                    }
                     else Toast.makeText(getApplicationContext(),"Ник не может быть пустым!",Toast.LENGTH_LONG).show();
                 } else
                     Toast.makeText(getApplicationContext(), "Aвторизация провалена", Toast.LENGTH_SHORT).show();
@@ -72,10 +75,13 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
                 sd.create();
                 s = registration_nickname.getText().toString();
                 GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
-                getterANDSetterFile.set_Sign(1);
+
                 getterANDSetterFile.set_Nickname(s);
                 number = 1;
-                if(getterANDSetterFile.get_Nickname()!="")startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
+                if(getterANDSetterFile.get_Nickname()!=""){
+                    getterANDSetterFile.set_Sign(1);
+                    startActivity(new Intent(EmailPasswordActivity.this, ScrollingActivity.class));
+                }
                 else Toast.makeText(getApplicationContext(),"Ник не может быть пустым!",Toast.LENGTH_LONG).show();
             }
         });

@@ -18,27 +18,23 @@ import com.google.firebase.database.FirebaseDatabase;
 import FirebaseHelper.Message;
 
 public class ShopActivity extends AppCompatActivity {
-    // getter для считывания никнейма //
     GetterANDSetterFile getter_setter;
     Message player_data;
-    // //
     public int seconds = 1;
     CountDownTimer countDownTimer;
     int price_ore_elbrium = 3;
     int price_protection = 30;
     int price_speed = 30;
     int price_attack = 10;
-    double new_price_maneuverability,new_price_attack,new_price_protection,new_price_speed,new_price_ore_elbrium,new_price_ore_elbrium_speed; //манёвренность
+    double new_price_maneuverability,new_price_attack,new_price_protection,new_price_speed,new_price_ore_elbrium,new_price_ore_elbrium_speed;
     int price_maneuverability = 10;
     Button maneuverability_plus_one,attack_plus_one,protect_plus_one,speed_plus_one,sale_of_elbrium;
     TextView real_money_characteristic,real_health_characteristic,real_damage_characteristic,real_protect_characteristic,real_speed_characteristic,real_ore_characteristic,maneuverability_price,attack_price,protection_price,speed_price;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shop_activity);
-
         // //
         getter_setter=new GetterANDSetterFile();
         player_data=new Message(getter_setter.getTexture(),-1,-1,(float)getter_setter.get_Attack(),
