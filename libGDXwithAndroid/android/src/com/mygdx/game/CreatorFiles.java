@@ -64,7 +64,7 @@ public class CreatorFiles {
                 printWriter9.write(String.valueOf(0));
                 printWriter9.close();
                 printWriter11 = new PrintWriter(file11);
-                printWriter11.write(String.valueOf(1));
+                printWriter11.write(String.valueOf(0));
                 printWriter11.close();
                 printWriter12 = new PrintWriter(file12);
                 printWriter12.write(String.valueOf(0));

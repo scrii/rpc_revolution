@@ -71,4 +71,5 @@
     <string name="appearance">Внешний вид                     </string>
     <string name="sound">Музыка</string>
     <string name="error">Если вы это видите, что-то пошло не так</string>
+    <string name="table_leader">Таблица лидеров</string>
 </resources>

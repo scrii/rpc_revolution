@@ -17,8 +17,10 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -171,13 +173,15 @@ public class MainActivity extends AppCompatActivity {
             countDownTimer.start();
         }
         displayChat();
-        if (savedInstanceState == null) {
-            //getSupportFragmentManager().beginTransaction().replace(R.id.activity_main, new ShopActivity.SettingsFragment()).commit();
-        }
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar, menu);
+        return true;
     }
     public static class SettingsFragment extends PreferenceFragmentCompat {
         @Override
@@ -187,6 +191,11 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(2131558400 == R.menu.actionbar){
+            startActivity(new Intent(MainActivity.this,TableLeader.class));
+            return true;
+        }
         switch (item.getItemId()) {
             case android.R.id.home:
                 this.finish();

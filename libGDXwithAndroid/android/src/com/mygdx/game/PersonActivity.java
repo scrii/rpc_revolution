@@ -27,7 +27,7 @@ public class PersonActivity extends AppCompatActivity {
     EditText name_person;
     Button confirm;
     String s;
-    Switch econom,soundMusic;
+    Switch soundMusic;
     Spinner appearance;
     ImageView imageView;
     CountDownTimer countDownTimer;
@@ -58,18 +58,6 @@ public class PersonActivity extends AppCompatActivity {
         if(!s.equals(""))getterANDSetterFile.set_Nickname(s);
         else Toast.makeText(getApplicationContext(),"Никнейм не может быть пустым",Toast.LENGTH_SHORT).show();
 
-        econom = findViewById(R.id.econom);
-
-        if(getterANDSetterFile.get_TrueOrFalse()%2==0)econom.setChecked(false);
-        else econom.setChecked(true);
-        econom.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                getterANDSetterFile.set_TrueOrFalse(getterANDSetterFile.get_TrueOrFalse()+1);
-                if(getterANDSetterFile.get_TrueOrFalse()%2==0)econom.setChecked(false);
-                else econom.setChecked(true);
-            }
-        });
         if(getterANDSetterFile.get_SoundMusic()==1)soundMusic.setChecked(true);
         else soundMusic.setChecked(false);
         soundMusic.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

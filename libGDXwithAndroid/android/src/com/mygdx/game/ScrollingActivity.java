@@ -53,8 +53,16 @@ public class ScrollingActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getterANDSetterFile = new GetterANDSetterFile();
+        if(getterANDSetterFile.get_Sign()==0)startActivity(new Intent(ScrollingActivity.this,EmailPasswordActivity.class));
+        if(getterANDSetterFile.get_Sign()==0){
+            try {
+                Thread.sleep(200);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
         setContentView(R.layout.activity_scrolling);
-        getterANDSetterFile = new GetterANDSetterFile(); //
         frameLayout = findViewById(R.id.gg);
         mediaPlayer = MediaPlayer.create(this,R.raw.startsound);
         //frameLayout.setBackgroundResource(R.mipmap.background);
@@ -72,8 +80,8 @@ public class ScrollingActivity extends AppCompatActivity{
         online=new Online();
         //online.online(0);
         // //
-        real_sign = getterANDSetterFile.get_Sign();
-        if(real_sign != 1)startActivity(new Intent(ScrollingActivity.this,EmailPasswordActivity.class));
+        //real_sign = getterANDSetterFile.get_Sign();
+        //if(real_sign != 1)startActivity(new Intent(ScrollingActivity.this,EmailPasswordActivity.class));
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         CollapsingToolbarLayout toolBarLayout = findViewById(R.id.toolbar_layout);
@@ -185,7 +193,7 @@ public class ScrollingActivity extends AppCompatActivity{
             startActivity(new Intent(ScrollingActivity.this,About_us.class));
             return true;
         }
-        if (id == R.id.exit) { //здесь предствален обработчик нажатия типа setOnClickListener
+        if (id == R.id.exit) {
             GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
             getterANDSetterFile.set_Guardian_Money(0.0);
             getterANDSetterFile.set_Guardian_Exp(0);
@@ -199,8 +207,7 @@ public class ScrollingActivity extends AppCompatActivity{
             getterANDSetterFile.set_Attack(3.0);
             getterANDSetterFile.set_Protection(3.0);
             getterANDSetterFile.set_Speed(3.0);
-            new File("/data/data/com.mygdx.game/Maneuverability.txt").delete();
-            new File("/data/data/com.mygdx.game/Message.txt").delete();
+            getterANDSetterFile.set_Message("");
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(this,ScrollingActivity.class));
             return true;
@@ -222,6 +229,5 @@ public class ScrollingActivity extends AppCompatActivity{
             }
         });
     }
-
     // //
 }
