@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".TableLeader">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/l13"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
@@ -15,14 +20,14 @@
         android:textStyle="bold"
         android:textSize="17dp"/>
 
-<androidx.core.widget.NestedScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/leaderView"/>
-
-</androidx.core.widget.NestedScrollView>
+        android:id="@+id/leaderView"
+        android:divider="@null"
+        android:dividerHeight="1dp"
+        android:fastScrollEnabled="true"
+        android:overScrollMode="never"/>
 </LinearLayout>
+
+</RelativeLayout>

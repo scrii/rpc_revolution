@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +31,7 @@ public class TableLeader extends AppCompatActivity {
         listView = findViewById(R.id.leaderView);
         arrayList = new ArrayList();
         GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
+        //Log.d("Database",FirebaseDatabase.getInstance().getReference("LeaderBoard").getParent().toString());
         if(getterANDSetterFile.get_Ore_Elbrium()>0.0)FirebaseDatabase.getInstance().getReference("LeaderBoard").push().setValue(new LeaderBoard(getterANDSetterFile.get_Nickname(),getterANDSetterFile.get_Ore_Elbrium()));
         adapter = new FirebaseListAdapter<LeaderBoard>(TableLeader.this,LeaderBoard.class,R.layout.leader_list, FirebaseDatabase.getInstance().getReference("LeaderBoard")){
             @Override
