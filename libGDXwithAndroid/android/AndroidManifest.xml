@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".TableLeader"></activity>
+        <activity android:name=".TableLeader"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".ScrollingActivity"
             android:label="Elbrium"

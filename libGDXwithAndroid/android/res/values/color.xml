@@ -34,4 +34,15 @@
     <color name="Try">#ff2052</color>
     <color name="True">#00cc99</color>
     <color name="False">#cc0033</color>
+    <color name="zero">#ffcfd9</color>
+    <color name="one_ten">#ffd700</color>
+    <color name="ten_twenty">#f5d00a</color>
+    <color name="twenty_thirty">#ebca14</color>
+    <color name="thirty_forty">#e2c31d</color>
+    <color name="forty_fifty">#d8bc27</color>
+    <color name="fifty_sixty">#ceb531</color>
+    <color name="sixty_seventy">#c4af3b</color>
+    <color name="seventy_ninety">#baa845</color>
+    <color name="ninety_one_hundred">#b1a14e</color>
+    <color name="other">#cfd9ff</color>
 </resources>
