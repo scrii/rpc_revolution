@@ -64,7 +64,7 @@ public class ScrollingActivity extends AppCompatActivity{
         }
         setContentView(R.layout.activity_scrolling);
         //getterANDSetterFile.set_Nickname("America");
-        //getterANDSetterFile.set_Ore_Elbrium(20001.0);
+        getterANDSetterFile.set_Ore_Elbrium(200011.0);
         frameLayout = findViewById(R.id.gg);
         mediaPlayer = MediaPlayer.create(this,R.raw.startsound);
         //frameLayout.setBackgroundResource(R.mipmap.background);

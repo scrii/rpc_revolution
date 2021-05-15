@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
@@ -13,7 +14,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseListAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,15 +28,32 @@ public class TableLeader extends AppCompatActivity {
     ArrayList arrayList;
     TextView leader_nickname,leader_elbrium,number;
     FirebaseListAdapter<LeaderBoard> adapter;
+    String s,s1;
+    boolean tf;
+    int n;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table_leader);
         listView = findViewById(R.id.leaderView);
         arrayList = new ArrayList();
+
         GetterANDSetterFile getterANDSetterFile = new GetterANDSetterFile();
         //Log.d("Database",FirebaseDatabase.getInstance().getReference("LeaderBoard").getParent().toString());
-        if(getterANDSetterFile.get_Ore_Elbrium()>0.0)FirebaseDatabase.getInstance().getReference("LeaderBoard").push().setValue(new LeaderBoard(getterANDSetterFile.get_Nickname(),getterANDSetterFile.get_Ore_Elbrium()));
+
+//            FirebaseDatabase.getInstance().getReference("LeaderBoard").addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull @org.jetbrains.annotations.NotNull DataSnapshot snapshot) {
+//                    if(snapshot.getValue()!=null)s=snapshot.getValue(LeaderBoard.class).nickname;
+//                    else s="none";
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull @org.jetbrains.annotations.NotNull DatabaseError error) {
+//
+//                }
+//            });
+
         adapter = new FirebaseListAdapter<LeaderBoard>(TableLeader.this,LeaderBoard.class,R.layout.leader_list, FirebaseDatabase.getInstance().getReference("LeaderBoard")){
             @Override
             protected void populateView(View v, LeaderBoard model, int position) {
@@ -42,6 +63,7 @@ public class TableLeader extends AppCompatActivity {
                 number.setText(position+" ");
                 leader_nickname.setText(model.getNickname()+" ");
                 leader_elbrium.setText(model.getElbrium()+"");
+                arrayList.add(leader_nickname);
                 if(position==0)number.setTextColor(getResources().getColor(R.color.zero));
                 if(position>0 && position<=10)number.setTextColor(getResources().getColor(R.color.one_ten));
                 if(position>10 && position<=20)number.setTextColor(getResources().getColor(R.color.ten_twenty));
@@ -59,7 +81,17 @@ public class TableLeader extends AppCompatActivity {
             }
         };
         listView.setAdapter(adapter);
-
+        for (n = 0; n < arrayList.size(); n++) {
+            if(getterANDSetterFile.get_Nickname() == arrayList.get(n)){
+                tf=false;
+                break;
+            }
+            else tf=true;
+        }
+        if(getterANDSetterFile.get_Ore_Elbrium()>0.0) {
+            if(tf)FirebaseDatabase.getInstance().getReference("LeaderBoard").push().setValue(new LeaderBoard(getterANDSetterFile.get_Nickname(), getterANDSetterFile.get_Ore_Elbrium()));
+            else FirebaseDatabase.getInstance().getReference("LeaderBoard").setValue(new LeaderBoard(getterANDSetterFile.get_Nickname(), getterANDSetterFile.get_Ore_Elbrium()));
+        }
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);

@@ -191,19 +191,18 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         int id = item.getItemId();
-        if(2131558400 == R.menu.actionbar){
+        if(R.id.item1== id) {
             startActivity(new Intent(MainActivity.this,TableLeader.class));
             return true;
         }
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if(id==android.R.id.home){
+            this.finish();
+            return true;
         }
-    }
+        return super.onOptionsItemSelected(item);
+        }
     private void displayChat() {
         ListView listMessages = findViewById(R.id.listView);
         adapter = new FirebaseListAdapter<Message>(MainActivity.this, Message.class, R.layout.list_item, FirebaseDatabase.getInstance().getReference("Message")) {
